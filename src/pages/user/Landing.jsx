@@ -49,7 +49,7 @@ export default function Landing() {
       </section>
 
       {/* SECOND MODAL SECTION */}
-      <section className="max-w-6xl mx-auto px-10 py-20 grid md:grid-cols-2 gap-10 items-center">
+      <section className="max-w-6xl mx-auto px-10 py-18 grid md:grid-cols-2 gap-10 items-center">
         {/* Left Text */}
         <div>
           <p className="text-md uppercase tracking-wide text-gray-500 mb-4">How it works</p>
@@ -75,6 +75,45 @@ export default function Landing() {
           </div>
         </div>
       </section>
+
+      <section className='bg-gray-100 py-14 px-4 mb-20'>
+        <div className='text-center mb-14'>
+          <p className='text-md uppercase tracking-wider text-gray-500 mb-4'>Service</p>
+          <h1 className='text-3xl md:text-5xl font-bold text-green-900 mb-2'>
+            Your Path to <br  className=''/>Well-being
+          </h1>
+          <p className='text-gray-600 max-w-sm mx-auto text-xl mt-6'>
+            Discover expert guidance for a healtheir mind and balanced life.
+          </p>
+        </div>
+
+        <div className='grid md:grid-cols-2 gap-8  max-w-5xl mx-auto '>
+          <div className='bg-orange-100 rounded-3xl px-8 py-14 shadow-md'>
+            <h3 className='text-3xl md:text-4xl max-w-sm font-semibold text-green-900 mb-4'>Mindfulness & Meditation</h3>
+            <p className='text-gray-700 max-w-xs mb-6 text-xl'>
+              Guided Routine and Nutrition sessions and stress management and techniques
+            </p>
+            <button className='border  border-green-800 py-2 px-8 font-semibold rounded-full hover:bg-green-100 transition'>
+              Learn More
+            </button>
+          </div>
+
+          <div className='bg-white rounded-3xl px-8 py-14 shadow-md'>
+            <h3 className='text-3xl md:text-4xl max-w-xs font-semibold text-green-900 mb-4'>One-on-One ROutine</h3>
+            <p className='text-gray-700 max-w-xs mb-6 text-xl'>
+              Virtual and in-person Routines and nutrition sessions with licensed professionals.
+            </p>
+            <button className='border border-green-800 text-green-800 py-2 px-8 font-semibold rounded-full hover:bg-green-100 transition'>
+              Learn More
+            </button>
+          </div>
+        </div>
+      </section>
+      
+
+      
+
+      
     </div>
   );
 }
