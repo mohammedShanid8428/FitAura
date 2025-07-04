@@ -171,6 +171,28 @@ export default function Landing() {
         </div>
       </section>
 
+      <section className='bg-gray-50 rounded-[50px] p-6  md:px-14 flex flex-col md:flex-row item-center justify-between max-w-6xl mx-auto mt-10 relative overflow-hidden'>
+        
+        <div className='max-w-sm text-center md:text-left '>
+        <p className='text-xs uppercase tracking-widest text-gray-600 mt-4 mb-4'>Community</p>
+        <h2 className='text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-snug'>
+          You’re Not Alone <br className="" /> on This Journey
+        </h2>
+        <p className='text-gray-700 mb-10 font-semibold text-xl'>
+          Connect with others, share experiences, and find encouragement in a safe, supportive space.
+        </p>
+        <button className='bg-green-900 hover:bg-green-800 text-white font-medium px-5 py-2 rounded-full transition mb-8'>
+          Join The Community
+        </button>
+        </div>
+
+        <div className='absolute w-[700px] bottom-0 right-0 md:bottom-[-90px] md:right-[-90px] z-0'>
+        <img src={images.modal2} alt="" />
+        </div>
+        
+      </section>
+
+      <section className='py-20'></section>
       
 
       
