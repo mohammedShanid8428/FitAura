@@ -49,28 +49,28 @@ export default function Landing() {
       </section>
 
       {/* SECOND MODAL SECTION */}
-      <section className="max-w-5xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-8 items-center">
+      <section className="max-w-6xl mx-auto px-10 py-20 grid md:grid-cols-2 gap-10 items-center">
         {/* Left Text */}
         <div>
-          <p className="text-xs uppercase tracking-wide text-gray-500 mb-2">How it works</p>
-          <h3 className="text-2xl font-bold text-green-900 mb-2">
-            We Help You Prioritize Your Mental Health
+          <p className="text-md uppercase tracking-wide text-gray-500 mb-4">How it works</p>
+          <h3 className="text-3xl md:text-5xl leading-snug font-bold text-green-900 mb-6">
+            We Help You <br /> Prioritize Your <br />  Health And Wellness
           </h3>
-          <p className="text-gray-700 mb-4">
-            Browse therapists, book a session, and start your healing journey with trusted professionals.
+          <p className="text-gray-700 mb-8 max-w-sm text-xl">
+            Browse therapists,Lorem, ipsum.lore2 book a session, and start your healing journey with trusted professionals.
           </p>
-          <button className="bg-green-800 text-white py-2 px-5 rounded hover:bg-green-900 transition text-sm">
-            Find A Therapist
+          <button className="bg-green-800 text-white py-3 px-8 rounded-full hover:bg-green-900 transition text-md">
+            Find A Trainer
           </button>
         </div>
 
         {/* Right Image Box */}
         <div className="flex justify-center">
-          <div className="bg-green-900 p-6 rounded-xl">
+          <div className="bg-green-900 md:p-10 px-4 ms-12 rounded-3xl shadow-lg">
             <img
-              src="https://cdn-icons-png.flaticon.com/512/4764/4764634.png"
+              src={images.modal1}
               alt="Mental Health"
-              className="w-40"
+              className="w-100 md:w-58"
             />
           </div>
         </div>
