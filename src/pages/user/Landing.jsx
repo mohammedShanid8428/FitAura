@@ -110,6 +110,24 @@ export default function Landing() {
         </div>
       </section>
       
+      <section className='bg-gray-50 rounded-3xl shadow-xl p-6 md:p-10 flex flex-col md:flex-row items-center justify-between max-w-5xl mx-auto mt-10 mb-20'>
+        <div className='md:w-1/2 text-center md:text-left'>
+        <h2 className='text-2xl md:text-4xl font-semibold text-gray-900 mb-4'>Wellness Coaching</h2>
+        <p className='text-gray-700 mb-2 font-semibold'>
+          Persanalized coaches support to help you build healthier habits,manage stress,and acheive balance in all area of your life.
+        </p>
+        <p className='text-gray-700 mb-6 font-semibold'>
+          Our wellness coaches support you in creating sustainable rountine for mental, emotional, and physical well-being.
+        </p>
+        <button className='bg-green-900 hover:bg-green-800 text-white font-medium px-5 py-2 rounded-full transition'>
+          Learn More
+        </button>
+        </div>
+
+        <div className='md:w-1/2 mt-8 md:mt-0 flex justify-center'>
+        <img src={images.modal1} alt="" className='max-w-xs w-full h-auto'/>
+        </div>
+      </section>
 
       
 
