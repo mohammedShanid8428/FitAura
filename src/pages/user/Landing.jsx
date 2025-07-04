@@ -1,4 +1,5 @@
 import React from 'react';
+import { images } from '../../assets/images'
 
 export default function Landing() {
   return (
@@ -24,26 +25,24 @@ export default function Landing() {
       </header>
 
       {/* HERO */}
-      <section className="bg-orange-100 py-14 px-4 rounded-3xl max-w-5xl mx-auto my-10 relative overflow-hidden">
-        {/* Illustration background left/right */}
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/3898/3898106.png"
+      <section className="bg-orange-100 min-h-[430px] py-24 px-4 rounded-[50px] max-w-5xl  mx-auto my-12 h-100 relative overflow-hidden ">
+       
+        <img src={images.hero1} 
           alt="Decorations"
-          className="absolute w-20 top-4 left-4 md:left-8"
+          className="absolute w-[420px] bottom-[-80px] left-[-85px] z-0"
         />
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/6858/6858142.png"
+        <img src={images.hero2}
           alt="Decorations"
-          className="absolute w-20 bottom-4 right-4 md:right-8"
+          className="absolute w-[420px] bottom-[-80px] right-[-80px] z-0"
         />
         <div className="text-center relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-green-900 mb-4">
-            Support for Your Mental Well-being
+          <h2 className="text-3xl md:text-5xl  font-bold text-green-900 mb-6">
+            Support for Your <br className='hidden md:block' /> Mental Well-being
           </h2>
-          <p className="text-gray-700 mb-6 max-w-xl mx-auto">
+          <p className="text-gray-700 mb-8 max-w-md mx-auto text-xl">
             Connect with licensed therapists, counselors, and wellness coaches to support your journey.
           </p>
-          <button className="bg-green-800 text-white py-2 px-6 rounded hover:bg-green-900 transition">
+          <button className="bg-green-800 text-white py-2 px-10 rounded-3xl hover:bg-green-900 transition">
             Get Started
           </button>
         </div>
