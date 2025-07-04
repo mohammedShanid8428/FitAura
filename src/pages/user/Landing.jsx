@@ -171,7 +171,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className='bg-gray-50 rounded-[50px] p-6  md:px-14 flex flex-col md:flex-row item-center justify-between max-w-6xl mx-auto mt-10 relative overflow-hidden'>
+      <section className='bg-gray-50 rounded-[50px] p-6  md:px-14 flex flex-col  md:flex-row item-center justify-between max-w-6xl mx-auto relative overflow-hidden'>
         
         <div className='max-w-sm text-center md:text-left '>
         <p className='text-xs uppercase tracking-widest text-gray-600 mt-4 mb-4'>Community</p>
@@ -192,7 +192,50 @@ export default function Landing() {
         
       </section>
 
-      <section className='py-20'></section>
+      <section className='bg-gray-50  mt-3 py-20 px-6 md:px-12 max-w-6xl mx-auto relative'>
+        <div className='flex flex-col md:flex-row items-center justify-between gap-1'>
+          <div className=' text-center md:text-left'>
+          <p className='text-md uppercase tracking-widest text-gray-600 mb-6'>Need Help?</p>
+          <h2 className='text-3xl md:text-4xl font-bold text-gray-900 mb-6'>
+            Frequently <br className=""/> Asked <span class="underline underline-offset-4 decoration-green-700">Questions</span>
+          </h2>
+          <p className='text-gray-700 mb-8'>
+            Find answers to common questions about our services, therapy, and mental well-being.
+          </p>
+          <div className='bg-orange-100 px-6 py-[120px] mt-[250px] rounded-3xl  w-full max-w-md mx-auto md:mx-0'></div>
+        <img src={images.modal3} alt="FAQ Illustration" className='absolute w-[500px] bottom-[1px] left-[30px]' />
+          </div>
+          <div className='flex flex-col gap-4 mt-[250px]'>
+          <div className='bg-white rounded-xl p-4 flex items-center justify-between shadow-sm'>
+            <p className='text-gray-800 font-medium'>How do I book a therapy session?</p>
+            <span className='text-2xl text-gray-500 font-bold'>+</span>
+          </div>
+          <div className='bg-white rounded-xl p-4 flex items-center justify-between shadow-sm'>
+            <p className='text-gray-800 font-medium'>Are online sessions available?</p>
+            <span className='text-2xl text-gray-500 font-bold'>+</span>
+          </div>
+          <div className='bg-white rounded-xl p-4 flex items-center justify-between shadow-sm'>
+            <p className='text-gray-800 font-medium'>What’s the difference between therapy and coaching?</p>
+            <span className='text-2xl text-gray-500 font-bold'>+</span>
+          </div>
+          <div className='bg-white rounded-xl p-4 flex items-center justify-between shadow-sm'>
+            <p className='text-gray-800 font-medium'>Do I need a subscription to access services?</p>
+            <span className='text-2xl text-gray-500 font-bold'>+</span>
+          </div>
+          <div className='bg-white rounded-xl p-4 flex items-center justify-between shadow-sm'>
+            <p className='text-gray-800 font-medium'>Can I switch therapists if I don’t feel the right connection?</p>
+            <span className='text-2xl text-gray-500 font-bold'>+</span>
+          </div>
+          <div className='bg-white rounded-xl p-4 flex items-center justify-between shadow-sm'>
+            <p className='text-gray-800 font-medium'>Is my information and session history kept confidential?</p>
+            <span className='text-2xl text-gray-500 font-bold'>+</span>
+          </div>
+          
+          
+          
+          </div>
+        </div>
+      </section>
       
 
       
