@@ -4,16 +4,23 @@ export default function Landing() {
   return (
     <div className="font-sans text-gray-800">
       {/* NAVBAR */}
-      <header className="flex justify-between items-center px-6 py-5">
-        <h1 className="text-2xl font-bold text-green-900">Solus</h1>
-        <nav className="space-x-6 text-sm font-medium text-gray-700 hidden md:flex">
-          <a href="#">Home</a>
-          <a href="#">About</a>
-          <a href="#">Services</a>
-          <a href="#">Nutrition</a>
-          <a href="#">Rountines</a>
-          <a href="#">Contact</a>
-        </nav>
+      <header className="bg-gray-100 px-6 py-5">
+        <div className='max-w-7xl max-auto flex items-center justify-between relative px-12'>
+          <div className='flex space-x-12 text-md font-medium text-gray-900'>
+            <a href="#">Dashboard</a>
+            <a href="#">Mood</a>
+            <a href="#">About</a>
+          </div>
+          <div className='text-2xl font-bold text-green-800'>
+          FitAura
+          </div>
+
+          <div className='flex space-x-12 text-md font-medium text-gray-900'>
+            <a href="#">Routines</a>
+            <a href="#">Nutritions</a>
+            <a href="#">Contact</a>
+          </div>
+        </div>
       </header>
 
       {/* HERO */}
