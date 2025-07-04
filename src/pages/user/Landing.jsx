@@ -129,6 +129,48 @@ export default function Landing() {
         </div>
       </section>
 
+      <section className='bg-gray-50 py-16 px-6 md:px-12'>
+        <div className='text-center mb-12 max-w-3xl mx-auto'>
+          <p className='text-md tracking-wide uppercase text-gray-600 mb-2'>Explore & Learn</p>
+          <h1 className='text-3xl md:text-4xl font-bold text-gray-900 mb-4'>
+             Resources for <br className="" /> Your Well-being
+          </h1>
+          <p className='text-gray-700 font-semibold text-xl'>
+            Explore expert insights, self-care guides,<br/> and tools to support your mental health.
+          </p>
+        </div>
+
+        <div className='grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto'>
+          <div className='bg-white rounded-[50px] p-8 shadow-md text-center max-w-xs'>
+            <h2 className='text-2xl  font-semibold text-gray-900  mb-4'>Article & <br/> Guides</h2>
+            <p className='text-gray-600 mb-8 font-semibold'>
+              Practical tips on stress management, mindfulness, and emotional resilience.
+            </p>
+            <button className='bg-yellow-400 hover:bg-yellow-500 text-white px-8 py-2 rounded-full font-medium'>
+              Explore
+            </button>
+          </div>
+          <div className='bg-white rounded-[50px] p-8 shadow-md text-center max-w-xs'>
+            <h2 className='text-2xl  font-semibold text-gray-900  mb-4'>Routines & <br/> Guides</h2>
+            <p className='text-gray-600 mb-8 font-semibold'>
+              Practical tips on stress management, mindfulness, and emotional resilience.
+            </p>
+            <button className='bg-teal-400 hover:bg-teal-500 text-white px-8 py-2 rounded-full font-medium'>
+              Explore
+            </button>
+          </div>
+          <div className='bg-white rounded-[50px] p-8 shadow-md text-center max-w-xs'>
+            <h2 className='text-2xl  font-semibold text-gray-900  mb-4'>Nutrition & <br/> Guides</h2>
+            <p className='text-gray-600 mb-8 font-semibold'>
+              Practical tips on stress management, mindfulness, and emotional resilience.
+            </p>
+            <button className='bg-pink-400 hover:bg-pink-500 text-white px-8 py-2 rounded-full font-medium'>
+              Explore
+            </button>
+          </div>
+        </div>
+      </section>
+
       
 
       
