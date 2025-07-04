@@ -1,6 +1,7 @@
 import { Routes,Route,Navigate } from "react-router-dom";
-import {useAuth} from "./context/AuthContext";
+// import {useAuth} from "./context/AuthContext";
 import ProtectedRoute from "./routes/AppRoutes";
+
 
 //User Pages
 
@@ -27,7 +28,7 @@ import Analytics from "./pages/admin/Analytics";
 import Unauthorized from "./pages/Unauthorized";
 
 export default function App(){
-  const {user}=useAuth();
+  // const {user}=useAuth();
 
   return(
 
@@ -72,7 +73,7 @@ export default function App(){
       <NutritionManager/>
     </ProtectedRoute>}/>
     <Route path="/admin/moods" element={<ProtectedRoute allowedRoles={["admin"]}>
-      <NutritionManager/>
+      <MoodMonitor/>
     </ProtectedRoute>}/>
     <Route path="/admin/analytics" element={<ProtectedRoute allowedRoles={["admin"]}>
       <Analytics/>
