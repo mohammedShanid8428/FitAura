@@ -28,14 +28,14 @@ const UserRoutes = () => (
         </ProtectedRoute>
       }
     />
-    <Route
+    {/* <Route
       path="/routines"
       element={
         <ProtectedRoute allowedRoles={["user"]}>
           <Routines />
         </ProtectedRoute>
       }
-    />
+    /> */}
     {/* <Route
       path="/nutrition"
       element={
@@ -46,6 +46,7 @@ const UserRoutes = () => (
     /> */}
     <Route path="/contact" element={<Contact />} />
     <Route path="/nutrition" element={<Nutrition />} />
+    <Route path="/routines" element={<Routines />} />
     <Route path="/about" element={<About />} />
   </>
 );
