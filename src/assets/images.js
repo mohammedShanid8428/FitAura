@@ -6,6 +6,13 @@ import modal3 from './images/modal3.png'
 import modal4 from './images/modal4.png'
 import modal5 from './images/modal5.webp'
 import modal6 from './images/modal6.webp'
+import service1 from './images/service1.jpg'
+import service2 from './images/service2.jpg'
+import service3 from './images/service3.jpg'
+import service4 from './images/service4.jpg'
+import service5 from './images/service5.jpg'
+import service6 from './images/service6.jpg'
+
 
 export const images = {
   hero1,
@@ -17,3 +24,12 @@ export const images = {
   modal5,
   modal6,
 };
+
+export const serviceImg={
+  service1,
+  service2,
+  service3,
+  service4,
+  service5,
+  service6,
+}

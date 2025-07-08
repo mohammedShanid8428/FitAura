@@ -1,6 +1,6 @@
 import React, { useState ,useEffect} from "react";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
-import { images } from "../../assets/images";
+import { images, serviceImg } from "../../assets/images";
 
 const slides = [
   {
@@ -43,8 +43,35 @@ export default function NutritionCarousel() {
 
   const { image, title, subtitle, label, description } = slides[current];
 
+  const services = [
+  {
+    title: "Fitness Performance",
+    image: serviceImg.service1,
+  },
+  {
+    title: "Support & Motivation",
+    image: serviceImg.service2,
+  },
+  {
+    title: "Weight Loss Programs",
+    image: serviceImg.service3,
+  },
+  {
+    title: "Personalized Nutrition",
+    image: serviceImg.service4,
+  },
+  {
+    title: "Healthy Daily Life",
+    image: serviceImg.service5,
+  },
+  {
+    title: "Balance Body & Mind",
+    image: serviceImg.service6,
+  },
+];
   return (
-    <section className="relative w-full h-screen overflow-hidden">
+  <>
+      <section className="relative w-full h-screen overflow-hidden">
    
       <img
         src={image}
@@ -91,5 +118,44 @@ export default function NutritionCarousel() {
         <ChevronRight />
       </button>
     </section>
+
+    <section className="py-16 bg-white text-center px-6">
+      <div className="max-w-6xl mx-auto">
+        <p className="uppercase text-xs text-gray-500 mb-2">Our Services</p>
+        <h2 className="text-3xl md:text-4xl font-extrabold mb-12">
+          Our Diet & Nutrition Services
+        </h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          {services.map((service, index) => (
+            <div key={index} className="text-left">
+              <img
+                src={service.image}
+                alt={service.title}
+                className="w-full h-56 object-cover rounded"
+              />
+              <h3 className="mt-4 font-bold uppercase">{service.title}</h3>
+              <p className="text-sm text-gray-500 mt-2">
+                Morbi porta dolor quis sem ultricies maximus Nunc accumsan.
+              </p>
+              <div className="flex gap-5">
+                <button className="text-sm font-semibold mt-3 inline-block bg-blue-400 py-3 px-5 text-black hover:underline">
+                READ MORE
+              </button>
+                <button className="text-sm font-semibold mt-3 inline-block bg-orange-400 py-3 px-5 text-black hover:underline">
+                Add to item
+              </button>
+              
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>  
+ 
+
+
+  </>
+    
   );
 }
