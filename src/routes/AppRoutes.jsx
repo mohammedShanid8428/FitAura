@@ -1,9 +1,7 @@
-import React from 'react'
+import { Navigate } from "react-router-dom";
+// import { useAuth } from "../context/AuthContext"; // Update if different
 
-function AppRoutes() {
-  return (
-    <div>AppRoutes</div>
-  )
+export default function ProtectedRoute() {
+  
 }
-
-export default AppRoutes
+  

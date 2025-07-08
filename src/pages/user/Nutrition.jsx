@@ -1,20 +1,20 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
-import { images } from "../../assets/images"; // ✅ Make sure this file exists
+import { images } from "../../assets/images";
 
 const slides = [
   {
     id: 1,
-    image: images.hero1, // ✅ image must be defined here
-    title: "GET 100% TRUSTED NUTRITION TIPS.",
-    subtitle: "EAT HEALTHY FOOD FOR FAT TO FIT",
+    image: images.modal5,
+    title: "HEALTH & NUTRITION INFORMATION.",
+    subtitle: "BALANCED NUTRITION DIET",
     label: "NUTREE",
     description:
       "Nunc accumsan dui vel lobortis pulvinar. Duis convallis odio ut dignissim faucibus. Sed sit amet urna dictum.",
   },
   {
     id: 2,
-    image: images.hero2,
+    image: images.modal6,
     title: "BOOST YOUR ENERGY NATURALLY.",
     subtitle: "FRESH VEGGIES FOR A HEALTHY LIFE",
     label: "VITABOOST",
@@ -23,65 +23,70 @@ const slides = [
   },
 ];
 
-export default function CarouselComponent() {
+export default function NutritionCarousel() {
   const [current, setCurrent] = useState(0);
 
   const prevSlide = () => {
     setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
   };
-
   const nextSlide = () => {
     setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
   };
+//  useEffect(()=>{
+//   const interval=setInterval(()=>{
+//     setCurrent((prev)=>(prev===slides.length-1?0:prev+1));
+
+//   },5000);
+//   return()=>clearInterval(interval)
+//  },[])
+
 
   const { image, title, subtitle, label, description } = slides[current];
 
   return (
-    <section className="relative w-full bg-white overflow-hidden">
-      <div className="grid md:grid-cols-2 items-center max-w-7xl mx-auto min-h-[500px] px-6 py-12 relative z-10">
-        {/* Left content */}
-        <div className="z-20 relative">
-          <div className="flex items-center mb-4">
-            <span className="bg-lime-500 text-white text-xs font-semibold px-2 py-1 rounded mr-3">
+    <section className="relative w-full h-screen overflow-hidden">
+   
+      <img
+        src={image}
+        alt="Slide"
+        className="absolute top-0 left-0 w-full h-full object-cover z-0"
+      />
+
+    
+      <div className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center h-full px-6">
+        <div className=" p-8  max-w-xl ">
+          <div className="flex items-center mb-6">
+            <span className="bg-lime-500 text-white text-xl font-semibold px-2 py-1 rounded mr-2">
               {label}
             </span>
-            <span className="uppercase text-sm tracking-widest text-gray-600">
+            <span className="text-xl text-gray-800 font-medium tracking-wide">
               {subtitle}
             </span>
           </div>
-          <h2 className="text-4xl font-extrabold text-gray-800 mb-4">{title}</h2>
-          <p className="text-gray-600 mb-6 max-w-md">{description}</p>
-          <div className="flex items-center gap-4">
-            <button className="bg-orange-500 text-white px-5 py-2 rounded shadow hover:bg-orange-600 text-sm">
-              More About
+          <h2 className="text-5xl font-bold py-3 text-gray-800 mb-4">{title}</h2>
+          <p className="text-gray-600 pr-4 mb-8">{description}</p>
+          <div className="flex gap-6 flex-wrap">
+            <button className="bg-orange-500 text-white px-8 py-3 rounded shadow hover:bg-orange-600 text-md">
+              MORE ABOUT
             </button>
-            <button className="flex items-center border px-5 py-2 rounded hover:bg-gray-100 text-sm">
+            <button className="flex items-center border border-gray-300 px-6 py-2 rounded hover:bg-gray-200 text-sm">
               <Play className="w-4 h-4 mr-2" />
-              Play Sessions
+              PLAY SESSIONS
             </button>
           </div>
-        </div>
-
-        {/* Right image */}
-        <div className="relative z-0">
-          <img
-            src={image}
-            alt="Nutrition"
-            className="w-full object-cover rounded-xl"
-          />
         </div>
       </div>
 
       {/* Carousel Arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow z-30"
+        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white text-black rounded-full p-2 shadow z-20"
       >
         <ChevronLeft />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow z-30"
+        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white text-black rounded-full p-2 shadow z-20"
       >
         <ChevronRight />
       </button>
