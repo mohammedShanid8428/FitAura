@@ -303,11 +303,45 @@ export default function Landing() {
         </div>
       </section>
 
-      <footer className='bg-gray-50 px-4 py-10'>
+      <footer className='bg-gray-100 px-4 py-10'>
         <div className='max-w-6xl mx-auto grid md:grid-cols-2 gap-8'>
-          <div className='bg-white rounded-[40px] p-6 shadow-sm'>
-            <h2 className='text-xl font-bold mb-4 text-green-900'>FitAura</h2>
-            <div className='grid grid-cols-3 gap-4 text'></div>
+          <div className='bg-white rounded-[40px] p-8 shadow-sm'>
+            <h2 className='text-2xl font-bold mb-6 text-green-900'>FitAura</h2>
+            <div className='grid grid-cols-3 gap-4 text-bold text-md text-green-900'>
+              <div className='space-y-2'>
+                <p>About</p>
+                <p>Services</p>
+                <p>Therapists</p>
+                <p>Resources</p>
+                <p>Contact</p>
+              </div>
+              <div className='space-y-2'>
+                <p>Instagram</p>
+                <p>Facebook</p>
+                <p>YOutube</p>
+                <p>Linkedin</p>
+              </div>
+              <div className='space-y-2'>
+                <p>Terms of Use</p>
+                <p>Privacy Policy</p>
+              </div>
+            </div>
+            <p className='text-md text-gray-400 mt-8'>© [2035] Solus. All Rights Reserved.</p>
+          </div>
+
+          <div className='bg-blue-900 rounded-[40px] p-14 text-white flex flex-col justify-between relative overflow-hidden'>
+            <img src={images.modal4}  className="absolute top-[-90px] right-[-120px] w-[450px] " alt="" />
+            <div className='relative z-10'>
+              <h3 className='text-3xl font-bold leading-snug mb-6'>
+                Find <br />
+              Support, <br />
+              Guidance, <br />
+              and Balance.
+              </h3>
+              <button className='bg-white text-green-900 w-full mt-8 py-3 rounded-full text-md font-medium hover:bg-gray-200'>
+                Find Support Now
+              </button>
+            </div>
           </div>
         </div>
       </footer>

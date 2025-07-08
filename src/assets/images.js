@@ -3,6 +3,7 @@ import hero2 from './images/hero2.png';
 import modal1 from './images/modal1.jpg'
 import modal2 from './images/modal2.png'
 import modal3 from './images/modal3.png'
+import modal4 from './images/modal4.png'
 
 export const images = {
   hero1,
@@ -10,4 +11,5 @@ export const images = {
   modal1,
   modal2,
   modal3,
+  modal4,
 };
