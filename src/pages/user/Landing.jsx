@@ -1,5 +1,6 @@
 import React from 'react';
 import { images } from '../../assets/images'
+import { Link } from "react-router-dom";
 import {
   Linkedin,
   Facebook,
@@ -27,7 +28,9 @@ export default function Landing() {
 
           <div className='flex space-x-12 text-md font-medium text-gray-900'>
             <a href="#">Routines</a>
-            <a href="#">Nutritions</a>
+            <Link to="/nutrition" className="text-green-900 hover:underline">
+              Nutritions
+            </Link>
             <a href="#">Contact</a>
           </div>
         </div>
@@ -330,13 +333,13 @@ export default function Landing() {
           </div>
 
           <div className='bg-blue-900 rounded-[40px] p-14 text-white flex flex-col justify-between relative overflow-hidden'>
-            <img src={images.modal4}  className="absolute top-[-90px] right-[-120px] w-[450px] " alt="" />
+            <img src={images.modal4} className="absolute top-[-90px] right-[-120px] w-[450px] " alt="" />
             <div className='relative z-10'>
               <h3 className='text-3xl font-bold leading-snug mb-6'>
                 Find <br />
-              Support, <br />
-              Guidance, <br />
-              and Balance.
+                Support, <br />
+                Guidance, <br />
+                and Balance.
               </h3>
               <button className='bg-white text-green-900 w-full mt-8 py-3 rounded-full text-md font-medium hover:bg-gray-200'>
                 Find Support Now
