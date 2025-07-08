@@ -27,6 +27,9 @@ import exercise9 from './images/exercise9.gif'
 import exercise10 from './images/exercise10.gif'
 import exercise11 from './images/exercise11.gif'
 import exercise12 from './images/exercise12.gif'
+import emojis1 from './images/emojis1.gif'
+import emojis2 from './images/emojis2.gif'
+import emojis3 from './images/emojis3.gif'
 
 
 export const images = {
@@ -65,4 +68,10 @@ export const exerciseImg={
   exercise10,
   exercise11,
   exercise12,
+}
+
+export const emojisGif={
+  emojis1,
+  emojis2,
+  emojis3,
 }
