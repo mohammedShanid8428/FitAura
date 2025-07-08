@@ -8,12 +8,25 @@ import modal5 from './images/modal5.webp'
 import modal6 from './images/modal6.webp'
 import modal7 from './images/modal7.jpg'
 import modal8 from './images/modal8.avif'
+import modal9 from './images/modal9.webp'
 import service1 from './images/service1.jpg'
 import service2 from './images/service2.jpg'
 import service3 from './images/service3.jpg'
 import service4 from './images/service4.jpg'
 import service5 from './images/service5.jpg'
 import service6 from './images/service6.jpg'
+import exercise1 from './images/exercise1.gif'
+import exercise2 from './images/exercise2.gif'
+import exercise3 from './images/exercise3.gif'
+import exercise4 from './images/exercise4.gif'
+import exercise5 from './images/exercise5.gif'
+import exercise6 from './images/exercise6.gif'
+import exercise7 from './images/exercise7.gif'
+import exercise8 from './images/exercise8.gif'
+import exercise9 from './images/exercise9.gif'
+import exercise10 from './images/exercise10.gif'
+import exercise11 from './images/exercise11.gif'
+import exercise12 from './images/exercise12.gif'
 
 
 export const images = {
@@ -27,6 +40,7 @@ export const images = {
   modal6,
   modal7,
   modal8,
+  modal9,
 };
 
 export const serviceImg={
@@ -36,4 +50,19 @@ export const serviceImg={
   service4,
   service5,
   service6,
+}
+
+export const exerciseImg={
+  exercise1,
+  exercise2,
+  exercise3,
+  exercise4,
+  exercise5,
+  exercise6,
+  exercise7,
+  exercise8,
+  exercise9,
+  exercise10,
+  exercise11,
+  exercise12,
 }
