@@ -2,8 +2,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 
 // Public Pages
 import Landing from "./pages/user/Landing";
-import Login from "./pages/user/Auth/Login";
-import Register from "./pages/user/Auth/Register";
+import Authentication from "./pages/user/Authentication";
+;
 import AdminLogin from "./pages/admin/Login";
 import Unauthorized from "./pages/Unauthorized";
 
@@ -16,9 +16,8 @@ export default function App() {
     <Routes>
       {/* Public */}
       <Route path="/" element={<Landing />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/admin/login" element={<AdminLogin />} />
+     <Route path="/auth" element={<Authentication />} />
+      {/* <Route path="/admin/login" element={<AdminLogin />} /> */}
       <Route path="/unauthorized" element={<Unauthorized />} />
 
       {/* User Routes */}

@@ -10,6 +10,7 @@ import Nutrition from "../pages/user/Nutrition";
 import Contact from "../pages/user/Contact";
 import About from "../pages/user/About";
 
+
 const UserRoutes = () => (
   <>
     <Route
@@ -49,6 +50,7 @@ const UserRoutes = () => (
     <Route path="/routines" element={<Routines />} />
     <Route path="/mood" element={<Mood />} />
     <Route path="/about" element={<About />} />
+  
   </>
 );
 
