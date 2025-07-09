@@ -60,3 +60,7 @@ h1,h2,h3 {
 body {
   font-family: 'Satoshi', sans-serif;
 }
+
+.scroll-bar-none{
+  display: none;
+}

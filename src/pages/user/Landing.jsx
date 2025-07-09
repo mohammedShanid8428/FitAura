@@ -2,6 +2,7 @@ import React from 'react';
 import { images } from '../../assets/images'
 import { Link } from "react-router-dom";
 import Header from '../../components/landing/Header';
+import Services from '../../components/landing/Services';
 
 import {
   Linkedin,
@@ -75,59 +76,7 @@ export default function Landing() {
         </div>
       </section>
 
-
-      <section className='bg-gray-100 py-14 px-4 mb-20'>
-        <div className='text-center mb-14'>
-          <p className='text-md uppercase tracking-wider text-gray-500 mb-4'>Service</p>
-          <h1 className='text-3xl md:text-5xl font-bold text-green-900 mb-2'>
-            Your Path to <br className='' />Well-being
-          </h1>
-          <p className='text-gray-600 max-w-sm mx-auto text-xl mt-6'>
-            Discover expert guidance for a healtheir mind and balanced life.
-          </p>
-        </div>
-
-        <div className='grid md:grid-cols-2 gap-8  max-w-5xl mx-auto '>
-          <div className='bg-orange-100 rounded-3xl px-8 py-14 shadow-md'>
-            <h3 className='text-3xl md:text-4xl max-w-sm font-semibold text-green-900 mb-4'>Mindfulness & Meditation</h3>
-            <p className='text-gray-700 max-w-xs mb-6 text-xl'>
-              Guided Routine and Nutrition sessions and stress management and techniques
-            </p>
-            <button className='border  border-green-800 py-2 px-8 font-semibold rounded-full hover:bg-green-100 transition'>
-              Learn More
-            </button>
-          </div>
-
-          <div className='bg-white rounded-3xl px-8 py-14 shadow-md'>
-            <h3 className='text-3xl md:text-4xl max-w-xs font-semibold text-green-900 mb-4'>One-on-One ROutine</h3>
-            <p className='text-gray-700 max-w-xs mb-6 text-xl'>
-              Virtual and in-person Routines and nutrition sessions with licensed professionals.
-            </p>
-            <button className='border border-green-800 text-green-800 py-2 px-8 font-semibold rounded-full hover:bg-green-100 transition'>
-              Learn More
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <section className='bg-gray-50 rounded-3xl shadow-xl p-6 md:p-10 flex flex-col md:flex-row items-center justify-between max-w-5xl mx-auto mt-10 mb-20'>
-        <div className='md:w-1/2 text-center md:text-left'>
-          <h2 className='text-2xl md:text-4xl font-semibold text-gray-900 mb-4'>Wellness Coaching</h2>
-          <p className='text-gray-700 mb-2 font-semibold'>
-            Persanalized coaches support to help you build healthier habits,manage stress,and acheive balance in all area of your life.
-          </p>
-          <p className='text-gray-700 mb-6 font-semibold'>
-            Our wellness coaches support you in creating sustainable rountine for mental, emotional, and physical well-being.
-          </p>
-          <button className='bg-green-900 hover:bg-green-800 text-white font-medium px-5 py-2 rounded-full transition'>
-            Learn More
-          </button>
-        </div>
-
-        <div className='md:w-1/2 mt-8 md:mt-0 flex justify-center'>
-          <img src={images.modal1} alt="" className='max-w-xs w-full h-auto' />
-        </div>
-      </section>
+      <Services/>
 
       <section className='bg-gray-50 py-16 px-6 md:px-12'>
         <div className='text-center mb-12 max-w-3xl mx-auto'>
