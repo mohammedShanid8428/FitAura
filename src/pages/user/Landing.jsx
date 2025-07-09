@@ -1,6 +1,8 @@
 import React from 'react';
 import { images } from '../../assets/images'
 import { Link } from "react-router-dom";
+import Header from '../../components/landing/Header';
+
 import {
   Linkedin,
   Facebook,
@@ -9,56 +11,45 @@ import {
   Mail,
   MapPin
 } from 'lucide-react';
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
 
 
 export default function Landing() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeAuth, setActiveAuth] = useState("login");
   return (
-    <div className="font-sans text-gray-800">
-      {/* NAVBAR */}
-      <header className="bg-gray-100 px-6 py-5">
-        <div className='max-w-7xl max-auto flex items-center justify-between relative px-12'>
-          <div className='flex space-x-12 text-md font-medium text-gray-900'>
-            <a href="#">Dashboard</a>
-            <a href="#">Mood</a>
-            <a href="#">About</a>
-          </div>
-          <div className='text-2xl font-bold text-green-800'>
-            FitAura
-          </div>
-
-          <div className='flex space-x-12 text-md font-medium text-gray-900'>
-            <a href="#">Routines</a>
-            <Link to="/nutrition" className="text-green-900 hover:underline">
-              Nutritions
-            </Link>
-            <a href="#">Contact</a>
-          </div>
-        </div>
-      </header>
+    <div className=" bg-gray-50">
+      <Header/>
+  
 
       {/* HERO */}
-      <section className="bg-orange-100 min-h-[430px] py-24 px-4 rounded-[50px] max-w-5xl  mx-auto my-12 h-100 relative overflow-hidden ">
+     <section className="bg-orange-100 min-h-[430px] py-16 sm:py-20 px-4 sm:px-6 md:px-10 rounded-[40px] max-w-5xl mx-auto my-10 md:my-12 relative overflow-hidden">
+  <img
+    src={images.hero1}
+    alt="Decorative left element"
+    className="absolute w-[220px] sm:w-[320px] md:w-[400px] bottom-[-60px] left-[-60px] z-0"
+  />
+  <img
+    src={images.hero2}
+    alt="Decorative right element"
+    className="absolute w-[220px] sm:w-[320px] md:w-[400px] bottom-[-60px] right-[-60px] z-0"
+  />
 
-        <img src={images.hero1}
-          alt="Decorations"
-          className="absolute w-[420px] bottom-[-80px] left-[-85px] z-0"
-        />
-        <img src={images.hero2}
-          alt="Decorations"
-          className="absolute w-[420px] bottom-[-80px] right-[-80px] z-0"
-        />
-        <div className="text-center relative z-10">
-          <h2 className="text-3xl md:text-5xl  font-bold text-green-900 mb-6">
-            Support for Your <br className='hidden md:block' /> Mental Well-being
-          </h2>
-          <p className="text-gray-700 mb-8 max-w-md mx-auto text-xl">
-            Connect with licensed therapists, counselors, and wellness coaches to support your journey.
-          </p>
-          <button className="bg-green-800 text-white py-2 px-10 rounded-3xl hover:bg-green-900 transition">
-            Get Started
-          </button>
-        </div>
-      </section>
+  <div className="text-center relative z-10 px-2">
+    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-green-900 mb-5 leading-snug">
+      Empower Your Health <br className="hidden md:block" /> and Wellness Journey
+    </h2>
+    <p className="text-gray-700 mb-6 max-w-md mx-auto text-sm sm:text-base md:text-lg">
+      Discover personalized routines, expert guidance, and tools to help you stay physically active, mentally strong, and nutritionally balanced.
+    </p>
+    <button className="bg-green-800 text-white text-sm sm:text-base py-2 px-6 sm:px-8 rounded-full hover:bg-green-900 transition-all duration-200">
+      Explore Now
+    </button>
+  </div>
+</section>
+
+
 
       {/* SECOND MODAL SECTION */}
       <section className="max-w-6xl mx-auto px-10 py-18 grid md:grid-cols-2 gap-10 items-center">

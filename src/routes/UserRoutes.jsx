@@ -1,6 +1,8 @@
 import React from "react";
+
 import { Route } from "react-router-dom";
 import ProtectedRoute from "./AppRoutes";
+
 
 // User pages
 import ClientDashboard from "../pages/user/Dashboard";

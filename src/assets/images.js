@@ -1,4 +1,5 @@
 import hero1 from './images/hero1.png';
+import icon from './images/icon.png';
 import hero2 from './images/hero2.png';
 import modal1 from './images/modal1.jpg'
 import modal2 from './images/modal2.png'
@@ -37,6 +38,7 @@ import emojis3 from './images/emojis3.gif'
 
 export const images = {
   hero1,
+  icon,
   hero2,
   modal1,
   modal2,
