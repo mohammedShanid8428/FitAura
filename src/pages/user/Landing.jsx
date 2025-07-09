@@ -148,10 +148,10 @@ export default function Landing() {
 
      
 
-      <section className='bg-white py-20 px-4'>
+      <section className=' py-16 px-4'>
         <div className="text-white mb-14 text-center">
           <p className='text-md uppercase tracking-widest text-gray-500 mb-3'>Get in touch</p>
-          <h2 className='text-3xl md:text-4xl font-bold text-green-900 mb-3'>
+          <h2 className='text-3xl md:text-4xl font-bold text-gray-800 mb-3 tracking-wide'>
             We’re Here to <br className="md:hidde" /> Support You
           </h2>
           <p className='text-gray-600 max-w-xl text-xl mx-auto'>
@@ -159,9 +159,9 @@ export default function Landing() {
           </p>
         </div>
 
-        <div className="bg-gray-50 rounded-3xl p-8 md:p-12 max-w-6xl mx-auto shadow grid md:grid-cols-2 gap-10">
+        <div className="bg-white rounded-3xl p-8 md:p-12 max-w-6xl mx-auto shadow grid md:grid-cols-2 gap-10">
           <div className="">
-            <h3 className='text-2xl font-semibold text-green-900 mb-8' >Contact details</h3>
+            <h3 className='text-2xl font-semibold text-gray-800 mb-8' >Contact details</h3>
             <p className='mb-3'>
               <span className='font-bold text-gray-800'>Email: </span>
               <span className='text-gray-700'>support@FitAure,com</span>
@@ -175,11 +175,11 @@ export default function Landing() {
               <span className='text-gray-700'>134 Wellness Way ,calm city, CA 534958t2</span>
             </p>
 
-            <div className='flex items-center gap-4 text-green-900 mt-8'>
-              <Linkedin className="w-5 h-5 hover:text-green-700 cursor-pointer" />
-              <Facebook className="w-5 h-5 hover:text-green-700 cursor-pointer" />
-              <Instagram className="w-5 h-5 hover:text-green-700 cursor-pointer" />
-              <PhoneCall className="w-5 h-5 hover:text-green-700 cursor-pointer" />
+            <div className='flex items-center gap-4 text-gray-800 mt-8'>
+              <Linkedin className="w-5 h-5 hover:text-gray-700 cursor-pointer" />
+              <Facebook className="w-5 h-5 hover:text-gray-700 cursor-pointer" />
+              <Instagram className="w-5 h-5 hover:text-gray-700 cursor-pointer" />
+              <PhoneCall className="w-5 h-5 hover:text-gray-700 cursor-pointer" />
             </div>
             <p className='text-md text-gray-500 mt-20'>We typically respond within 12 hours.</p>
           </div>
@@ -189,12 +189,12 @@ export default function Landing() {
             <div className="bg-orange-50 p-10 rounded-[40px] shadow-inner">
               <form action="" className='space--y'>
                 <div className='mb-3'>
-                  <label htmlFor="" className='block text-sm text-gray-800 mb-1'>Email</label>
-                  <input type="email" placeholder='Email' className='w-full border-b border-gray-400 bg-transparent focus:outline-none py-2' />
+                  <label htmlFor="" className='block text-md text-gray-800 mb-1'>Email</label>
+                  <input type="email" placeholder='Email' className='w-full border-b border-gray-400 text-sm bg-transparent text-sm focus:outline-none py-2' />
                 </div>
                 <div className='mb-8'>
-                  <label htmlFor="" className='block text-sm text-gray-800 mb-1'>Message</label>
-                  <textarea name="" placeholder='Message' className='w-full border-b border-gray-400 bg-transparent focus:outline-none py-2' id=""></textarea>
+                  <label htmlFor="" className='block text-md text-gray-800 mb-1'>Message</label>
+                  <textarea name="" placeholder='Message' className='w-full border-b border-gray-400 bg-transparent focus:outline-none py-2 text-sm' id=""></textarea>
                 </div>
                 <button className='bg-gray-900 text-white w-full py-2 rounded-full hover:bg-gray-900 transition'>
                   Send Message
@@ -205,11 +205,11 @@ export default function Landing() {
         </div>
       </section>
 
-      <footer className='bg-gray-100 px-4 py-10'>
+      <footer className=' px-4 py-10'>
         <div className='max-w-6xl mx-auto grid md:grid-cols-2 gap-8'>
-          <div className='bg-white rounded-[40px] p-8 shadow-sm'>
-            <h2 className='text-2xl font-bold mb-6 text-green-900'>FitAura</h2>
-            <div className='grid grid-cols-3 gap-4 text-bold text-md text-green-900'>
+          <div className='bg-white rounded-[40px] p-8 shadow-md'>
+            <h2 className='text-2xl font-bold mb-6 text-gray-800'>FitAura</h2>
+            <div className='grid grid-cols-3 gap-4 text-bold text-md text-gray-800'>
               <div className='space-y-2'>
                 <p>About</p>
                 <p>Services</p>
@@ -231,7 +231,7 @@ export default function Landing() {
             <p className='text-md text-gray-400 mt-8'>© [2035] Solus. All Rights Reserved.</p>
           </div>
 
-          <div className='bg-blue-900 rounded-[40px] p-14 text-white flex flex-col justify-between relative overflow-hidden'>
+          <div className='bg-gray-800 rounded-[40px] p-14 text-white flex flex-col justify-between relative overflow-hidden'>
             <img src={images.modal4} className="absolute top-[-90px] right-[-120px] w-[450px] " alt="" />
             <div className='relative z-10'>
               <h3 className='text-3xl font-bold leading-snug mb-6'>
@@ -240,7 +240,7 @@ export default function Landing() {
                 Guidance, <br />
                 and Balance.
               </h3>
-              <button className='bg-white text-green-900 w-full mt-8 py-3 rounded-full text-md font-medium hover:bg-gray-200'>
+              <button className='bg-white text-gray-800 w-full mt-8 py-3 rounded-full text-md font-medium hover:bg-gray-200'>
                 Find Support Now
               </button>
             </div>
