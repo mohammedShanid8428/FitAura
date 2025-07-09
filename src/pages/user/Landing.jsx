@@ -3,6 +3,7 @@ import { images } from '../../assets/images'
 import { Link } from "react-router-dom";
 import Header from '../../components/landing/Header';
 import Services from '../../components/landing/Services';
+import Testimonials from '../../components/landing/Testimonial';
 
 import {
   Linkedin,
@@ -78,9 +79,9 @@ export default function Landing() {
 
       <Services/>
 
-      <section className='bg-gray-50 py-16 px-6 md:px-12'>
+      <section className='bg-gray-50 py-10 px-6 md:px-12'>
         <div className='text-center mb-12 max-w-3xl mx-auto'>
-          <p className='text-md tracking-wide uppercase text-gray-600 mb-2'>Explore & Learn</p>
+          <p className='text-md tracking-wide uppercase text-gray-600 mb-3'>Explore & Learn</p>
           <h1 className='text-3xl md:text-4xl font-bold text-gray-900 mb-4'>
             Resources for <br className="" /> Your Well-being
           </h1>
@@ -120,17 +121,19 @@ export default function Landing() {
         </div>
       </section>
 
-      <section className='bg-gray-50 rounded-[50px] p-6  md:px-14 flex flex-col  md:flex-row item-center justify-between max-w-6xl mx-auto relative overflow-hidden'>
+      <Testimonials/>
+
+      <section className='bg-white rounded-[50px] p-8  md:px-14 flex flex-col  md:flex-row item-center justify-between max-w-6xl mx-auto relative overflow-hidden shadow-md'>
 
         <div className='max-w-sm text-center md:text-left '>
-          <p className='text-xs uppercase tracking-widest text-gray-600 mt-4 mb-4'>Community</p>
-          <h2 className='text-3xl md:text-4xl font-bold text-gray-900 mb-6 leading-snug'>
+          <p className='text-xs uppercase tracking-widest text-gray-600 mt-4 mb-6'>Community</p>
+          <h2 className='text-3xl md:text-4xl font-bold text-gray-800 mb-6 tracking-wider'>
             You’re Not Alone <br className="" /> on This Journey
           </h2>
-          <p className='text-gray-700 mb-10 font-semibold text-xl'>
+          <p className='text-gray-700 mb-10 font-semibold text-lg max-w-xs '>
             Connect with others, share experiences, and find encouragement in a safe, supportive space.
           </p>
-          <button className='bg-green-900 hover:bg-green-800 text-white font-medium px-5 py-2 rounded-full transition mb-8'>
+          <button className='bg-gray-800 hover:bg-gray-900 text-white font-medium px-5 py-2 rounded-full transition mb-8'>
             Join The Community
           </button>
         </div>
