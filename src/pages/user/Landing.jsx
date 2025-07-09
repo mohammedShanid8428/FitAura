@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Header from '../../components/landing/Header';
 import Services from '../../components/landing/Services';
 import Testimonials from '../../components/landing/Testimonial';
+import FAQ from '../../components/landing/Faq';
 
 import {
   Linkedin,
@@ -141,53 +142,11 @@ export default function Landing() {
         <div className='absolute w-[700px] bottom-0 right-0 md:bottom-[-90px] md:right-[-90px] z-0'>
           <img src={images.modal2} alt="" />
         </div>
-
       </section>
 
-      <section className='bg-gray-50  mt-3 py-20 px-6 md:px-12 max-w-6xl mx-auto relative'>
-        <div className='flex flex-col md:flex-row items-center justify-between gap-1'>
-          <div className=' text-center md:text-left'>
-            <p className='text-md uppercase tracking-widest text-gray-600 mb-6'>Need Help?</p>
-            <h2 className='text-3xl md:text-4xl font-bold text-gray-900 mb-6'>
-              Frequently <br className="" /> Asked <span class="underline underline-offset-4 decoration-green-700">Questions</span>
-            </h2>
-            <p className='text-gray-700 mb-8'>
-              Find answers to common questions about our services, therapy, and mental well-being.
-            </p>
-            <div className='bg-orange-100 px-6 py-[120px] mt-[250px] rounded-3xl  w-full max-w-md mx-auto md:mx-0'></div>
-            <img src={images.modal3} alt="FAQ Illustration" className='absolute w-[500px] bottom-[1px] left-[3no0px]' />
-          </div>
-          <div className='flex flex-col gap-4 mt-[250px]'>
-            <div className='bg-white rounded-xl p-4 flex items-center justify-between shadow-sm'>
-              <p className='text-gray-800 font-medium'>How do I book a therapy session?</p>
-              <span className='text-2xl text-gray-500 font-bold'>+</span>
-            </div>
-            <div className='bg-white rounded-xl p-4 flex items-center justify-between shadow-sm'>
-              <p className='text-gray-800 font-medium'>Are online sessions available?</p>
-              <span className='text-2xl text-gray-500 font-bold'>+</span>
-            </div>
-            <div className='bg-white rounded-xl p-4 flex items-center justify-between shadow-sm'>
-              <p className='text-gray-800 font-medium'>What’s the difference between therapy and coaching?</p>
-              <span className='text-2xl text-gray-500 font-bold'>+</span>
-            </div>
-            <div className='bg-white rounded-xl p-4 flex items-center justify-between shadow-sm'>
-              <p className='text-gray-800 font-medium'>Do I need a subscription to access services?</p>
-              <span className='text-2xl text-gray-500 font-bold'>+</span>
-            </div>
-            <div className='bg-white rounded-xl p-4 flex items-center justify-between shadow-sm'>
-              <p className='text-gray-800 font-medium'>Can I switch therapists if I don’t feel the right connection?</p>
-              <span className='text-2xl text-gray-500 font-bold'>+</span>
-            </div>
-            <div className='bg-white rounded-xl p-4 flex items-center justify-between shadow-sm'>
-              <p className='text-gray-800 font-medium'>Is my information and session history kept confidential?</p>
-              <span className='text-2xl text-gray-500 font-bold'>+</span>
-            </div>
+      <FAQ/>
 
-
-
-          </div>
-        </div>
-      </section>
+     
 
       <section className='bg-white py-20 px-4'>
         <div className="text-white mb-14 text-center">
@@ -226,7 +185,7 @@ export default function Landing() {
           </div>
 
           <div>
-            <h3 className='text-2xl font-semibold text-green-900 mb-8'>Send Us a Message</h3>
+            <h3 className='text-2xl font-semibold text-gray-800 mb-8'>Send Us a Message</h3>
             <div className="bg-orange-50 p-10 rounded-[40px] shadow-inner">
               <form action="" className='space--y'>
                 <div className='mb-3'>
@@ -237,7 +196,7 @@ export default function Landing() {
                   <label htmlFor="" className='block text-sm text-gray-800 mb-1'>Message</label>
                   <textarea name="" placeholder='Message' className='w-full border-b border-gray-400 bg-transparent focus:outline-none py-2' id=""></textarea>
                 </div>
-                <button className='bg-green-900 text-white w-full py-2 rounded-full hover:bg-green-800 transition'>
+                <button className='bg-gray-900 text-white w-full py-2 rounded-full hover:bg-gray-900 transition'>
                   Send Message
                 </button>
               </form>
