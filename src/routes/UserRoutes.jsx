@@ -13,14 +13,14 @@ import About from "../pages/user/About";
 
 const UserRoutes = () => (
   <>
-    <Route
+    {/* <Route
       path="/dashboard"
       element={
         <ProtectedRoute allowedRoles={["user"]}>
           <ClientDashboard />
         </ProtectedRoute>
       }
-    />
+    /> */}
     {/* <Route
       path="/mood"
       element={
@@ -50,6 +50,7 @@ const UserRoutes = () => (
     <Route path="/routines" element={<Routines />} />
     <Route path="/mood" element={<Mood />} />
     <Route path="/about" element={<About />} />
+    <Route path="/dashboard" element={<ClientDashboard />} />
   
   </>
 );
