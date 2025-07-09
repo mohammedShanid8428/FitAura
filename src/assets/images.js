@@ -10,6 +10,8 @@ import modal7 from './images/modal7.jpg'
 import modal8 from './images/modal8.avif'
 import modal9 from './images/modal9.webp'
 import modal10 from './images/modal10.jpg'
+import modal11 from './images/modal11.avif'
+import modal12 from './images/modal12.jpg'
 import service1 from './images/service1.jpg'
 import service2 from './images/service2.jpg'
 import service3 from './images/service3.jpg'
@@ -46,6 +48,8 @@ export const images = {
   modal8,
   modal9,
   modal10,
+  modal11,
+  modal12,
 };
 
 export const serviceImg={

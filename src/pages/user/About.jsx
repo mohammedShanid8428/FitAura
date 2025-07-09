@@ -43,6 +43,66 @@ export default function About(){
         </div>
       </div>
     </section>
+    
+    <section className="bg-black text-white py-16 px-4">
+      <div className="max-w-6xl mx-auto flex flex-col gap-10">
+        <div className="bg-gray-900 rounded-3xl overflow-hidden flex flex-col md:flex-row-reverse shadow-lg">
+          <img src={images.modal11} alt="" className="w-full h-[400px] md:w-1/2 object-cover" />
+          <div className="p-6 md:p-10 flex flex-col justify-center">
+            <h2 className="text-2xl font-bold mb-4">FitAura</h2>
+            <p className="text-gray-300 mb-6">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur quisquam quam harum ex obcaecati illo magni aliquam veniam ullam quasi! Ex modi eius quisquam libero ipsam alias minima ipsa dicta expedita totam saepe sequi voluptates pariatur aperiam explicabo, quas recusandae architecto
+            atque aliquid reiciendis perspiciatis exercitationem! Praesentium quia consequatur laborum?</p>
+            <button className="bg-gray-800 hover:bg-gray-700 text-white px-5 py-2 rounded-lg text-md w-fit">
+              Learn more
+            </button>
+          </div>
+        </div>
+        <div className="bg-gray-900 rounded-3xl overflow-hidden flex flex-col md:flex-row shadow-lg">
+          <img src={images.modal12} alt="" className="w-full h-[400px] md:w-1/2 object-cover" />
+          <div className="p-6 md:p-10 flex flex-col justify-center">
+            <h2 className="text-2xl font-bold mb-4">Our target</h2>
+            <p className="text-gray-300 mb-6">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur quisquam quam harum ex obcaecati illo magni aliquam veniam ullam quasi! Ex modi eius quisquam libero ipsam alias minima ipsa dicta expedita totam saepe sequi voluptates pariatur aperiam explicabo, quas recusandae architecto
+            atque aliquid reiciendis perspiciatis exercitationem! Praesentium quia consequatur laborum?</p>
+            <button className="bg-gray-800 hover:bg-gray-700 text-white px-5 py-2 rounded-lg text-md w-fit">
+              Learn more
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section className="bg-black text-white py-20 px-6 md:px-12">
+      <div className="max-w-7xl mx-auto text-center mb-16">
+        <h2 className="text-4xl font-bold mb-4">Meets our experts</h2>
+        <p className="text-gray-400 max-w-2xl mx-auto">
+           Discover the passionate team of innovators, strategists, and customer success
+      professionals working tirelessly to help you achieve your goals.
+        </p>
+      </div>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto gap-6">
+        <div className="bg-black rounded-2xl overflow-hidden shadow-lg">
+          <img src={images.modal8} className="w-full h-[320px] object-cover" alt="" />
+          <div className="p-6">
+            <h3 className="text-xl font-semibold">Michael Carter </h3>
+            <p className="text-gray-400 text-md mb-4">Routines trainer</p>
+          </div>
+        </div>
+        <div className="bg-black rounded-2xl overflow-hidden shadow-lg">
+          <img src={images.modal6} className="w-full h-[320px] object-cover" alt="" />
+          <div className="p-6">
+            <h3 className="text-xl font-semibold">Ryan Davis</h3>
+            <p className="text-gray-400 text-md mb-4">Nutrition trainer</p>
+          </div>
+        </div>
+        <div className="bg-black rounded-2xl overflow-hidden shadow-lg">
+          <img src={images.modal7} className="w-full h-[320px] object-cover" alt="" />
+          <div className="p-6">
+            <h3 className="text-xl font-semibold">Jessica Walker</h3>
+            <p className="text-gray-400 text-md mb-4">Mood trainer</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     
     </>
