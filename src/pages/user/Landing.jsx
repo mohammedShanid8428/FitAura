@@ -20,64 +20,61 @@ export default function Landing() {
   const [activeAuth, setActiveAuth] = useState("login");
   return (
     <div className=" bg-gray-50">
-      <Header/>
-  
+      <Header />
 
-      {/* HERO */}
-     <section className="bg-orange-100 min-h-[430px] py-16 sm:py-20 px-4 sm:px-6 md:px-10 rounded-[40px] max-w-5xl mx-auto my-10 md:my-12 relative overflow-hidden">
-  <img
-    src={images.hero1}
-    alt="Decorative left element"
-    className="absolute w-[220px] sm:w-[320px] md:w-[400px] bottom-[-60px] left-[-60px] z-0"
-  />
-  <img
-    src={images.hero2}
-    alt="Decorative right element"
-    className="absolute w-[220px] sm:w-[320px] md:w-[400px] bottom-[-60px] right-[-60px] z-0"
-  />
+      <section className="bg-orange-100 min-h-[430px] py-16 sm:py-20 px-4 sm:px-6 md:px-10 rounded-[40px] max-w-5xl mx-auto my-10 md:my-12 relative overflow-hidden">
+        <img
+          src={images.hero1}
+          alt="Decorative left element"
+          className="absolute w-[220px] sm:w-[320px] md:w-[440px] md:bottom-[-90px]  md:left-[-90px] z-0"
+        />
+        <img
+          src={images.hero2}
+          alt="Decorative right element"
+          className="absolute w-[220px] sm:w-[320px] md:w-[420px] bottom-[-90px] right-[-80px] z-0"
+        />
 
-  <div className="text-center relative z-10 px-2">
-    <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-green-900 mb-5 leading-snug">
-      Empower Your Health <br className="hidden md:block" /> and Wellness Journey
-    </h2>
-    <p className="text-gray-700 mb-6 max-w-md mx-auto text-sm sm:text-base md:text-lg">
-      Discover personalized routines, expert guidance, and tools to help you stay physically active, mentally strong, and nutritionally balanced.
-    </p>
-    <button className="bg-green-800 text-white text-sm sm:text-base py-2 px-6 sm:px-8 rounded-full hover:bg-green-900 transition-all duration-200">
-      Explore Now
-    </button>
-  </div>
-</section>
-
-
+        <div className="text-center relative z-10 px-2">
+          <h2 className="text-2xl sm:text-2xl md:text-5xl font-bold text-gray-800 mb-5 leading-snug">
+            Empower Your Health <br className="hidden md:block" /> and Wellness Journey
+          </h2>
+          <p className="text-gray-700 mb-6 max-w-md mx-auto text-sm sm:text-base md:text-lg">
+            Discover personalized routines, expert guidance, and tools to help you stay physically active, mentally strong, and nutritionally balanced.
+          </p>
+          <button className="bg-gray-800 text-white text-sm sm:text-base py-3 px-6 sm:px-8 rounded-full hover:bg-gray-900 transition-all duration-200">
+            Explore Now
+          </button>
+        </div>
+      </section>
 
       {/* SECOND MODAL SECTION */}
-      <section className="max-w-6xl mx-auto px-10 py-18 grid md:grid-cols-2 gap-10 items-center">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-10 py-16 grid md:grid-cols-2 gap-10 items-center">
         {/* Left Text */}
         <div>
-          <p className="text-md uppercase tracking-wide text-gray-500 mb-4">How it works</p>
-          <h3 className="text-3xl md:text-5xl leading-snug font-bold text-green-900 mb-6">
-            We Help You <br /> Prioritize Your <br />  Health And Wellness
+          <p className="text-sm uppercase tracking-wide text-gray-500 mb-4">How It Works</p>
+          <h3 className="text-3xl sm:text-4xl md:text-5xl leading-snug font-bold text-gray-800 mb-6">
+            Build Better Habits <br className="hidden sm:block" /> With Your <br /> Routine Trainer
           </h3>
-          <p className="text-gray-700 mb-8 max-w-sm text-xl">
-            Browse therapists,Lorem, ipsum.lore2 book a session, and start your healing journey with trusted professionals.
+          <p className="text-gray-700 mb-8 max-w-md text-base sm:text-lg">
+            Get matched with a trainer who helps you stay consistent. Track your workouts, plan healthy meals, and maintain your wellness — all in one place.
           </p>
-          <button className="bg-green-800 text-white py-3 px-8 rounded-full hover:bg-green-900 transition text-md">
+          <button className="bg-gray-800 text-white py-2.5 px-6 sm:px-8 rounded-full hover:bg-gray-900 transition text-sm sm:text-base">
             Find A Trainer
           </button>
         </div>
 
-        {/* Right Image Box */}
+        {/* Right Image */}
         <div className="flex justify-center">
-          <div className="bg-green-900 md:p-10 px-4 ms-12 rounded-3xl shadow-lg">
+          <div className="bg-gray-800 p-6 sm:p-10 rounded-3xl shadow-lg w-[450px] flex items-center justify-center">
             <img
-              src={images.modal1}
-              alt="Mental Health"
-              className="w-100 md:w-58"
+              src={images.modal1} // Replace with new trainer illustration
+              alt="Routine Trainer"
+              className="w-52 sm:w-64 md:w-72 lg:w-80 h-[400px] rounded-[70px]"
             />
           </div>
         </div>
       </section>
+
 
       <section className='bg-gray-100 py-14 px-4 mb-20'>
         <div className='text-center mb-14'>
