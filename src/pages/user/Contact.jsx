@@ -1,51 +1,95 @@
 import React from "react";
-import { images } from "../../assets/images";
+import { Mail, Phone, MapPin } from "lucide-react";
+import Testimonials from "../../components/landing/Testimonial";
+import FAQ from "../../components/landing/Faq";
 
-export default function Contact(){
-  return(
-    <>
-    <section className="bg-black text-white py-20 px-6 md:px-12">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-        <div>
-          <h2 className="text-4xl font-bold mb-10 bg-gradient-to-r from-green-400 to-teal-400 bg-clip-text text-transparent">
-             We're here to help
-          </h2>
-          <form action="" className="space-y-6">
-            <div>
-              <label htmlFor="" className="block mb-1 text-md font-medium">Name</label>
-              <input type="text" className="w-full bg-[#14#14#14] border border-[#2a2a2a] text-white rounded-md px-4 p-3 focus:outline-none focus:ring-2 focus:ring-green-400" />
-            </div>
-            <div>
-              <label htmlFor="" className="block mb-1 text-md font-medium">Email Address</label>
-              <input type="email" className="w-full bg-[#14#14#14] border border-[#2a2a2a] text-white rounded-md px-4 p-3 focus:outline-none focus:ring-2 focus:ring-green-400" />
-            </div>
-            <div>
-              <label htmlFor="" className="block mb-1 text-md font-medium">Messsge</label>
-              <textarea name="" className="w-full w-full bg-[#141414] border border-[#2a2a2a] text-white rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-green-400" id=""></textarea>
-            </div>
-            <button className="mt-4 bg-white text-black px-6 py-3 rounded-full font-medium hover:bg-gray-100 transition">
-              Send Message
-            </button>
-          </form>
+export default function Contact() {
+  const faqs = [
+    {
+      question: "How can I schedule a consultation?",
+      answer: "You can fill out the contact form or use the WhatsApp button below.",
+    },
+    {
+      question: "Are all services online?",
+      answer: "Yes, we provide both live virtual sessions and recorded resources.",
+    },
+    {
+      question: "Is my data secure?",
+      answer: "Absolutely. We follow best practices in data security and privacy.",
+    },
+  ];
+
+  return (
+    <section className="bg-white text-gray-800">
+      {/* Hero Section */}
+      <div className="bg-gradient-to-br from-orange-500 to-red-600 text-white py-20 px-4 text-center">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">Welcome to FitAura</h1>
+        <p className="text-lg md:text-xl max-w-2xl mx-auto">
+          Let's stay connected. Whether you have a question, feedback, or need guidance, we're here for you.
+        </p>
+      </div>
+
+      {/* Contact Info Cards */}
+      <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto py-16 px-6 text-center">
+        <div className="bg-gray-50 p-6 rounded-xl shadow">
+          <Mail className="mx-auto text-orange-500 mb-4" size={32} />
+          <h3 className="text-lg font-semibold mb-1">Email Us</h3>
+          <p>support@fitaura.com</p>
         </div>
-        <div className="bg-gradient-to-br from-[#0f0f0f] to-[#1b1b1b] p-6 rounded-2xl shadow-lg border border-[#2a2a2a]">
-          <div className="flex items-center justify-between mb-4">
-            <div className="text-lg font-semibold">FitAura</div>
-            <div className="flex space-x-2">
-              <div className="w-2.5 h-2.5 bg-gray-400 rounded-full"></div>
-              <div className="w-2.5 h-2.5 bg-gray-400 rounded-full"></div>
-            </div>
-          </div>
-          <p className="text-gray-300 text-md leading-relaxed">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum voluptas dolorum architecto, numquam itaque alias dicta error quidem, iusto deleniti nulla tempora eum. Eum ea quae quia labore veritatis delectus. Rerum, necessitatibus? Alias architecto debitis sunt est vero distinctio, consectetur, nobis eius modi expedita ab odit numquam reprehenderit eligendi neque atque esse et voluptatum magnam minus ad? Nihil, modi officia? Rem aliquid voluptas voluptate atque, nobis ipsam cupiditate molestias facilis, odio corporis laudantium sunt temporibus dolorem consequatur, vero tenetur quisquam eveniet nam. Fuga, deserunt harum. A magnam non delectus vel quae veniam, sapiente,
-             eveniet aliquid atque nesciunt adipisci quasi voluptatem.
-          </p>
-          <div className="mt-4">
-            <img src={images.modal8} alt="" />
-          </div>
+        <div className="bg-gray-50 p-6 rounded-xl shadow">
+          <Phone className="mx-auto text-orange-500 mb-4" size={32} />
+          <h3 className="text-lg font-semibold mb-1">Call Us</h3>
+          <p>+91 98765 43210</p>
+        </div>
+        <div className="bg-gray-50 p-6 rounded-xl shadow">
+          <MapPin className="mx-auto text-orange-500 mb-4" size={32} />
+          <h3 className="text-lg font-semibold mb-1">Visit Us</h3>
+          <p>Bangalore, India</p>
         </div>
       </div>
+
+      {/* Contact Form */}
+      <div className="max-w-4xl mx-auto px-6 py-10">
+        <h2 className="text-2xl font-bold mb-6 text-center">Send us a message</h2>
+        <form className="grid gap-6">
+          <input type="text" placeholder="Your Name" className="border p-3 rounded" required />
+          <input type="email" placeholder="Your Email" className="border p-3 rounded" required />
+          <select className="border p-3 rounded">
+            <option>General Inquiry</option>
+            <option>Technical Issue</option>
+            <option>Nutrition Help</option>
+            <option>Routine Guidance</option>
+          </select>
+          <textarea rows="5" placeholder="Your Message" className="border p-3 rounded" required />
+          <button type="submit" className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-3 rounded">
+            Submit
+          </button>
+        </form>
+      </div>
+
+      {/* WhatsApp + Chatbot */}
+      <div className="flex justify-center gap-6 mt-10">
+        <a
+          href="https://wa.me/919876543210"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-medium"
+        >
+          Chat on WhatsApp
+        </a>
+        <button
+          onClick={() => alert("Chatbot coming soon!")}
+          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full font-medium"
+        >
+          Talk to our Chatbot
+        </button>
+      </div>
+
+     
+
+     <Testimonials/>
+
+     <FAQ/>
     </section>
-    </>
-  )
+  );
 }
