@@ -11,6 +11,7 @@ import Routines from "../pages/user/Routines";
 import Nutrition from "../pages/user/Nutrition";
 import Contact from "../pages/user/Contact";
 import About from "../pages/user/About";
+// import MoodPage from "../pages/user/Mood";
 
 
 const UserRoutes = () => (
@@ -53,7 +54,7 @@ const UserRoutes = () => (
     <Route path="/mood" element={<Mood />} />
     <Route path="/about" element={<About />} />
     <Route path="/dashboard" element={<ClientDashboard />} />
-  
+    {/* <Route path="/mood/:mood" element={<MoodPage />} /> */}
   </>
 );
 

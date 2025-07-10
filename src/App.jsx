@@ -6,7 +6,7 @@ import Authentication from "./pages/user/Authentication";
 ;
 import AdminLogin from "./pages/admin/Login";
 import Unauthorized from "./pages/Unauthorized";
-
+import MoodSection from './components/mood/MoodSection'
 // Route Groups
 import UserRoutes from "./routes/UserRoutes";
 import AdminRoutes from "./routes/AdminRoutes";
@@ -14,6 +14,8 @@ import AdminRoutes from "./routes/AdminRoutes";
 export default function App() {
   return (
     <Routes>
+<Route path="/mood/:mood" element={<MoodSection />} />
+      
       {/* Public */}
       <Route path="/" element={<Landing />} />
      <Route path="/auth" element={<Authentication />} />
