@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { exerciseImg, images } from "../../assets/images"; // make sure this path is valid
+import Header from "../../components/Header";
 
 const slides = [
   {
@@ -58,6 +59,7 @@ export default function Routines() {
   return (
     <>
       {/* Carousel Section */}
+      <Header/>
       <section className="relative w-full h-screen overflow-hidden">
         <img
           src={image}

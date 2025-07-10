@@ -10,6 +10,7 @@ import Tips from "./Tips";
 import MindTips from "./MindTIps";
 import DailyChallenge from "./DailyChallenge";
 import Affirmation from "./Affirmation";
+import Header from "../landing/Header";
 
 export default function MoodSection() {
   const { mood } = useParams();
@@ -17,6 +18,7 @@ export default function MoodSection() {
 
   return (
     <>
+    <Header/>
       <Hero mood={mood} />
       <Enhance mood={mood} />
       <Nutrions mood={mood} />

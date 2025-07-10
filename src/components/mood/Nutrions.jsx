@@ -1,6 +1,7 @@
 import React from "react";
 import { Leaf, Droplet, Cake } from "lucide-react";
 
+
 export default function Nutrions() {
   const tips = [
     {
@@ -22,6 +23,7 @@ export default function Nutrions() {
 
   return (
     <section className="bg-white py-16 px-6">
+      
       <div className="max-w-5xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold text-center text-emerald-800 mb-10">
           Nutrition Tips for a Happy Mood

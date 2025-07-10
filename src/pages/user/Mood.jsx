@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom"; // 🔁 Required for routing
 import { emojisGif } from "../../assets/images";
+import Header from "../../components/Header";
 
 export default function Emojis() {
   const emojis = [
@@ -28,6 +29,8 @@ export default function Emojis() {
   ];
 
   return (
+    <>
+    <Header/>
     <section className="w-full min-h-screen bg-gradient-to-br from-black via-gray-900 to-orange-900 text-white flex flex-col justify-center py-20">
       <h2 className="text-4xl font-bold text-center mb-12">What's Your Mood Today?</h2>
 
@@ -49,5 +52,6 @@ export default function Emojis() {
         ))}
       </div>
     </section>
+    </>
   );
 }

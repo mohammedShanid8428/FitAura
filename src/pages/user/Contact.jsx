@@ -2,6 +2,7 @@ import React from "react";
 import { Mail, Phone, MapPin } from "lucide-react";
 import Testimonials from "../../components/landing/Testimonial";
 import FAQ from "../../components/landing/Faq";
+import Header from "../../components/Header";
 
 export default function Contact() {
   const faqs = [
@@ -20,6 +21,8 @@ export default function Contact() {
   ];
 
   return (
+   <>
+   <Header/>
     <section className="bg-white text-gray-800">
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-orange-500 to-red-600 text-white py-20 px-4 text-center">
@@ -91,5 +94,6 @@ export default function Contact() {
 
      <FAQ/>
     </section>
+   </>
   );
 }

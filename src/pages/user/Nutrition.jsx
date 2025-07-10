@@ -1,6 +1,7 @@
 import React, { useState ,useEffect} from "react";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { images, serviceImg } from "../../assets/images";
+import Header from "../../components/Header";
 
 const slides = [
   {
@@ -71,6 +72,7 @@ export default function NutritionCarousel() {
 ];
   return (
   <>
+  <Header/>
       <section className="relative w-full h-screen overflow-hidden">
    
       <img

@@ -1,87 +1,87 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { Lock, User, Mail} from "lucide-react";
+import { images } from "../../assets/images"; 
+import { Link } from "react-router-dom";
 
 const Authentication = () => {
-  const [authState, setAuthState] = useState('login'); // 'login' or 'register'
-  const isLogin = authState === 'login';
+  const [authState, setAuthState] = useState("login");
+  const isLogin = authState === "login";
 
   return (
-    <div className="min-h-screen bg-gradient-to-tr from-gray-900 via-black to-gray-800 flex items-center justify-center px-4 py-8">
-      <div className="w-full max-w-md bg-[#121212] text-white p-8 rounded-2xl shadow-2xl border border-gray-800 transition-all duration-300">
-        
-        {/* Heading */}
-        <h2 className="text-3xl font-bold text-center mb-2 bg-gradient-to-r from-green-400 to-cyan-400 bg-clip-text text-transparent">
-          {isLogin ? 'Login' : 'Register'}
+    <div
+      className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden bg-cover bg-center"
+      style={{
+        backgroundImage: `url(${images.modal13})`,
+      }}
+    >
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black bg-opacity-40 z-0" />
+
+      {/* Modal */}
+      <div className="relative z-10 w-full max-w-md bg-gradient-to-b from-teal-400/25 to-black/50 backdrop-blur-md text-white px-8 py-10 rounded-2xl shadow-[0_0_40px_rgba(0,255,255,0.2)] border border-teal-300/60">
+        <h2 className="text-2xl font-semibold text-center text-white tracking-wide mb-2">
+          {isLogin ? "LOGIN" : "REGISTER"}
         </h2>
-        <p className="text-center text-gray-400 text-sm mb-8">
-          {isLogin ? 'Access your account' : 'Create a new account'}
+
+        <p className="text-center text-gray-400 text-sm mb-6">
+          {isLogin ? "Access your account" : "Create a new account"}
         </p>
 
-        {/* Form */}
-        <form className="space-y-6">
+        <form className="space-y-6 mt-4">
           {!isLogin && (
-            <div className="relative">
+            <div className="flex items-center bg-white/10 border border-white/20 rounded-md px-4 py-2">
+              <User className="w-4 h-4 mr-2 text-white/70" />
               <input
                 type="text"
-                name="username"
-                placeholder=" "
+                placeholder="Username"
+                className="bg-transparent w-full outline-none text-sm placeholder:text-white/50"
                 required
-                className="peer w-full bg-transparent border-b-2 border-gray-600 px-2 pt-5 pb-2 text-sm focus:outline-none focus:border-pink-500"
               />
-              <label className="absolute left-2 top-2 text-gray-400 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm peer-focus:text-pink-400">
-                Username
-              </label>
             </div>
           )}
 
-          <div className="relative">
+          <div className="flex items-center bg-white/10 border border-white/20 rounded-md px-4 py-2">
+            <Mail className="w-4 h-4 mr-2 text-white/70" />
             <input
               type="email"
-              name="email"
-              placeholder=" "
+              placeholder="Email"
+              className="bg-transparent w-full outline-none text-sm placeholder:text-white/50"
               required
-              className="peer w-full bg-transparent border-b-2 border-gray-600 px-2 pt-5 pb-2 text-sm focus:outline-none focus:border-cyan-500"
             />
-            <label className="absolute left-2 top-2 text-gray-400 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm peer-focus:text-cyan-400">
-              Email Address
-            </label>
           </div>
 
-          <div className="relative">
+          <div className="flex items-center bg-white/10 border border-white/20 rounded-md px-4 py-2">
+            <Lock className="w-4 h-4 mr-2 text-white/70" />
             <input
               type="password"
-              name="password"
-              placeholder=" "
+              placeholder="Password"
+              className="bg-transparent w-full outline-none text-sm placeholder:text-white/50"
               required
-              className="peer w-full bg-transparent border-b-2 border-gray-600 px-2 pt-5 pb-2 text-sm focus:outline-none focus:border-cyan-500"
             />
-            <label className="absolute left-2 top-2 text-gray-400 text-sm transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-focus:top-2 peer-focus:text-sm peer-focus:text-cyan-400">
-              Password
-            </label>
           </div>
 
-          {/* Button */}
-          <button
-            type="submit"
-            className={`w-full ${
-              isLogin ? 'bg-cyan-500 hover:bg-cyan-600' : 'bg-pink-500 hover:bg-pink-600'
-            } transition text-white font-medium py-2 rounded-xl mt-4`}
-          >
-            {isLogin ? 'Login' : 'Register'}
-          </button>
-
-          {/* Toggle link */}
-          <p className="text-center text-sm text-gray-400 mt-4">
-            {isLogin ? "Don't have an account?" : 'Already have an account?'}
+          <Link to="/dash" className="block">
             <button
-              type="button"
-              onClick={() => setAuthState(isLogin ? 'register' : 'login')}
-              className={`ml-1 underline ${
-                isLogin ? 'text-pink-400' : 'text-cyan-400'
-              } hover:opacity-80`}
+              type="button" 
+              className="w-full bg-white text-black font-semibold py-2 rounded-md hover:bg-gray-100 transition"
             >
-              {isLogin ? 'Register' : 'Login'}
+              {isLogin ? "LOGIN" : "REGISTER"}
             </button>
-          </p>
+          </Link>
+
+          {isLogin && (
+            <p className="text-center text-xs text-white/70 hover:underline cursor-pointer mt-2">
+              Forgot Password? Click Here
+            </p>
+          )}
+
+          <button
+            type="button"
+            onClick={() => setAuthState(isLogin ? "register" : "login")}
+            className="w-full bg-gradient-to-r from-cyan-500 to-teal-400 hover:to-cyan-600 text-white font-bold py-2 rounded-md mt-4 transition"
+          >
+            {isLogin ? "REGISTER" : "BACK TO LOGIN"}
+          </button>
         </form>
       </div>
     </div>
