@@ -4,6 +4,7 @@ import { images, serviceImg } from "../../assets/images";
 import Header from "../../components/Header";
 import Cards from "../../components/nutritions/Cards"
 import Grids from "../../components/nutritions/Grids"
+import Saved from "../../components/nutritions/Saved";
 
 const slides = [
   {
@@ -157,7 +158,7 @@ export default function NutritionCarousel() {
       </div>
     </section>  
 
-    <Grids/>
+    <Saved/>
  
 
 
