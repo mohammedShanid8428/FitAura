@@ -2,6 +2,8 @@ import React, { useState ,useEffect} from "react";
 import { ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { images, serviceImg } from "../../assets/images";
 import Header from "../../components/Header";
+import Cards from "../../components/nutritions/Cards"
+import Grids from "../../components/nutritions/Grids"
 
 const slides = [
   {
@@ -154,6 +156,8 @@ export default function NutritionCarousel() {
         </div>
       </div>
     </section>  
+
+    <Grids/>
  
 
 
