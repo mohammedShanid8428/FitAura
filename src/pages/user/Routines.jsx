@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Play } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play,CheckCircle } from "lucide-react";
 import { exerciseImg, images } from "../../assets/images"; // make sure this path is valid
 import Header from "../../components/Header";
+import Plan from "../../components/routines/Plan";
+import Templete from "../../components/routines/Templete";
+import Service from "../../components/routines/Service";
+import Strech from "../../components/routines/Strech";
+import Yoga from "../../components/routines/Yoga";
+import Hydration from "../../components/routines/Hydration";
 
 const slides = [
   {
@@ -24,20 +30,7 @@ const slides = [
   },
 ];
 
-const exercises = [
-  { id: 1, title: "Kneeling Back Rotation Stretch (female)", image: exerciseImg.exercise1 },
-  { id: 2, title: "1 2 Stick Drill (male)", image: exerciseImg.exercise2 },
-  { id: 3, title: "1 to 2 Jump Box (male)", image: exerciseImg.exercise3 },
-  { id: 4, title: "123 Back Drill (male)", image: exerciseImg.exercise4 },
-  { id: 5, title: "2 to 1 Jump Box (male)", image: exerciseImg.exercise5 },
-  { id: 6, title: "3 4 Sit up (female)", image: exerciseImg.exercise6 },
-  { id: 7, title: "3 Leg Chaturanga Pose", image: exerciseImg.exercise7 },
-  { id: 8, title: "3 Leg Dog Pose (female)", image: exerciseImg.exercise8 },
-  { id: 9, title: "Side Plank", image: exerciseImg.exercise9 },
-  { id: 10, title: "Wall Squat", image: exerciseImg.exercise10 },
-  { id: 11, title: "Mountain Climbers", image: exerciseImg.exercise11 },
-  { id: 12, title: "Bridge Pose", image: exerciseImg.exercise12 },
-];
+
 
 export default function Routines() {
   const [current, setCurrent] = useState(0);
@@ -106,40 +99,200 @@ export default function Routines() {
         </button>
       </section>
 
-      {/* Exercise Grid Section */}
-      <section className="bg-white py-12 px-4 md:px-12">
-        <div className="max-w-7xl mx-auto">
-          <p className="text-center text-md uppercase tracking-widest text-gray-400 mb-2">
-            Our Services
-          </p>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-10">
-            Our Diet & Routine Services
+        <section className="bg-black text-white py-16 px-6 md:px-20">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+        {/* Left: Text Content */}
+        <div>
+          <p className="uppercase text-sm text-gray-400 mb-2">Who we are</p>
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-4 leading-tight">
+            Building fitness is building your<br />
+            body and confidence
           </h2>
+          <p className="text-gray-300 mb-8">
+            Aperiam magna rutrum risus platea non at per maximus. Quis rutrum aliquet sapien auctor nullas volutpat eu iaculis nisl. Tristique hendrerit est diam metus egestas scelerisque vulputate.
+          </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-            {exercises.map((exercise) => (
-              <div
-                key={exercise.id}
-                className="border rounded-lg p-4 flex flex-col items-center text-center shadow-md hover:shadow-lg transition"
-              >
-                <img
-                  src={exercise.image}
-                  alt={exercise.title}
-                  className="w-full h-40 object-contain mb-2"
-                />
-                <input type="checkbox" className="mb-3" />
-                <p className="text-md font-semibold mb-2">{exercise.title}</p>
+          {/* List Items */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div className="flex items-start gap-3">
+              <span className="text-orange-500 text-lg">✓</span>
+              <div>
+                <h4 className="font-semibold">Personal Trainer</h4>
+                <p className="text-sm text-gray-400">Vivamus facilisi potenti blandit sit eros nisi consectetur.</p>
               </div>
-            ))}
-          </div>
+            </div>
 
-          <div className="flex justify-center mt-10">
-            <button className="bg-black text-white px-6 py-3 rounded hover:bg-gray-800">
-              Add selected to cart
-            </button>
+            <div className="flex items-start gap-3">
+              <span className="text-orange-500 text-lg">✓</span>
+              <div>
+                <h4 className="font-semibold">Cardio Programs</h4>
+                <p className="text-sm text-gray-400">Vivamus facilisi potenti blandit sit eros nisi consectetur.</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3">
+              <span className="text-orange-500 text-lg">✓</span>
+              <div>
+                <h4 className="font-semibold">Quality Equipments</h4>
+                <p className="text-sm text-gray-400">Vivamus facilisi potenti blandit sit eros nisi consectetur.</p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3">
+              <span className="text-orange-500 text-lg">✓</span>
+              <div>
+                <h4 className="font-semibold">Healthy Nutrition</h4>
+                <p className="text-sm text-gray-400">Vivamus facilisi potenti blandit sit eros nisi consectetur.</p>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+
+        {/* Right: Images */}
+        <div className="relative w-full h-full flex items-center justify-center">
+          <img
+            src="/assets/muscle-main.jpg" // 📌 Replace with actual image
+            alt="Muscle"
+            className="rounded-lg object-cover w-full h-full max-h-[400px]"
+          />
+          <img
+            src="/assets/muscle-overlay.jpg" // 📌 Replace with actual image
+            alt="Overlay"
+            className="absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-1/4 w-48 rounded-md border-4 border-black shadow-lg"
+          />
+          {/* Optional Orange Decoration */}
+          <div className="absolute bottom-4 right-4 w-6 h-3 bg-orange-500"></div>
+        </div>
+      </div>
+    </section>
+    
+
+      {/* <Plan/> */}
+
+      <Templete/>
+
+      <Service/>
+ 
+    <section className="bg-[#f6fbff] py-16 px-6 text-center">
+      <h4 className="text-blue-500 uppercase text-sm mb-2">What’s Inside</h4>
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8">
+        💧 Hydration & Mineral Composition
+      </h2>
+
+      <div className="flex flex-col md:flex-row items-center justify-center gap-10 max-w-6xl mx-auto">
+        {/* Left Composition Info */}
+        <div className="text-left space-y-5 text-gray-700 text-sm">
+          <div>
+            <h3 className="font-bold text-blue-700">Calcium+</h3>
+            <p>5–13 mg/dm³ — Supports bone health & muscle function.</p>
+          </div>
+          <div>
+            <h3 className="font-bold text-blue-700">Magnesium</h3>
+            <p>3–5 mg/dm³ — Boosts energy & regulates blood pressure.</p>
+          </div>
+          <div>
+            <h3 className="font-bold text-blue-700">Sodium</h3>
+            <p>20–25 mg/dm³ — Maintains fluid balance and nerve signals.</p>
+          </div>
+        </div>
+
+        {/* Center Glass Image */}
+        <div className="w-48 md:w-56">
+          <img
+            src="/assets/glass-water.png"
+            alt="Water glass"
+            className="w-full object-contain"
+          />
+        </div>
+
+        {/* Right Composition Info */}
+        <div className="text-left space-y-5 text-gray-700 text-sm">
+          <div>
+            <h3 className="font-bold text-blue-700">Chlorine</h3>
+            <p>&lt; 0.2 mg/dm³ — Keeps water safe & disinfected.</p>
+          </div>
+          <div>
+            <h3 className="font-bold text-blue-700">Sourness (pH)</h3>
+            <p>6.5–7.5 — Balanced pH for better hydration & digestion.</p>
+          </div>
+          <div>
+            <h3 className="font-bold text-blue-700">Mineralization</h3>
+            <p>100–150 mg/l — Improves taste & replenishes minerals.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* CTA Button */}
+      <div className="mt-10">
+        <a
+          href="/hydration"
+          className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition"
+        >
+          🚰 Explore Hydration Routine
+        </a>
+      </div>
+    </section>
+     (
+    <section className="bg-black text-white py-16 px-6 md:px-20">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
+        {/* Left Content */}
+        <div className="md:w-1/2">
+          <p className="text-red-500 uppercase font-semibold tracking-wide mb-3">
+            Life Routine
+          </p>
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-6 leading-snug">
+            Create Powerful Routines <br /> to Build Your Health & Mind
+          </h2>
+          <p className="text-gray-300 mb-6">
+            The secret to long-term health lies in your **daily habits**. Our guided routines support your body and mind through all phases of the day — from waking up strong to winding down with clarity.
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
+            <div className="flex items-start gap-3">
+              <CheckCircle className="text-red-500 mt-1" />
+              <div>
+                <p className="font-semibold">Morning Boost</p>
+                <p className="text-gray-400">Wake early, stretch, hydrate, and set intentions.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <CheckCircle className="text-red-500 mt-1" />
+              <div>
+                <p className="font-semibold">Mindful Midday</p>
+                <p className="text-gray-400">Take breaks, nourish, and re-align your focus.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <CheckCircle className="text-red-500 mt-1" />
+              <div>
+                <p className="font-semibold">Evening Energy</p>
+                <p className="text-gray-400">Gentle movement, reflect on wins, connect with self.</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <CheckCircle className="text-red-500 mt-1" />
+              <div>
+                <p className="font-semibold">Night Recharge</p>
+                <p className="text-gray-400">Unplug, relax, breathe, and sleep deeply.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Image */}
+        <div className="md:w-1/2 relative">
+          <img
+            src="/assets/daily-routine-model.png"
+            alt="Routine Visualization"
+            className="w-full rounded-lg shadow-xl"
+          />
+          {/* Optional decorative red strip */}
+          <div className="absolute top-0 right-0 w-4 h-full bg-red-500 rounded-r-lg hidden md:block"></div>
+        </div>
+      </div>
+    </section>
+
+     
     </>
   );
 }
