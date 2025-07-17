@@ -259,7 +259,7 @@ export default function Routines() {
     </section>
      
     <Life/>
-    <Cards/>
+
 
      
     </>

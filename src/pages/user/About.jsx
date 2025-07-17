@@ -8,6 +8,8 @@ export default function About(){
   return(
     <>
     <Header/>
+    <section className="bg-black">
+
     <section className="relative h-[90vh] flex items-center justify-center text-center overflow-hidden">
   {/* Background Image */}
   <img
@@ -29,54 +31,56 @@ export default function About(){
       Empower your body and mind with guided routines, personalized nutrition, and daily mood tracking — all in one place.
     </p>
 
-    <button className="inline-block bg-yellow-400 text-black text-sm sm:text-base font-semibold px-6 py-3 rounded-full shadow-md hover:bg-yellow-300 transition">
+    <button className="inline-block bg-orange-600 text-black text-sm sm:text-base font-semibold px-6 py-3 rounded-full shadow-md hover:bg-orange-300 transition">
       Start Your Journey
     </button>
   </div>
 </section>
-<section className="bg-yellow-400 py-16 px-4 sm:px-6">
-  <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+<section className="py-16 px-4 sm:px-8 bg-[#0f0f0f]">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
 
-    {/* Left: Image */}
-    <div className="flex justify-center md:justify-end">
-      <img
-        src={images.modal10} // Replace with actual image
-        alt="Health Wellness"
-        className="rounded-[30px] w-72 h-auto object-cover"
-      />
-    </div>
-
-    {/* Right: Content */}
-    <div>
-      <h2 className="text-3xl sm:text-4xl font-bold text-black mb-4">About Us</h2>
-      <p className="text-black text-base sm:text-lg mb-6">
-        FitAura was born from the belief that wellness should be simple and holistic.
-        Our team includes fitness coaches, nutritionists, and mental health mentors — all
-        committed to helping you thrive inside and out.
-      </p>
-
-      {/* Stats */}
-      <div className="grid grid-cols-3 gap-4 max-w-xs">
-        <div className="bg-white rounded-xl p-4 shadow text-center">
-          <Users size={24} className="text-purple-600 mx-auto mb-2" />
-          <p className="text-xl font-bold text-black">8+</p>
-          <p className="text-sm text-gray-700">Health Experts</p>
+        <div className="flex justify-center md:justify-end">
+          <img
+            src={images.modal10}
+            alt="Health Wellness"
+            className="rounded-3xl w-64 md:w-80 h-auto object-cover shadow-lg hover:scale-105 transition"
+          />
         </div>
 
-        <div className="bg-white rounded-xl p-4 shadow text-center">
-          <HeartPulse size={24} className="text-green-600 mx-auto mb-2" />
-          <p className="text-xl font-bold text-black">10K</p>
-          <p className="text-sm text-gray-700">Active Users</p>
+
+        <div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold mb-4 bg-gradient-to-r from-lime-400 to-green-500 text-transparent bg-clip-text">
+            About Us
+          </h2>
+
+          <p className="text-gray-300 text-base sm:text-lg mb-8 leading-relaxed">
+            FitAura was born from the belief that wellness should be simple and holistic.
+            Our team includes fitness coaches, nutritionists, and mental health mentors — all
+            committed to helping you thrive inside and out.
+          </p>
+          <div className="grid grid-cols-3 gap-4 max-w-xs">
+            <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 text-center hover:scale-105 transition">
+              <Users size={26} className="text-lime-400 mx-auto mb-2" />
+              <p className="text-xl font-bold text-white">8+</p>
+              <p className="text-xs text-gray-400">Health Experts</p>
+            </div>
+
+            <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 text-center hover:scale-105 transition">
+              <HeartPulse size={26} className="text-green-400 mx-auto mb-2" />
+              <p className="text-xl font-bold text-white">10K</p>
+              <p className="text-xs text-gray-400">Active Users</p>
+            </div>
+
+            <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 text-center hover:scale-105 transition">
+              <Star size={26} className="text-yellow-400 mx-auto mb-2" />
+              <p className="text-xl font-bold text-white">4.9</p>
+              <p className="text-xs text-gray-400">App Rating</p>
+            </div>
+          </div>
         </div>
 
-        <div className="bg-white rounded-xl p-4 shadow text-center">
-          <p className="text-xl font-bold text-black mb-2">4.9</p>
-          <p className="text-sm text-gray-700">App Rating</p>
-        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 <section className="bg-yellow-400 py-16 px-4 sm:px-6">
   <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
 
@@ -210,6 +214,7 @@ export default function About(){
     
 
     
+    </section>
     </>
   )
 }
