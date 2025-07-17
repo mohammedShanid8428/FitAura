@@ -8,6 +8,8 @@ import Service from "../../components/routines/Service";
 import Strech from "../../components/routines/Strech";
 import Yoga from "../../components/routines/Yoga";
 import Hydration from "../../components/routines/Hydration";
+import Cards from "../../components/nutritions/Cards"
+import Life from "../../components/routines/Life"
 
 const slides = [
   {
@@ -53,7 +55,7 @@ export default function Routines() {
     <>
       {/* Carousel Section */}
       <Header/>
-      <section className="relative w-full h-screen overflow-hidden">
+      <section className="relative w-full h-screen ">
         <img
           src={image}
           alt="Slide"
@@ -98,13 +100,41 @@ export default function Routines() {
           <ChevronRight />
         </button>
       </section>
+      <section className="bg-[#CCFF00] py-6 px-4">
+  <div className="max-w-7xl mx-auto flex flex-wrap justify-around items-center space-y-4 md:space-y-0">
+    {/* Brand 1 */}
+    <div className="flex items-center space-x-2">
+      <img src="/icons/robinhood.svg" alt="Robinhood" className="h-6" />
+      <span className="font-semibold text-black">Robinhood</span>
+    </div>
+
+    {/* Brand 2 */}
+    <div className="flex items-center space-x-2">
+      <img src="/icons/samsara.svg" alt="Samsara" className="h-6" />
+      <span className="font-semibold text-black">Samsara</span>
+    </div>
+
+    {/* Brand 3 */}
+    <div className="flex items-center space-x-2">
+      <img src="/icons/firstbase.svg" alt="Firstbase" className="h-6" />
+      <span className="font-semibold text-black">Firstbase</span>
+    </div>
+
+    {/* Brand 4 */}
+    <div className="flex items-center space-x-2">
+      <img src="/icons/fithes.svg" alt="Fithes" className="h-6" />
+      <span className="font-semibold text-black">Fithes</span>
+    </div>
+  </div>
+</section>
+
 
         <section className="bg-black text-white py-16 px-6 md:px-20">
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
         {/* Left: Text Content */}
         <div>
           <p className="uppercase text-sm text-gray-400 mb-2">Who we are</p>
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-4 leading-tight">
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-lime-400 leading-tight">
             Building fitness is building your<br />
             body and confidence
           </h2>
@@ -113,35 +143,35 @@ export default function Routines() {
           </p>
 
           {/* List Items */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 ">
             <div className="flex items-start gap-3">
-              <span className="text-orange-500 text-lg">✓</span>
+              <span className="text-lime-400 text-lg">✓</span>
               <div>
-                <h4 className="font-semibold">Personal Trainer</h4>
+                <h4 className="font-semibold text-lime-400">Personal Trainer</h4>
                 <p className="text-sm text-gray-400">Vivamus facilisi potenti blandit sit eros nisi consectetur.</p>
               </div>
             </div>
 
             <div className="flex items-start gap-3">
-              <span className="text-orange-500 text-lg">✓</span>
+              <span className="text-lime-400 text-lg">✓</span>
               <div>
-                <h4 className="font-semibold">Cardio Programs</h4>
+                <h4 className="font-semibold text-lime-400">Cardio Programs</h4>
                 <p className="text-sm text-gray-400">Vivamus facilisi potenti blandit sit eros nisi consectetur.</p>
               </div>
             </div>
 
             <div className="flex items-start gap-3">
-              <span className="text-orange-500 text-lg">✓</span>
+              <span className="text-lime-400 text-lg">✓</span>
               <div>
-                <h4 className="font-semibold">Quality Equipments</h4>
+                <h4 className="font-semibold text-lime-400">Quality Equipments</h4>
                 <p className="text-sm text-gray-400">Vivamus facilisi potenti blandit sit eros nisi consectetur.</p>
               </div>
             </div>
 
             <div className="flex items-start gap-3">
-              <span className="text-orange-500 text-lg">✓</span>
+              <span className="text-lime-400 text-lg">✓</span>
               <div>
-                <h4 className="font-semibold">Healthy Nutrition</h4>
+                <h4 className="font-semibold text-lime-400">Healthy Nutrition</h4>
                 <p className="text-sm text-gray-400">Vivamus facilisi potenti blandit sit eros nisi consectetur.</p>
               </div>
             </div>
@@ -149,19 +179,13 @@ export default function Routines() {
         </div>
 
         {/* Right: Images */}
-        <div className="relative w-full h-full flex items-center justify-center">
+        <div className="relative w-full h-full flex items-center justify-center ">
           <img
-            src="/assets/muscle-main.jpg" // 📌 Replace with actual image
+            src={images.modal7}// 📌 Replace with actual image
             alt="Muscle"
-            className="rounded-lg object-cover w-full h-full max-h-[400px]"
+            className="rounded-lg object-cover w-full h-full max-h-[400px]  border border-lime-500 rounded-full shadow-[0_0_40px_rgba(132,204,22,0.5)]
+"
           />
-          <img
-            src="/assets/muscle-overlay.jpg" // 📌 Replace with actual image
-            alt="Overlay"
-            className="absolute top-1/2 left-0 transform -translate-y-1/2 -translate-x-1/4 w-48 rounded-md border-4 border-black shadow-lg"
-          />
-          {/* Optional Orange Decoration */}
-          <div className="absolute bottom-4 right-4 w-6 h-3 bg-orange-500"></div>
         </div>
       </div>
     </section>
@@ -172,8 +196,9 @@ export default function Routines() {
       <Templete/>
 
       <Service/>
- 
-    <section className="bg-[#f6fbff] py-16 px-6 text-center">
+    
+    
+    <section className="bg-black py-16 px-6 text-center">
       <h4 className="text-blue-500 uppercase text-sm mb-2">What’s Inside</h4>
       <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8">
         💧 Hydration & Mineral Composition
@@ -199,7 +224,7 @@ export default function Routines() {
         {/* Center Glass Image */}
         <div className="w-48 md:w-56">
           <img
-            src="/assets/glass-water.png"
+            src={images.modal15}
             alt="Water glass"
             className="w-full object-contain"
           />
@@ -232,65 +257,9 @@ export default function Routines() {
         </a>
       </div>
     </section>
-     (
-    <section className="bg-black text-white py-16 px-6 md:px-20">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12">
-        {/* Left Content */}
-        <div className="md:w-1/2">
-          <p className="text-red-500 uppercase font-semibold tracking-wide mb-3">
-            Life Routine
-          </p>
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-6 leading-snug">
-            Create Powerful Routines <br /> to Build Your Health & Mind
-          </h2>
-          <p className="text-gray-300 mb-6">
-            The secret to long-term health lies in your **daily habits**. Our guided routines support your body and mind through all phases of the day — from waking up strong to winding down with clarity.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
-            <div className="flex items-start gap-3">
-              <CheckCircle className="text-red-500 mt-1" />
-              <div>
-                <p className="font-semibold">Morning Boost</p>
-                <p className="text-gray-400">Wake early, stretch, hydrate, and set intentions.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <CheckCircle className="text-red-500 mt-1" />
-              <div>
-                <p className="font-semibold">Mindful Midday</p>
-                <p className="text-gray-400">Take breaks, nourish, and re-align your focus.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <CheckCircle className="text-red-500 mt-1" />
-              <div>
-                <p className="font-semibold">Evening Energy</p>
-                <p className="text-gray-400">Gentle movement, reflect on wins, connect with self.</p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <CheckCircle className="text-red-500 mt-1" />
-              <div>
-                <p className="font-semibold">Night Recharge</p>
-                <p className="text-gray-400">Unplug, relax, breathe, and sleep deeply.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Right Image */}
-        <div className="md:w-1/2 relative">
-          <img
-            src="/assets/daily-routine-model.png"
-            alt="Routine Visualization"
-            className="w-full rounded-lg shadow-xl"
-          />
-          {/* Optional decorative red strip */}
-          <div className="absolute top-0 right-0 w-4 h-full bg-red-500 rounded-r-lg hidden md:block"></div>
-        </div>
-      </div>
-    </section>
+     
+    <Life/>
+    <Cards/>
 
      
     </>
