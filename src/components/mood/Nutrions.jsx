@@ -1,45 +1,62 @@
 import React from "react";
 import { Leaf, Droplet, Cake } from "lucide-react";
 
-
-export default function Nutrions() {
-  const tips = [
+export default function NutritionHero() {
+  const features = [
     {
-      icon: <Leaf className="w-6 h-6 text-green-600" />,
+      icon: <Leaf className="w-5 h-5 text-green-600" />,
       title: "Mood-Enhancing Foods",
-      content: "Eat foods like bananas, berries, and dark chocolate to naturally boost serotonin.",
+      description: "Eat foods like bananas, berries, and dark chocolate to naturally boost serotonin.",
     },
     {
-      icon: <Droplet className="w-6 h-6 text-blue-500" />,
+      icon: <Droplet className="w-5 h-5 text-blue-500" />,
       title: "Stay Hydrated",
-      content: "Drink at least 8 glasses of water daily to help your brain function at its best.",
+      description: "Drink at least 8 glasses of water daily to help your brain function at its best.",
     },
     {
-      icon: <Cake className="w-6 h-6 text-red-500" />,
+      icon: <Cake className="w-5 h-5 text-red-500" />,
       title: "Avoid Sugar Crashes",
-      content: "Balance carbs with protein (like oats + nuts) to stabilize energy and mood.",
+      description: "Balance carbs with protein (like oats + nuts) to stabilize energy and mood.",
+    },
+    {
+      icon: <Leaf className="w-5 h-5 text-green-600" />,
+      title: "Mood-Enhancing Foods",
+      description: "Eat foods like bananas, berries, and dark chocolate to naturally boost serotonin.",
     },
   ];
 
   return (
-    <section className="bg-white py-16 px-6">
-      
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-emerald-800 mb-10">
-          Nutrition Tips for a Happy Mood
-        </h2>
+    <section className="py-12 px-6">
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-start">
+        {/* Left Content */}
+        <div>
+          <span className="bg-green-100 text-green-700 font-medium px-3 py-1 rounded-full text-xs mb-3 inline-block">
+            Nutrition Health Guide
+          </span>
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-800 leading-tight mb-4">
+            Fuel your body & mind with the <span className="text-green-600">right food</span>
+          </h1>
+          <p className="text-gray-600 mb-6 text-sm">
+            Our expert tips are designed to help you boost mood and energy through better nutrition.
+            Start small with these simple, science-backed habits.
+          </p>
+          <button className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition">
+            Learn More
+          </button>
+        </div>
 
-        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {tips.map((tip, index) => (
+        {/* Right Cards */}
+        <div className="grid sm:grid-cols-2 gap-4">
+          {features.map((item, index) => (
             <div
               key={index}
-              className="bg-gradient-to-br from-orange-50 via-white to-yellow-100 border border-orange-200 rounded-xl p-6 shadow-md hover:shadow-xl transition"
+              className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition"
             >
-              <div className="mb-4 p-2 bg-orange-100 rounded-full w-fit">
-                {tip.icon}
+              <div className="flex items-center gap-2 mb-2 text-sm text-gray-600">
+                {item.icon}
+                <span className="font-semibold">{item.title}</span>
               </div>
-              <h3 className="text-lg font-semibold text-orange-800 mb-2">{tip.title}</h3>
-              <p className="text-gray-700 text-sm">{tip.content}</p>
+              <p className="text-gray-500 text-sm">{item.description}</p>
             </div>
           ))}
         </div>

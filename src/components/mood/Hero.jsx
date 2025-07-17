@@ -6,7 +6,7 @@ const moodContent = {
   happy: {
     color: "orange",
     backgroundImage: images.modal6, // ✅ Correct reference to image
-    gif: emojisGif.happy,           // ✅ Use specific emoji gif
+    gif: emojisGif.emojis1,           // ✅ Use specific emoji gif
     title: "You're Glowing with Positivity!",
     subtitle: "That joy you're feeling? It's powerful. Keep sharing your sunshine.",
     actions: [
@@ -17,7 +17,7 @@ const moodContent = {
   sad: {
     color: "blue",
     backgroundImage: images.modal7,
-    gif: emojisGif.sad,
+    gif: emojisGif.emojis2,
     title: "It’s Okay to Feel Sad",
     subtitle: "Take it slow. Let yourself breathe and heal gently.",
     actions: [
@@ -28,7 +28,7 @@ const moodContent = {
   angry: {
     color: "red",
     backgroundImage: images.modal8,
-    gif: emojisGif.angry,
+    gif: emojisGif.emojis3,
     title: "Channel Your Fire Constructively",
     subtitle: "Anger is valid. Let’s find a path to calm and control.",
     actions: [

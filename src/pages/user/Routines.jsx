@@ -129,66 +129,7 @@ export default function Routines() {
 </section>
 
 
-        <section className="bg-black text-white py-16 px-6 md:px-20">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-        {/* Left: Text Content */}
-        <div>
-          <p className="uppercase text-sm text-gray-400 mb-2">Who we are</p>
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-lime-400 leading-tight">
-            Building fitness is building your<br />
-            body and confidence
-          </h2>
-          <p className="text-gray-300 mb-8">
-            Aperiam magna rutrum risus platea non at per maximus. Quis rutrum aliquet sapien auctor nullas volutpat eu iaculis nisl. Tristique hendrerit est diam metus egestas scelerisque vulputate.
-          </p>
-
-          {/* List Items */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 ">
-            <div className="flex items-start gap-3">
-              <span className="text-lime-400 text-lg">✓</span>
-              <div>
-                <h4 className="font-semibold text-lime-400">Personal Trainer</h4>
-                <p className="text-sm text-gray-400">Vivamus facilisi potenti blandit sit eros nisi consectetur.</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <span className="text-lime-400 text-lg">✓</span>
-              <div>
-                <h4 className="font-semibold text-lime-400">Cardio Programs</h4>
-                <p className="text-sm text-gray-400">Vivamus facilisi potenti blandit sit eros nisi consectetur.</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <span className="text-lime-400 text-lg">✓</span>
-              <div>
-                <h4 className="font-semibold text-lime-400">Quality Equipments</h4>
-                <p className="text-sm text-gray-400">Vivamus facilisi potenti blandit sit eros nisi consectetur.</p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3">
-              <span className="text-lime-400 text-lg">✓</span>
-              <div>
-                <h4 className="font-semibold text-lime-400">Healthy Nutrition</h4>
-                <p className="text-sm text-gray-400">Vivamus facilisi potenti blandit sit eros nisi consectetur.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Right: Images */}
-        <div className="relative w-full h-full flex items-center justify-center ">
-          <img
-            src={images.modal7}// 📌 Replace with actual image
-            alt="Muscle"
-            className="rounded-lg object-cover w-full h-full max-h-[400px]  border border-lime-500 rounded-full shadow-[0_0_40px_rgba(132,204,22,0.5)]
-"
-          />
-        </div>
-      </div>
-    </section>
+       
     
 
       {/* <Plan/> */}

@@ -1,15 +1,16 @@
 import React from "react";
-import { emojisGif } from "../../assets/images"; // 🧠 Your emoji GIFs
+import { ArrowUpRight } from "lucide-react";
+import { emojisGif, images } from "../../assets/images"; // ✅ Adjust import paths accordingly
 
 const moodBasedServices = {
   happy: {
-    emoji: emojisGif.happy,
+    emojisGif: emojisGif.emojis1,
     intro: "Support your positive mood with wellness strategies that reinforce happiness.",
     services: [
       {
         title: "Mindfulness & Meditation",
         description: "Boost joy with breathing techniques and presence practices.",
-        image: "/images/therapy4.jpg",
+        image: images.modal7,
       },
       {
         title: "Gratitude Coaching",
@@ -30,7 +31,7 @@ const moodBasedServices = {
   },
 
   sad: {
-    emoji: emojisGif.sad,
+    emojisGif: emojisGif.emojis2,
     intro: "Gentle, uplifting care to help you process sadness and regain hope.",
     services: [
       {
@@ -57,13 +58,13 @@ const moodBasedServices = {
   },
 
   angry: {
-    emoji: emojisGif.angry,
+    emojisGif: emojisGif.emojis3,
     intro: "Channel anger constructively through calming therapies and mindful release.",
     services: [
       {
         title: "Anger Management",
         description: "Techniques to cool down and respond calmly.",
-        image: "/images/therapy2.jpg",
+        image: images.modal7
       },
       {
         title: "Deep Breathing Sessions",
@@ -84,51 +85,40 @@ const moodBasedServices = {
   },
 };
 
-
 export default function Enhance({ mood = "happy" }) {
   const moodInfo = moodBasedServices[mood];
 
-  if (!moodInfo) return <p className="text-red-500">No services found for this mood.</p>;
-
   return (
-    <section className="bg-white py-20 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-        {/* LEFT COLUMN */}
-        <div className="space-y-6">
-          <button className="px-4 py-1 bg-gray-100 text-sm text-gray-600 rounded-full w-max">
-            🧠 Enhance Your Mood
-          </button>
-          <h2 className="text-4xl font-bold text-gray-900">Support for Feeling {mood}</h2>
-          <p className="text-gray-600 max-w-lg">{moodInfo.intro}</p>
+    <section className=" px-6 py-12 overflow-hidden">
+      {/* Optional mood intro */}
+      <div className="mb-6 max-w-3xl mx-auto text-center">
+        <h2 className="text-3xl md:text-4xl text-indigo-600 font-bold mb-2 flex justify-center items-center gap-2">
+          <img src={moodInfo.emojisGif} alt="Mood Emoji" className="w-6 h-6" />
+          Support  For Your {mood.charAt(0).toUpperCase() + mood.slice(1)} Mood
+        </h2>
+        <p className="text-gray-600">{moodInfo.intro}</p>
+      </div>
 
-          <div className="mt-6">
-            <img
-              src={moodInfo.emoji}
-              alt={mood}
-              className="w-20 h-20 mx-auto drop-shadow-lg"
-            />
-          </div>
-        </div>
-
-        {/* RIGHT COLUMN */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {moodInfo.services.map((item, index) => (
-            <div
-              key={index}
-              className="bg-white border rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition"
-            >
-              <img
-                src={item.image}
-                alt={item.title}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-800">{item.title}</h3>
-                <p className="text-sm text-gray-600 mt-2">{item.description}</p>
-              </div>
+      {/* Horizontal Cards */}
+      <div className="flex gap-6 snap-x snap-mandatory pb-4  ">
+        {moodInfo.services.map((item, index) => (
+          <div
+            key={index}
+            className="relative min-w-[280px] sm:min-w-[320px] max-w-sm h-[400px] bg-cover bg-center rounded-2xl shadow-md snap-start flex-shrink-0 overflow-hidden"
+            style={{ backgroundImage: `url(${item.image})` }}
+          >
+            {/* Top-right icon */}
+            <div className="absolute top-4 right-4 bg-white rounded-full p-1 shadow">
+              <ArrowUpRight className="w-4 h-4 text-gray-800" />
             </div>
-          ))}
-        </div>
+
+            {/* Text Content */}
+            <div className="absolute bottom-0 w-full px-5 py-6 bg-gradient-to-t from-black/80 to-transparent text-white">
+              <h3 className="text-xl font-semibold mb-1">{item.title}</h3>
+              <p className="text-sm leading-tight">{item.description}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </section>
   );

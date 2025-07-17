@@ -11,32 +11,38 @@ import {
 } from "lucide-react";
 import { emojisGif } from "../../assets/images";
 
-// Mood Tips Data (embedded here)
+// Mood Tips Data
 const moodTips = {
   happy: [
     {
       icon: <SmilePlus className="w-6 h-6 text-yellow-600" />,
       title: "Practice Gratitude",
-      description:
-        "Write down 3 things you're thankful for each day. Reflect on the good.",
+      description: "Write down 3 things you're thankful for each day. Reflect on the good.",
     },
     {
       icon: <Heart className="w-6 h-6 text-pink-500" />,
       title: "Spread Your Mood",
-      description:
-        "Call or text someone you love and brighten their day with a simple message.",
+      description: "Call or text someone you love and brighten their day.",
     },
     {
       icon: <Star className="w-6 h-6 text-green-600" />,
       title: "Act of Kindness",
-      description:
-        "Do something thoughtful for someone—big or small. It boosts your joy too!",
+      description: "Do something thoughtful for someone—big or small.",
     },
     {
       icon: <Trophy className="w-6 h-6 text-purple-600" />,
       title: "Celebrate a Win",
-      description:
-        "Acknowledge a recent success—no matter how small. You earned it!",
+      description: "Acknowledge a recent success—no matter how small.",
+    },
+    {
+      icon: <ShieldAlert className="w-6 h-6 text-orange-600" />,
+      title: "Limit Scrolling",
+      description: "Avoid doom-scrolling and pick up a hobby instead.",
+    },
+    {
+      icon: <Heart className="w-6 h-6 text-rose-600" />,
+      title: "Self-Affirmations",
+      description: "Look in the mirror and say one nice thing to yourself.",
     },
   ],
 
@@ -54,14 +60,22 @@ const moodTips = {
     {
       icon: <Star className="w-6 h-6 text-gray-600" />,
       title: "Do One Nice Thing for Yourself",
-      description:
-        "Even small self-care acts matter—like a walk or a warm shower.",
+      description: "Even small self-care acts matter—like a walk or a warm shower.",
     },
     {
       icon: <ShieldAlert className="w-6 h-6 text-yellow-500" />,
       title: "Limit Overthinking",
-      description:
-        "Focus on one positive step, not fixing everything at once.",
+      description: "Focus on one positive step, not fixing everything at once.",
+    },
+    {
+      icon: <Heart className="w-6 h-6 text-pink-600" />,
+      title: "Journal Your Thoughts",
+      description: "Write how you feel—it helps process emotions.",
+    },
+    {
+      icon: <SmilePlus className="w-6 h-6 text-green-500" />,
+      title: "Go Outside",
+      description: "A little sun and fresh air can do wonders.",
     },
   ],
 
@@ -74,80 +88,76 @@ const moodTips = {
     {
       icon: <ShieldAlert className="w-6 h-6 text-orange-500" />,
       title: "Step Away Briefly",
-      description:
-        "Take a break from the trigger. Regain control before acting.",
+      description: "Take a break from the trigger. Regain control.",
     },
     {
       icon: <ThumbsDown className="w-6 h-6 text-gray-600" />,
       title: "Acknowledge Your Anger",
-      description:
-        "Say to yourself: 'I'm angry, and that's okay.' It helps defuse it.",
+      description: "Say: 'I'm angry, and that's okay.' It helps defuse it.",
     },
     {
       icon: <Heart className="w-6 h-6 text-pink-500" />,
-      title: "Do a Kind Gesture",
-      description:
-        "Channel anger into a helpful action for yourself or others.",
+      title: "Kind Gesture",
+      description: "Channel anger into a helpful action for someone.",
+    },
+    {
+      icon: <Star className="w-6 h-6 text-yellow-500" />,
+      title: "Change the Scene",
+      description: "Physically change space—step outside, take a short walk.",
+    },
+    {
+      icon: <Trophy className="w-6 h-6 text-blue-600" />,
+      title: "Use Energy Positively",
+      description: "Exercise or punch a pillow—release without harm.",
     },
   ],
 };
 
-// Tips Component
 export default function Tips({ mood }) {
   const tips = moodTips[mood] || [];
-
-  // Titles per mood
   const moodTitles = {
     happy: "Sustain Happiness",
     sad: "Lift Your Mood",
     angry: "Manage Anger",
   };
 
-  // Image per mood
   const moodEmojis = {
-    happy: emojisGif.happy,
-    sad: emojisGif.sad,
-    angry: emojisGif.angry,
+    happy: emojisGif.emojis1,
+    sad: emojisGif.emojis2,
+    angry: emojisGif.emojis3,
   };
 
   return (
     <section className="bg-white py-20 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        {/* LEFT COLUMN */}
-        <div className="space-y-6">
-          <h2 className="text-4xl font-bold text-gray-900">
-            Our Tips to {moodTitles[mood]}
-          </h2>
-          <p className="text-gray-600">
-            We take pride in tailoring each suggestion to ensure your emotional
-            well-being.
-          </p>
-
-          <img
-            src={moodEmojis[mood]}
-            alt={`${mood} mood`}
-            className="rounded-xl shadow-lg w-60 h-60 object-contain mt-4"
-          />
-        </div>
-
-        {/* RIGHT COLUMN */}
-        <div className="space-y-10">
-          {tips.slice(0, 3).map((tip, index) => (
-            <div key={index} className="relative pl-10">
-              <span className="absolute left-0 top-1 text-orange-600 font-bold text-lg">
-                0{index + 1}
-              </span>
-              <h4 className="text-lg font-semibold text-gray-800 mb-1 flex items-center gap-2">
-                {tip.icon} {tip.title}
-              </h4>
-              <p className="text-gray-600 text-sm">{tip.description}</p>
-            </div>
-          ))}
-        </div>
+      <div className="max-w-6xl mx-auto text-center mb-10">
+        <img
+          src={moodEmojis[mood]}
+          alt={`${mood} mood`}
+          className="w-28 h-28 mx-auto mb-4 object-contain"
+        />
+        <h2 className="text-4xl font-bold text-gray-800">
+          Our Tips to {moodTitles[mood]}
+        </h2>
+        <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
+          Practical suggestions personalized to guide you emotionally.
+        </p>
       </div>
 
-      {/* Optional Divider */}
-      <div className="max-w-6xl mx-auto border-t mt-16 pt-10 border-gray-200" />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        {tips.slice(0, 6).map((tip, index) => (
+          <div key={index} className="bg-gray-50 border border-gray-200 p-6 rounded-xl shadow-sm hover:shadow-md transition">
+            <div className="flex items-start gap-4">
+              <div className="p-2 bg-yellow-100 rounded-full">
+                {tip.icon}
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold text-gray-800">{tip.title}</h4>
+                <p className="text-sm text-gray-600 mt-1">{tip.description}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }

@@ -4,6 +4,10 @@ import { Users, HeartPulse,  } from "lucide-react";
 import { Link } from "react-router-dom";
 import Trainers from "../../components/about/Traniers";
 import Header from "../../components/Header";
+import { Salad, Repeat, Smile, Globe } from "lucide-react"; 
+
+// import { Button } from "../../components/ui/Button";
+
 export default function About(){
   return(
     <>
@@ -36,137 +40,210 @@ export default function About(){
     </button>
   </div>
 </section>
-<section className="py-16 px-4 sm:px-8 bg-[#0f0f0f]">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+ <section className="bg-[#0f0f0f] py-20 px-6">
+      <div className="max-w-6xl mx-auto">
+        <h3 className="text-center text-gray-300 tracking-widest text-sm uppercase mb-4">
+          Special Moments
+        </h3>
+        <h2 className="text-center text-green- text-4xl font-bold mb-12">About Us</h2>
 
-        <div className="flex justify-center md:justify-end">
-          <img
-            src={images.modal10}
-            alt="Health Wellness"
-            className="rounded-3xl w-64 md:w-80 h-auto object-cover shadow-lg hover:scale-105 transition"
-          />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+          {/* Left Image */}
+          <div className="rounded-2xl overflow-hidden">
+            <img
+              src={images.modal5} // Replace with your image
+              alt="Left Dish"
+              className="object-cover h-[350px] w-full hover:scale-105 transition duration-300"
+            />
+          </div>
+
+          {/* Center Content */}
+          <div className="bg-[#1a1a1a] text-center px-6 py-10 rounded-2xl h-[350px] flex flex-col justify-center items-center shadow-xl">
+  <p className="text-gray-200 uppercase tracking-wide text-sm mb-2">
+    Wellness Reimagined
+  </p>
+  <h3 className="text-orange-600 text-2xl md:text-3xl font-bold mb-4 leading-tight">
+    Traditional <br /> & Modern
+  </h3>
+  <p className="text-gray-200 text-sm max-w-xs">
+    At FitAura, we blend timeless wellness practices with modern science — offering mood tracking,
+    personalized routines, and nutrition plans to help you thrive physically and mentally.
+    Your holistic health journey begins here.
+  </p>
+</div>
+
+          {/* Right Image */}
+           <div className="rounded-2xl overflow-hidden">
+            <img
+              src={images.modal5} // Replace with your image
+              alt="Left Dish"
+              className="object-cover h-[350px] w-full hover:scale-105 transition duration-300"
+            />
+          </div>
         </div>
-
-
+      </div>
+    </section>
+ <section className="py-16 px-4 sm:px-6 ">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        {/* Left Text Section */}
         <div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold mb-4 bg-gradient-to-r from-lime-400 to-green-500 text-transparent bg-clip-text">
-            About Us
-          </h2>
-
-          <p className="text-gray-300 text-base sm:text-lg mb-8 leading-relaxed">
-            FitAura was born from the belief that wellness should be simple and holistic.
-            Our team includes fitness coaches, nutritionists, and mental health mentors — all
-            committed to helping you thrive inside and out.
+          <h2 className="text-3xl sm:text-4xl font-bold text-green-600 mb-4">Our Mission</h2>
+          <p className="text-gray-200 text-base sm:text-lg mb-4">
+            At FitAura, we are focused on redefining digital wellness through structured,
+            science-backed systems — helping you live a better life physically and emotionally.
           </p>
-          <div className="grid grid-cols-3 gap-4 max-w-xs">
-            <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 text-center hover:scale-105 transition">
-              <Users size={26} className="text-lime-400 mx-auto mb-2" />
-              <p className="text-xl font-bold text-white">8+</p>
-              <p className="text-xs text-gray-400">Health Experts</p>
-            </div>
-
-            <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 text-center hover:scale-105 transition">
-              <HeartPulse size={26} className="text-green-400 mx-auto mb-2" />
-              <p className="text-xl font-bold text-white">10K</p>
-              <p className="text-xs text-gray-400">Active Users</p>
-            </div>
-
-            <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 text-center hover:scale-105 transition">
-              <Star size={26} className="text-yellow-400 mx-auto mb-2" />
-              <p className="text-xl font-bold text-white">4.9</p>
-              <p className="text-xs text-gray-400">App Rating</p>
-            </div>
-          </div>
+          <p className="text-gray-200 text-base sm:text-lg">
+            Our features are crafted to align with your wellness goals through daily practice,
+            smart tracking, and global access to health knowledge.
+          </p>
         </div>
 
-      </div>
-    </section>
-<section className="bg-yellow-400 py-16 px-4 sm:px-6">
-  <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-
-    {/* Left: Text */}
-    <div>
-      <h2 className="text-3xl sm:text-4xl font-bold text-black mb-4">Our Mission</h2>
-      <p className="text-black text-base sm:text-lg mb-4">
-        We are on a mission to redefine wellness. Beyond tracking steps or meals,
-        we aim to create personalized, empowering journeys that align with your mind, body, and goals.
-      </p>
-      <p className="text-black text-base sm:text-lg">
-        Whether you're managing stress, building better habits, or striving for a healthier routine,
-        our mission is to support your growth with guidance, care, and science-backed tools.
-      </p>
-    </div>
-
-    {/* Right: Image */}
-    <div className="flex justify-center md:justify-start">
-      <img
-        src={images.modal9} // Replace with your image path
-        alt="Our Mission"
-        className="rounded-[30px] w-72 h-auto object-cover"
-      />
-    </div>
-
-  </div>
-</section>
-
-<section className="bg-[#fdf9f8] text-gray-800 py-16 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10">
-        
-        {/* Left image and intro */}
-        <div className="flex-1 text-center md:text-left">
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-4">Our Values</h2>
-          <p className="text-gray-600 text-base max-w-md mb-6">
-            We take pride in tailoring each itinerary to ensuring that every moment of your adventure.
-          </p>
-          <img
-            src={images.modal9}
-            alt="Our Values"
-            className="mx-auto md:mx-0 w-60 h-auto object-contain"
-          />
-        </div>
-
-        {/* Right content */}
-        <div className="flex-1 space-y-8">
-          <div>
-            <h4 className="text-lg font-bold mb-1">01 Commitment to Excellence</h4>
-            <p className="text-gray-600">
-              Our passion for exploration drives us to seek out the most captivating destinations and curate experiences that leave a lasting impact.
-            </p>
-          </div>
-          <div>
-            <h4 className="text-lg font-bold mb-1">02 Passion for Exploration</h4>
-            <p className="text-gray-600">
-              We go above and beyond to ensure that every aspect of your journey exceeds expectations.
-            </p>
-          </div>
-          <div>
-            <h4 className="text-lg font-bold mb-1">03 Responsible Travel</h4>
-            <p className="text-gray-600">
-              We are committed to minimizing our environmental footprint and preserving the beauty of the destinations we visit.
+        {/* Right Cards Grid */}
+        <div className="grid grid-cols-2 gap-6">
+          {/* 1. Nutrition */}
+          <div className="bg-gray-800 shadow-md rounded-2xl p-6 hover:shadow-xl transition">
+            <div className="bg-purple-100 p-3 rounded-xl w-fit mb-4">
+              <Salad className="text-orange-600" size={24} />
+            </div>
+            <h4 className="text-orange-600 font-semibold text-lg mb-2">Nutrition</h4>
+            <p className="text-sm text-gray-200">
+              Track and personalize your daily meals with guidance from experts.
             </p>
           </div>
 
-          {/* Horizontal Line */}
-          <hr className="border-gray-300 mt-6" />
+          {/* 2. Routines */}
+          <div className="bg-gray-800 shadow-md rounded-2xl p-6 hover:shadow-xl transition">
+            <div className="bg-purple-100 p-3 rounded-xl w-fit mb-4">
+              <Repeat className="text-orange-600" size={24} />
+            </div>
+            <h4 className="text-orange-600 font-semibold text-lg mb-2">Routines</h4>
+            <p className="text-sm text-gray-200">
+              Build sustainable habits through structured morning and evening wellness routines.
+            </p>
+          </div>
+
+          {/* 3. Moods */}
+          <div className="bg-gray-800 shadow-md rounded-2xl p-6 hover:shadow-xl transition">
+            <div className="bg-purple-100 p-3 rounded-xl w-fit mb-4">
+              <Smile className="text-orange-600" size={24} />
+            </div>
+            <h4 className="text-orange-600 font-semibold text-lg mb-2">Moods</h4>
+            <p className="text-sm text-gray-200">
+              Monitor emotional wellbeing and identify patterns to feel more in control.
+            </p>
+          </div>
+
+          {/* 4. Global Wellness */}
+          <div className="bg-gray-800 shadow-md rounded-2xl p-6 hover:shadow-xl transition">
+            <div className="bg-purple-100 p-3 rounded-xl w-fit mb-4">
+              <Globe className="text-orange-600" size={24} />
+            </div>
+            <h4 className="text-orange-600 font-semibold text-lg mb-2">Global Wellness</h4>
+            <p className="text-sm text-gray-200">
+              Empowering lives across the world with accessible health tools and insights.
+            </p>
+          </div>
         </div>
       </div>
     </section>
-<section className="bg-gradient-to-br from-white via-gray-50 to-orange-50 py-16 px-6 md:px-12">
+   
+    <section className="py-16 px-4 sm:px-6 bg-black text-white text-center">
+      {/* Title */}
+      <h2 className="text-3xl sm:text-4xl font-bold text-green-400 mb-4">
+        Our Value
+      </h2>
+
+      {/* Description */}
+      <p className="text-gray-300 max-w-2xl mx-auto mb-10 text-base sm:text-lg">
+        At FitAura, we’re committed to values that uplift body and mind.
+        These principles guide everything we build and deliver.
+      </p>
+
+      {/* 4 Cards Below Description */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        {/* Card 1 */}
+        <div className="bg-gray-900 p-6 rounded-2xl border border-gray-700 hover:shadow-xl transition">
+          <div className="bg-green-100 text-orange-600  w-fit mx-auto p-3 rounded-full mb-4">
+            <Salad size={24} />
+          </div>
+          <h4 className="text-orange-600  font-semibold mb-2">Nutrition</h4>
+          <p className="text-sm text-gray-300">
+            Expert-guided meal plans to fuel your journey.
+          </p>
+        </div>
+
+        {/* Card 2 */}
+        <div className="bg-gray-900 p-6 rounded-2xl border border-gray-700 hover:shadow-xl transition">
+          <div className="bg-green-100 text-orange-600  w-fit mx-auto p-3 rounded-full mb-4">
+            <Repeat size={24} />
+          </div>
+          <h4 className="text-orange-600  font-semibold mb-2">Routine</h4>
+          <p className="text-sm text-gray-300">
+            Consistent practices to build discipline and energy.
+          </p>
+        </div>
+
+        {/* Card 3 */}
+        <div className="bg-gray-900 p-6 rounded-2xl border border-gray-700 hover:shadow-xl transition">
+          <div className="bg-green-100 text-orange-600 w-fit mx-auto p-3 rounded-full mb-4">
+            <Smile size={24} />
+          </div>
+          <h4 className="text-orange-600 font-semibold mb-2">Mood</h4>
+          <p className="text-sm text-gray-300">
+            Tools to uplift and stabilize your emotional wellness.
+          </p>
+        </div>
+
+        {/* Card 4 */}
+        <div className="bg-gray-900 p-6 rounded-2xl border border-gray-700 hover:shadow-xl transition">
+          <div className="bg-green-100 text-orange-600  w-fit mx-auto p-3 rounded-full mb-4">
+            <Globe size={24} />
+          </div>
+          <h4 className="text-orange-600  font-semibold mb-2">Global Wellness</h4>
+          <p className="text-sm text-gray-300">
+            Accessible wellness experiences for everyone, anywhere.
+          </p>
+        </div>
+      </div>
+    </section>
+
+ <section
+      className="relative bg-cover bg-center bg-no-repeat text-white mt-10"
+      style={{ backgroundImage: `url(${images.modal8})` }}
+    >
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-4xl mx-auto text-center px-6 py-20">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+          Ready to Begin Your Wellness Journey?
+        </h2>
+        <p className="text-lg sm:text-xl mb-6">
+          Join FitAura and start building a better you — one step at a time.
+        </p>
+        <button className="bg-orange-600 hover:bg-orange-500 text-white font-semibold px-6 py-3 rounded-full transition duration-300">
+          Get Started
+        </button>
+      </div>
+    </section>
+
+<section className=" py-16 px-6 md:px-12">
       <div className="text-center mb-16 max-w-3xl mx-auto">
-        <p className="text-sm tracking-wide uppercase text-gray-500 mb-2">What We Offer</p>
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        <p className="text-sm tracking-wide uppercase text-gray-200 mb-2">What We Offer</p>
+        <h1 className="text-4xl md:text-5xl font-bold text-green-600 mb-4">
           Supporting Your Wellness Journey
         </h1>
-        <p className="text-gray-600 font-medium text-lg">
+        <p className="text-gray-200 font-medium text-lg">
           Personalized guidance, daily routines, and mood-based wellness tips to improve your mental and physical well-being.
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
         {/* Routines */}
-        <div className="bg-white rounded-3xl p-8 shadow-lg text-center hover:shadow-xl transition duration-300">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Daily Routines</h2>
-          <p className="text-gray-600 mb-6">
+        <div className="bg-gray-800 rounded-3xl p-8 shadow-lg text-center hover:shadow-xl transition duration-300">
+          <h2 className="text-2xl font-semibold text-orange-600 mb-4">Daily Routines</h2>
+          <p className="text-gray-200 mb-6">
             Easy-to-follow workouts and schedules to help you build a consistent, active lifestyle.
           </p>
           <Link to="/routines">
@@ -177,8 +254,8 @@ export default function About(){
         </div>
 
         {/* Nutrition */}
-        <div className="bg-white rounded-3xl p-8 shadow-lg text-center hover:shadow-xl transition duration-300">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Nutrition Tips</h2>
+        <div className="bg-gray-800 rounded-3xl p-8 shadow-lg text-center hover:shadow-xl transition duration-300">
+          <h2 className="text-2xl font-semibold text-orange-600 mb-4">Nutrition Tips</h2>
           <p className="text-gray-600 mb-6">
             Balanced diet suggestions and recipes to keep your body energized and mind focused.
           </p>
@@ -190,9 +267,9 @@ export default function About(){
         </div>
 
         {/* Mood Tracker */}
-        <div className="bg-white rounded-3xl p-8 shadow-lg text-center hover:shadow-xl transition duration-300">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Mood Tracker</h2>
-          <p className="text-gray-600 mb-6">
+        <div className="bg-gray-800 rounded-3xl p-8 shadow-lg text-center hover:shadow-xl transition duration-300">
+          <h2 className="text-2xl font-semibold text-orange-600 mb-4">Mood Tracker</h2>
+          <p className="text-gray-200 mb-6">
             Track how you feel each day and discover patterns that help improve your emotional health.
           </p>
           <Link to="/mood">
@@ -206,11 +283,7 @@ export default function About(){
 
     <Trainers/>
 
-    <div className="bg-purple-600 text-white py-16 text-center px-6">
-        <h2 className="text-3xl font-bold mb-4">Ready to Begin Your Wellness Journey?</h2>
-        <p className="mb-6 text-lg">Join FitAura and start building a better you — one step at a time.</p>
-        <button className="bg-white text-purple-600 font-semibold px-6 py-3 rounded-full hover:bg-gray-100 transition">Get Started</button>
-      </div>
+   
     
 
     

@@ -19,7 +19,8 @@ export default function MoodSection() {
   return (
     <>
     <Header/>
-      <Hero mood={mood} />
+     <section className="bg-purple-50">
+       <Hero mood={mood} />
       <Enhance mood={mood} />
       <Nutrions mood={mood} />
       <Rountine mood={mood} />
@@ -27,6 +28,7 @@ export default function MoodSection() {
       <MindTips mood={mood} />
       <DailyChallenge mood={mood} />
       <Affirmation mood={mood} />
+     </section>
     </>
   );
 }
