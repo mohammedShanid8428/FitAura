@@ -27,6 +27,7 @@ export default function MoodSection(){
       <RountinesTips mood={mood}/>
       <OurTips mood={mood}/>
       <MindTips mood={mood}/>
+      <DailyChallenge mood={mood}/>
       
     </section>
     </>

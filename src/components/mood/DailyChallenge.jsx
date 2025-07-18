@@ -1,5 +1,17 @@
 import React from "react";
 
+const moodThemes = {
+  happy: {
+    color: "yellow-400",
+  },
+  sad: {
+    color: "blue-400",
+  },
+  angry: {
+    color: "red-500",
+  },
+};
+
 const challengeData = {
   happy: {
     challenges: [
@@ -24,24 +36,24 @@ const challengeData = {
   },
 };
 
-
 export default function DailyChallenge({ mood = "happy" }) {
   const data = challengeData[mood] || challengeData.happy;
+  const theme = moodThemes[mood] || moodThemes.happy;
 
   return (
-    <section className=" py-16 px-6 md:px-12">
+    <section className="py-16 px-6 md:px-12">
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl font-bold text-yellow-400 mb-6">
+        <h2 className={`text-3xl font-bold text-${theme.color} mb-6`}>
           💪 Daily Challenges
         </h2>
 
         <div className="space-y-6">
-          {data.challenges.map((challenge, index) => (
+          {data.challenges.map((item, index) => (
             <blockquote
               key={index}
-              className="bg-gray-600 border-l-8 border-gray-200 text-yellow-400 text-lg md:text-xl italic font-medium px-8 py-6 rounded-lg shadow-sm"
+              className={`bg-gray-700 border-l-8 text-${theme.color} border-${theme.color} text-lg md:text-xl italic font-medium px-8 py-6 rounded-lg shadow-sm`}
             >
-              “{challenge}”
+              “{item}”
             </blockquote>
           ))}
         </div>
