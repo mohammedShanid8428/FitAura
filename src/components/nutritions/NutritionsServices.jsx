@@ -1,5 +1,6 @@
 import React from "react";
 import { serviceImg } from "../../assets/images";
+import { Link } from "react-router-dom";
 
 const services = [
   { title: "Happy", image: serviceImg.service1 },
@@ -44,12 +45,16 @@ export default function NutritionsServices() {
                 </p>
 
                 <div className="flex flex-wrap gap-4 justify-center">
-                  <button className="text-xs font-semibold bg-green-500 hover:bg-green-600 text-white py-2 px-5 rounded-full shadow transition">
-                    Read More
-                  </button>
-                  <button className="text-xs font-semibold bg-orange-500 hover:bg-orange-600 text-white py-2 px-5 rounded-full shadow transition">
+                  <Link to={`/nutrition-guide/${item.title.toLowerCase()}`}>
+                    <button className="text-xs font-semibold bg-green-500 hover:bg-green-600 text-white py-2 px-5 rounded-full shadow transition">
+                      View More
+                    </button>
+                  </Link>
+                  <Link to="/nutrition/mealplanner">
+                  <button className="text-xs tracking-wide font-semibold bg-orange-500 hover:bg-orange-600 text-white py-2 px-6 rounded-full shadow transition">
                     Add to Plan
                   </button>
+                  </Link>
                 </div>
               </div>
             </div>

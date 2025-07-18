@@ -1,6 +1,7 @@
 // FitAura Nutrition Page - React + Tailwind CSS UI
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 import { Button } from "../ui/Button";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "../ui/Taps";
@@ -355,15 +356,25 @@ const mealsData = [
     moodTags: ["WeightGain"],
     category: "Weight Drink",
     tags: ["#Calories", "#Iron", "#Recovery"],
-    benefit: "Easy to digest, calorie-rich post-meal drink.",
+    benefit: "Easy to digest, calorie-rich post-meal drink., Easy to digest, calorie-rich post-meal drink., Easy to digest, calorie-rich post-meal drink.",
+    
   }
 ];
 
 
 const moods = ["All", "Happy", "Sad", "Anxious", "Angry", "Tired"];
 
-export default function Nutrition() {
+export default function NutritionsCards() {
+  const { mood } = useParams();
   const [selectedMood, setSelectedMood] = useState("All");
+
+  useEffect(() => {
+    if (mood) {
+      setSelectedMood(mood.charAt(0).toUpperCase() + mood.slice(1));
+    } else {
+      setSelectedMood("All");
+    }
+  }, [mood]);
 
   const filteredMeals =
     selectedMood === "All"
@@ -371,18 +382,18 @@ export default function Nutrition() {
       : mealsData.filter((meal) => meal.moodTags.includes(selectedMood));
 
   return (
-    <div className="p-6 md:p-10">
-      <h1 className="text-3xl md:text-4xl font-bold mb-6 text-center">Nutrition Guide</h1>
+    <section className="bg-gray-800">
+      <div className="p-6 md:p-10">
+      <h1 className="text-3xl md:text-4xl font-bold mb-6 text-center text-green-600">Nutrition Guide</h1>
 
-      {/* Mood Filter Tabs */}
       <Tabs defaultValue="All" className="w-full mb-6">
-        <TabsList className="flex flex-wrap gap-2 justify-center">
+        <TabsList className="flex flex-wrap gap-4 justify-center">
           {moods.map((mood) => (
             <TabsTrigger
               key={mood}
               value={mood}
               onClick={() => setSelectedMood(mood)}
-              className="capitalize"
+              className="capitalize text-orange-600 bg-gray-700 px-6 py-3 "
             >
               {mood}
             </TabsTrigger>
@@ -390,43 +401,25 @@ export default function Nutrition() {
         </TabsList>
       </Tabs>
 
-      {/* Meal Cards Grid */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredMeals.map((meal, idx) => (
+        {(filteredMeals || []).map((meal, idx) => (
           <Card key={idx} className="overflow-hidden shadow-md hover:shadow-lg transition">
-            <img
-              src={meal.imageUrl}
-              alt={meal.title}
-              className="h-48 w-full object-cover"
-            />
+            <img src={meal.imageUrl} alt={meal.title} className="h-48 w-full object-cover" />
             <CardContent className="p-4">
               <h3 className="text-xl font-semibold mb-1">{meal.title}</h3>
-              <p className="text-sm text-gray-600 mb-2">{meal.benefit}</p>
+              <p className="text-sm text-white 0 mb-2">{meal.benefit}</p>
               <div className="flex flex-wrap gap-2 mb-4">
                 {meal.tags.map((tag, i) => (
-                  <span
-                    key={i}
-                    className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full"
-                  >
+                  <span key={i} className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
                     {tag}
                   </span>
                 ))}
-              </div>
-              <div className="flex justify-between items-center">
-                <Button variant="outline" size="sm">
-                  <Bookmark className="w-4 h-4 mr-1" /> Save
-                </Button>
-                <Button variant="ghost" size="sm">
-                  <Plus className="w-4 h-4 mr-1" /> Add
-                </Button>
-                <Button variant="ghost" size="sm">
-                  <Eye className="w-4 h-4 mr-1" /> View
-                </Button>
               </div>
             </CardContent>
           </Card>
         ))}
       </div>
     </div>
+    </section>
   );
 }

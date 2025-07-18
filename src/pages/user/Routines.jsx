@@ -8,7 +8,7 @@ import Service from "../../components/routines/Service";
 import Strech from "../../components/routines/Strech";
 import Yoga from "../../components/routines/Yoga";
 import Hydration from "../../components/routines/Hydration";
-import Cards from "../../components/nutritions/Cards"
+
 import Life from "../../components/routines/Life"
 
 const slides = [

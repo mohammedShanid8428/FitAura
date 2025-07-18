@@ -1,14 +1,12 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { serviceImg } from "../../assets/images";
 
 export default function NutritionHistory() {
-  const navigate = useNavigate();
-
   return (
-    <section className="px-6 py-14 mb-12 rounded-2xl max-w-6xl mx-auto mb-20  shadow-xl">
+    <section className="px-6 py-14 mb-12 rounded-2xl max-w-6xl mx-auto mb-20 shadow-xl">
       <div className="flex flex-col md:flex-row items-center justify-between gap-10">
-
+        
         {/* Left: Text Section */}
         <div className="md:w-1/2">
           <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-lime-300 to-green-500">
@@ -20,18 +18,11 @@ export default function NutritionHistory() {
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <button
-              onClick={() => navigate("/nutrition-history")}
-              className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-2 rounded-full shadow-lg hover:shadow-orange-500/50 transition transform hover:scale-105"
-            >
-              📅 View History
-            </button>
-            <button
-              onClick={() => navigate("/add-meals")}
-              className="border border-orange-500 text-orange-500 font-semibold px-6 py-2 rounded-full hover:bg-orange-500 hover:text-white transition transform hover:scale-105"
-            >
-              ➕ Add Meals
-            </button>
+            <Link to="/nutrition/mealplanner">
+              <button className="bg-orange-500 hover:bg-orange-600 text-white font-semibold px-6 py-2 rounded-full shadow-lg hover:shadow-orange-500/50 transition transform hover:scale-105">
+                🍽️ Go to Planner
+              </button>
+            </Link>
           </div>
         </div>
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const mealPlans = [
   {
@@ -50,11 +51,22 @@ export default function MealPlans() {
             />
             <h3 className="text-lg font-semibold text-green-600">{item.title}</h3>
             <p className="text-sm text-gray-200 mt-1 mb-4">{item.description}</p>
-            <button className="text-sm font-medium text-white bg-orange-600 hover:bg-orange-700 px-4 py-1 rounded-full transition">
-              {item.button}
-            </button>
+            <Link to="/nutrition/mealplanner">
+              <button className="text-sm font-medium text-white bg-orange-600 hover:bg-orange-700 px-4 py-1 rounded-full transition">
+                {item.button}
+              </button>
+            </Link>
           </div>
         ))}
+      </div>
+
+      {/* Explore Meal Plans Button */}
+      <div className="flex justify-center mt-10">
+        <Link to="/mealplans">
+          <button className="text-sm font-semibold bg-green-500 hover:bg-green-600 text-white py-2 px-6 rounded-full shadow transition">
+            Explore Meal Plans
+          </button>
+        </Link>
       </div>
     </section>
   );
