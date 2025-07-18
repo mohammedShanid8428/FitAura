@@ -9,6 +9,8 @@ import Service from "../../components/nutritions/Service";
 import Explore from "../../components/nutritions/Explore"
 import NutritionPlans from "../../components/nutritions/Explore";
 import NutritionHero from "../../components/nutritions/NutritionHero";
+import HealthyTips from "../../components/nutritions/HealthyTips";
+import HealthyBite from "../../components/nutritions/HealthyBite";
 
 
 export default function NutritionCarousel() {
@@ -16,133 +18,16 @@ export default function NutritionCarousel() {
     <>
       <Header />
       
-      <section>
+      <section className="bg-gray-900 space-y-8">
         <NutritionHero/>
-      <section className="max-w-6xl mx-auto p-6 border rounded-3xl mt-10 text-green-400 border-green-400 bg-[#0f0f0f]">
-        <div className="flex flex-col md:flex-row items-start gap-8 mx-10">
-
-
-          <div className="flex-1 relative">
-            <h2 className="text-3xl font-bold mb-4">
-              <span className="text-gray-300 absolute -z-10 text-6xl font-extrabold opacity-10">
-                LIFESTYLE
-              </span>
-              <span className="relative z-10 text-green-400">Why healthy</span>
-            </h2>
-            <ul className="space-y-4 mt-4 text-white text-base">
-              <li className="flex items-start gap-2">
-                <span className="text-orange-500 text-xl">✔</span> Improved physical health
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-orange-400 text-xl">✔</span> Better mental health
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-orange-400 text-xl">✔</span> Increased longevity
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-orange-400 text-xl">✔</span> Weight management
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-orange-400 text-xl">✔</span> Improved self-confidence
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-orange-400 text-xl">✔</span> Reduced stress
-              </li>
-            </ul>
-          </div>
-
-
-          <div className="flex-1 grid grid-cols-2 gap-4">
-            <img
-              src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1"
-              alt="Healthy Cooking"
-              className="rounded-md object-cover w-full h-40"
-            />
-            <img
-              src={images.modal12}
-              alt="Meditation"
-              className="rounded-md object-cover w-full h-40"
-            />
-            <img
-              src={images.modal7}
-              alt="Weights and veggies"
-              className="col-span-2 rounded-md object-cover w-full h-40"
-            />
-          </div>
-
-        </div>
-      </section>
+        <HealthyTips/>
+        <HealthyBite/>
+      
 
 
 
 
-      <section class="max-w-7xl mx-auto px-6 py-12">
-        <h2 class="text-3xl md:text-4xl text-green-600 font-bold text-center mb-12 tracking-wider">
-          Have a <span class="text-orange-600">HealthyBite</span> for
-        </h2>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {/* <!-- Card 1 --> */}
-          <div class="flex items-start gap-5">
-            <img
-              src="https://img.freepik.com/free-photo/salad-with-fresh-vegetables-wooden-bowl_1220-5186.jpg?w=740"
-              alt="Find a diet you love"
-              class="w-20 h-20 object-cover rounded-full"
-            />
-            <div>
-              <h3 class="text-xl font-semibold mb-2 text-green-400">Find a diet you love</h3>
-              <p class="text-gray-200 text-sm">
-                Find a nutritious Diet that fits your lifestyle and food preferences. Take charge of your daily habits with one of the many ongoing Diets including Clean Eating and High Protein.
-              </p>
-            </div>
-          </div>
-
-          {/* <!-- Card 2 --> */}
-          <div class="flex items-start gap-5">
-            <img
-              src="https://img.freepik.com/free-photo/colorful-fruit-salad-with-fresh-fruits_144627-49055.jpg?w=740"
-              alt="Start a simplified meal plan"
-              class="w-20 h-20 object-cover rounded-full"
-            />
-            <div>
-              <h3 class="text-xl font-semibold mb-2 text-green-400">Start a simplified meal plan</h3>
-              <p class="text-gray-200 text-sm">
-                Follow a 7-21 day Meal Plan and get four pre-planned recipes a day. Depending on your health goals, there are many Meal Plans to choose from including Keto Burn and Vegan for a week.
-              </p>
-            </div>
-          </div>
-
-          {/* <!-- Card 3 --> */}
-          <div class="flex items-start gap-5">
-            <img
-              src="https://img.freepik.com/free-photo/fresh-juices-smoothies-from-assorted-fruits-vegetables_93675-133082.jpg?w=740"
-              alt="Track your way to success"
-              class="w-20 h-20 object-cover rounded-full"
-            />
-            <div>
-              <h3 class="text-xl font-semibold mb-2 text-green-400">Track your way to success</h3>
-              <p class="text-gray-200 text-sm">
-                Track your activities and what you eat with the help of our food-, exercise- and water trackers to maintain a balanced everyday life.
-              </p>
-            </div>
-          </div>
-
-          {/* <!-- Card 4 --> */}
-          <div class="flex items-start gap-5">
-            <img
-              src="https://img.freepik.com/free-photo/healthy-lifestyle-diet-fitness_144627-36737.jpg?w=740"
-              alt="Start your own healthy journey"
-              class="w-20 h-20 object-cover rounded-full"
-            />
-            <div>
-              <h3 class="text-xl font-semibold mb-2 text-green-400">Start your own healthy journey</h3>
-              <p class="text-gray-200 text-sm">
-                To help you reach your goals and customize your health journey you can add your favorite meals, food items, recipes and exercises to your Favorites.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      
 
       <section class="py-10 px-6  max-w-6xl mx-auto mt-12">
         <div class="text-center mb-8">
