@@ -12,23 +12,16 @@ import DailyChallenge from "./DailyChallenge";
 import Affirmation from "./Affirmation";
 import Header from "../landing/Header";
 
-export default function MoodSection() {
-  const { mood } = useParams();
 
+export default function MoodSection(){
+  const {mood}=useParams();
 
-  return (
+  return(
     <>
     <Header/>
-     <section className="bg-gray-900">
-       <Hero mood={mood} />
-      <Enhance mood={mood} />
-      <Nutrions mood={mood} />
-      <Rountine mood={mood} />
-      <Tips mood={mood} />
-      <MindTips mood={mood} />
-      <DailyChallenge mood={mood} />
-      <Affirmation mood={mood} />
-     </section>
+    <section className="bg-gray-900">
+      <Hero mood={mood}/>
+    </section>
     </>
-  );
+  )
 }
