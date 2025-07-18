@@ -1,5 +1,18 @@
 import React from "react";
 
+// Mood Themes
+const moodThemes = {
+  happy: {
+    titleColor: "text-yellow-400",
+  },
+  sad: {
+    titleColor: "text-blue-400",
+  },
+  angry: {
+    titleColor: "text-red-400",
+  },
+};
+
 // All mood data in one place
 const mindfulnessData = {
   happy: {
@@ -54,22 +67,30 @@ const mindfulnessData = {
   },
 };
 
-
 export default function MindTips({ mood = "happy" }) {
   const data = mindfulnessData[mood] || mindfulnessData.happy;
+  const theme = moodThemes[mood] || moodThemes.happy;
 
   return (
     <section className="py-16 px-6 md:px-12">
       <div className="max-w-4xl mx-auto">
-        <h2 className={`text-3xl font-bold text-center text-yellow-400 mb-10`}>
+        <h2 className={`text-4xl font-bold text-center mb-10 ${theme.titleColor}`}>
           🧘‍♀️ Mindfulness Tips
         </h2>
-        <ul className="relative border-l border-gray-200 pl-6 space-y-10">
-          {data.tips.map((tip, index) => (
-            <li key={index} className="group">
-              <div className="absolute w-4 h-4 bg-gray-200 rounded-full -left-2.5 top-1.5" />
-              <h3 className="text-xl font-semibold text-yellow-400">{tip.title}</h3>
-              <p className="text-gray-200 mt-2 text-sm">{tip.desc}</p>
+
+        <ul className="relative border-l border-gray-400 pl-6 space-y-10">
+          {data.tips.map((item, index) => (
+            <li key={index} className="group relative">
+              
+              <div className="absolute w-4 h-4 bg-gray-300 rounded-full -left-8 top-1.5" />
+
+              <h3 className={`text-2xl font-semibold ${theme.titleColor}`}>
+                {item.title}
+              </h3>
+
+              <p className="text-gray-300 mt-2 text-md">
+                {item.desc}
+              </p>
             </li>
           ))}
         </ul>
