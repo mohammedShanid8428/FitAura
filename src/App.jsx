@@ -1,35 +1,14 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import React from 'react';
+import Header from './components/landing/Header';
+import UserRoutes from './routes/UserRoutes';
 
-// Public Pages
-import Landing from "./pages/user/Landing";
-import Authentication from "./pages/user/Authentication";
-;
-import AdminLogin from "./pages/admin/Login";
-import Unauthorized from "./pages/Unauthorized";
-import MoodSection from './components/mood/MoodSection'
-// Route Groups
-import UserRoutes from "./routes/UserRoutes";
-import AdminRoutes from "./routes/AdminRoutes";
-
-export default function App() {
+const App = () => {
   return (
-    <Routes>
-<Route path="/mood/:mood" element={<MoodSection />} />
-      
-      {/* Public */}
-      <Route path="/" element={<Landing />} />
-     <Route path="/auth" element={<Authentication />} />
-      {/* <Route path="/admin/login" element={<AdminLogin />} /> */}
-      <Route path="/unauthorized" element={<Unauthorized />} />
-
-      {/* User Routes */}
-      {UserRoutes()}
-
-      {/* Admin Routes */}
-      {AdminRoutes()}
-
-      {/* Fallback */}
-      <Route path="*" element={<Navigate to="/" />} />
-    </Routes>
+    <>
+     
+      <UserRoutes />
+    </>
   );
-}
+};
+
+export default App;

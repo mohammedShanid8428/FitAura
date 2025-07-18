@@ -33,14 +33,14 @@ export default function NutritionHero() {
           <span className="bg-green-100 text-green-700 font-medium px-3 py-1 rounded-full text-xs mb-3 inline-block">
             Nutrition Health Guide
           </span>
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-800 leading-tight mb-4">
+          <h1 className="text-3xl md:text-4xl font-bold text-yellow-400 leading-tight mb-4">
             Fuel your body & mind with the <span className="text-green-600">right food</span>
           </h1>
-          <p className="text-gray-600 mb-6 text-sm">
+          <p className="text-gray-200 mb-6 text-sm">
             Our expert tips are designed to help you boost mood and energy through better nutrition.
             Start small with these simple, science-backed habits.
           </p>
-          <button className="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition">
+          <button className="bg-amber-400 text-gray-900 px-6 py-2 rounded-full hover:bg-green-700 transition">
             Learn More
           </button>
         </div>
@@ -50,13 +50,13 @@ export default function NutritionHero() {
           {features.map((item, index) => (
             <div
               key={index}
-              className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition"
+              className="bg-gray-700 border border-yellow-400 rounded-lg p-4 shadow-sm hover:shadow-md transition"
             >
-              <div className="flex items-center gap-2 mb-2 text-sm text-gray-600">
+              <div className="flex items-center gap-2 mb-2 text-sm text-yellow-400">
                 {item.icon}
                 <span className="font-semibold">{item.title}</span>
               </div>
-              <p className="text-gray-500 text-sm">{item.description}</p>
+              <p className="text-gray-200 text-sm">{item.description}</p>
             </div>
           ))}
         </div>

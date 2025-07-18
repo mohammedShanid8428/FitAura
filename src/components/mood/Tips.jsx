@@ -128,31 +128,31 @@ export default function Tips({ mood }) {
   };
 
   return (
-    <section className="bg-white py-20 px-6 md:px-12">
+    <section className="py-20 px-6 md:px-12">
       <div className="max-w-6xl mx-auto text-center mb-10">
         <img
           src={moodEmojis[mood]}
           alt={`${mood} mood`}
           className="w-28 h-28 mx-auto mb-4 object-contain"
         />
-        <h2 className="text-4xl font-bold text-gray-800">
+        <h2 className="text-4xl font-bold text-yellow-400">
           Our Tips to {moodTitles[mood]}
         </h2>
-        <p className="text-gray-600 mt-2 max-w-2xl mx-auto">
+        <p className="text-gray-200 mt-2 max-w-2xl mx-auto">
           Practical suggestions personalized to guide you emotionally.
         </p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
         {tips.slice(0, 6).map((tip, index) => (
-          <div key={index} className="bg-gray-50 border border-gray-200 p-6 rounded-xl shadow-sm hover:shadow-md transition">
+          <div key={index} className="bg-gray-600 border border-gray-200 p-6 rounded-xl shadow-sm hover:shadow-md transition">
             <div className="flex items-start gap-4">
               <div className="p-2 bg-yellow-100 rounded-full">
                 {tip.icon}
               </div>
               <div>
-                <h4 className="text-lg font-semibold text-gray-800">{tip.title}</h4>
-                <p className="text-sm text-gray-600 mt-1">{tip.description}</p>
+                <h4 className="text-lg font-semibold text-yellow-400">{tip.title}</h4>
+                <p className="text-sm text-gray-200 mt-1">{tip.description}</p>
               </div>
             </div>
           </div>

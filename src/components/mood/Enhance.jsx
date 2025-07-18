@@ -92,11 +92,11 @@ export default function Enhance({ mood = "happy" }) {
     <section className=" px-6 py-12 overflow-hidden">
       {/* Optional mood intro */}
       <div className="mb-6 max-w-3xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl text-indigo-600 font-bold mb-2 flex justify-center items-center gap-2">
+        <h2 className="text-3xl md:text-4xl text-yellow-400 font-bold mb-2 flex justify-center items-center gap-2">
           <img src={moodInfo.emojisGif} alt="Mood Emoji" className="w-6 h-6" />
           Support  For Your {mood.charAt(0).toUpperCase() + mood.slice(1)} Mood
         </h2>
-        <p className="text-gray-600">{moodInfo.intro}</p>
+        <p className="text-gray-200">{moodInfo.intro}</p>
       </div>
 
       {/* Horizontal Cards */}

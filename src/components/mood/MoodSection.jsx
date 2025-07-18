@@ -19,7 +19,7 @@ export default function MoodSection() {
   return (
     <>
     <Header/>
-     <section className="bg-purple-50">
+     <section className="bg-gray-900">
        <Hero mood={mood} />
       <Enhance mood={mood} />
       <Nutrions mood={mood} />
