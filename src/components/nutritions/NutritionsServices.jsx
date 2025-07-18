@@ -12,35 +12,35 @@ const services = [
   { title: "Fitness", image: serviceImg.service3 },
 ];
 
-export default function Service() {
+export default function NutritionsServices() {
   return (
-    <section className="py-16 bg-[#0f0f0f] text-center px-6">
+    <section className="py-16 text-center px-6">
       <div className="max-w-6xl mx-auto">
         <p className="uppercase text-xs text-gray-400 mb-2 tracking-wide">Our Services</p>
-        <h2 className="text-3xl md:text-4xl font-extrabold mb-12 text-green-400">
-          Our Mood & Goal-Based <br /> Nutrition Plans
+        <h2 className="text-3xl md:text-4xl font-extrabold mb-12 text-green-400 tracking-wide">
+          Our Mood & Goal-Based <br /> <span className="text-orange-600"> Nutrition Plans</span>
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-          {services.map((service, index) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-10">
+          {services.map((item, index) => (
             <div
               key={index}
               className="bg-white/5 backdrop-blur-md border border-green-400 rounded-2xl overflow-hidden shadow-xl transform hover:scale-105 transition duration-300 group"
             >
               <img
-                src={service.image}
-                alt={service.title}
+                src={item.image}
+                alt={item.title}
                 className="w-full h-44 object-cover rounded-t-2xl"
               />
 
               <div className="p-5">
                 <h3 className="text-lg font-semibold uppercase text-green-400 mb-2 group-hover:text-green-300 transition">
-                  {service.title}
+                  {item.title}
                 </h3>
 
                 <p className="text-sm text-gray-300 mb-4">
                   Personalized nutrition tips and meal ideas to support your{" "}
-                  <span className="lowercase">{service.title}</span> mood or goal.
+                  <span className="lowercase">{item.title}</span> mood or goal.
                 </p>
 
                 <div className="flex flex-wrap gap-4 justify-center">

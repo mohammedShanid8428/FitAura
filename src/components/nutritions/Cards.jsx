@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 
-import { Button } from "../../components/ui/Button";
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "../../components/ui/Taps";
-import { Card, CardContent } from "../../components/ui/Card";
+import { Button } from "../ui/Button";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "../ui/Taps";
+import { Card, CardContent } from "../ui/Card";
 import { Plus, Bookmark, Eye } from "lucide-react";
 
 const mealsData = [

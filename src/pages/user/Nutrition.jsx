@@ -5,13 +5,13 @@ import Header from "../../components/Header";
 import Cards from "../../components/nutritions/Cards"
 import Grids from "../../components/nutritions/Grids"
 import Saved from "../../components/nutritions/Saved";
-import Service from "../../components/nutritions/Service";
-import Explore from "../../components/nutritions/NutritionsExplore"
-import NutritionPlans from "../../components/nutritions/NutritionsExplore";
+import NutritionsServices from "../../components/nutritions/NutritionsServices";
+
 import NutritionHero from "../../components/nutritions/NutritionHero";
 import HealthyTips from "../../components/nutritions/HealthyTips";
 import HealthyBite from "../../components/nutritions/HealthyBite";
 import MealPlans from "../../components/nutritions/MealsPlan";
+import NutritionsExplore from "../../components/nutritions/NutritionsExplore";
 
 
 export default function NutritionCarousel() {
@@ -24,8 +24,8 @@ export default function NutritionCarousel() {
         <HealthyTips/>
         <HealthyBite/>
         <MealPlans/>
-        <Explore />
-        <Service />
+        <NutritionsExplore/>
+        <NutritionsServices />
       <section className="px-6 py-14 rounded-2xl max-w-6xl mx-auto mb-20 bg-gradient-to-r from-[#0f0f0f] to-[#1c1c1c] shadow-xl">
         <div className="flex flex-col md:flex-row items-center justify-between gap-10">
 
