@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 // Mood-based components
 import Hero from "./Hero";
-import Enhance from "./Enhance";
+import EnhanceTips from "./EnhanceTips";
 import Nutrions from "./Nutrions";
 import Rountine from "./Rountine";
 import Tips from "./Tips";
@@ -21,6 +21,7 @@ export default function MoodSection(){
     <Header/>
     <section className="bg-gray-900">
       <Hero mood={mood}/>
+      <EnhanceTips mood={mood}/>
     </section>
     </>
   )
