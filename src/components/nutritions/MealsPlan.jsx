@@ -24,7 +24,7 @@ const mealPlans = [
   },
 ];
 
-export default function MealPlansSection() {
+export default function MealPlans() {
   return (
     <section className="py-10 px-6 max-w-6xl mx-auto mt-12">
       <div className="text-center mb-8">
@@ -41,7 +41,7 @@ export default function MealPlansSection() {
         {mealPlans.map((item, index) => (
           <div
             key={index}
-            className="bg-gray-600 p-6 rounded-xl shadow hover:shadow-md transition"
+            className="bg-gray-800 p-6 rounded-xl shadow hover:shadow-md transition"
           >
             <img
               src={item.image}

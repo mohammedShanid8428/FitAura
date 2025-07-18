@@ -15,14 +15,14 @@ const nutritionPlans = [
     discount: "Flat 25% Discount",
     title: "Fresh Fruits, Pure Quality",
     desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    image: images.modal14, // Replace with your actual image
+    image: , 
     bgColor: "bg-orange-200",
   },
 ];
 
-export default function NutritionPlans() {
+export default function NutritionsExplore() {
   return (
-    <section className="bg-[#0f0f0f] py-8 px-6 md:px-20">
+    <section className="py-8 px-6 md:px-20">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-10">

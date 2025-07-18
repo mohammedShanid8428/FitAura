@@ -6,11 +6,12 @@ import Cards from "../../components/nutritions/Cards"
 import Grids from "../../components/nutritions/Grids"
 import Saved from "../../components/nutritions/Saved";
 import Service from "../../components/nutritions/Service";
-import Explore from "../../components/nutritions/Explore"
-import NutritionPlans from "../../components/nutritions/Explore";
+import Explore from "../../components/nutritions/NutritionsExplore"
+import NutritionPlans from "../../components/nutritions/NutritionsExplore";
 import NutritionHero from "../../components/nutritions/NutritionHero";
 import HealthyTips from "../../components/nutritions/HealthyTips";
 import HealthyBite from "../../components/nutritions/HealthyBite";
+import MealPlans from "../../components/nutritions/MealsPlan";
 
 
 export default function NutritionCarousel() {
@@ -22,57 +23,9 @@ export default function NutritionCarousel() {
         <NutritionHero/>
         <HealthyTips/>
         <HealthyBite/>
-      
-
-
-
-
-      
-
-      <section class="py-10 px-6  max-w-6xl mx-auto mt-12">
-        <div class="text-center mb-8">
-          <h2 class="text-3xl md:text-4xl font-bold text-green-600 tracking-wider">
-            We offer <span class="text-orange-500">Meal Plans</span> for every goal
-          </h2>
-          <p class="text-gray-200 mt-2 text-md ">Build healthy habits with personalized plans — and add meals to your journey.</p>
-          <div class="w-24 h-1 bg-green-300 mx-auto mt-3 rounded-full"></div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          
-          <div class="bg-gray-800  p-6 rounded-xl shadow hover:shadow-md transition">
-            <img src="https://img.icons8.com/emoji/48/apple-emoji.png" alt="Daily Plan" class="mx-auto w-10 h-10 mb-3" />
-            <h3 class="text-lg font-semibold text-green-600">Daily Meal Plan</h3>
-            <p class="text-sm text-gray-200 mt-1 mb-4">Stay consistent with meals added each day to support your routine.</p>
-            <button class="text-sm font-medium text-white bg-orange-600 hover:bg-orange-600 px-4 py-1 rounded-full transition">
-              ➕ Add to Daily Plan
-            </button>
-          </div>
-
-          {/* <!-- Weekly Plan --> */}
-          <div class="bg-gray-800 p-6 rounded-xl shadow hover:shadow-md transition">
-            <img src="https://img.icons8.com/emoji/48/banana-emoji.png" alt="Weekly Plan" class="mx-auto w-10 h-10 mb-3" />
-            <h3 class="text-lg font-semibold text-green-600">Weekly Plan</h3>
-            <p class="text-sm text-gray-200 mt-1 mb-4">Pre-plan 7 days of nutritious meals to stay ahead and balanced.</p>
-            <button class="text-sm font-medium text-white bg-orange-600 hover:bg-orange-800 px-4 py-1 rounded-full transition">
-              ➕ Add to Weekly Plan
-            </button>
-          </div>
-
-          {/* <!-- Custom Plan --> */}
-          <div class="bg-gray-800 p-6 rounded-xl shadow hover:shadow-md transition">
-            <img src="https://img.icons8.com/emoji/48/avocado-emoji.png" alt="Custom Plan" class="mx-auto w-10 h-10 mb-3" />
-            <h3 class="text-lg font-semibold text-green-600">Custom Goal Plan</h3>
-            <p class="text-sm text-gray-200 mt-1 mb-4">Target weight loss, muscle gain, or energy with a tailored plan.</p>
-            <button class="text-sm font-medium text-white bg-orange-600 hover:bg-orange-600 px-4 py-1 rounded-full transition">
-              ➕ Add to Goal Plan
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <Explore />
-      <Service />
+        <MealPlans/>
+        <Explore />
+        <Service />
       <section className="px-6 py-14 rounded-2xl max-w-6xl mx-auto mb-20 bg-gradient-to-r from-[#0f0f0f] to-[#1c1c1c] shadow-xl">
         <div className="flex flex-col md:flex-row items-center justify-between gap-10">
 
