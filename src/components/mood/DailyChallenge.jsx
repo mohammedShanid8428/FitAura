@@ -43,7 +43,7 @@ export default function DailyChallenge({ mood = "happy" }) {
   return (
     <section className="py-16 px-6 md:px-12">
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className={`text-3xl font-bold text-${theme.color} mb-6`}>
+        <h2 className={`text-4xl font-bold text-${theme.color} mb-6`}>
           💪 Daily Challenges
         </h2>
 
@@ -51,7 +51,7 @@ export default function DailyChallenge({ mood = "happy" }) {
           {data.challenges.map((item, index) => (
             <blockquote
               key={index}
-              className={`bg-gray-700 border-l-8 text-${theme.color} border-${theme.color} text-lg md:text-xl italic font-medium px-8 py-6 rounded-lg shadow-sm`}
+              className={`bg-gray-700 border-l-8 text-${theme.color} border-${theme.color} text-xl md:text-xl italic font-medium px-8 py-6 rounded-lg shadow-sm`}
             >
               “{item}”
             </blockquote>

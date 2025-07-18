@@ -28,6 +28,7 @@ export default function MoodSection(){
       <OurTips mood={mood}/>
       <MindTips mood={mood}/>
       <DailyChallenge mood={mood}/>
+      <Affirmation mood={mood}/>
       
     </section>
     </>
