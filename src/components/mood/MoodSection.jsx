@@ -4,8 +4,8 @@ import { useParams } from "react-router-dom";
 // Mood-based components
 import Hero from "./Hero";
 import EnhanceTips from "./EnhanceTips";
-import Nutrions from "./Nutrions";
-import Rountine from "./Rountine";
+import NutritionsTips from "./NutritionsTips";
+import RountinesTips from "./RoutinesTips";
 import Tips from "./Tips";
 import MindTips from "./MindTIps";
 import DailyChallenge from "./DailyChallenge";
@@ -22,6 +22,9 @@ export default function MoodSection(){
     <section className="bg-gray-900">
       <Hero mood={mood}/>
       <EnhanceTips mood={mood}/>
+      <EnhanceTips mood={mood}/>
+      <NutritionsTips mood={mood}/>
+      <RountinesTips mood={mood}/>
     </section>
     </>
   )

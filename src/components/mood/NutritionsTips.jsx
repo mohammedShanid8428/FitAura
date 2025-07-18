@@ -1,7 +1,34 @@
 import React from "react";
 import { Leaf, Droplet, Cake } from "lucide-react";
+import { Link } from "react-router-dom";
 
-export default function NutritionHero() {
+const moodColors = {
+  happy: {
+    titleColor: "text-yellow-400",
+    borderColor: "border-yellow-400",
+    badgeBg: "bg-yellow-100",
+    badgeText: "text-yellow-700",
+    buttonBg: "bg-yellow-400 hover:bg-yellow-500",
+  },
+  sad: {
+    titleColor: "text-blue-400",
+    borderColor: "border-blue-400",
+    badgeBg: "bg-blue-100",
+    badgeText: "text-blue-700",
+    buttonBg: "bg-blue-400 hover:bg-blue-500",
+  },
+  angry: {
+    titleColor: "text-red-400",
+    borderColor: "border-red-400",
+    badgeBg: "bg-red-100",
+    badgeText: "text-red-700",
+    buttonBg: "bg-red-400 hover:bg-red-500",
+  },
+};
+
+export default function NutritionTips({ mood = "happy" }) {
+  const moodTheme = moodColors[mood];
+
   const features = [
     {
       icon: <Leaf className="w-5 h-5 text-green-600" />,
@@ -30,19 +57,21 @@ export default function NutritionHero() {
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-start">
         {/* Left Content */}
         <div>
-          <span className="bg-green-100 text-green-700 font-medium px-3 py-1 rounded-full text-xs mb-3 inline-block">
+          <span className={`${moodTheme.badgeBg} ${moodTheme.badgeText} font-medium px-3 py-1 rounded-full text-xs mb-4 inline-block`}>
             Nutrition Health Guide
           </span>
-          <h1 className="text-3xl md:text-4xl font-bold text-yellow-400 leading-tight mb-4">
+          <h1 className={`text-3xl md:text-4xl font-bold leading-tight mb-4 ${moodTheme.titleColor}`}>
             Fuel your body & mind with the <span className="text-green-600">right food</span>
           </h1>
-          <p className="text-gray-200 mb-6 text-sm">
+          <p className="text-gray-200 mb-8 text-sm">
             Our expert tips are designed to help you boost mood and energy through better nutrition.
             Start small with these simple, science-backed habits.
           </p>
-          <button className="bg-amber-400 text-gray-900 px-6 py-2 rounded-full hover:bg-green-700 transition">
-            Learn More
-          </button>
+          <Link to="/nutrition">
+            <button className={`${moodTheme.buttonBg} text-gray-900 px-6 py-2 rounded-full transition`}>
+              Learn More
+            </button>
+          </Link>
         </div>
 
         {/* Right Cards */}
@@ -50,9 +79,9 @@ export default function NutritionHero() {
           {features.map((item, index) => (
             <div
               key={index}
-              className="bg-gray-700 border border-yellow-400 rounded-lg p-4 shadow-sm hover:shadow-md transition"
+              className={`bg-gray-700 ${moodTheme.borderColor} border rounded-lg p-4 shadow-sm hover:shadow-md transition`}
             >
-              <div className="flex items-center gap-2 mb-2 text-sm text-yellow-400">
+              <div className={`flex items-center gap-2 mb-2 text-sm ${moodTheme.titleColor}`}>
                 {item.icon}
                 <span className="font-semibold">{item.title}</span>
               </div>
