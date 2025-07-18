@@ -6,7 +6,7 @@ import Hero from "./Hero";
 import EnhanceTips from "./EnhanceTips";
 import NutritionsTips from "./NutritionsTips";
 import RountinesTips from "./RoutinesTips";
-import Tips from "./Tips";
+import OurTips from "./OurTips";
 import MindTips from "./MindTIps";
 import DailyChallenge from "./DailyChallenge";
 import Affirmation from "./Affirmation";
@@ -25,6 +25,8 @@ export default function MoodSection(){
       <EnhanceTips mood={mood}/>
       <NutritionsTips mood={mood}/>
       <RountinesTips mood={mood}/>
+      <OurTips mood={mood}/>
+      
     </section>
     </>
   )

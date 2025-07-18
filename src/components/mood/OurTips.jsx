@@ -11,6 +11,25 @@ import {
 } from "lucide-react";
 import { emojisGif } from "../../assets/images";
 
+// Mood Themes
+const moodThemes = {
+  happy: {
+    titleColor: "text-yellow-400",
+    borderColor: "border-yellow-400",
+    iconBg: "bg-yellow-100",
+  },
+  sad: {
+    titleColor: "text-blue-400",
+    borderColor: "border-blue-400",
+    iconBg: "bg-blue-100",
+  },
+  angry: {
+    titleColor: "text-red-400",
+    borderColor: "border-red-400",
+    iconBg: "bg-red-100",
+  },
+};
+
 // Mood Tips Data
 const moodTips = {
   happy: [
@@ -113,8 +132,10 @@ const moodTips = {
   ],
 };
 
-export default function Tips({ mood }) {
+export default function Tips({ mood = "happy" }) {
   const tips = moodTips[mood] || [];
+  const theme = moodThemes[mood] || moodThemes.happy;
+
   const moodTitles = {
     happy: "Sustain Happiness",
     sad: "Lift Your Mood",
@@ -135,7 +156,7 @@ export default function Tips({ mood }) {
           alt={`${mood} mood`}
           className="w-28 h-28 mx-auto mb-4 object-contain"
         />
-        <h2 className="text-4xl font-bold text-yellow-400">
+        <h2 className={`text-4xl font-bold ${theme.titleColor}`}>
           Our Tips to {moodTitles[mood]}
         </h2>
         <p className="text-gray-200 mt-2 max-w-2xl mx-auto">
@@ -145,14 +166,19 @@ export default function Tips({ mood }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
         {tips.slice(0, 6).map((tip, index) => (
-          <div key={index} className="bg-gray-600 border border-gray-200 p-6 rounded-xl shadow-sm hover:shadow-md transition">
+          <div
+            key={index}
+            className={`bg-gray-700 ${theme.borderColor} border p-6 rounded-xl shadow-sm hover:shadow-md transition`}
+          >
             <div className="flex items-start gap-4">
-              <div className="p-2 bg-yellow-100 rounded-full">
+              <div className={`p-2 ${theme.iconBg} rounded-full`}>
                 {tip.icon}
               </div>
               <div>
-                <h4 className="text-lg font-semibold text-yellow-400">{tip.title}</h4>
-                <p className="text-sm text-gray-200 mt-1">{tip.description}</p>
+                <h4 className={`text-lg font-semibold ${theme.titleColor}`}>
+                  {tip.title}
+                </h4>
+                <p className="text-sm text-gray-300 mt-1">{tip.description}</p>
               </div>
             </div>
           </div>
