@@ -15,7 +15,7 @@ export default function HealthyTips() {
    <section className="max-w-6xl mx-auto px-6 py-16  mt-10 text-green-400  ">
         <div className="flex flex-col md:flex-row items-start gap-8 mx-10">
           <div className="flex-1">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-green-400">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-green-400 tracking-wider">
               Why healthy
             </h2>
           <ul className="space-y-5 mt-6 text-white text-lg">
