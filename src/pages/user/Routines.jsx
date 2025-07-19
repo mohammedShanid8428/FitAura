@@ -11,6 +11,7 @@ import Hydration from "../../components/routines/Hydration";
 
 import Life from "../../components/routines/Life"
 import RoutinesHero from "../../components/routines/RoutinesHero";
+import RoutinesScroll from "../../components/routines/RoutinesScroll";
 
 export default function Routines() {
 
@@ -21,35 +22,11 @@ export default function Routines() {
       <Header/>
       <section>
         <RoutinesHero/>
+        <RoutinesScroll/>
       </section>
  
-      <section className="bg-[#CCFF00] py-6 px-4">
-  <div className="max-w-7xl mx-auto flex flex-wrap justify-around items-center space-y-4 md:space-y-0">
-    {/* Brand 1 */}
-    <div className="flex items-center space-x-2">
-      <img src="/icons/robinhood.svg" alt="Robinhood" className="h-6" />
-      <span className="font-semibold text-black">Robinhood</span>
-    </div>
-
-    {/* Brand 2 */}
-    <div className="flex items-center space-x-2">
-      <img src="/icons/samsara.svg" alt="Samsara" className="h-6" />
-      <span className="font-semibold text-black">Samsara</span>
-    </div>
-
-    {/* Brand 3 */}
-    <div className="flex items-center space-x-2">
-      <img src="/icons/firstbase.svg" alt="Firstbase" className="h-6" />
-      <span className="font-semibold text-black">Firstbase</span>
-    </div>
-
-    {/* Brand 4 */}
-    <div className="flex items-center space-x-2">
-      <img src="/icons/fithes.svg" alt="Fithes" className="h-6" />
-      <span className="font-semibold text-black">Fithes</span>
-    </div>
-  </div>
-</section>
+  
+  
 
       <Templete/>
 
