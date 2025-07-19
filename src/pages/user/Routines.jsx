@@ -9,11 +9,12 @@ import Strech from "../../components/routines/RoutinesStrech";
 import Yoga from "../../components/routines/RoutinesYoga";
 import Hydration from "../../components/routines/Hydration";
 
-import Life from "../../components/routines/Life"
+import Life from "../../components/routines/LifeRoutines"
 import RoutinesHero from "../../components/routines/RoutinesHero";
 import RoutinesScroll from "../../components/routines/RoutinesScroll";
 import RoutinesChoose from "../../components/routines/RoutinesChoose";
 import RoutinesService from "../../components/routines/RoutinesService";
+import LifeRoutines from "../../components/routines/LifeRoutines";
 
 export default function Routines() {
 
@@ -27,16 +28,9 @@ export default function Routines() {
         <RoutinesScroll/>
         <RoutinesChoose/>
         <RoutinesService/>
+        <LifeRoutines/>
       </section>
- 
-  <Strech/>
-  
 
-      
-
-      
-    
-    
     <section className="bg-black py-16 px-6 text-center">
       <h4 className="text-blue-500 uppercase text-sm mb-2">What’s Inside</h4>
       <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8">
@@ -97,7 +91,7 @@ export default function Routines() {
       </div>
     </section>
      
-    <Life/>
+   
 
 
      
