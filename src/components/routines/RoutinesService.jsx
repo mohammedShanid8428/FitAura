@@ -16,19 +16,19 @@ const services = [
   },
 ];
 
-export default function Service() {
+export default function RoutinesService() {
   return (
-    <section className="bg-[#0f0f0f] text-white py-16 px-6 md:px-20">
+    <section className="text-white py-16 px-6 md:px-20">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
+       
         <div className="grid md:grid-cols-2 gap-10 mb-10">
           <div>
-            <p className="uppercase text-sm text-gray-400 mb-1">Wellness Plans</p>
-            <h2 className="text-3xl md:text-4xl font-extrabold leading-tight text-lime-400">
+            <p className="uppercase text-sm text-gray-300 mb-1">Wellness Plans</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold tracking-wider text-lime-400">
               Build Balance with Yoga & Stretching
             </h2>
           </div>
-          <p className="text-gray-400 text-sm md:text-base text-lime-400 mt-10">
+          <p className="text-gray-300 text-sm md:text-base mt-10">
             Our curated yoga and stretching programs help you boost flexibility, reduce stress, and stay active. Designed for every level — from beginner to advanced.
           </p>
         </div>

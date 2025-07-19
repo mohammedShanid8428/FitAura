@@ -3,8 +3,8 @@ import { ChevronLeft, ChevronRight, Play,CheckCircle } from "lucide-react";
 import { exerciseImg, images } from "../../assets/images"; // make sure this path is valid
 import Header from "../../components/Header";
 import Plan from "../../components/routines/Plan";
-import Templete from "../../components/routines/Templete";
-import Service from "../../components/routines/Service";
+import Templete from "../../components/routines/RoutinesChoose";
+import Service from "../../components/routines/RoutinesService";
 import Strech from "../../components/routines/Strech";
 import Yoga from "../../components/routines/Yoga";
 import Hydration from "../../components/routines/Hydration";
@@ -12,6 +12,8 @@ import Hydration from "../../components/routines/Hydration";
 import Life from "../../components/routines/Life"
 import RoutinesHero from "../../components/routines/RoutinesHero";
 import RoutinesScroll from "../../components/routines/RoutinesScroll";
+import RoutinesChoose from "../../components/routines/RoutinesChoose";
+import RoutinesService from "../../components/routines/RoutinesService";
 
 export default function Routines() {
 
@@ -20,17 +22,19 @@ export default function Routines() {
     <>
       
       <Header/>
-      <section>
+      <section className="bg-black">
         <RoutinesHero/>
         <RoutinesScroll/>
+        <RoutinesChoose/>
+        <RoutinesService/>
       </section>
  
   
   
 
-      <Templete/>
+      
 
-      <Service/>
+      
     
     
     <section className="bg-black py-16 px-6 text-center">

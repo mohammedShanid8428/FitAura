@@ -1,7 +1,7 @@
 import React from "react";
 import { images } from "../../assets/images";
 
-export default function Templete() {
+export default function RoutinesChoose() {
   const benefits = [
     {
       title: "Qualified Trainers",
@@ -22,33 +22,30 @@ export default function Templete() {
   ];
 
   return (
-    <section className="bg-[#0f0f0f] text-white py-16 px-4">
-      {/* Section Heading */}
+    <section className="text-white py-16 px-4">
       <div className="text-center max-w-2xl mx-auto mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-lime-400">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-lime-400 tracking-wider">
           Why Should You Choose Us
         </h2>
-        <p className="text-gray-400">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat impedit fugit illo debitis, rem eligendi perspiciatis quae culpa incidunt.
+        <p className="text-gray-300">
+          FitAura is your personalized health and wellness companion, offering structured workout routines, yoga sessions, guided meditations, and balanced nutrition plans
         </p>
       </div>
-
-      {/* Cards and Image Layout */}
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-center items-center gap-8">
 
-        {/* Left Cards */}
+        
         <div className="flex flex-col gap-6">
           <div className="w-56 bg-[#1c1c1c] border border-lime-500 rounded-lg p-4 text-center shadow-lg">
             <h4 className="font-semibold mb-2">{benefits[0].title}</h4>
-            <p className="text-sm text-gray-400">{benefits[0].desc}</p>
+            <p className="text-sm text-gray-300">{benefits[0].desc}</p>
           </div>
           <div className="w-56 bg-[#1c1c1c] border border-lime-500 rounded-lg p-4 text-center shadow-lg">
             <h4 className="font-semibold mb-2">{benefits[2].title}</h4>
-            <p className="text-sm text-gray-400">{benefits[2].desc}</p>
+            <p className="text-sm text-gray-300">{benefits[2].desc}</p>
           </div>
         </div>
 
-        {/* Center Image */}
+    
         <div className="flex justify-center">
           <img
             src={images.modal10}
@@ -57,15 +54,14 @@ export default function Templete() {
           />
         </div>
 
-        {/* Right Cards */}
         <div className="flex flex-col gap-6">
           <div className="w-56 bg-[#1c1c1c] border border-lime-500 rounded-lg p-4 text-center shadow-lg">
             <h4 className="font-semibold mb-2">{benefits[1].title}</h4>
-            <p className="text-sm text-gray-400">{benefits[1].desc}</p>
+            <p className="text-sm text-gray-300">{benefits[1].desc}</p>
           </div>
           <div className="w-56 bg-[#1c1c1c] border border-lime-500 rounded-lg p-4 text-center shadow-lg">
             <h4 className="font-semibold mb-2">{benefits[3].title}</h4>
-            <p className="text-sm text-gray-400">{benefits[3].desc}</p>
+            <p className="text-sm text-gray-300">{benefits[3].desc}</p>
           </div>
         </div>
 
