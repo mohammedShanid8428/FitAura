@@ -58,7 +58,7 @@ const yogaSessions = [
 ];
 
 
-export default function Yoga() {
+export default function RoutinesYoga() {
   const [selected, setSelected] = useState([]);
 
   const toggleSelect = (id) => {

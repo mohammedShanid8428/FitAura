@@ -16,7 +16,7 @@ const exercises = [
   { id: 12, title: "Bridge Pose", image: "/assets/exercise12.jpg" },
 ];
 
-export default function Strech() {
+export default function RoutinesStrech() {
   return (
     <section className="bg-white py-12 px-4 md:px-12">
       <div className="max-w-7xl mx-auto">

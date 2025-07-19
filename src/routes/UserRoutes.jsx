@@ -15,6 +15,9 @@ import NutritionsCards from "../components/nutritions/NutritionsCards";
 import MealPlans from "../components/nutritions/MealsPlan";
 import MealsCards from "../components/nutritions/MealsCards"; 
 import Planner from "../components/nutritions/Planner";
+import RoutinesService from "../components/routines/RoutinesService";
+import RoutinesYoga from "../components/routines/RoutinesYoga";
+import RoutinesStrech from "../components/routines/RoutinesStrech";
 
 const UserRoutes = () => {
   return (
@@ -34,6 +37,10 @@ const UserRoutes = () => {
       <Route path="/nutrition-guide/:mood?" element={<NutritionsCards />} />
       <Route path="/mealplans" element={<MealsCards />} />
       <Route path="/nutrition/mealplanner" element={<Planner />} />
+       <Route path="routines/service" element={<RoutinesService />} />
+      
+        <Route path="routines/stretch" element={<RoutinesStrech />} />
+        <Route path="routines/yoga" element={<RoutinesYoga />} />
     </Routes>
   );
 };
