@@ -15,6 +15,8 @@ import RoutinesScroll from "../../components/routines/RoutinesScroll";
 import RoutinesChoose from "../../components/routines/RoutinesChoose";
 import RoutinesService from "../../components/routines/RoutinesService";
 import LifeRoutines from "../../components/routines/LifeRoutines";
+import RoutinesHydration from "../../components/routines/RoutinesHydration";
+import RoutinesHistory from "../../components/routines/RoutinesHistory";
 
 export default function Routines() {
 
@@ -29,68 +31,11 @@ export default function Routines() {
         <RoutinesChoose/>
         <RoutinesService/>
         <LifeRoutines/>
+        <RoutinesHydration/>
+        <RoutinesHistory/>
       </section>
 
-    <section className="bg-black py-16 px-6 text-center">
-      <h4 className="text-blue-500 uppercase text-sm mb-2">What’s Inside</h4>
-      <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-8">
-        💧 Hydration & Mineral Composition
-      </h2>
-
-      <div className="flex flex-col md:flex-row items-center justify-center gap-10 max-w-6xl mx-auto">
-        {/* Left Composition Info */}
-        <div className="text-left space-y-5 text-gray-700 text-sm">
-          <div>
-            <h3 className="font-bold text-blue-700">Calcium+</h3>
-            <p>5–13 mg/dm³ — Supports bone health & muscle function.</p>
-          </div>
-          <div>
-            <h3 className="font-bold text-blue-700">Magnesium</h3>
-            <p>3–5 mg/dm³ — Boosts energy & regulates blood pressure.</p>
-          </div>
-          <div>
-            <h3 className="font-bold text-blue-700">Sodium</h3>
-            <p>20–25 mg/dm³ — Maintains fluid balance and nerve signals.</p>
-          </div>
-        </div>
-
-        {/* Center Glass Image */}
-        <div className="w-48 md:w-56">
-          <img
-            src={images.modal15}
-            alt="Water glass"
-            className="w-full object-contain"
-          />
-        </div>
-
-        {/* Right Composition Info */}
-        <div className="text-left space-y-5 text-gray-700 text-sm">
-          <div>
-            <h3 className="font-bold text-blue-700">Chlorine</h3>
-            <p>&lt; 0.2 mg/dm³ — Keeps water safe & disinfected.</p>
-          </div>
-          <div>
-            <h3 className="font-bold text-blue-700">Sourness (pH)</h3>
-            <p>6.5–7.5 — Balanced pH for better hydration & digestion.</p>
-          </div>
-          <div>
-            <h3 className="font-bold text-blue-700">Mineralization</h3>
-            <p>100–150 mg/l — Improves taste & replenishes minerals.</p>
-          </div>
-        </div>
-      </div>
-
-      {/* CTA Button */}
-      <div className="mt-10">
-        <a
-          href="/hydration"
-          className="bg-blue-600 text-white px-6 py-3 rounded-lg shadow hover:bg-blue-700 transition"
-        >
-          🚰 Explore Hydration Routine
-        </a>
-      </div>
-    </section>
-     
+    
    
 
 
