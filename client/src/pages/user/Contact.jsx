@@ -10,7 +10,8 @@ export default function Contacts() {
 
   return (
     <>
-    <ContactHero/>
+   <section className="bg-gray-900">
+     <ContactHero/>
     <ContactBox/>
         {/* WhatsApp + Chatbot */}
         <div className="flex justify-center gap-6 mt-10">
@@ -37,6 +38,7 @@ export default function Contacts() {
         <FAQ />
 
    
+   </section>
     </>
   );
 }

@@ -7,7 +7,7 @@ import { images } from "../../assets/images";
 const API_URL = "http://localhost:3000/api/contact";
 
 export default function ContactBox() {
-  const { toast } = useToast();   // ✅ Correct: destructuring { toast }
+  const { toast } = useToast(); 
 
   const [formData, setFormData] = useState({
     firstName: "",
