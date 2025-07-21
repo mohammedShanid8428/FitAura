@@ -13,9 +13,9 @@ app.use(express.json());
 // Routes
 const userRoutes = require('./routes/userRoutes');
 app.use('/api/users', userRoutes);
-const mealRoutes = require('./routes/mealRoutes');
-app.use('/api/meals', mealRoutes);
 
+const plannerRoutes = require('./routes/plannerRoutes');
+app.use('/api/mealplanner', plannerRoutes);
 
 app.get('/', (req, res) => {
   res.send('API is running...');

@@ -7,6 +7,7 @@ const commonApi = async (reqUrl, reqMethod, reqHeader = { 'Content-Type': 'appli
     headers: reqHeader,
     data: reqBody,
   };
+ 
 
   return await axios(config);
 };

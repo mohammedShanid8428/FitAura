@@ -14,7 +14,7 @@ import NutritionsServices from "../components/nutritions/NutritionsServices";
 import NutritionsCards from "../components/nutritions/NutritionsCards";
 import MealPlans from "../components/nutritions/MealsPlan";
 import MealsCards from "../components/nutritions/MealsCards"; 
-import Planner from "../components/nutritions/Planner";
+import Planner from "../components/nutritions/NutritionPlanner";
 import RoutinesService from "../components/routines/RoutinesService";
 import RoutinesYoga from "../components/routines/RoutinesYoga";
 import RoutinesStrech from "../components/routines/RoutinesStrech";
