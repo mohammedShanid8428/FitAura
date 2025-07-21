@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { mealsData } from "../nutritions/mealsData";
+import { mealsData } from "./mealsData";
 
 
 const mealTypes = ["Breakfast", "Lunch", "Dinner"];

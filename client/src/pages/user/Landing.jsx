@@ -1,7 +1,7 @@
 import React from 'react';
 import { images } from '../../assets/images'
 import { Link } from "react-router-dom";
-import Header from '../../components/landing/Header';
+
 import Services from '../../components/landing/Services';
 import Testimonials from '../../components/landing/Testimonial';
 import FAQ from '../../components/landing/Faq';
@@ -23,7 +23,6 @@ export default function Landing() {
   const [activeAuth, setActiveAuth] = useState("login");
   return (
     <div className=" bg-gray-50">
-      <Header />
 
       <section className="bg-orange-100 min-h-[430px] py-16 sm:py-20 px-4 sm:px-6 md:px-10 rounded-[40px] max-w-5xl mx-auto my-10 md:my-12 relative overflow-hidden">
         <img

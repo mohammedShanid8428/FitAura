@@ -1,9 +1,9 @@
-import Header from "../../components/Header";
+
 
 const Dashboard = () => {
   return (
     <>
-    <Header/>
+
     <div className="min-h-screen bg-gray-100 text-gray-800 p-6">
       {/* Header */}
       <header className="mb-6">

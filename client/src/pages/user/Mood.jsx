@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { emojisGif } from "../../assets/images";
-import Header from "../../components/Header";
+import Header from "../../components/common/Header";
 
 export default function Emojis() {
   const emojis = [
@@ -33,7 +33,7 @@ export default function Emojis() {
 
   return (
     <>
-      <Header />
+
       <section className="w-full min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 text-white flex flex-col justify-center py-20 px-4">
 
         {/* Title */}

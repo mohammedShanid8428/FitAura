@@ -3,7 +3,6 @@ import { images } from '../../assets/images'
 import { Users, HeartPulse,  } from "lucide-react";
 import { Link } from "react-router-dom";
 import Trainers from "../../components/about/Traniers";
-import Header from "../../components/Header";
 import { Salad, Repeat, Smile, Globe } from "lucide-react"; 
 
 // import { Button } from "../../components/ui/Button";
@@ -11,7 +10,7 @@ import { Salad, Repeat, Smile, Globe } from "lucide-react";
 export default function About(){
   return(
     <>
-    <Header/>
+  
     <section className="bg-black">
 
     <section className="relative h-[90vh] flex items-center justify-center text-center overflow-hidden">
