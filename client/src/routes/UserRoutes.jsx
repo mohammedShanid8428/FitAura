@@ -18,6 +18,8 @@ import Planner from "../components/nutritions/NutritionPlanner";
 import RoutinesService from "../components/routines/RoutinesService";
 import RoutinesYoga from "../components/routines/RoutinesYoga";
 import RoutinesStrech from "../components/routines/RoutinesStrech";
+import RoutinePlayer from "../components/routines/RoutinePlanner";
+import RoutineComplete from "../components/routines/RoutineComplete";
 
 const UserRoutes = () => {
   return (
@@ -38,8 +40,9 @@ const UserRoutes = () => {
       <Route path="/mealplans" element={<MealsCards />} />
       <Route path="/nutrition/mealplanner" element={<Planner />} />
        <Route path="routines/service" element={<RoutinesService />} />
-      
+      <Route path="/routine/complete" element={<RoutineComplete />} />
         <Route path="routines/stretch" element={<RoutinesStrech />} />
+        <Route path="routines/Planner" element={<RoutinePlayer />} />
         <Route path="routines/yoga" element={<RoutinesYoga />} />
     </Routes>
   );

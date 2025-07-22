@@ -17,6 +17,8 @@ const AdminRoutes = () => {
       <Route path="nutrition" element={<NutritionManager />} />
       <Route path="moods" element={<MoodMonitor />} />
       <Route path="contact-messages" element={<AdminContactMessages />} />
+      
+
     </Routes>
   );
 };

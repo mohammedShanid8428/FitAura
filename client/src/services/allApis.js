@@ -49,3 +49,8 @@ export const fetchAllContactMessages = async () => {
 export const deleteContactMessage = async (id) => {
   return await commonApi(`${base_url}/contact/deletemessage/${id}`, "DELETE");
 };
+
+export const fetchAllRoutines = async () => {
+  const res = await axios.get(`${base_url}/routines/getroutines`);
+  return Array.isArray(res.data) ? res.data : [];
+};

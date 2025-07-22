@@ -1,5 +1,5 @@
 import React from "react";
-import { exerciseImg, images } from "../../assets/images";
+import { useNavigate } from "react-router-dom";
 
 const exercises = [
   { id: 1, title: "Kneeling Back Rotation Stretch (female)", image: "/assets/exercise1.jpg" },
@@ -17,9 +17,26 @@ const exercises = [
 ];
 
 export default function RoutinesStrech() {
+  const navigate = useNavigate();
+
+  const handleStartRoutine = () => {
+    navigate("/routines/Planner");
+  };
+
   return (
     <section className="bg-white py-12 px-4 md:px-12">
       <div className="max-w-7xl mx-auto">
+
+        {/* ✅ Start Button */}
+        <div className="flex justify-center mb-8">
+          <button
+            onClick={handleStartRoutine}
+            className="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-lg transition"
+          >
+            Start Routine
+          </button>
+        </div>
+
         <p className="text-center text-sm uppercase tracking-widest text-gray-400 mb-2">
           Our Services
         </p>

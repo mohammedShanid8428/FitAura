@@ -21,6 +21,11 @@ const mealsRoutes = require('./routes/mealsRoutes');
 const mealPlannerRoutes = require('./routes/plannerRoutes');
 const contactRoutes = require('./routes/contactRoutes');
 
+
+const routineRoutes = require('./routes/routineRoutes');
+
+app.use('/api/routines', routineRoutes);
+
 // Use Routes
 app.use('/api/users', userRoutes);
 app.use('/api/meals', mealsRoutes);
