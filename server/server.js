@@ -1,25 +1,37 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const connectDB = require('./config/db');
 
+// Load environment variables before anything else
 dotenv.config();
-const app = express();
-connectDB();
 
+// Connect to MongoDB
+require('./config/dbConnection');
+
+// Initialize Express App
+const app = express();
+
+// Middlewares
 app.use(cors());
 app.use(express.json());
 
-// Routes
+// Import Routes
 const userRoutes = require('./routes/userRoutes');
+const mealsRoutes = require('./routes/mealsRoutes');
+const mealPlannerRoutes = require('./routes/plannerRoutes');
+const contactRoutes = require('./routes/contactRoutes');
+
+// Use Routes
 app.use('/api/users', userRoutes);
+app.use('/api/meals', mealsRoutes);
+app.use('/api/mealplanner', mealPlannerRoutes);
+app.use('/api/contact', contactRoutes);
 
-const plannerRoutes = require('./routes/plannerRoutes');
-app.use('/api/mealplanner', plannerRoutes);
-
+// Base Route
 app.get('/', (req, res) => {
-  res.send('API is running...');
+  res.send('FitAura API is running...');
 });
 
-const PORT = process.env.PORT || 5000;
+// Start Server
+const PORT = 3000 || process.env.PORT;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

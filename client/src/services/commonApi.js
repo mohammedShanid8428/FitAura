@@ -1,15 +1,18 @@
 import axios from 'axios';
 
-const commonApi = async (reqUrl, reqMethod, reqHeader = { 'Content-Type': 'application/json' }, reqBody) => {
+const commonApi = async (reqUrl, reqMethod, reqHeaders = { 'Content-Type': 'application/json' }, reqBody = null) => {
   const config = {
     url: reqUrl,
     method: reqMethod,
-    headers: reqHeader,
-    data: reqBody,
+    headers: reqHeaders
   };
- 
 
-  return await axios(config);
+  if (reqBody) {
+    config.data = reqBody;
+  }
+
+  const response = await axios(config);
+  return response;
 };
 
 export default commonApi;

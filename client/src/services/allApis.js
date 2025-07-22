@@ -1,30 +1,51 @@
 import { base_url } from './base_url';
 import commonApi from './commonApi';
+import axios from 'axios';  // For direct GET requests (optional).
 
-
-const API = 'http://localhost:3000/api/mealplanner';
-
+// ✅ Authentication APIs
 export const registerApi = async (data) => {
-  return await commonApi(`${base_url}/users/register`, "POST", "", data);
+  return await commonApi(`${base_url}/users/register`, "POST", undefined, data);
 };
 
 export const loginUserApi = async (data) => {
-  return await commonApi(`${base_url}/users/login`, "POST", "", data);
+  return await commonApi(`${base_url}/users/login`, "POST", undefined, data);
 };
 
+// ✅ Meals APIs
+export const fetchAllMeals = async () => {
+  return await commonApi(`${base_url}/meals/getmeal`, "GET");
+};
 
+export const addMealApi = async (data) => {
+  return await commonApi(`${base_url}/meals/addmeal`, "POST", undefined, data);
+};
 
+export const deleteMealApi = async (id) => {
+  return await commonApi(`${base_url}/meals/deletemeal/${id}`, "DELETE");
+};
+
+// ✅ Meal Planner APIs
 export const fetchPlannerMeals = async () => {
-  const res = await axios.get(API);
-  return res.data;
+  return await commonApi(`${base_url}/mealplanner/getmealplanner`, "GET");
 };
 
 export const addMealToPlanner = async (meal) => {
-  const res = await axios.post(API, meal);
-  return res.data;
+  return await commonApi(`${base_url}/mealplanner/addmealplanner`, "POST", undefined, meal);
 };
 
 export const deleteMealFromPlanner = async (id) => {
-  const res = await axios.delete(`${API}/${id}`);
-  return res.data;
+  return await commonApi(`${base_url}/mealplanner/deleteplanner/${id}`, "DELETE");
+};
+
+// ✅ Contact APIs
+export const submitContactMessage = async (data) => {
+  return await commonApi(`${base_url}/contact/addmessage`, "POST", undefined, data);
+};
+
+export const fetchAllContactMessages = async () => {
+  return await commonApi(`${base_url}/contact/getmessages`, "GET");
+};
+
+export const deleteContactMessage = async (id) => {
+  return await commonApi(`${base_url}/contact/deletemessage/${id}`, "DELETE");
 };
