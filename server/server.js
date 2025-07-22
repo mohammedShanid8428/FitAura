@@ -21,7 +21,7 @@ const mealsRoutes = require('./routes/mealsRoutes');
 const mealPlannerRoutes = require('./routes/plannerRoutes');
 const contactRoutes = require('./routes/contactRoutes');
 
-
+const moodRoutes = require('./routes/moodRoutes');
 const routineRoutes = require('./routes/routineRoutes');
 
 app.use('/api/routines', routineRoutes);
@@ -31,6 +31,8 @@ app.use('/api/users', userRoutes);
 app.use('/api/meals', mealsRoutes);
 app.use('/api/mealplanner', mealPlannerRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api/moods', moodRoutes);
+
 
 // Base Route
 app.get('/', (req, res) => {

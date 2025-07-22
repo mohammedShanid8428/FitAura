@@ -22,7 +22,6 @@ export default function MoodSection(){
     <section className="bg-gray-900">
       <Hero mood={mood}/>
       <EnhanceTips mood={mood}/>
-      <EnhanceTips mood={mood}/>
       <NutritionsTips mood={mood}/>
       <RountinesTips mood={mood}/>
       <OurTips mood={mood}/>
