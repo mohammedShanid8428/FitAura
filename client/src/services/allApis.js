@@ -12,30 +12,52 @@ export const loginUserApi = async (data) => {
 };
 
 // ✅ Meals APIs
-export const fetchAllMeals = async () => {
-  return await commonApi(`${base_url}/meals/getmeal`, "GET");
+
+// ✅ Fetch all meals
+
+
+// ✅ Add a new meal (FormData - multipart)
+export const addMealApi = async (formData) => {
+  return await commonApi(
+    `${base_url}/meals/addmeal`,
+    "POST",
+    {
+      // Don't set Content-Type manually for FormData - let browser set it with boundary
+    },
+    formData
+  );
 };
 
-export const addMealApi = async (data) => {
-  return await commonApi(`${base_url}/meals/addmeal`, "POST", undefined, data);
+// ✅ Update an existing meal (FormData - multipart, allows image update)
+export const updateMealApi = async (id, formData) => {
+  return await commonApi(
+    `${base_url}/meals/updatemeal/${id}`,
+    "PUT",
+    {
+      // Don't set Content-Type manually for FormData
+    },
+    formData
+  );
 };
 
+// ✅ Delete a meal by ID
 export const deleteMealApi = async (id) => {
   return await commonApi(`${base_url}/meals/deletemeal/${id}`, "DELETE");
 };
 
 // ✅ Meal Planner APIs
-export const fetchPlannerMeals = async () => {
-  return await commonApi(`${base_url}/mealplanner/getmealplanner`, "GET");
-};
+export const fetchAllMeals = async () =>
+  await commonApi(`${base_url}/meals/getallmeals`, "GET");
 
-export const addMealToPlanner = async (meal) => {
-  return await commonApi(`${base_url}/mealplanner/addmealplanner`, "POST", undefined, meal);
-};
+export const fetchPlannerMeals = async () =>
+  await commonApi(`${base_url}/mealplanner/getmealplanner`, "GET");
 
-export const deleteMealFromPlanner = async (id) => {
-  return await commonApi(`${base_url}/mealplanner/deleteplanner/${id}`, "DELETE");
-};
+export const addMealToPlanner = async (meal) =>
+  await commonApi(`${base_url}/mealplanner/addmealplanner`, "POST", undefined, meal);
+
+export const deleteMealFromPlanner = async (id) =>
+  await commonApi(`${base_url}/mealplanner/deleteplanner/${id}`, "DELETE");
+
 
 // ✅ Contact APIs
 export const submitContactMessage = async (data) => {
@@ -60,17 +82,27 @@ export const fetchAdminRoutines = async () => {
   return Array.isArray(res.data) ? res.data : [];
 };
 
-// Admin Add Routine
-export const addRoutineApi = async (routine) => {
-  return await axios.post(`${base_url}/routines/admin/add`, routine);
+// Admin Add Routine with file upload
+export const addRoutineApi = async (formData) => {
+  return await axios.post(`${base_url}/routines/admin/add`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
 };
 
-// Admin Update Routine
-export const updateRoutineApi = async (id, routine) => {
-  return await axios.put(`${base_url}/routines/admin/${id}`, routine);
+// Admin Update Routine with file upload
+export const updateRoutineApi = async (id, formData) => {
+  return await axios.put(`${base_url}/routines/admin/${id}`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
 };
 
 // Admin Delete Routine
 export const deleteRoutineApi = async (id) => {
   return await axios.delete(`${base_url}/routines/admin/${id}`);
 };
+
+

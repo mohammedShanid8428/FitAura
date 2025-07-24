@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import Header from '../../components/landing/Header';
 
 
 export default function Landing() {
@@ -23,6 +24,8 @@ export default function Landing() {
   const [activeAuth, setActiveAuth] = useState("login");
   return (
     <div className=" bg-gray-50">
+      <Header/>
+    
 
       <section className="bg-orange-100 min-h-[430px] py-16 sm:py-20 px-4 sm:px-6 md:px-10 rounded-[40px] max-w-5xl mx-auto my-10 md:my-12 relative overflow-hidden">
         <img

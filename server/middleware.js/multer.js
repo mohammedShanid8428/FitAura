@@ -1,28 +1,30 @@
-const multer=require('multer');
-const{CloudinaryStorage}=require('multer-storage-cloudinary')
-const cloudinary=require('../config/cloudinary');
+const multer = require('multer');
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const cloudinary = require('../config/cloudinary'); // ✅ Use configured instance
 
-const routineStorage =new CloudinaryStorage({
-  cloudinary:cloudinary,
-  params:{
-    folder:"FitAura/Routines"
-    
-  }
-})
-const nutritionStorage =new CloudinaryStorage({
-  cloudinary:cloudinary,
-  params:{
-    folder:"FitAura/Nutritions"
-    
-  }
-})
-const moodStorage =new CloudinaryStorage({
-  cloudinary:cloudinary,
-  params:{
-    folder:"FitAura/Moods"
-    
-  }
-})
+// 💪 Common reusable function for creating a Cloudinary storage by folder
+const createCloudinaryStorage = (folderName) => {
+  return new CloudinaryStorage({
+    cloudinary: cloudinary, // ✅ configured instance
+    params: {
+      folder: `FitAura/${folderName}`,
+      
+    },
+  });
+};
 
-const upload=multer({storage});
-module.exports=upload;
+// 🎯 Define storage instances
+const routineStorage = createCloudinaryStorage('Routines');
+const nutritionStorage = createCloudinaryStorage('Nutritions');
+const moodStorage = createCloudinaryStorage('Moods');
+
+// 📤 Define upload handlers
+const routineUpload = multer({ storage: routineStorage });
+const nutritionUpload = multer({ storage: nutritionStorage });
+const moodUpload = multer({ storage: moodStorage });
+
+module.exports = {
+  routineUpload,
+  nutritionUpload,
+  moodUpload,
+};

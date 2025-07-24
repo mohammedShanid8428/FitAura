@@ -1,104 +1,81 @@
 import React, { useState, useEffect } from "react";
-import { fetchPlannerMeals, deleteMealFromPlanner } from "../../services/allApis";
+import { fetchAllMeals, fetchPlannerMeals, addMealToPlanner, deleteMealFromPlanner } from "../../services/allApis";
+import toast from "react-hot-toast";
+import MealsCard from "../../components/nutritions/MealsCards";
 
-const mealTypes = ["Breakfast", "Lunch", "Dinner"];
-
-export default function Planner() {
-  const [savedMeals, setSavedMeals] = useState([]);
-  const [loading, setLoading] = useState(false);
+export default function NutritionPlanner() {
+  const [allMeals, setAllMeals] = useState([]);
+  const [plannerMeals, setPlannerMeals] = useState([]);
+  const [isPlannerMode, setIsPlannerMode] = useState(false);
 
   useEffect(() => {
-    loadMeals();
+    loadAllMeals();
+    loadPlannerMeals();
   }, []);
 
-  const loadMeals = async () => {
+  const loadAllMeals = async () => {
     try {
-      setLoading(true);
-      const res = await fetchPlannerMeals();
-      setSavedMeals(Array.isArray(res.data) ? res.data : []);
+      const res = await fetchAllMeals();
+      setAllMeals(res.data || []);
     } catch (err) {
-      console.error("Failed to load meals.", err);
-      setSavedMeals([]);
-    } finally {
-      setLoading(false);
+      toast.error("Failed to load meals");
     }
   };
 
-  const handleDeleteMeal = async (mealId) => {
+  const loadPlannerMeals = async () => {
     try {
-      await deleteMealFromPlanner(mealId);
-      setSavedMeals((prev) => prev.filter((meal) => meal._id !== mealId));
+      const res = await fetchPlannerMeals();
+      setPlannerMeals(res.data || []);
     } catch (err) {
-      console.error("Failed to delete meal.", err);
+      toast.error("Failed to load planner meals");
+    }
+  };
+
+  const handleAddToPlanner = async (meal) => {
+    try {
+      const res = await addMealToPlanner(meal);
+      toast.success("Meal added to planner");
+      setPlannerMeals((prev) => [res.data, ...prev]);
+    } catch (err) {
+      toast.error("Failed to add meal");
+    }
+  };
+
+  const handleDeleteFromPlanner = async (id) => {
+    try {
+      await deleteMealFromPlanner(id);
+      toast.success("Meal removed from planner");
+      setPlannerMeals((prev) => prev.filter((meal) => meal._id !== id));
+    } catch (err) {
+      toast.error("Failed to delete meal");
     }
   };
 
   return (
-    <section className="bg-gray-100 min-h-screen py-10 px-4 sm:px-6">
-      <div className="max-w-7xl mx-auto">
-        <h1 className="text-2xl sm:text-3xl font-bold text-green-600 mb-8 text-center">
-          My Meal Planner
-        </h1>
-
-        {loading && (
-          <p className="text-center text-gray-500 mb-10">
-            Loading your meals...
-          </p>
-        )}
-
-        {!loading && savedMeals.length === 0 && (
-          <p className="text-center text-gray-400 italic">
-            No meals saved to planner yet.
-          </p>
-        )}
-
-        {!loading &&
-          mealTypes.map((type) => {
-            const filteredMeals = savedMeals.filter(
-              (meal) => meal.mealType === type
-            );
-
-            return (
-              <div key={type} className="mb-10">
-                <h2 className="text-lg sm:text-xl font-bold text-green-500 mb-3">
-                  {type}
-                </h2>
-
-                <div className="flex overflow-x-auto gap-4 pb-2">
-                  {filteredMeals.length === 0 ? (
-                    <p className="text-gray-400 italic whitespace-nowrap">
-                      No {type} meals planned.
-                    </p>
-                  ) : (
-                    filteredMeals.map((meal) => (
-                      <div
-                        key={meal._id}
-                        className="min-w-[160px] sm:min-w-[200px] bg-white rounded-lg shadow hover:shadow-md transition"
-                      >
-                        <img
-                          src={meal.imageUrl}
-                          alt={meal.title}
-                          className="h-28 sm:h-32 w-full object-cover rounded-t-lg"
-                        />
-                        <div className="p-3">
-                          <h3 className="font-semibold text-green-600 text-sm sm:text-base">
-                            {meal.title}
-                          </h3>
-                          <button
-                            onClick={() => handleDeleteMeal(meal._id)}
-                            className="mt-2 bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-1 rounded"
-                          >
-                            Delete
-                          </button>
-                        </div>
-                      </div>
-                    ))
-                  )}
-                </div>
-              </div>
-            );
-          })}
+    <div className="p-4">
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-2xl font-bold">
+          {isPlannerMode ? "Your Planned Meals" : "All Meals"}
+        </h2>
+        <button
+          onClick={() => setIsPlannerMode(!isPlannerMode)}
+          className="bg-blue-500 text-white px-4 py-2 rounded"
+        >
+          {isPlannerMode ? "View All Meals" : "View My Planner"}
+        </button>
       </div>
-    </section>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {(isPlannerMode ? plannerMeals : allMeals).map((meal) => (
+          <MealsCard
+            key={meal._id}
+            meal={meal}
+            isPlannerMode={isPlannerMode}
+            onAdd={() => handleAddToPlanner(meal)}
+            onDelete={() => handleDeleteFromPlanner(meal._id)}
+          />
+        ))}
+      </div>
+    </div>
   );
 }

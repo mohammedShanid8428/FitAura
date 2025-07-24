@@ -9,7 +9,5 @@ const mealPlannerSchema = new mongoose.Schema({
   dateAdded: { type: Date, default: Date.now }
 });
 
-// Explicitly set collection name to "mealsplanner"
-const MealPlanner = mongoose.model('MealPlanner', mealPlannerSchema, 'mealsplanner');
-
-module.exports = MealPlanner;
+// Explicitly set collection name
+module.exports = mongoose.model('MealPlanner', mealPlannerSchema, 'mealsplanner');

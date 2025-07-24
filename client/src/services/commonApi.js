@@ -1,12 +1,22 @@
 import axios from 'axios';
 
-const commonApi = async (reqUrl, reqMethod, reqHeaders = { 'Content-Type': 'application/json' }, reqBody = null) => {
+const commonApi = async (
+  reqUrl,
+  reqMethod,
+  reqHeaders = null,
+  reqBody = null
+) => {
   const config = {
     url: reqUrl,
     method: reqMethod,
-    headers: reqHeaders
   };
 
+  // Only set headers if provided (don't force default)
+  if (reqHeaders) {
+    config.headers = reqHeaders;
+  }
+
+  // Attach body if present
   if (reqBody) {
     config.data = reqBody;
   }

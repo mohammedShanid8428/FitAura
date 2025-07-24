@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { fetchAllMeals, addMealApi, deleteMealApi } from "../../services/allApis";
+import {
+  fetchAllMeals,
+  addMealApi,
+  updateMealApi,
+  deleteMealApi,
+} from "../../services/allApis";
 import toast from "react-hot-toast";
-import AdminRoutes from "../../routes/AdminRoutes";
 
 const initialFormState = {
   title: "",
-  imageUrl: "",
+  image: null,
   mealType: "Breakfast",
   benefit: "",
-  tags: ""
+  tags: "",
 };
 
 export default function NutritionManager() {
@@ -17,6 +21,11 @@ export default function NutritionManager() {
   const [formData, setFormData] = useState(initialFormState);
   const [editMode, setEditMode] = useState(false);
   const [editId, setEditId] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+
+  useEffect(() => {
+    loadMeals();
+  }, []);
 
   const loadMeals = async () => {
     try {
@@ -24,62 +33,122 @@ export default function NutritionManager() {
       const res = await fetchAllMeals();
       setAllMeals(Array.isArray(res.data) ? res.data : []);
     } catch (error) {
+      console.error('Error loading meals:', error);
       toast.error("Failed to fetch meals.");
     } finally {
       setLoading(false);
     }
   };
 
-  useEffect(() => {
-    loadMeals();
-  }, []);
-
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setFormData((prev) => ({ ...prev, image: file }));
 
-    const payload = {
-      ...formData,
-      tags: formData.tags.split(",").map(tag => tag.trim())
-    };
-
-    try {
-      await addMealApi(payload);
-      toast.success(editMode ? "Meal updated!" : "Meal added!");
-      setFormData(initialFormState);
-      setEditMode(false);
-      setEditId(null);
-      loadMeals();
-    } catch (error) {
-      toast.error("Failed to save meal.");
+      // Create preview URL
+      const previewUrl = URL.createObjectURL(file);
+      setImagePreview(previewUrl);
     }
   };
 
   const handleEdit = (meal) => {
     setFormData({
-      title: meal.title,
-      imageUrl: meal.imageUrl,
-      mealType: meal.mealType,
-      benefit: meal.benefit,
-      tags: meal.tags.join(", ")
+      title: meal.title || "",
+      image: null, // Reset file input
+      mealType: meal.mealType || "Breakfast",
+      benefit: meal.benefit || "",
+      tags: Array.isArray(meal.tags) ? meal.tags.join(", ") : "",
     });
     setEditMode(true);
     setEditId(meal._id);
+    setImagePreview(meal.imageUrl); // Show current image as preview
     window.scrollTo(0, 0);
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Validation
+    if (!formData.title.trim()) {
+      toast.error("Please enter a meal title");
+      return;
+    }
+
+    if (!editMode && !formData.image) {
+      toast.error("Please select an image for the meal");
+      return;
+    }
+
+    try {
+      // Create FormData for both add and update
+      const fd = new FormData();
+      fd.append("title", formData.title.trim());
+      fd.append("mealType", formData.mealType);
+      fd.append("benefit", formData.benefit.trim());
+      fd.append("tags", JSON.stringify(
+        formData.tags.split(",").map(tag => tag.trim()).filter(tag => tag)
+      ));
+
+      // Only append image if one is selected
+      if (formData.image) {
+        fd.append("image", formData.image);
+      }
+
+      if (editMode) {
+        await updateMealApi(editId, fd);
+        toast.success("Meal updated successfully!");
+      } else {
+        await addMealApi(fd);
+        toast.success("Meal added successfully!");
+      }
+
+      // Reset form
+      resetForm();
+      loadMeals();
+
+    } catch (error) {
+      console.error('Submit error:', error);
+
+      // More specific error messages
+      if (error.response?.status === 400) {
+        toast.error(error.response.data.message || "Invalid data provided");
+      } else if (error.response?.status === 500) {
+        toast.error("Server error. Please try again.");
+      } else {
+        toast.error(editMode ? "Failed to update meal" : "Failed to add meal");
+      }
+    }
+  };
+
   const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this meal?")) {
+      return;
+    }
+
     try {
       await deleteMealApi(id);
-      toast.success("Meal deleted.");
+      toast.success("Meal deleted successfully!");
       loadMeals();
     } catch (error) {
-      toast.error("Failed to delete meal.");
+      console.error('Delete error:', error);
+      toast.error("Failed to delete meal");
     }
+  };
+
+  const resetForm = () => {
+    setFormData(initialFormState);
+    setEditMode(false);
+    setEditId(null);
+    setImagePreview(null);
+
+    // Clear file input
+    const fileInput = document.querySelector('input[type="file"]');
+    if (fileInput) fileInput.value = '';
   };
 
   return (
@@ -91,10 +160,22 @@ export default function NutritionManager() {
       <form
         onSubmit={handleSubmit}
         className="bg-white shadow rounded-lg p-5 max-w-xl mx-auto mb-10"
+        encType="multipart/form-data"
       >
-        <h2 className="text-lg font-semibold mb-4">
-          {editMode ? "Edit Meal" : "Add New Meal"}
-        </h2>
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-lg font-semibold">
+            {editMode ? "Edit Meal" : "Add New Meal"}
+          </h2>
+          {editMode && (
+            <button
+              type="button"
+              onClick={resetForm}
+              className="text-sm bg-gray-300 hover:bg-gray-400 px-3 py-1 rounded"
+            >
+              Cancel Edit
+            </button>
+          )}
+        </div>
 
         <input
           type="text"
@@ -103,99 +184,156 @@ export default function NutritionManager() {
           value={formData.title}
           onChange={handleInputChange}
           required
-          className="w-full mb-3 px-4 py-2 border rounded"
+          className="w-full mb-3 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500"
         />
 
-        <input
-          type="text"
-          name="imageUrl"
-          placeholder="Image URL"
-          value={formData.imageUrl}
-          onChange={handleInputChange}
-          required
-          className="w-full mb-3 px-4 py-2 border rounded"
-        />
+        <div className="mb-3">
+          <input
+            type="file"
+            name="image"
+            accept="image/*"
+            onChange={handleFileChange}
+            required={!editMode}
+            className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+          />
+          {editMode && (
+            <p className="text-sm text-gray-500 mt-1">
+              Leave empty to keep current image, or select new image to replace
+            </p>
+          )}
+        </div>
+
+        {/* Image Preview */}
+        {imagePreview && (
+          <div className="mb-3">
+            <p className="text-sm text-gray-600 mb-2">
+              {editMode ? "Current/New Image:" : "Image Preview:"}
+            </p>
+            <img
+              src={imagePreview}
+              alt="Preview"
+              className="w-full h-32 object-cover rounded border"
+            />
+          </div>
+        )}
 
         <select
           name="mealType"
           value={formData.mealType}
           onChange={handleInputChange}
-          className="w-full mb-3 px-4 py-2 border rounded"
+          className="w-full mb-3 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500"
         >
           <option value="Breakfast">Breakfast</option>
           <option value="Lunch">Lunch</option>
           <option value="Dinner">Dinner</option>
+          <option value="Snack">Snack</option>
         </select>
 
-        <input
-          type="text"
+        <textarea
           name="benefit"
           placeholder="Benefit Description"
           value={formData.benefit}
           onChange={handleInputChange}
-          className="w-full mb-3 px-4 py-2 border rounded"
+          rows="3"
+          className="w-full mb-3 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500"
         />
 
         <input
           type="text"
           name="tags"
-          placeholder="Tags (comma-separated)"
+          placeholder="Tags (comma-separated: healthy, protein, vegetarian)"
           value={formData.tags}
           onChange={handleInputChange}
-          className="w-full mb-4 px-4 py-2 border rounded"
+          className="w-full mb-4 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500"
         />
 
         <button
           type="submit"
-          className="bg-green-600 hover:bg-green-700 w-full text-white font-semibold px-4 py-2 rounded"
+          className={`w-full text-white font-semibold px-4 py-2 rounded transition-colors ${editMode
+              ? 'bg-blue-600 hover:bg-blue-700'
+              : 'bg-green-600 hover:bg-green-700'
+            }`}
         >
           {editMode ? "Update Meal" : "Add Meal"}
         </button>
       </form>
 
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-lg font-bold mb-4">All Meals</h2>
+        <h2 className="text-xl font-bold mb-6 text-gray-700">
+          All Meals ({allMeals.length})
+        </h2>
 
         {loading ? (
-          <p className="text-center">Loading...</p>
+          <div className="text-center py-8">
+            <div className="inline-block w-8 h-8 border-4 border-green-600 border-t-transparent rounded-full animate-spin"></div>
+            <p className="mt-2 text-gray-600">Loading meals...</p>
+          </div>
+        ) : allMeals.length === 0 ? (
+          <div className="text-center py-8 text-gray-500">
+            <p>No meals found. Add your first meal!</p>
+          </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {allMeals.map((meal) => (
               <div
                 key={meal._id}
-                className="bg-white rounded-lg shadow overflow-hidden"
+                className={`bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105 ${editMode && editId === meal._id ? 'ring-2 ring-blue-500' : ''
+                  }`}
               >
-                <img
-                  src={meal.imageUrl}
-                  alt={meal.title}
-                  className="h-40 w-full object-cover"
-                />
-                <div className="p-4">
-                  <h3 className="font-semibold text-green-700">{meal.title}</h3>
-                  <p className="text-sm text-gray-600 mb-2">{meal.mealType}</p>
-                  <p className="text-xs text-gray-500 mb-2">{meal.benefit}</p>
+                {meal.imageUrl && (
+                  <img
+                    src={meal.imageUrl}
+                    alt={meal.title}
+                    className="h-48 w-full object-cover"
+                  />
+                )}
 
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    {meal.tags.map((tag, i) => (
-                      <span
-                        key={i}
-                        className="bg-green-200 text-green-800 text-xs px-2 py-1 rounded-full"
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                <div className="p-4">
+                  <div className="flex justify-between items-start mb-2">
+                    <h3 className="font-bold text-lg text-green-700">
+                      {meal.title}
+                    </h3>
+                    <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full whitespace-nowrap ml-2">
+                      {meal.mealType}
+                    </span>
                   </div>
 
-                  <div className="flex justify-between items-center">
+                  <p className="text-sm text-gray-600 mb-3">
+                    {meal.benefit}
+                  </p>
+
+                  {meal.tags && meal.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-1 mb-4">
+                      {meal.tags.slice(0, 3).map((tag, i) => (
+                        <span
+                          key={i}
+                          className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded"
+                        >
+                          #{tag}
+                        </span>
+                      ))}
+                      {meal.tags.length > 3 && (
+                        <span className="text-xs text-gray-500">
+                          +{meal.tags.length - 3} more
+                        </span>
+                      )}
+                    </div>
+                  )}
+
+                  <div className="flex gap-2">
                     <button
                       onClick={() => handleEdit(meal)}
-                      className="bg-blue-500 hover:bg-blue-600 text-white text-xs px-3 py-1 rounded"
+                      className={`flex-1 text-white text-sm px-3 py-2 rounded transition-colors ${editMode && editId === meal._id
+                          ? 'bg-blue-600'
+                          : 'bg-blue-500 hover:bg-blue-600'
+                        }`}
                     >
-                      Edit
+                      {editMode && editId === meal._id ? 'Editing...' : 'Edit'}
                     </button>
+
                     <button
                       onClick={() => handleDelete(meal._id)}
-                      className="bg-red-500 hover:bg-red-600 text-white text-xs px-3 py-1 rounded"
+                      className="flex-1 bg-red-500 hover:bg-red-600 text-white text-sm px-3 py-2 rounded transition-colors"
                     >
                       Delete
                     </button>

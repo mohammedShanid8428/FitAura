@@ -1,14 +1,19 @@
 const express = require('express');
 const router = express.Router();
+
 const mealsController = require('../controllers/mealsController');
+const { nutritionUpload } = require('../middleware.js/multer');
 
-// Route: GET /api/meals
-router.get('/getmeal', mealsController.getAllMeals);
+// ✅ Add meal (POST)
+router.post('/addmeal', nutritionUpload.single("image"), mealsController.addMeal);
 
-// Route: POST /api/meals
-router.post('/addmeal', mealsController.addMeal);
+// ✅ Update meal (PUT)
+router.put('/updatemeal/:id', nutritionUpload.single('image'), mealsController.updateMeal);
 
-// Route: DELETE /api/meals/:id
+// ✅ Get all meals (GET)
+router.get('/getallmeals', mealsController.getAllMeals);
+
+// ✅ Delete meal (DELETE)
 router.delete('/deletemeal/:id', mealsController.deleteMeal);
 
 module.exports = router;

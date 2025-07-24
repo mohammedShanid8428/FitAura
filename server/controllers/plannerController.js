@@ -1,6 +1,6 @@
 const MealPlanner = require('../models/plannerModels');
 
-// Fetch all saved planner meals
+// GET all planner meals
 exports.getPlannerMeals = async (req, res) => {
   try {
     const meals = await MealPlanner.find().sort({ dateAdded: -1 });
@@ -11,7 +11,7 @@ exports.getPlannerMeals = async (req, res) => {
   }
 };
 
-// Add a meal to planner
+// ADD a new meal to planner
 exports.addMealToPlanner = async (req, res) => {
   try {
     const { title, imageUrl, tags = [], benefit = '', mealType } = req.body;
@@ -20,24 +20,16 @@ exports.addMealToPlanner = async (req, res) => {
       return res.status(400).json({ error: 'title, imageUrl, and mealType are required.' });
     }
 
-    const newMeal = new MealPlanner({
-      title,
-      imageUrl,
-      tags,
-      benefit,
-      mealType
-    });
-
+    const newMeal = new MealPlanner({ title, imageUrl, tags, benefit, mealType });
     const savedMeal = await newMeal.save();
     res.status(201).json(savedMeal);
-
   } catch (error) {
     console.error('Failed to add meal to planner:', error);
     res.status(500).json({ error: 'Failed to add meal to planner' });
   }
 };
 
-// Delete a meal from planner
+// DELETE a meal from planner
 exports.deleteMealFromPlanner = async (req, res) => {
   try {
     const { id } = req.params;
@@ -47,8 +39,7 @@ exports.deleteMealFromPlanner = async (req, res) => {
       return res.status(404).json({ error: 'Meal not found in planner' });
     }
 
-    res.json({ message: 'Meal deleted from planner successfully' });
-
+    res.status(200).json({ message: 'Meal deleted from planner successfully' });
   } catch (error) {
     console.error('Failed to delete meal from planner:', error);
     res.status(500).json({ error: 'Failed to delete meal from planner' });

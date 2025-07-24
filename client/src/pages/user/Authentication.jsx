@@ -40,9 +40,14 @@ const Authentication = () => {
             title: "Login Success",
             description: "Welcome back!",
           });
+
           setAuthStatus(true);
+
+          // ✅ Store required user data
           sessionStorage.setItem("token", res.data.token);
           sessionStorage.setItem("username", res.data.username);
+          localStorage.setItem("userId", res.data.userId); // ✅ Required for Dashboard
+
           navigate("/dashboard");
         }
       } else {

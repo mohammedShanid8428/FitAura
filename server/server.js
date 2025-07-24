@@ -18,18 +18,21 @@ app.use(express.json());
 // Import Routes
 const userRoutes = require('./routes/userRoutes');
 const mealsRoutes = require('./routes/mealsRoutes');
-const mealPlannerRoutes = require('./routes/plannerRoutes');
+
 const contactRoutes = require('./routes/contactRoutes');
 
 const moodRoutes = require('./routes/moodRoutes');
 const routineRoutes = require('./routes/routineRoutes');
+const routineDashRoutes = require("./routes/routineProgressRoutes");
+const mealPlannerRoutes = require('./routes/plannerRoutes');
+app.use('/api/mealplanner', mealPlannerRoutes);
 
+app.use("/api/routineprogresses", routineDashRoutes);
 app.use('/api/routines', routineRoutes);
 
 // Use Routes
 app.use('/api/users', userRoutes);
 app.use('/api/meals', mealsRoutes);
-app.use('/api/mealplanner', mealPlannerRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/moods', moodRoutes);
 

@@ -1,56 +1,137 @@
 const Meal = require('../models/mealsModels');
 
-// Fetch all meals
+// @desc    Get all meals
 exports.getAllMeals = async (req, res) => {
   try {
-    const meals = await Meal.find().sort({ dateAdded: -1 });
+    const meals = await Meal.find().sort({ createdAt: -1 });
     res.status(200).json(meals);
   } catch (error) {
-    console.error('Failed to fetch meals:', error);
+    console.error('Error fetching all meals:', error);
     res.status(500).json({ error: 'Failed to fetch meals' });
   }
 };
 
-// Add a new meal
+// @desc    Add a new meal
 exports.addMeal = async (req, res) => {
   try {
-    const { title, imageUrl, tags = [], benefit = '', mealType } = req.body;
+    console.log('📝 Request body:', req.body);
+    console.log('📸 Request file:', req.file);
+    
+    const { title, mealType, benefit = '', tags = '[]' } = req.body;
 
-    if (!title || !imageUrl || !mealType) {
-      return res.status(400).json({ error: 'title, imageUrl, and mealType are required.' });
+    // Validation
+    if (!title || !mealType) {
+      return res.status(400).json({ message: 'Title and mealType are required.' });
+    }
+
+    if (!req.file) {
+      return res.status(400).json({ message: 'Image is required for new meals.' });
+    }
+
+    // Cloudinary image URL
+    const imageUrl = req.file.path;
+
+    // Parse tags from string if needed
+    let parsedTags = [];
+    try {
+      parsedTags = typeof tags === 'string' ? JSON.parse(tags) : tags;
+    } catch (parseError) {
+      console.warn('⚠️ Tags parsing failed, using empty array:', parseError);
+      parsedTags = [];
     }
 
     const newMeal = new Meal({
       title,
-      imageUrl,
-      tags,
+      mealType,
       benefit,
-      mealType
+      tags: parsedTags,
+      imageUrl,
     });
 
     const savedMeal = await newMeal.save();
-    res.status(201).json(savedMeal);
+    console.log('✅ Meal saved successfully:', savedMeal._id);
+    
+    res.status(201).json({ 
+      message: 'Meal added successfully!', 
+      meal: savedMeal 
+    });
 
   } catch (error) {
-    console.error('Failed to add meal:', error);
-    res.status(500).json({ error: 'Failed to add meal' });
+    console.error('❌ Add Meal Error:', error);
+    res.status(500).json({ 
+      message: 'Server error. Failed to add meal.',
+      error: error.message 
+    });
   }
 };
 
-// Delete a meal
-exports.deleteMeal = async (req, res) => {
+// @desc    Update an existing meal
+exports.updateMeal = async (req, res) => {
   try {
+    console.log('📝 Update request body:', req.body);
+    console.log('📸 Update request file:', req.file);
+    
     const { id } = req.params;
-    const deletedMeal = await Meal.findByIdAndDelete(id);
+    const { title, mealType, benefit = '', tags = '[]' } = req.body;
 
-    if (!deletedMeal) {
+    const meal = await Meal.findById(id);
+    if (!meal) {
       return res.status(404).json({ error: 'Meal not found' });
     }
 
-    res.json({ message: 'Meal deleted successfully' });
+    // Parse tags
+    let parsedTags = [];
+    try {
+      parsedTags = typeof tags === 'string' ? JSON.parse(tags) : tags;
+    } catch (parseError) {
+      console.warn('⚠️ Tags parsing failed during update:', parseError);
+      parsedTags = meal.tags; // Keep existing tags if parsing fails
+    }
+
+    // Update fields
+    if (title) meal.title = title;
+    if (mealType) meal.mealType = mealType;
+    meal.benefit = benefit; // Allow empty benefit
+    if (parsedTags && parsedTags.length >= 0) meal.tags = parsedTags;
+    
+    // Update image only if new file is uploaded
+    if (req.file && req.file.path) {
+      meal.imageUrl = req.file.path;
+      console.log('🖼️ Image updated to:', req.file.path);
+    }
+
+    const updatedMeal = await meal.save();
+    console.log('✅ Meal updated successfully:', updatedMeal._id);
+    
+    res.status(200).json({
+      message: 'Meal updated successfully!',
+      meal: updatedMeal
+    });
 
   } catch (error) {
-    console.error('Failed to delete meal:', error);
+    console.error('❌ Error updating meal:', error);
+    res.status(500).json({ 
+      error: 'Failed to update meal',
+      message: error.message 
+    });
+  }
+};
+
+// @desc    Delete a meal by ID
+exports.deleteMeal = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleted = await Meal.findByIdAndDelete(id);
+    
+    if (!deleted) {
+      return res.status(404).json({ error: 'Meal not found' });
+    }
+
+    console.log('🗑️ Meal deleted successfully:', id);
+    res.json({ message: 'Meal deleted successfully' });
+    
+  } catch (error) {
+    console.error('❌ Error deleting meal:', error);
     res.status(500).json({ error: 'Failed to delete meal' });
   }
 };
