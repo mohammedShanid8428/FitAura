@@ -14,13 +14,34 @@ exports.getPlannerMeals = async (req, res) => {
 // ADD a new meal to planner
 exports.addMealToPlanner = async (req, res) => {
   try {
-    const { title, imageUrl, tags = [], benefit = '', mealType } = req.body;
+    const { title, imageUrl, tags = [], benefit = '', mealType = 'general' } = req.body;
 
-    if (!title || !imageUrl || !mealType) {
-      return res.status(400).json({ error: 'title, imageUrl, and mealType are required.' });
+    if (!title || !imageUrl) {
+      return res.status(400).json({ error: 'title and imageUrl are required.' });
     }
 
-    const newMeal = new MealPlanner({ title, imageUrl, tags, benefit, mealType });
+    // Check if meal already exists in planner
+    const existingMeal = await MealPlanner.findOne({ 
+      title: title, 
+      imageUrl: imageUrl 
+    });
+
+    if (existingMeal) {
+      return res.status(409).json({ error: 'This meal is already in your planner' });
+    }
+
+    // Normalize mealType to lowercase
+    const normalizedMealType = mealType.toLowerCase();
+
+    const newMeal = new MealPlanner({ 
+      title, 
+      imageUrl, 
+      tags, 
+      benefit, 
+      mealType: normalizedMealType,
+      dateAdded: new Date()
+    });
+    
     const savedMeal = await newMeal.save();
     res.status(201).json(savedMeal);
   } catch (error) {
@@ -43,5 +64,17 @@ exports.deleteMealFromPlanner = async (req, res) => {
   } catch (error) {
     console.error('Failed to delete meal from planner:', error);
     res.status(500).json({ error: 'Failed to delete meal from planner' });
+  }
+};
+
+// GET meals by meal type
+exports.getMealsByType = async (req, res) => {
+  try {
+    const { mealType } = req.params;
+    const meals = await MealPlanner.find({ mealType: mealType.toLowerCase() }).sort({ dateAdded: -1 });
+    res.status(200).json(meals);
+  } catch (error) {
+    console.error('Failed to fetch meals by type:', error);
+    res.status(500).json({ error: 'Failed to fetch meals by type' });
   }
 };

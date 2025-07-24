@@ -1,81 +1,144 @@
-import React, { useState, useEffect } from "react";
-import { fetchAllMeals, fetchPlannerMeals, addMealToPlanner, deleteMealFromPlanner } from "../../services/allApis";
-import toast from "react-hot-toast";
-import MealsCard from "../../components/nutritions/MealsCards";
+import React, { useEffect, useState } from "react";
+import Saved from "./Saved";
+import { fetchPlannerMeals, deleteMealFromPlanner } from "../../services/allApis";
 
-export default function NutritionPlanner() {
-  const [allMeals, setAllMeals] = useState([]);
-  const [plannerMeals, setPlannerMeals] = useState([]);
-  const [isPlannerMode, setIsPlannerMode] = useState(false);
+export default function SavedMealsPage() {
+  const [savedMeals, setSavedMeals] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    loadAllMeals();
-    loadPlannerMeals();
+    getSavedMeals();
   }, []);
 
-  const loadAllMeals = async () => {
+  const getSavedMeals = async () => {
     try {
-      const res = await fetchAllMeals();
-      setAllMeals(res.data || []);
-    } catch (err) {
-      toast.error("Failed to load meals");
+      setLoading(true);
+      setError(null);
+      const response = await fetchPlannerMeals();
+
+      let meals = [];
+      if (Array.isArray(response)) {
+        meals = response;
+      } else if (response && Array.isArray(response.data)) {
+        meals = response.data;
+      } else {
+        console.warn("Unexpected API response structure:", response);
+        meals = [];
+      }
+
+      setSavedMeals(meals);
+    } catch (error) {
+      console.error("Error fetching saved meals:", error);
+      setError("Failed to fetch saved meals. Please try again.");
+      setSavedMeals([]);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const loadPlannerMeals = async () => {
-    try {
-      const res = await fetchPlannerMeals();
-      setPlannerMeals(res.data || []);
-    } catch (err) {
-      toast.error("Failed to load planner meals");
+  const handleDeleteMeal = async (id) => {
+    if (window.confirm("Are you sure you want to remove this meal from your planner?")) {
+      try {
+        await deleteMealFromPlanner(id);
+        const updated = savedMeals.filter((meal) => meal._id !== id);
+        setSavedMeals(updated);
+        alert("Meal removed successfully!");
+      } catch (error) {
+        console.error("Error removing meal:", error);
+        alert("Failed to remove meal. Please try again.");
+      }
     }
   };
 
-  const handleAddToPlanner = async (meal) => {
-    try {
-      const res = await addMealToPlanner(meal);
-      toast.success("Meal added to planner");
-      setPlannerMeals((prev) => [res.data, ...prev]);
-    } catch (err) {
-      toast.error("Failed to add meal");
-    }
+  const groupedSavedMeals = savedMeals.reduce((groups, meal) => {
+    const mealType = meal.mealType?.toLowerCase() || "general";
+    if (!groups[mealType]) groups[mealType] = [];
+    groups[mealType].push(meal);
+    return groups;
+  }, {});
+
+  const mealTypeOrder = ["breakfast", "lunch", "dinner", "snack", "general"];
+  const mealTypeNames = {
+    breakfast: "🍳 Breakfast",
+    lunch: "🥗 Lunch",
+    dinner: "🍽️ Dinner",
+    snack: "🍿 Snacks",
+    general: "🍴 Other Meals",
   };
 
-  const handleDeleteFromPlanner = async (id) => {
-    try {
-      await deleteMealFromPlanner(id);
-      toast.success("Meal removed from planner");
-      setPlannerMeals((prev) => prev.filter((meal) => meal._id !== id));
-    } catch (err) {
-      toast.error("Failed to delete meal");
-    }
-  };
+  if (loading) {
+    return (
+      <div className="p-6 md:p-10 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold mb-8">💾 Saved Meals</h2>
+        <p>Loading saved meals...</p>
+      </div>
+    );
+  }
 
-  return (
-    <div className="p-4">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-bold">
-          {isPlannerMode ? "Your Planned Meals" : "All Meals"}
-        </h2>
+  if (error) {
+    return (
+      <div className="p-6 md:p-10 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold mb-8">💾 Saved Meals</h2>
+        <p className="text-red-500 mb-4">{error}</p>
         <button
-          onClick={() => setIsPlannerMode(!isPlannerMode)}
-          className="bg-blue-500 text-white px-4 py-2 rounded"
+          onClick={getSavedMeals}
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
         >
-          {isPlannerMode ? "View All Meals" : "View My Planner"}
+          Retry
         </button>
       </div>
+    );
+  }
 
-      <div className="grid grid-cols-1  gap-4">
-        {(isPlannerMode ? plannerMeals : allMeals).map((meal) => (
-          <MealsCard
-            key={meal._id}
-            meal={meal}
-            isPlannerMode={isPlannerMode}
-            onAdd={() => handleAddToPlanner(meal)}
-            onDelete={() => handleDeleteFromPlanner(meal._id)}
-          />
-        ))}
+  return (
+    <section className="bg-gray-800">
+      <div className="p-6 md:p-10 bg-gray-800 min-h-screen">
+        <h2 className="text-3xl md:text-4xl text-orange-600 font-bold text-center tracking-wider mb-8">💾 Saved Meals</h2>
+
+        <div className="mb-6 text-center">
+          <p className="text-gray-100">
+            You have {savedMeals.length} meals saved in your planner
+          </p>
+        </div>
+
+        {savedMeals.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-gray-400 text-lg mb-4">No saved meals yet.</p>
+            <p className="text-gray-100">
+              Go to the Nutrition Planner to add meals to your collection!
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-8">
+            {mealTypeOrder.map((mealType) => {
+              const mealsInCategory = groupedSavedMeals[mealType];
+              if (!mealsInCategory || mealsInCategory.length === 0) return null;
+
+              return (
+                <div key={mealType} className="bg-gray-400 rounded-lg p-6">
+                  <h3 className="text-xl font-semibold mb-4 flex items-center justify-between">
+                    <span>{mealTypeNames[mealType]}</span>
+                    <span className="text-sm font-normal text-gray-500">
+                      ({mealsInCategory.length} meals)
+                    </span>
+                  </h3>
+
+                  <div className="overflow-x-auto">
+                    <div className="flex gap-4 min-w-full">
+                      {mealsInCategory.map((meal) => (
+                        <div key={meal._id} className="min-w-[350px]">
+                          <Saved meal={meal} onDelete={handleDeleteMeal} />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
-    </div>
+    </section>
   );
 }

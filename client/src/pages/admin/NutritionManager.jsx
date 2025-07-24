@@ -30,11 +30,13 @@ export default function NutritionManager() {
   const loadMeals = async () => {
     try {
       setLoading(true);
+      console.log('🔍 Loading meals...');
       const res = await fetchAllMeals();
+      console.log('🔍 Meals response:', res);
       setAllMeals(Array.isArray(res.data) ? res.data : []);
     } catch (error) {
       console.error('Error loading meals:', error);
-      toast.error("Failed to fetch meals.");
+      toast.error(`Failed to fetch meals: ${error.message || 'Unknown error'}`);
     } finally {
       setLoading(false);
     }
@@ -48,6 +50,7 @@ export default function NutritionManager() {
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     if (file) {
+      console.log('🔍 Selected file:', file.name, file.size, file.type);
       setFormData((prev) => ({ ...prev, image: file }));
 
       // Create preview URL
@@ -99,6 +102,14 @@ export default function NutritionManager() {
         fd.append("image", formData.image);
       }
 
+      console.log('🔍 Submitting form:', {
+        editMode,
+        editId,
+        title: formData.title,
+        mealType: formData.mealType,
+        hasImage: !!formData.image
+      });
+
       if (editMode) {
         await updateMealApi(editId, fd);
         toast.success("Meal updated successfully!");
@@ -112,15 +123,29 @@ export default function NutritionManager() {
       loadMeals();
 
     } catch (error) {
-      console.error('Submit error:', error);
+      console.error('Submit error details:', error);
 
-      // More specific error messages
-      if (error.response?.status === 400) {
-        toast.error(error.response.data.message || "Invalid data provided");
+      // Enhanced error messages based on the error
+      if (error.response?.status === 404) {
+        toast.error("API endpoint not found. Please check your backend server and routes.");
+        console.error('❌ 404 Error - Check if your backend routes match:', {
+          expectedRoutes: [
+            'POST /api/meals/addmeal',
+            'PUT /api/meals/updatemeal/:id',
+            'GET /api/meals/allmeal',
+            'DELETE /api/meals/deletemeal/:id'
+          ]
+        });
+      } else if (error.response?.status === 400) {
+        toast.error(error.response.data?.message || "Invalid data provided");
       } else if (error.response?.status === 500) {
-        toast.error("Server error. Please try again.");
+        toast.error("Server error. Check your backend logs.");
+      } else if (error.code === 'NETWORK_ERROR' || error.message?.includes('Network Error')) {
+        toast.error("Cannot connect to backend. Is your server running on port 3000?");
+      } else if (error.name === 'TypeError' && error.message?.includes('fetch')) {
+        toast.error("Connection failed. Check if backend server is running.");
       } else {
-        toast.error(editMode ? "Failed to update meal" : "Failed to add meal");
+        toast.error(`${editMode ? "Update" : "Add"} failed: ${error.message || 'Unknown error'}`);
       }
     }
   };
@@ -136,7 +161,11 @@ export default function NutritionManager() {
       loadMeals();
     } catch (error) {
       console.error('Delete error:', error);
-      toast.error("Failed to delete meal");
+      if (error.response?.status === 404) {
+        toast.error("Cannot delete: API endpoint not found.");
+      } else {
+        toast.error(`Failed to delete meal: ${error.message || 'Unknown error'}`);
+      }
     }
   };
 

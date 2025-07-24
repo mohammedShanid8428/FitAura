@@ -4,7 +4,8 @@ import axios from "axios";
 import { useToast } from "../ui/Use-Toast";
 import { base_url } from "../../services/base_url";
 
-const API_URL = `${base_url}/contact/addmessage`;
+// ✅ Corrected API endpoint
+const API_URL = `${base_url}/contact/messages`;
 
 export default function ContactBox() {
   const { toast } = useToast();

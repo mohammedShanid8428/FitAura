@@ -1,109 +1,100 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "../../components/ui/Button";
 import { Card, CardContent } from "../../components/ui/Card";
-import { Trash, CalendarDays } from "lucide-react";
+import { Trash, CalendarDays, PlusCircle, Clock } from "lucide-react";
 
-const initialSavedMeals = [
-  {
-    title: "Oatmeal with Berries",
-    imageUrl: "https://images.unsplash.com/photo-1603048293482-34e0b74fd01b",
-    day: "Monday",
-    tags: ["#Focus", "#Mood-Boost"],
-  },
-  {
-    title: "Grilled Chicken Bowl",
-    imageUrl: "https://images.unsplash.com/photo-1562967916-eb82221dfb35",
-    day: "Wednesday",
-    tags: ["#Fitness", "#Protein"],
-  },
-  {
-    title: "Greek Yogurt & Honey",
-    imageUrl: "https://images.unsplash.com/photo-1615200471654-63de9b36f708",
-    day: "Friday",
-    tags: ["#Digestive", "#LowCal"],
-  },
-];
-
-const weekDays = [
-  "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday",
-];
-
-export default function Saved() {
-  const [savedMeals, setSavedMeals] = useState(initialSavedMeals);
-
-  const updateMealDay = (idx, newDay) => {
-    const updated = [...savedMeals];
-    updated[idx].day = newDay;
-    setSavedMeals(updated);
-  };
-
-  const removeMeal = (idx) => {
-    setSavedMeals(savedMeals.filter((_, i) => i !== idx));
+export default function Saved({
+  meal,
+  onDelete,
+  onAdd,
+  isPlannerMode = false,
+}) {
+  // Format date for display
+  const formatDate = (dateString) => {
+    if (!dateString) return "Recently added";
+    const date = new Date(dateString);
+    return date.toLocaleDateString();
   };
 
   return (
-    <div className="p-6 md:p-10">
-      <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
-        🥗 My Saved Nutrition Plan
-      </h2>
+    <Card className="shadow-lg rounded-xl overflow-hidden hover:shadow-2xl transition duration-300">
+      <div className="relative">
+        <img
+          src={meal.image || meal.imageUrl}
+          alt={meal.title}
+          className="h-44 w-full object-cover"
+          onError={(e) => {
+            e.target.src = "/api/placeholder/300/200"; // Fallback image
+          }}
+        />
+        {/* Meal type badge */}
+        {meal.mealType && (
+          <span className="absolute top-2 left-2 bg-blue-500 text-white text-xs px-2 py-1 rounded-full">
+            {meal.mealType}
+          </span>
+        )}
+      </div>
 
-      {savedMeals.length === 0 ? (
-        <p className="text-center text-gray-500">You haven’t added any meals yet.</p>
-      ) : (
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {savedMeals.map((meal, idx) => (
-            <Card
-              key={idx}
-              className="shadow-lg rounded-xl overflow-hidden hover:shadow-2xl transition duration-300"
+      <CardContent className="p-4">
+        <div className="flex justify-between items-start mb-2">
+          <h3 className="text-xl font-semibold line-clamp-2">{meal.title}</h3>
+          {isPlannerMode ? (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => onAdd && onAdd(meal)}
+              className="hover:bg-green-50"
+              title="Add to planner"
             >
-              <img
-                src={meal.imageUrl}
-                alt={meal.title}
-                className="h-44 w-full object-cover"
-              />
-              <CardContent className="p-4">
-                <div className="flex justify-between items-start">
-                  <h3 className="text-xl font-semibold">{meal.title}</h3>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => removeMeal(idx)}
-                  >
-                    <Trash className="w-4 h-4 text-red-500" />
-                  </Button>
-                </div>
-
-                <p className="text-sm text-gray-600 mt-2 flex items-center gap-2">
-                  <CalendarDays className="w-4 h-4 text-blue-500" />
-                  Assigned to:{" "}
-                  <select
-                    value={meal.day}
-                    onChange={(e) => updateMealDay(idx, e.target.value)}
-                    className="ml-2 border rounded px-2 py-1 text-sm"
-                  >
-                    {weekDays.map((day) => (
-                      <option key={day} value={day}>
-                        {day}
-                      </option>
-                    ))}
-                  </select>
-                </p>
-
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {meal.tags.map((tag, i) => (
-                    <span
-                      key={i}
-                      className="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+              <PlusCircle className="w-5 h-5 text-green-600" />
+            </Button>
+          ) : (
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => onDelete && onDelete(meal._id)}
+              className="hover:bg-red-50"
+              title="Remove from planner"
+            >
+              <Trash className="w-5 h-5 text-red-500" />
+            </Button>
+          )}
         </div>
-      )}
-    </div>
+
+        {/* Benefit/Description */}
+        {meal.benefit && (
+          <p className="text-sm text-white mb-3 line-clamp-2">
+            {meal.benefit}
+          </p>
+        )}
+
+        {/* Date info */}
+        <p className="text-xs text-gray-100 mb-3 flex items-center gap-1">
+          <Clock className="w-3 h-3" />
+          {meal.day ? `Scheduled: ${meal.day}` : formatDate(meal.dateAdded)}
+        </p>
+
+        {/* Tags */}
+        {meal.tags && meal.tags.length > 0 && (
+          <div className="flex flex-wrap gap-1">
+            {(Array.isArray(meal.tags) ? meal.tags : meal.tags.toString().split(","))
+              .slice(0, 3) // Show only first 3 tags
+              .map((tag, i) => (
+                <span
+                  key={i}
+                  className="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded-full"
+                >
+                  #{typeof tag === 'string' ? tag.trim() : tag}
+                </span>
+              ))}
+            {(Array.isArray(meal.tags) ? meal.tags : meal.tags.toString().split(",")).length > 3 && (
+              <span className="text-xs text-gray-500">
+                +{(Array.isArray(meal.tags) ? meal.tags : meal.tags.toString().split(",")).length - 3} more
+              </span>
+            )}
+          </div>
+        )}
+      </CardContent>
+    </Card>
   );
 }

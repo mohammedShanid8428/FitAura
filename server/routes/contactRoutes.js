@@ -2,13 +2,13 @@ const express = require('express');
 const router = express.Router();
 const contactController = require('../controllers/contactController');
 
-// Route: POST /api/contact
-router.post('/addmessage', contactController.submitMessage);
+// Submit a new contact message
+router.post('/messages', contactController.submitMessage);
 
-// Route: GET /api/contact/messages
-router.get('/getmessages', contactController.getAllMessages);
+// Get all contact messages
+router.get('/messages', contactController.getAllMessages);
 
-// Route: DELETE /api/contact/messages/:id
-router.delete('/deletemessage/:id', contactController.deleteMessage);
+// Delete a contact message by ID
+router.delete('/messages/:id', contactController.deleteMessage);
 
 module.exports = router;

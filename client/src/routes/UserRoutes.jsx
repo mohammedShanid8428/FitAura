@@ -21,6 +21,8 @@ import RoutinesStrech from "../components/routines/RoutinesStrech";
 import RoutinePlayer from "../components/routines/RoutinePlanner";
 import RoutineComplete from "../components/routines/RoutineComplete";
 import HydrationPlan from "../components/routines/HydrationPlan";
+import Saved from "../components/nutritions/Saved";
+import SavedMealsPage from "../components/nutritions/SavedMealsPage";
 
 const UserRoutes = () => {
   return (
@@ -46,6 +48,8 @@ const UserRoutes = () => {
         <Route path="routines/stretch" element={<RoutinesStrech />} />
         <Route path="routines/Planner" element={<RoutinePlayer />} />
         <Route path="routines/yoga" element={<RoutinesYoga />} />
+        <Route path="routines/save" element={<Saved/>} />
+        <Route path="/saved-meals" element={<SavedMealsPage />} />
     </Routes>
   );
 };

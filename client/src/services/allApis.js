@@ -46,6 +46,7 @@ export const deleteMealApi = async (id) => {
 };
 
 // ✅ Meal Planner APIs
+// services/allApis.js
 export const fetchAllMeals = async () =>
   await commonApi(`${base_url}/meals/getallmeals`, "GET");
 
@@ -58,11 +59,6 @@ export const addMealToPlanner = async (meal) =>
 export const deleteMealFromPlanner = async (id) =>
   await commonApi(`${base_url}/mealplanner/deleteplanner/${id}`, "DELETE");
 
-
-// ✅ Contact APIs
-export const submitContactMessage = async (data) => {
-  return await commonApi(`${base_url}/contact/addmessage`, "POST", undefined, data);
-};
 
 export const fetchAllContactMessages = async () => {
   return await commonApi(`${base_url}/contact/getmessages`, "GET");

@@ -1,19 +1,19 @@
+// routes/nutritionRoutes.js - Corrected routes to match frontend expectations
 const express = require('express');
 const router = express.Router();
+const mealController = require('../controllers/mealsController');
+// const { nutritionUpload } = require('../middleware/multer');
 
-const mealsController = require('../controllers/mealsController');
-const { nutritionUpload } = require('../middleware.js/multer');
+// ============= PUBLIC ROUTES =============
 
-// ✅ Add meal (POST)
-router.post('/addmeal', nutritionUpload.single("image"), mealsController.addMeal);
+// Get all meals (matches frontend expectation: /nutrition/getmeals)
+router.get('/getmeals', mealController.getAllMeals);
 
-// ✅ Update meal (PUT)
-router.put('/updatemeal/:id', nutritionUpload.single('image'), mealsController.updateMeal);
+// Alternative endpoint for compatibility (if frontend uses /meals/getallmeals)
+router.get('/getallmeals', mealController.getAllMeals);
 
-// ✅ Get all meals (GET)
-router.get('/getallmeals', mealsController.getAllMeals);
 
-// ✅ Delete meal (DELETE)
-router.delete('/deletemeal/:id', mealsController.deleteMeal);
+// Delete meal
+router.delete('/admin/:id', mealController.deleteMeal);
 
 module.exports = router;
