@@ -57,9 +57,11 @@ export default function AutoChangingSlide() {
           <h2 className="text-5xl font-bold py-3 text-gray-700 mb-4">{title}</h2>
           <p className="text-gray-800 pr-4 mb-8">{description}</p>
           <div className="flex gap-6 flex-wrap">
-            <button className="bg-orange-500 text-gray-800 px-8 py-3 rounded shadow hover:bg-orange-600 text-md">
+            <a href="https://www.healthline.com/nutrition/50-super-healthy-foods">
+              <button className="bg-orange-500 text-gray-800 px-8 py-3 rounded shadow hover:bg-orange-600 text-md">
               MORE ABOUT
             </button>
+            </a>
             <button className="flex items-center border border-gray-300 px-6 py-2 rounded hover:bg-gray-200 text-md">
               VIEW SECTION
             </button>

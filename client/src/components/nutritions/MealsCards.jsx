@@ -101,7 +101,7 @@ export default function MealsCards() {
 
               <div className="flex flex-wrap justify-center gap-4">
                 <Button
-                  variant="outline"
+                  variant="defualt"
                   size="sm"
                   onClick={() => handleSaveMeal(meal)}
                 >
@@ -109,7 +109,7 @@ export default function MealsCards() {
                   Save
                 </Button>
                 <Button
-                  variant="outline"
+                  variant="default"
                   size="sm"
                   onClick={() => handleSaveMeal(meal)}
                 >
