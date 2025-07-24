@@ -17,13 +17,13 @@ const Header = () => {
   ];
 
   return (
-    <header className="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b px-4 md:px-10 py-4">
+    <header className="bg-gray-400 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b px-4 md:px-10 py-4">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
 
         {/* Left: Logo */}
         <div className="flex items-center space-x-3">
           <img src={images.icon} alt="FitAura" className="h-12 w-12" />
-          <span className="text-2xl font-extrabold text-gray-800 tracking-wide">
+          <span className="text-3xl font-extrabold text-gray-800 tracking-wider">
             FitAura
           </span>
         </div>
@@ -34,9 +34,9 @@ const Header = () => {
             <Link
               key={link.name}
               to={link.path}
-              className={`hover:text-green-600 transition ${
+              className={`hover:text-white transition ${
                 pathname === link.path
-                  ? "text-green-600 border-b-2 border-green-500 pb-1"
+                  ? "text-white border-b-2 border-white pb-1"
                   : ""
               }`}
             >
@@ -63,7 +63,7 @@ const Header = () => {
               to={link.path}
               onClick={() => setMobileMenuOpen(false)}
               className={`block py-2 px-2 rounded hover:bg-gray-100 ${
-                pathname === link.path ? "text-green-600 font-semibold" : ""
+                pathname === link.path ? "text-white font-semibold" : ""
               }`}
             >
               {link.name}
