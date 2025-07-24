@@ -1,62 +1,62 @@
 import React, { useState } from "react";
+import { yogaGif } from "../../assets/images";
 
 const yogaSessions = [
   {
     id: 1,
     title: "🌞 Sun Salutation (Surya Namaskar)",
-    image: "/assets/yoga_sunsalutation.gif",
+    image: yogaGif.yoga1,
     description: "A full-body flow to awaken muscles and energize your day.",
   },
   {
     id: 2,
     title: "🧘‍♀️ Cat-Cow Stretch",
-    image: "/assets/yoga_catcow.gif",
+    image: yogaGif.yoga2,
     description: "Gently warm up your spine and release tension in the back.",
   },
   {
     id: 3,
     title: "🌬️ Pranayama Breathing",
-    image: "/assets/yoga_pranayama.gif",
+    image: yogaGif.yoga3,
     description: "A calming breath control exercise to reduce stress.",
   },
   {
     id: 4,
     title: "🪷 Child’s Pose",
-    image: "/assets/yoga_childpose.gif",
+    image: yogaGif.yoga4,
     description: "A resting pose to stretch hips and relax the body.",
   },
   {
     id: 5,
     title: "🦶 Downward Dog",
-    image: "/assets/yoga_downwarddog.gif",
+    image: yogaGif.yoga5,
     description: "Strengthens arms and legs while improving flexibility.",
   },
   {
     id: 6,
     title: "🧍‍♂️ Warrior II",
-    image: "/assets/yoga_warrior2.gif",
+    image: yogaGif.yoga6,
     description: "Builds stamina and strengthens your legs and core.",
   },
   {
     id: 7,
     title: "🦋 Butterfly Pose",
-    image: "/assets/yoga_butterfly.gif",
+    image: yogaGif.yoga1,
     description: "Opens up hips and improves circulation in the lower body.",
   },
   {
     id: 8,
     title: "🔄 Seated Twist",
-    image: "/assets/yoga_seatedtwist.gif",
+    image: yogaGif.yoga2,
     description: "Relieves spinal tension and improves digestion.",
   },
   {
     id: 9,
     title: "💤 Corpse Pose (Savasana)",
-    image: "/assets/yoga_savasana.gif",
+    image: yogaGif.yoga3,
     description: "Final relaxation to restore energy and calm the mind.",
   },
 ];
-
 
 export default function RoutinesYoga() {
   const [selected, setSelected] = useState([]);
@@ -68,12 +68,12 @@ export default function RoutinesYoga() {
   };
 
   return (
-    <section className="bg-white py-12 px-4 md:px-12">
+    <section className="bg-gray-800 text-white py-12 px-4 md:px-12 min-h-screen">
       <div className="max-w-7xl mx-auto">
-        <p className="text-center text-sm uppercase tracking-widest text-gray-400 mb-2">
+        <p className="text-center text-sm uppercase tracking-widest text-orange-300 mb-2">
           Our Services
         </p>
-        <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-10">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-10 text-orange-400">
           Choose Your Yoga Plan 🧘
         </h2>
 
@@ -81,30 +81,36 @@ export default function RoutinesYoga() {
           {yogaSessions.map((yoga) => (
             <div
               key={yoga.id}
-              className={`border rounded-xl p-4 shadow-md hover:shadow-xl transition flex flex-col items-center text-center ${
-                selected.includes(yoga.id) ? "bg-blue-50 ring-2 ring-blue-400" : ""
+              className={`bg-gray-700 border border-gray-600 rounded-xl p-4 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center ${
+                selected.includes(yoga.id)
+                  ? "ring-2 ring-orange-400 scale-105"
+                  : ""
               }`}
             >
               <img
                 src={yoga.image}
                 alt={yoga.title}
-                className="w-full h-40 object-cover rounded-md mb-3"
+                className="w-full h-40 object-cover rounded-md mb-4"
               />
               <input
                 type="checkbox"
                 checked={selected.includes(yoga.id)}
                 onChange={() => toggleSelect(yoga.id)}
-                className="mb-2 w-5 h-5 text-blue-500"
+                className="accent-orange-400 w-5 h-5 mb-2"
               />
-              <p className="text-md font-semibold mb-1">{yoga.title}</p>
-              <p className="text-sm text-gray-600">{yoga.description}</p>
+              <p className="text-md font-semibold text-orange-300 mb-1">
+                {yoga.title}
+              </p>
+              <p className="text-sm text-gray-300">{yoga.description}</p>
             </div>
           ))}
         </div>
 
         <div className="flex justify-center mt-10">
-          <button className="bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition">
-            Add selected to plan
+          <button
+            className="bg-orange-400 hover:bg-orange-500 text-white px-6 py-3 rounded-lg shadow-md transition duration-300"
+          >
+            Add Selected to Plan
           </button>
         </div>
       </div>

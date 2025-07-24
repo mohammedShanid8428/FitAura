@@ -6,37 +6,37 @@ const experts = [
     id: 1,
     name: 'Michael Carter',
     role: 'Fitness Coach',
-    image: images.modal8,
+    image: images.modal21,
   },
   {
     id: 2,
     name: 'Ryan Davis',
     role: 'Nutritionist',
-    image: images.modal6,
+    image: images.modal13,
   },
   {
     id: 3,
     name: 'Jessica Walker',
     role: 'Mood Therapist',
-    image: images.modal7,
+    image: images.modal8,
   },
   {
     id: 4,
     name: 'Sophia Lee',
     role: 'Sleep Wellness Expert',
-    image: images.modal9,
+    image: images.modal7,
   },
   {
     id: 5,
     name: 'Daniel Moore',
     role: 'Mindfulness Coach',
-    image: images.modal10,
+    image: images.modal21,
   },
   {
     id: 6,
     name: 'Olivia Green',
     role: 'Yoga Instructor',
-    image: images.modal11,
+    image: images.modal13,
   },
 ];
 

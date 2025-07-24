@@ -13,7 +13,7 @@ const services = [
   {
     id: 2,
     title: "Stretching Plan",
-    image: images.modal8,
+    image: images.modal21,
     desc: "Gentle stretches to improve mobility and prevent injuries.",
     link: "/routines/stretch", // Update to match your route
   },

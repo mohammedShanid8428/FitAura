@@ -88,7 +88,7 @@ export default function About(){
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         {/* Left Text Section */}
         <div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-green-600 mb-4">Our Mission</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-orange-600 mb-4">Our Mission</h2>
           <p className="text-gray-200 text-base sm:text-lg mb-4">
             At FitAura, we are focused on redefining digital wellness through structured,
             science-backed systems — helping you live a better life physically and emotionally.
@@ -150,7 +150,7 @@ export default function About(){
    
     <section className="py-16 px-4 sm:px-6 bg-black text-white text-center">
       {/* Title */}
-      <h2 className="text-3xl sm:text-4xl font-bold text-green-400 mb-4">
+      <h2 className="text-3xl sm:text-4xl font-bold text-orange-400 mb-4">
         Our Value
       </h2>
 
@@ -232,7 +232,7 @@ export default function About(){
 <section className=" py-16 px-6 md:px-12">
       <div className="text-center mb-16 max-w-3xl mx-auto">
         <p className="text-sm tracking-wide uppercase text-gray-200 mb-2">What We Offer</p>
-        <h1 className="text-4xl md:text-5xl font-bold text-green-600 mb-4">
+        <h1 className="text-4xl md:text-5xl font-bold text-orange-600 mb-4">
           Supporting Your Wellness Journey
         </h1>
         <p className="text-gray-200 font-medium text-lg">
