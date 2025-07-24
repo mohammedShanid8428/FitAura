@@ -5,7 +5,7 @@ import { images } from "../../assets/images";
 const moodContent = {
   happy: {
     color: "yellow",
-    backgroundImage: images.modal6,
+    backgroundImage: images.modal20,
     gif: emojisGif.emojis1,
     title: "You're Glowing with Positivity!",
     subtitle: "That joy you're feeling? It's powerful. Keep sharing your sunshine.",
@@ -16,7 +16,7 @@ const moodContent = {
   },
   sad: {
     color: "blue",
-    backgroundImage: images.modal7,
+    backgroundImage: images.modal20,
     gif: emojisGif.emojis3,
     title: "It's Okay to Feel Sad",
     subtitle: "Take it slow. Let yourself breathe and heal gently.",
@@ -27,7 +27,7 @@ const moodContent = {
   },
   angry: {
     color: "red",
-    backgroundImage: images.modal8,
+    backgroundImage: images.modal20,
     gif: emojisGif.emojis2,
     title: "Channel Your Fire Constructively",
     subtitle: "Anger is valid. Let’s find a path to calm and control.",
@@ -44,7 +44,7 @@ export default function Hero({mood="happy"}){
   const titleColor = {
     orange: "text-yellow-400",
     blue: "text-blue-400",
-    red: "text-red-400",
+    red: "text-red-500",
   }[data.color];
 
   const buttonPrimaryBg = {

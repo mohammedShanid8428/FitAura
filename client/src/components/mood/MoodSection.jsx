@@ -10,7 +10,7 @@ import OurTips from "./OurTips";
 import MindTips from "./MindTIps";
 import DailyChallenge from "./DailyChallenge";
 import Affirmation from "./Affirmation";
-import Header from "../landing/Header";
+import Header from "../../components/common/Header";
 
 
 export default function MoodSection(){

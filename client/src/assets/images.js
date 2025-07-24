@@ -13,7 +13,8 @@ import modal9 from './images/modal9.webp'
 import modal10 from './images/modal10.jpg'
 import modal11 from './images/modal11.avif'
 import modal12 from './images/modal12.jpg'
-import modal13 from './images/modal13.png'
+import modal13 from './images/modal13.jpeg'
+import modal21 from './images/modal21.avif'
 import modal14 from './images/modal14.jpg'
 import modal15 from './images/modal15.png'
 import modal20 from './images/modal20.png'
@@ -56,10 +57,11 @@ export const images = {
   modal10,
   modal11,
   modal12,
-  modal13,
+modal13,
   modal14,
   modal15,
   modal20,
+  modal21,
 };
 
 export const serviceImg={
