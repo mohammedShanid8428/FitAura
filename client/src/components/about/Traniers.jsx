@@ -44,7 +44,7 @@ export default function Trainers() {
   return (
     <section className=" py-16 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto mb-8 text-center">
-        <h2 className="text-3xl font-bold text-green-600 mb-2">Meet Our Experts</h2>
+        <h2 className="text-3xl font-bold text-orange-600 mb-2 tracking-wider">Meet Our Experts</h2>
         <p className="text-gray-200">
           Discover the passionate team of trainers, therapists, and wellness coaches supporting your journey.
         </p>

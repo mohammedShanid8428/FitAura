@@ -28,7 +28,7 @@ export default function About(){
 
   {/* Content */}
   <div className="relative z-20 px-4 sm:px-6 max-w-3xl mx-auto text-white">
-    <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
+    <h1 className="text-3xl tracking-wider sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
       Your Wellness Journey Starts Here <br /> with FitAura
     </h1>
 
@@ -63,7 +63,7 @@ export default function About(){
   <p className="text-gray-200 uppercase tracking-wide text-sm mb-2">
     Wellness Reimagined
   </p>
-  <h3 className="text-orange-600 text-2xl md:text-3xl font-bold mb-4 leading-tight">
+  <h3 className="text-orange-600 tracking-wider text-2xl md:text-3xl font-bold mb-4 leading-tight">
     Traditional <br /> & Modern
   </h3>
   <p className="text-gray-200 text-sm max-w-xs">
@@ -88,7 +88,7 @@ export default function About(){
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         {/* Left Text Section */}
         <div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-orange-600 mb-4">Our Mission</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold text-orange-600 tracking-wider mb-4">Our Mission</h2>
           <p className="text-gray-200 text-base sm:text-lg mb-4">
             At FitAura, we are focused on redefining digital wellness through structured,
             science-backed systems — helping you live a better life physically and emotionally.
@@ -150,7 +150,7 @@ export default function About(){
    
     <section className="py-16 px-4 sm:px-6 bg-black text-white text-center">
       {/* Title */}
-      <h2 className="text-3xl sm:text-4xl font-bold text-orange-400 mb-4">
+      <h2 className="text-3xl sm:text-4xl tracking-wider font-bold text-orange-600 mb-4">
         Our Value
       </h2>
 
@@ -167,7 +167,7 @@ export default function About(){
           <div className="bg-green-100 text-orange-600  w-fit mx-auto p-3 rounded-full mb-4">
             <Salad size={24} />
           </div>
-          <h4 className="text-orange-600  font-semibold mb-2">Nutrition</h4>
+          <h4 className="text-orange-600 tracking-wider font-semibold mb-2">Nutrition</h4>
           <p className="text-sm text-gray-300">
             Expert-guided meal plans to fuel your journey.
           </p>
@@ -217,7 +217,7 @@ export default function About(){
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto text-center px-6 py-20">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+        <h2 className="text-3xl tracking-wider sm:text-4xl md:text-5xl font-bold mb-4">
           Ready to Begin Your Wellness Journey?
         </h2>
         <p className="text-lg sm:text-xl mb-6">
@@ -232,7 +232,7 @@ export default function About(){
 <section className=" py-16 px-6 md:px-12">
       <div className="text-center mb-16 max-w-3xl mx-auto">
         <p className="text-sm tracking-wide uppercase text-gray-200 mb-2">What We Offer</p>
-        <h1 className="text-4xl md:text-5xl font-bold text-orange-600 mb-4">
+        <h1 className="text-4xl tracking-wider md:text-5xl font-bold text-orange-600 mb-4">
           Supporting Your Wellness Journey
         </h1>
         <p className="text-gray-200 font-medium text-lg">
@@ -243,7 +243,7 @@ export default function About(){
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
         {/* Routines */}
         <div className="bg-gray-800 rounded-3xl p-8 shadow-lg text-center hover:shadow-xl transition duration-300">
-          <h2 className="text-2xl font-semibold text-orange-600 mb-4">Daily Routines</h2>
+          <h2 className="text-2xl tracking-wider font-semibold text-orange-600 mb-4">Daily Routines</h2>
           <p className="text-gray-200 mb-6">
             Easy-to-follow workouts and schedules to help you build a consistent, active lifestyle.
           </p>
@@ -256,7 +256,7 @@ export default function About(){
 
         {/* Nutrition */}
         <div className="bg-gray-800 rounded-3xl p-8 shadow-lg text-center hover:shadow-xl transition duration-300">
-          <h2 className="text-2xl font-semibold text-orange-600 mb-4">Nutrition Tips</h2>
+          <h2 className="text-2xl tracking-wider font-semibold text-orange-600 mb-4">Nutrition Tips</h2>
           <p className="text-gray-600 mb-6">
             Balanced diet suggestions and recipes to keep your body energized and mind focused.
           </p>
@@ -269,7 +269,7 @@ export default function About(){
 
         {/* Mood Tracker */}
         <div className="bg-gray-800 rounded-3xl p-8 shadow-lg text-center hover:shadow-xl transition duration-300">
-          <h2 className="text-2xl font-semibold text-orange-600 mb-4">Mood Tracker</h2>
+          <h2 className="text-2xl tracking-wider font-semibold text-orange-600 mb-4">Mood Tracker</h2>
           <p className="text-gray-200 mb-6">
             Track how you feel each day and discover patterns that help improve your emotional health.
           </p>
