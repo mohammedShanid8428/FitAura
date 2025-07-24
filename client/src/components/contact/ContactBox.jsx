@@ -53,10 +53,10 @@ export default function ContactBox() {
         {/* Left: Contact Info */}
         <div className="bg-black rounded-2xl text-white p-8 shadow-lg h-full flex flex-col justify-between">
           <div>
-            <span className="bg-lime-400 text-black font-semibold px-4 py-1 rounded-full text-sm mb-4 inline-block">
+            <span className="bg-teal-400 text-black font-semibold px-4 py-1 rounded-full text-sm mb-4 inline-block">
               Contact Us
             </span>
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-lime-400">
+            <h2 className="text-2xl md:text-3xl font-bold mb-4 text-teal-400">
               Need More Information? <br /> Get in Touch
             </h2>
             <p className="text-gray-200 mb-6">
@@ -65,20 +65,20 @@ export default function ContactBox() {
 
             <div className="space-y-4 text-sm text-white">
               <div className="flex items-center gap-3">
-                <Phone className="text-lime-400" size={20} />
+                <Phone className="text-teal-400" size={20} />
                 <p>+91 98765 43210</p>
               </div>
               <div className="flex items-center gap-3">
-                <Mail className="text-lime-400" size={20} />
+                <Mail className="text-teal-400" size={20} />
                 <p>hello@fitaura.com</p>
               </div>
               <div className="flex items-start gap-3">
-                <MapPin className="text-lime-400 mt-1" size={20} />
+                <MapPin className="text-teal-400 mt-1" size={20} />
                 <p>Office: Bangalore, India</p>
               </div>
             </div>
           </div>
-          <button className="mt-8 bg-lime-500 text-black font-semibold px-6 py-2 rounded-full hover:bg-lime-600 transition">
+          <button className="mt-8 bg-teal-500 text-black font-semibold px-6 py-2 rounded-full hover:bg-teal-600 transition">
             Back to Home
           </button>
         </div>
@@ -144,7 +144,7 @@ export default function ContactBox() {
 
             <button
               type="submit"
-              className="bg-lime-500 text-black font-semibold py-3 rounded-md md:col-span-2 hover:bg-lime-600 transition"
+              className="bg-teal-500 text-black font-semibold py-3 rounded-md md:col-span-2 hover:bg-teal-600 transition"
             >
               Send Message
             </button>
