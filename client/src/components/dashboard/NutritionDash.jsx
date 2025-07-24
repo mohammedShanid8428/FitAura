@@ -5,8 +5,7 @@ const meals = [
     type: "Breakfast",
     difficulty: "Easy",
     title: "Avocado Toast with Poached Egg",
-    image:
-      "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg",
+    image: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg",
     kcal: 320,
     carbs: "33g",
     protein: "14g",
@@ -16,8 +15,7 @@ const meals = [
     type: "Lunch",
     difficulty: "Medium",
     title: "Grilled Shrimp Tacos with Mango Salsa",
-    image:
-      "https://images.pexels.com/photos/1397513/pexels-photo-1397513.jpeg",
+    image: "https://images.pexels.com/photos/1397513/pexels-photo-1397513.jpeg",
     kcal: 480,
     carbs: "45g",
     protein: "21g",
@@ -27,8 +25,7 @@ const meals = [
     type: "Dinner",
     difficulty: "Medium",
     title: "Baked Chicken Breast with Quinoa and Kale",
-    image:
-      "https://images.pexels.com/photos/1640770/pexels-photo-1640770.jpeg",
+    image: "https://images.pexels.com/photos/1640770/pexels-photo-1640770.jpeg",
     kcal: 460,
     carbs: "38g",
     protein: "40g",
@@ -39,43 +36,40 @@ const meals = [
 export default function NutritionDash() {
   return (
     <section className="p-4 flex justify-center">
-      <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm w-full max-w-4xl">
-        <h2 className="text-lg font-semibold text-gray-800 mb-4">
-          Nutrition (Today)
+      <div className="bg-gradient-to-br from-gray-900 to-black border border-gray-700 rounded-2xl p-6 w-full max-w-4xl shadow-xl text-white">
+        <h2 className="text-xl font-bold text-lime-400 mb-5 tracking-tight">
+          🍽️ Nutrition Overview (Today)
         </h2>
 
         <div className="space-y-4">
           {meals.map((meal, index) => (
             <div
               key={index}
-              className="flex items-center gap-5 bg-gray-50 rounded-xl px-3 py-4"
+              className="flex items-center gap-5 bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-gray-700 rounded-xl px-4 py-4 transition duration-300"
             >
-              {/* Image */}
+              {/* Meal Image */}
               <img
                 src={meal.image}
                 alt={meal.title}
-                className="w-20 h-16 rounded-lg object-cover"
+                className="w-20 h-16 rounded-lg object-cover border border-gray-600"
               />
 
-              {/* Details */}
+              {/* Meal Info */}
               <div className="flex-1">
-                {/* Tags */}
-                <div className="flex items-center gap-2 text-xs mb-0.5">
-                  <span className="bg-green-100 text-green-600 px-2 py-0.5 rounded-full font-medium">
+                <div className="flex gap-2 text-xs mb-1">
+                  <span className="bg-lime-500/20 text-lime-400 font-medium px-2 py-0.5 rounded-full">
                     {meal.type}
                   </span>
-                  <span className="bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full font-medium">
+                  <span className="bg-gray-700 text-gray-300 font-medium px-2 py-0.5 rounded-full">
                     {meal.difficulty}
                   </span>
                 </div>
 
-                {/* Title */}
-                <h3 className="text-sm font-semibold text-gray-800 leading-tight">
+                <h3 className="text-sm font-semibold text-white">
                   {meal.title}
                 </h3>
 
-                {/* Nutrients */}
-                <div className="flex gap-3 text-xs text-gray-600 mt-0.5">
+                <div className="flex flex-wrap gap-3 text-xs text-gray-400 mt-1">
                   <span>🔥 {meal.kcal} kcal</span>
                   <span>🍞 {meal.carbs}</span>
                   <span>💪 {meal.protein}</span>
@@ -84,8 +78,8 @@ export default function NutritionDash() {
               </div>
 
               {/* Add Button */}
-              <button className="bg-green-500 text-white text-xs px-3 py-1.5 rounded-md hover:bg-green-600 transition">
-                Add
+              <button className="bg-lime-500 hover:bg-lime-600 text-black text-xs px-4 py-2 rounded-md font-medium transition shadow-md">
+                + Add
               </button>
             </div>
           ))}

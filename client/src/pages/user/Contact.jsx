@@ -4,12 +4,15 @@ import FAQ from "../../components/contact/Faq";
 import Contact from "../../components/contact/ContactBox";
 import ContactBox from "../../components/contact/ContactBox";
 import ContactHero from "../../components/contact/ContactHero";
+import Header from "../../components/common/Header";
+import Footer from '../../components/common/Footer';
 
 export default function Contacts() {
  
 
   return (
     <>
+    <Header/>
    <section className="bg-gray-900">
      <ContactHero/>
     <ContactBox/>
@@ -39,6 +42,7 @@ export default function Contacts() {
 
    
    </section>
+  <Footer/>
     </>
   );
 }

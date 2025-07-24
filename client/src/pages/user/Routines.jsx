@@ -17,12 +17,15 @@ import RoutinesService from "../../components/routines/RoutinesService";
 import LifeRoutines from "../../components/routines/LifeRoutines";
 import RoutinesHydration from "../../components/routines/RoutinesHydration";
 import RoutinesHistory from "../../components/routines/RoutinesHistory";
+import Header from "../../components/common/Header";
+import Footer from '../../components/common/Footer';
 
 export default function Routines() {
 
 
   return (
     <>
+    <Header/>
       
 
       <section className="bg-black">
@@ -39,7 +42,7 @@ export default function Routines() {
    
 
 
-     
+     <Footer/>
     </>
   );
 }

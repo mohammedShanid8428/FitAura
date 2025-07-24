@@ -6,6 +6,8 @@ import AdminRoutes from "./AdminRoutes";
 const AppRoutes = () => {
   return (
     <Routes>
+
+      
       {/* User routes handle everything under '/' */}
       <Route path="/*" element={<UserRoutes />} />
 

@@ -4,13 +4,15 @@ import { Users, HeartPulse,  } from "lucide-react";
 import { Link } from "react-router-dom";
 import Trainers from "../../components/about/Traniers";
 import { Salad, Repeat, Smile, Globe } from "lucide-react"; 
+import Header from "../../components/common/Header";
+import Footer from '../../components/common/Footer';
 
 // import { Button } from "../../components/ui/Button";
 
 export default function About(){
   return(
     <>
-  
+  <Header/>
     <section className="bg-black">
 
     <section className="relative h-[90vh] flex items-center justify-center text-center overflow-hidden">
@@ -287,6 +289,8 @@ export default function About(){
 
     
     </section>
+    <Footer/>
+  
     </>
   )
 }

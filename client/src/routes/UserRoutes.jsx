@@ -20,6 +20,7 @@ import RoutinesYoga from "../components/routines/RoutinesYoga";
 import RoutinesStrech from "../components/routines/RoutinesStrech";
 import RoutinePlayer from "../components/routines/RoutinePlanner";
 import RoutineComplete from "../components/routines/RoutineComplete";
+import HydrationPlan from "../components/routines/HydrationPlan";
 
 const UserRoutes = () => {
   return (
@@ -40,6 +41,7 @@ const UserRoutes = () => {
       <Route path="/mealplans" element={<MealsCards />} />
       <Route path="/nutrition/mealplanner" element={<Planner />} />
        <Route path="routines/service" element={<RoutinesService />} />
+        <Route path="routines/hydrationplan" element={<HydrationPlan/>} />
       <Route path="/routine/complete" element={<RoutineComplete />} />
         <Route path="routines/stretch" element={<RoutinesStrech />} />
         <Route path="routines/Planner" element={<RoutinePlayer />} />

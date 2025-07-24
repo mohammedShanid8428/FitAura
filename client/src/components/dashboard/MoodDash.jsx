@@ -1,59 +1,88 @@
 import React, { useState } from "react";
+import { Sparkles, Smile, Meh, Frown, Angry } from "lucide-react";
 
 const moods = [
-  { label: "Excited 😄", color: "bg-blue-400", text: "You’re feeling energetic and pumped!" },
-  { label: "Happy 😊", color: "bg-green-400", text: "Great to see you in a good mood!" },
-  { label: "Neutral 😐", color: "bg-yellow-400", text: "Balanced and calm — keep it steady." },
-  { label: "Sad 😢", color: "bg-orange-400", text: "It's okay to feel down. Take care of yourself." },
-  { label: "Angry 😡", color: "bg-red-500", text: "Try breathing exercises or a walk to release stress." },
+  {
+    label: "Excited 😄",
+    icon: <Sparkles className="text-lime-500" size={24} />,
+    description: "You’re feeling energetic and pumped!",
+    bg: "bg-lime-100",
+  },
+  {
+    label: "Happy 😊",
+    icon: <Smile className="text-lime-500" size={24} />,
+    description: "Great to see you in a good mood!",
+    bg: "bg-lime-200",
+  },
+  {
+    label: "Neutral 😐",
+    icon: <Meh className="text-yellow-500" size={24} />,
+    description: "Balanced and calm — keep it steady.",
+    bg: "bg-gray-100",
+  },
+  {
+    label: "Sad 😢",
+    icon: <Frown className="text-orange-500" size={24} />,
+    description: "It’s okay to feel down. Take care of yourself.",
+    bg: "bg-orange-100",
+  },
+  {
+    label: "Angry 😡",
+    icon: <Angry className="text-red-500" size={24} />,
+    description: "Try breathing exercises or a walk to release stress.",
+    bg: "bg-red-100",
+  },
 ];
 
 export default function MoodDash() {
-  const [currentMoodIndex, setCurrentMoodIndex] = useState(1); // Default to Happy
+  const [currentMoodIndex, setCurrentMoodIndex] = useState(1); // default: Happy
   const [moodRecovery, setMoodRecovery] = useState(60);
 
   const handleImproveMood = () => {
-    const nextMood = (currentMoodIndex + 1) % moods.length;
-    setCurrentMoodIndex(nextMood);
-    setMoodRecovery(Math.min(100, moodRecovery + 10));
+    const next = (currentMoodIndex + 1) % moods.length;
+    setCurrentMoodIndex(next);
+    setMoodRecovery((prev) => Math.min(100, prev + 10));
   };
 
   return (
-    <section className="p-6 flex justify-center">
-      <div className="bg-white rounded-xl shadow-md p-6 w-full max-w-xl text-center">
-        <h2 className="text-lg font-semibold mb-2">
-          Current Mood: <span className="text-gray-700">{moods[currentMoodIndex].label}</span>
-        </h2>
+    <section className="p-4">
+      <div className="bg-[#111] text-white rounded-2xl p-6 shadow-lg">
+        <h2 className="text-xl font-bold text-lime-400 mb-2">Mood Tracker</h2>
+        <p className="text-gray-400 mb-4">Tap on your current mood or improve your recovery!</p>
 
-        {/* Mood Meter Dial */}
-        <div className="relative w-64 h-32 mx-auto my-4">
-          <div className="absolute inset-0 flex justify-between items-center">
-            {moods.map((mood, i) => (
-              <div key={i} className={`w-10 h-20 rounded-t-full ${mood.color}`} />
-            ))}
-          </div>
-
-          {/* Pointer */}
-          <div className="absolute left-1/2 top-[40%] w-1 h-20 bg-black origin-bottom rotate-[calc(72deg*${currentMoodIndex}-144deg)] transition-transform duration-300" />
+        {/* Mood Cards */}
+        <div className="grid grid-cols-2 gap-4 mb-6">
+          {moods.map((mood, index) => (
+            <div
+              key={index}
+              onClick={() => setCurrentMoodIndex(index)}
+              className={`rounded-xl p-4 cursor-pointer transition transform hover:scale-105 shadow-md border border-gray-700 ${
+                index === currentMoodIndex ? "ring-2 ring-lime-400" : ""
+              } ${mood.bg}`}
+            >
+              <div className="flex items-center space-x-2 mb-2">
+                {mood.icon}
+                <span className="font-medium text-black">{mood.label}</span>
+              </div>
+              <p className="text-xs text-gray-700">{mood.description}</p>
+            </div>
+          ))}
         </div>
-
-        {/* Mood Explanation */}
-        <div className="text-sm text-gray-500 my-2">{moods[currentMoodIndex].text}</div>
 
         {/* Recovery Progress */}
-        <div className="text-sm text-gray-500 mb-1">Recovery Progress</div>
-        <div className="w-full bg-gray-200 rounded-full h-3 mb-2 overflow-hidden">
+        <div className="text-sm text-gray-300 mb-1">Recovery Progress</div>
+        <div className="w-full h-3 bg-gray-700 rounded-full overflow-hidden mb-2">
           <div
-            className="h-3 bg-blue-500 rounded-full"
+            className="h-3 bg-lime-400 rounded-full transition-all"
             style={{ width: `${moodRecovery}%` }}
-          />
+          ></div>
         </div>
-        <div className="font-semibold text-sm mb-4">{moodRecovery}%</div>
+        <div className="text-sm text-gray-300 mb-4">{moodRecovery}%</div>
 
-        {/* Improve Mood Button */}
+        {/* Improve Button */}
         <button
-          className="bg-gradient-to-r from-green-400 to-blue-500 text-white text-sm px-4 py-2 rounded-full shadow hover:opacity-90 transition"
           onClick={handleImproveMood}
+          className="bg-lime-500 hover:bg-lime-600 text-black font-semibold px-4 py-2 rounded-full transition"
         >
           Improve Mood
         </button>

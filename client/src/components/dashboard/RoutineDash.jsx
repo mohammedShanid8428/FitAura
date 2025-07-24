@@ -4,24 +4,22 @@ export default function StretchYogaCards() {
   const routines = [
     {
       label: "Stretch with Coach",
-      image:
-        "https://images.pexels.com/photos/4498292/pexels-photo-4498292.jpeg",
+      image: "https://images.pexels.com/photos/4498292/pexels-photo-4498292.jpeg",
       time: "20 min",
       progress: 66,
     },
     {
       label: "Morning Yoga Flow",
-      image:
-        "https://images.pexels.com/photos/3823039/pexels-photo-3823039.jpeg",
+      image: "https://images.pexels.com/photos/3823039/pexels-photo-3823039.jpeg",
       time: "30 min",
       progress: 73,
     },
   ];
 
   return (
-    <section className="p-6 max-w-4xl mx-auto">
-      <div className="border rounded-xl p-6 shadow-sm bg-white">
-        <h2 className="text-xl font-bold mb-6 text-gray-800">
+    <section className="p-6 max-w-5xl mx-auto">
+      <div className="bg-gray-900 text-gray-100 rounded-2xl p-6 shadow-md">
+        <h2 className="text-2xl font-bold mb-6 text-lime-400">
           Daily Routine Tracker
         </h2>
 
@@ -30,9 +28,9 @@ export default function StretchYogaCards() {
           {routines.map((item, index) => (
             <div
               key={index}
-              className="bg-gray-50 rounded-xl shadow-md overflow-hidden"
+              className="bg-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition"
             >
-              {/* Top Image */}
+              {/* Image */}
               <img
                 src={item.image}
                 alt={item.label}
@@ -41,25 +39,22 @@ export default function StretchYogaCards() {
 
               {/* Content */}
               <div className="p-4">
-                {/* Title */}
-                <h3 className="text-md font-semibold text-gray-800 mb-3">
+                <h3 className="text-lg font-semibold text-white mb-2">
                   {item.label}
                 </h3>
-
-                {/* Time Today */}
-                <p className="text-sm text-gray-600 mb-2">
-                  ✅ Today’s Duration: {item.time}
+                <p className="text-sm text-gray-400 mb-3">
+                  🕒 Today’s Duration: {item.time}
                 </p>
 
-                {/* Progress Bar */}
+                {/* Progress */}
                 <div>
-                  <div className="flex justify-between text-sm mb-1 text-gray-600 font-medium">
+                  <div className="flex justify-between text-sm text-gray-300 font-medium mb-1">
                     <span>Progress</span>
                     <span>{item.progress}%</span>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
+                  <div className="w-full bg-gray-700 rounded-full h-2">
                     <div
-                      className="bg-green-500 h-2 rounded-full"
+                      className="bg-lime-400 h-2 rounded-full"
                       style={{ width: `${item.progress}%` }}
                     ></div>
                   </div>
@@ -70,13 +65,16 @@ export default function StretchYogaCards() {
         </div>
 
         {/* Overall Progress */}
-        <div className="mt-6 border-t pt-4">
-          <div className="flex justify-between text-sm text-gray-600 font-medium mb-1">
+        <div className="mt-8 border-t border-gray-700 pt-4">
+          <div className="flex justify-between text-sm text-gray-300 font-medium mb-1">
             <span>Overall Progress</span>
             <span>69%</span>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
-            <div className="bg-blue-500 h-2 rounded-full" style={{ width: `69%` }}></div>
+          <div className="w-full bg-gray-700 rounded-full h-2">
+            <div
+              className="bg-lime-400 h-2 rounded-full"
+              style={{ width: `69%` }}
+            ></div>
           </div>
         </div>
       </div>

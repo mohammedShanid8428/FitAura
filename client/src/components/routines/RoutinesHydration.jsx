@@ -1,5 +1,6 @@
 import React from "react";
 import { images } from "../../assets/images";
+import { Link } from "react-router-dom";
 
 export default function RoutinesHydration() {
   return (
@@ -37,7 +38,7 @@ export default function RoutinesHydration() {
           />
         </div>
 
-        
+
         <div className="bg-[#1c1c1c] p-6 rounded-2xl shadow-xl space-y-5 text-left text-gray-300 text-md w-full md:w-1/3">
           <div>
             <h3 className="font-semibold text-blue-400">Chlorine</h3>
@@ -54,14 +55,13 @@ export default function RoutinesHydration() {
         </div>
       </div>
 
-    
+
       <div className="mt-12">
-        <a
-          href="/hydration"
-          className="bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:scale-105 transition transform duration-300 inline-block"
-        >
-          🚰 Explore Hydration Routine
-        </a>
+        <Link to="/routines/hydrationplan">
+          <span className="bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold px-8 py-3 rounded-full shadow-lg hover:scale-105 transition transform duration-300 inline-block">
+            🚰 Explore Hydration Routine
+          </span>
+        </Link>
       </div>
     </section>
   );
