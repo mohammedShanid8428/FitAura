@@ -39,12 +39,12 @@ export default function Saved({ meal, onDelete }) {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+    <div className="bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300 w-full max-w-md mx-auto">
       <div className="relative">
         <img
           src={meal.imageUrl || getFallbackImage(getPrimaryMealType(meal.mealType))}
           alt={meal.title}
-          className="w-full h-48 object-cover"
+          className="w-full h-40 sm:h-48 object-cover"
           onError={(e) => {
             e.target.src = getFallbackImage(getPrimaryMealType(meal.mealType));
           }}
@@ -53,61 +53,61 @@ export default function Saved({ meal, onDelete }) {
           {displayMealTypes(meal.mealType).slice(0, 2).map((type, index) => (
             <span
               key={index}
-              className="bg-black/70 text-white text-xs px-2 py-1 rounded-full"
+              className="bg-black/70 text-white text-[10px] sm:text-xs px-2 py-1 rounded-full"
             >
               {type}
             </span>
           ))}
           {displayMealTypes(meal.mealType).length > 2 && (
-            <span className="bg-black/70 text-white text-xs px-2 py-1 rounded-full">
+            <span className="bg-black/70 text-white text-[10px] sm:text-xs px-2 py-1 rounded-full">
               +{displayMealTypes(meal.mealType).length - 2}
             </span>
           )}
         </div>
       </div>
 
-      <div className="p-4">
-        <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-2">
+      <div className="p-3 sm:p-4">
+        <h3 className="text-base sm:text-lg font-semibold text-gray-100 mb-1 sm:mb-2 line-clamp-2">
           {meal.title}
         </h3>
 
         {meal.benefit && (
-          <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+          <p className="text-xs sm:text-sm text-gray-300 mb-2 sm:mb-3 line-clamp-2">
             {meal.benefit}
           </p>
         )}
 
         {meal.tags && meal.tags.length > 0 && (
-          <div className="flex flex-wrap gap-1 mb-3">
-            <Tag className="w-3 h-3 text-gray-400 mt-1" />
+          <div className="flex flex-wrap gap-1 mb-2 sm:mb-3">
+            <Tag className="w-3 h-3 text-gray-300 mt-1 hidden sm:block" />
             {meal.tags.slice(0, 3).map((tag, index) => (
               <span
                 key={index}
-                className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full"
+                className="text-[10px] sm:text-xs bg-blue-50 text-green-800 font-medium px-2 py-1 rounded-full"
               >
                 {tag}
               </span>
             ))}
             {meal.tags.length > 3 && (
-              <span className="text-xs text-gray-400 px-2 py-1">
-                +{meal.tags.length - 3} more
+              <span className="text-[10px] sm:text-xs text-gray-300 px-1 sm:px-2 py-1">
+                +{meal.tags.length - 3}
               </span>
             )}
           </div>
         )}
 
         <div className="flex items-center justify-between">
-          <div className="flex items-center text-xs text-gray-500">
+          <div className="flex items-center text-[10px] sm:text-xs text-gray-300">
             <Clock className="w-3 h-3 mr-1" />
             {formatDate(meal.dateAdded || meal.createdAt)}
           </div>
 
           <button
             onClick={() => onDelete(meal._id)}
-            className="flex items-center gap-1 bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-full text-xs transition-colors duration-200"
+            className="flex items-center gap-1 bg-red-500 hover:bg-red-600 text-white px-2 py-1 sm:px-3 rounded-full text-[10px] sm:text-xs transition-colors duration-200"
           >
             <Trash2 className="w-3 h-3" />
-            Remove
+            <span className="hidden sm:inline">Remove</span>
           </button>
         </div>
       </div>
