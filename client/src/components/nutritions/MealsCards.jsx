@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Bookmark, Plus, Wifi, WifiOff, RefreshCw } from "lucide-react";
 import { Button } from "../ui/Button";
 import { Card, CardContent } from "../ui/Card";
@@ -36,6 +36,52 @@ export default function MealsCards() {
   const [networkError, setNetworkError] = useState(false);
   const [lastFetchTime, setLastFetchTime] = useState(null);
   const [loadedImages, setLoadedImages] = useState({});
+
+  // Precompute counts for each sub-tab
+  const subTabCounts = useMemo(() => {
+    const counts = {};
+    
+    // Initialize counts for all main tabs and sub-tabs
+    mainTabs.forEach(mainTab => {
+      counts[mainTab] = {};
+      subTabs[mainTab].forEach(subTab => {
+        counts[mainTab][subTab] = 0;
+      });
+    });
+    
+    if (allMeals.length > 0) {
+      // Calculate counts for Daily Meals
+      subTabs["Daily Meals"].forEach(subTab => {
+        if (subTab === "All") {
+          counts["Daily Meals"]["All"] = allMeals.filter(meal => 
+            meal.mealType?.some(type => 
+              ["Breakfast", "Lunch", "Dinner", "Snacks"].includes(type)
+            )
+          ).length;
+        } else {
+          counts["Daily Meals"][subTab] = allMeals.filter(meal => 
+            meal.mealType?.includes(subTab)
+          ).length;
+        }
+      });
+      
+      // Calculate counts for Mood Routines
+      subTabs["Mood Routines"].forEach(subTab => {
+        counts["Mood Routines"][subTab] = allMeals.filter(meal => 
+          meal.mealType?.includes(subTab)
+        ).length;
+      });
+      
+      // Calculate counts for Goal Routines
+      subTabs["Goal Routines"].forEach(subTab => {
+        counts["Goal Routines"][subTab] = allMeals.filter(meal => 
+          meal.mealType?.includes(subTab)
+        ).length;
+      });
+    }
+    
+    return counts;
+  }, [allMeals]);
 
   const loadMeals = async (showRetryIndicator = false) => {
     try {
@@ -173,12 +219,12 @@ export default function MealsCards() {
     <section className="bg-gray-900 min-h-screen text-white py-10 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
-          <h1 className="text-3xl font-bold text-green-500 mb-2 tracking-wider">
+          <h1 className="text-3xl md:text-4xl font-bold text-orange-600 mb-2 tracking-wider">
             {selectedMainTab === "Daily Meals" ? "Meal Plans" : 
              selectedMainTab === "Mood Routines" ? "Mood-Based Meal Routines" : "Goal-Based Meal Routines"}
           </h1>
           {lastFetchTime && (
-            <p className="text-sm text-gray-400">
+            <p className="text-md text-gray-200">
               Last updated: {lastFetchTime.toLocaleTimeString()}
             </p>
           )}
@@ -190,7 +236,7 @@ export default function MealsCards() {
               <button
                 key={tab}
                 onClick={() => handleMainTabChange(tab)}
-                className={`px-5 py-2 rounded-full text-sm transition font-semibold ${
+                className={`px-5 py-2 rounded-full text-sm md:text-md transition font-semibold ${
                   selectedMainTab === tab
                     ? "bg-green-600 text-white shadow-lg"
                     : "bg-gray-700 text-orange-400 hover:bg-gray-600"
@@ -208,20 +254,18 @@ export default function MealsCards() {
               <button
                 key={tab}
                 onClick={() => setSelectedSubTab(tab)}
-                className={`px-4 py-1.5 rounded-full text-sm transition font-medium ${
+                className={`px-4 py-1.5 rounded-full text-sm md:text-md transition font-medium ${
                   selectedSubTab === tab
                     ? "bg-green-600 text-white shadow-lg"
                     : "bg-gray-700 text-orange-400 hover:bg-gray-600"
                 }`}
               >
-                {tab}
-                {selectedMainTab === "Daily Meals" && tab !== "All" && (
+                <div className="flex items-center">
+                  {tab}
                   <span className="ml-2 text-xs bg-white/20 px-1.5 py-0.5 rounded-full">
-                    {allMeals.filter(meal => 
-                      meal.mealType?.includes(tab)
-                    ).length}
+                    {subTabCounts[selectedMainTab]?.[tab] ?? 0}
                   </span>
-                )}
+                </div>
               </button>
             ))}
           </div>
