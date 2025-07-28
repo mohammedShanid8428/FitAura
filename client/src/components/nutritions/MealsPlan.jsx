@@ -6,7 +6,7 @@ const mealPlans = [
     title: "Daily Meal Plan",
     description:
       "Stay consistent with meals added each day to support your routine.",
-    image: "https://img.icons8.com/emoji/48/apple-emoji.png",
+    image: "https://png.pngtree.com/png-clipart/20230914/original/pngtree-fresh-food-icon-with-bread-and-produce-vector-png-image_11083821.png",
     button: "➕ Add to Daily Plan",
   },
   {
