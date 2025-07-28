@@ -52,18 +52,35 @@ export default function SavedMealsPage() {
   };
 
   const groupedSavedMeals = savedMeals.reduce((groups, meal) => {
-    const mealType = meal.mealType?.toLowerCase() || "general";
-    if (!groups[mealType]) groups[mealType] = [];
-    groups[mealType].push(meal);
+    const mealTypes = Array.isArray(meal.mealType) ? meal.mealType : [meal.mealType || "general"];
+    
+    mealTypes.forEach(type => {
+      const normalizedType = type?.toLowerCase() || "general";
+      if (!groups[normalizedType]) groups[normalizedType] = [];
+      if (!groups[normalizedType].some(m => m._id === meal._id)) {
+        groups[normalizedType].push(meal);
+      }
+    });
+    
     return groups;
   }, {});
 
-  const mealTypeOrder = ["breakfast", "lunch", "dinner", "snack", "general"];
+  const mealTypeOrder = ["breakfast", "lunch", "dinner", "snacks", "happy", "sad", "angry", "tired", "anxious", "weight loss", "weight gain", "muscle gain", "mental health", "fitness", "general"];
   const mealTypeNames = {
     breakfast: "🍳 Breakfast",
-    lunch: "🥗 Lunch",
+    lunch: "🥗 Lunch", 
     dinner: "🍽️ Dinner",
-    snack: "🍿 Snacks",
+    snacks: "🍿 Snacks",
+    happy: "😊 Happy Mood",
+    sad: "😢 Sad Mood",
+    angry: "😠 Angry Mood", 
+    tired: "😴 Tired Mood",
+    anxious: "😰 Anxious Mood",
+    "weight loss": "⚖️ Weight Loss",
+    "weight gain": "💪 Weight Gain",
+    "muscle gain": "🏋️ Muscle Gain", 
+    "mental health": "🧠 Mental Health",
+    fitness: "🏃 Fitness",
     general: "🍴 Other Meals",
   };
 

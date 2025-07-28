@@ -11,7 +11,6 @@ import Authentication from "../pages/user/Authentication";
 import MoodSection from "../components/mood/MoodSection";
 import Landing from "../pages/user/Landing";
 import NutritionsServices from "../components/nutritions/NutritionsServices";
-import NutritionsCards from "../components/nutritions/NutritionsCards";
 import MealPlans from "../components/nutritions/MealsPlan";
 import MealsCards from "../components/nutritions/MealsCards"; 
 import Planner from "../components/nutritions/NutritionPlanner";
@@ -22,7 +21,7 @@ import RoutinePlayer from "../components/routines/RoutinePlanner";
 import RoutineComplete from "../components/routines/RoutineComplete";
 import HydrationPlan from "../components/routines/HydrationPlan";
 import Saved from "../components/nutritions/Saved";
-import SavedMealsPage from "../components/nutritions/SavedMealsPage";
+import NutritionGuidePage from "../components/nutritions/NutritionGuide";
 
 const UserRoutes = () => {
   return (
@@ -39,7 +38,6 @@ const UserRoutes = () => {
       <Route path="/mood/:mood" element={<MoodSection />} />
       <Route path="/nutrition/services" element={<NutritionsServices />} />
       <Route path="/nutrition/mealsplan" element={<MealPlans />} />
-      <Route path="/nutrition-guide/:mood?" element={<NutritionsCards />} />
       <Route path="/mealplans" element={<MealsCards />} />
       <Route path="/nutrition/mealplanner" element={<Planner />} />
        <Route path="routines/service" element={<RoutinesService />} />
@@ -49,7 +47,7 @@ const UserRoutes = () => {
         <Route path="routines/Planner" element={<RoutinePlayer />} />
         <Route path="routines/yoga" element={<RoutinesYoga />} />
         <Route path="routines/save" element={<Saved/>} />
-        <Route path="/saved-meals" element={<SavedMealsPage />} />
+        <Route path="/nutrition-guide/:category" element={<NutritionGuidePage />} />
     </Routes>
   );
 };

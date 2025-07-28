@@ -22,7 +22,7 @@ export default function NutritionsServices() {
           Our Mood & Goal-Based <br /> <span className="text-orange-600"> Nutrition Plans</span>
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {services.map((item, index) => (
             <div
               key={index}
@@ -33,7 +33,7 @@ export default function NutritionsServices() {
                 alt={item.title}
                 className="w-full h-44 object-cover rounded-t-2xl"
               />
-
+              
               <div className="p-5">
                 <h3 className="text-lg font-semibold uppercase text-green-400 mb-2 group-hover:text-green-300 transition">
                   {item.title}
@@ -45,15 +45,15 @@ export default function NutritionsServices() {
                 </p>
 
                 <div className="flex flex-wrap gap-4 justify-center">
-                  <Link to={`/nutrition-guide/${item.title.toLowerCase()}`}>
+                  <Link to={`/nutrition-guide/${item.title.toLowerCase().replace(' ', '-')}`}>
                     <button className="text-xs font-semibold bg-green-500 hover:bg-green-600 text-white py-2 px-5 rounded-full shadow transition">
-                      View More
+                      View Meals
                     </button>
                   </Link>
                   <Link to="/nutrition/mealplanner">
-                  <button className="text-xs tracking-wide font-semibold bg-orange-500 hover:bg-orange-600 text-white py-2 px-6 rounded-full shadow transition">
-                    Add to Plan
-                  </button>
+                    <button className="text-xs tracking-wide font-semibold bg-orange-500 hover:bg-orange-600 text-white py-2 px-6 rounded-full shadow transition">
+                      Add to Plan
+                    </button>
                   </Link>
                 </div>
               </div>

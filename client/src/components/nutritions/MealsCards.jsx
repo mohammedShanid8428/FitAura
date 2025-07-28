@@ -5,14 +5,21 @@ import { Card, CardContent } from "../ui/Card";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { addMealToPlanner, fetchAllMeals } from "../../services/allApis";
+import { formatDistanceToNow } from "date-fns";
 
-const tabs = ["All", "Breakfast", "Lunch", "Dinner", "Snack"];
+const mainTabs = ["Daily Meals", "Mood Routines", "Goal Routines"];
+
+const subTabs = {
+  "Daily Meals": ["All", "Breakfast", "Lunch", "Dinner", "Snacks"],
+  "Mood Routines": ["Happy", "Sad", "Angry", "Tired", "Anxious"],
+  "Goal Routines": ["Weight Loss", "Weight Gain", "Muscle Gain", "Mental Health", "Fitness"]
+};
 
 const fallbackImages = {
   Breakfast: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDMwMCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMTUwIiBmaWxsPSIjRkY5NTAwIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iNzUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5CcmVha2Zhc3Q8L3RleHQ+Cjwvc3ZnPg==',
   Lunch: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDMwMCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMTUwIiBmaWxsPSIjMzRBODUzIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iNzUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5MdW5jaDwvdGV4dD4KPC9zdmc+',
   Dinner: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDMwMCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMTUwIiBmaWxsPSIjNzAzN0ZGIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iNzUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5EaW5uZXI8L3RleHQ+Cjwvc3ZnPg==',
-  Snack: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDMwMCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMTUwIiBmaWxsPSIjRkY2NkI5Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iNzUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5TbmFjazwvdGV4dD4KPC9zdmc+',
+  Snacks: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDMwMCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMTUwIiBmaWxsPSIjRkY2NkI5Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iNzUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5TbmFja3M8L3RleHQ+Cjwvc3ZnPg==',
   default: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjE1MCIgdmlld0JveD0iMCAwIDMwMCAxNTAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iMTUwIiBmaWxsPSIjNkI3Mjg0Ii8+Cjx0ZXh0IHg9IjE1MCIgeT0iNzUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZmlsbD0id2hpdGUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5NZWFsIEltYWdlPC90ZXh0Pgo8L3N2Zz4='
 };
 
@@ -21,12 +28,14 @@ const getFallbackImage = (mealType) => {
 };
 
 export default function MealsCards() {
-  const [selectedTab, setSelectedTab] = useState("All");
+  const [selectedMainTab, setSelectedMainTab] = useState("Daily Meals");
+  const [selectedSubTab, setSelectedSubTab] = useState("All");
   const [allMeals, setAllMeals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [retrying, setRetrying] = useState(false);
   const [networkError, setNetworkError] = useState(false);
   const [lastFetchTime, setLastFetchTime] = useState(null);
+  const [loadedImages, setLoadedImages] = useState({});
 
   const loadMeals = async (showRetryIndicator = false) => {
     try {
@@ -87,13 +96,65 @@ export default function MealsCards() {
     loadMeals(true);
   };
 
-  const filteredMeals = selectedTab === "All" 
-    ? allMeals 
-    : allMeals.filter((meal) => meal.mealType === selectedTab);
+  const handleMainTabChange = (tab) => {
+    setSelectedMainTab(tab);
+    if (tab === "Daily Meals") {
+      setSelectedSubTab("All");
+    } else if (tab === "Mood Routines") {
+      setSelectedSubTab("Happy");
+    } else {
+      setSelectedSubTab("Weight Loss");
+    }
+  };
+
+  const filteredMeals = () => {
+    if (selectedMainTab === "Daily Meals") {
+      if (selectedSubTab === "All") {
+        return allMeals.filter(meal =>
+          meal.mealType?.some(type =>
+            ["Breakfast", "Lunch", "Dinner", "Snacks"].includes(type)
+          )
+        );
+      }
+      return allMeals.filter(meal =>
+        meal.mealType?.includes(selectedSubTab)
+      );
+    } else if (selectedMainTab === "Mood Routines") {
+      return allMeals.filter(meal =>
+        meal.mealType?.includes(selectedSubTab)
+      );
+    } else {
+      return allMeals.filter(meal =>
+        meal.mealType?.includes(selectedSubTab)
+      );
+    }
+  };
+
+  const currentMeals = filteredMeals();
+
+  const getMealCategory = (meal) => {
+    if (selectedMainTab === "Daily Meals" && selectedSubTab !== "All") {
+      return selectedSubTab;
+    }
+    
+    const category = meal.mealType?.find(type => 
+      subTabs[selectedMainTab].includes(type)
+    );
+    
+    return category || meal.mealType?.[0] || "Meal";
+  };
 
   const handleSaveMeal = async (meal) => {
     try {
-      await addMealToPlanner(meal);
+      const mealData = {
+        title: meal.title,
+        imageUrl: meal.imageUrl || getFallbackImage(getMealCategory(meal)),
+        tags: meal.tags || [],
+        benefit: meal.benefit || "Nutritious and delicious meal option",
+        mealType: meal.mealType || ["general"]
+      };
+
+      await addMealToPlanner(mealData);
       toast.success(`${meal.title} added to planner!`);
     } catch (error) {
       console.error('❌ Error adding to planner:', error);
@@ -108,18 +169,13 @@ export default function MealsCards() {
     }
   };
 
-  const handleImageError = (e, mealType) => {
-    console.log('🖼️ Image failed to load, using fallback for:', mealType);
-    e.target.src = getFallbackImage(mealType);
-    e.target.onerror = null; // Prevent infinite loop
-  };
-
   return (
     <section className="bg-gray-900 min-h-screen text-white py-10 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
           <h1 className="text-3xl font-bold text-green-500 mb-2 tracking-wider">
-            Meal Plans
+            {selectedMainTab === "Daily Meals" ? "Meal Plans" : 
+             selectedMainTab === "Mood Routines" ? "Mood-Based Meal Routines" : "Goal-Based Meal Routines"}
           </h1>
           {lastFetchTime && (
             <p className="text-sm text-gray-400">
@@ -128,22 +184,42 @@ export default function MealsCards() {
           )}
         </div>
 
-        <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
-          <div className="flex flex-wrap justify-center gap-3">
-            {tabs.map((tab) => (
+        <div className="flex justify-center mb-6">
+          <div className="flex flex-wrap justify-center gap-3 bg-gray-800 p-2 rounded-full">
+            {mainTabs.map((tab) => (
               <button
                 key={tab}
-                onClick={() => setSelectedTab(tab)}
+                onClick={() => handleMainTabChange(tab)}
                 className={`px-5 py-2 rounded-full text-sm transition font-semibold ${
-                  selectedTab === tab
+                  selectedMainTab === tab
                     ? "bg-green-600 text-white shadow-lg"
                     : "bg-gray-700 text-orange-400 hover:bg-gray-600"
                 }`}
               >
                 {tab}
-                {tab !== "All" && (
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4">
+          <div className="flex flex-wrap justify-center gap-3">
+            {subTabs[selectedMainTab].map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setSelectedSubTab(tab)}
+                className={`px-4 py-1.5 rounded-full text-sm transition font-medium ${
+                  selectedSubTab === tab
+                    ? "bg-green-600 text-white shadow-lg"
+                    : "bg-gray-700 text-orange-400 hover:bg-gray-600"
+                }`}
+              >
+                {tab}
+                {selectedMainTab === "Daily Meals" && tab !== "All" && (
                   <span className="ml-2 text-xs bg-white/20 px-1.5 py-0.5 rounded-full">
-                    {allMeals.filter(meal => meal.mealType === tab).length}
+                    {allMeals.filter(meal => 
+                      meal.mealType?.includes(tab)
+                    ).length}
                   </span>
                 )}
               </button>
@@ -188,15 +264,34 @@ export default function MealsCards() {
         )}
 
         {loading ? (
-          <div className="text-center py-20">
-            <div className="inline-block w-8 h-8 border-4 border-green-500 border-t-transparent rounded-full animate-spin mb-4"></div>
-            <p className="text-gray-300">Loading delicious meals...</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {[...Array(8)].map((_, i) => (
+              <Card key={i} className="overflow-hidden rounded-xl bg-gray-800 animate-pulse">
+                <div className="bg-gray-700 h-44 w-full"></div>
+                <CardContent className="p-4 space-y-3">
+                  <div className="h-6 bg-gray-700 rounded"></div>
+                  <div className="h-4 bg-gray-700 rounded"></div>
+                  <div className="h-4 bg-gray-700 rounded w-3/4"></div>
+                  <div className="flex gap-2 pt-2">
+                    <div className="h-8 bg-gray-700 rounded flex-1"></div>
+                    <div className="h-8 bg-gray-700 rounded flex-1"></div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
-        ) : filteredMeals.length === 0 ? (
+        ) : currentMeals.length === 0 ? (
           <div className="text-center py-20">
             <div className="bg-gray-800 rounded-lg p-8 max-w-md mx-auto">
               <h3 className="text-xl font-semibold text-gray-300 mb-2">
-                {selectedTab === "All" ? "No meals available" : `No ${selectedTab.toLowerCase()} meals found`}
+                {selectedMainTab === "Daily Meals" 
+                  ? selectedSubTab === "All" 
+                    ? "No meals available" 
+                    : `No ${selectedSubTab.toLowerCase()} meals found`
+                  : selectedMainTab === "Mood Routines"
+                    ? `No meals for ${selectedSubTab.toLowerCase()} mood`
+                    : `No meals for ${selectedSubTab.toLowerCase()} goal`
+                }
               </h3>
               <p className="text-gray-400 mb-4">
                 {networkError 
@@ -204,9 +299,9 @@ export default function MealsCards() {
                   : "Meals will appear here once they're added by the admin."
                 }
               </p>
-              {selectedTab !== "All" && (
+              {selectedMainTab === "Daily Meals" && selectedSubTab !== "All" && (
                 <button
-                  onClick={() => setSelectedTab("All")}
+                  onClick={() => setSelectedSubTab("All")}
                   className="text-green-400 hover:text-green-300 text-sm underline"
                 >
                   View all categories
@@ -218,94 +313,120 @@ export default function MealsCards() {
           <>
             <div className="mb-4 text-center">
               <p className="text-gray-400 text-sm">
-                Showing {filteredMeals.length} {selectedTab === "All" ? "meals" : `${selectedTab.toLowerCase()} meals`}
+                Showing {currentMeals.length} {selectedMainTab === "Daily Meals" 
+                  ? selectedSubTab === "All" 
+                    ? "meals" 
+                    : `${selectedSubTab.toLowerCase()} meals`
+                  : selectedMainTab === "Mood Routines"
+                    ? `mood-based meals for ${selectedSubTab}`
+                    : `goal-based meals for ${selectedSubTab}`
+                }
               </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredMeals.map((meal) => (
-                <Card
-                  key={meal._id}
-                  className="overflow-hidden rounded-xl bg-white/10 backdrop-blur shadow hover:shadow-xl transition-all duration-300 hover:scale-105"
-                >
-                  <div className="relative">
-                    <img
-                      src={meal.imageUrl || getFallbackImage(meal.mealType)}
-                      alt={meal.title}
-                      className="h-44 w-full object-cover"
-                      onError={(e) => handleImageError(e, meal.mealType)}
-                    />
-                    <div className="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded-full">
-                      {meal.mealType}
-                    </div>
-                  </div>
-
-                  <CardContent className="p-4 space-y-3">
-                    <h3 className="text-lg font-semibold text-green-400 line-clamp-2">
-                      {meal.title}
-                    </h3>
-
-                    <p className="text-sm text-gray-300 line-clamp-2">
-                      {meal.benefit || "Nutritious and delicious meal option"}
-                    </p>
-
-                    {meal.tags && meal.tags.length > 0 && (
-                      <div className="flex flex-wrap gap-1">
-                        {meal.tags.slice(0, 3).map((tag, i) => (
-                          <span
-                            key={i}
-                            className="text-xs bg-green-200 text-green-900 px-2 py-1 rounded-full"
-                          >
-                            #{tag}
-                          </span>
-                        ))}
-                        {meal.tags.length > 3 && (
-                          <span className="text-xs text-gray-400 px-2 py-1">
-                            +{meal.tags.length - 3} more
-                          </span>
-                        )}
+              {currentMeals.map((meal) => {
+                const mealCategory = getMealCategory(meal);
+                return (
+                  <Card
+                    key={meal._id}
+                    className="overflow-hidden rounded-xl bg-white/10 backdrop-blur shadow hover:shadow-xl transition-all duration-300 hover:scale-105"
+                  >
+                    <div className="relative">
+                      <img
+                        src={loadedImages[meal._id] || meal.imageUrl || getFallbackImage(mealCategory)}
+                        alt={meal.title}
+                        className="h-44 w-full object-cover"
+                        onLoad={() => setLoadedImages(prev => ({
+                          ...prev,
+                          [meal._id]: meal.imageUrl
+                        }))}
+                        onError={(e) => {
+                          e.target.src = getFallbackImage(mealCategory);
+                          setLoadedImages(prev => ({
+                            ...prev,
+                            [meal._id]: getFallbackImage(mealCategory)
+                          }));
+                        }}
+                      />
+                      <div className="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded-full">
+                        {mealCategory}
                       </div>
-                    )}
-
-                    <div className="flex gap-2 pt-2">
-                      <Button
-                        variant="default"
-                        size="sm"
-                        onClick={() => handleSaveMeal(meal)}
-                        className="flex-1 bg-green-600 hover:bg-green-700 text-white"
-                      >
-                        <Bookmark className="w-4 h-4 mr-1" />
-                        Save
-                      </Button>
-                      <Button
-                        variant="default"
-                        size="sm"
-                        onClick={() => handleSaveMeal(meal)}
-                        className="flex-1 bg-orange-600 hover:bg-orange-700 text-white"
-                      >
-                        <Plus className="w-4 h-4 mr-1" />
-                        Add
-                      </Button>
                     </div>
-                  </CardContent>
-                </Card>
-              ))}
+
+                    <CardContent className="p-4 space-y-3">
+                      <h3 className="text-lg font-semibold text-green-400 line-clamp-2">
+                        {meal.title}
+                      </h3>
+
+                      <p className="text-sm text-gray-300 line-clamp-2">
+                        {meal.benefit || "Nutritious and delicious meal option"}
+                      </p>
+
+                      {meal.tags && meal.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-1">
+                          {meal.tags.slice(0, 3).map((tag, i) => (
+                            <span
+                              key={i}
+                              className="text-xs bg-green-200 text-green-900 px-2 py-1 rounded-full"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                          {meal.tags.length > 3 && (
+                            <span className="text-xs text-gray-400 px-2 py-1">
+                              +{meal.tags.length - 3} more
+                            </span>
+                          )}
+                        </div>
+                      )}
+
+                      <div className="flex gap-2 pt-2">
+                        <Button
+                          variant="default"
+                          size="sm"
+                          onClick={() => handleSaveMeal(meal)}
+                          className="flex-1 bg-green-600 hover:bg-green-700 text-white"
+                        >
+                          <Bookmark className="w-4 h-4 mr-1" />
+                          Save
+                        </Button>
+                        <Button
+                          variant="default"
+                          size="sm"
+                          onClick={() => handleSaveMeal(meal)}
+                          className="flex-1 bg-orange-600 hover:bg-orange-700 text-white"
+                        >
+                          <Plus className="w-4 h-4 mr-1" />
+                          Add
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
           </>
         )}
 
         <div className="fixed bottom-4 right-4 z-50">
-          {networkError ? (
-            <div className="bg-red-500 text-white px-3 py-2 rounded-full shadow-lg flex items-center gap-2">
-              <WifiOff className="w-4 h-4" />
-              <span className="text-sm">Offline</span>
-            </div>
-          ) : (
-            <div className="bg-green-500 text-white px-3 py-2 rounded-full shadow-lg flex items-center gap-2 opacity-50">
-              <Wifi className="w-4 h-4" />
-              <span className="text-sm">Online</span>
-            </div>
-          )}
+          <div className={`${networkError ? 'bg-red-500' : 'bg-green-500'} text-white px-3 py-2 rounded-full shadow-lg flex items-center gap-2`}>
+            {networkError ? (
+              <>
+                <WifiOff className="w-4 h-4" />
+                <span className="text-sm">Offline - Data may be outdated</span>
+              </>
+            ) : (
+              <>
+                <Wifi className="w-4 h-4" />
+                <span className="text-sm">
+                  {lastFetchTime 
+                    ? `Online - Synced ${formatDistanceToNow(lastFetchTime, { addSuffix: true })}`
+                    : 'Online - Syncing...'}
+                </span>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </section>

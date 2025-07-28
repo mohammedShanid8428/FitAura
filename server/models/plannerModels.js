@@ -19,10 +19,8 @@ const mealPlannerSchema = new mongoose.Schema({
     default: ''
   },
   mealType: {
-    type: String,
-    enum: ['breakfast', 'lunch', 'dinner', 'snack', 'general'],
-    default: 'general',
-    lowercase: true
+    type: [String],
+    default: ['general']
   },
   dateAdded: {
     type: Date,
@@ -30,13 +28,12 @@ const mealPlannerSchema = new mongoose.Schema({
   },
   day: {
     type: String,
-    default: null // For future scheduling feature
+    default: null
   }
 }, {
   timestamps: true
 });
 
-// Index for faster queries
 mealPlannerSchema.index({ mealType: 1 });
 mealPlannerSchema.index({ dateAdded: -1 });
 
