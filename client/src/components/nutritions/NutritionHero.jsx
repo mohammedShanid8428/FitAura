@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { images } from "../../assets/images"; // Adjust the path
+import { images } from "../../assets/images";
+import { Link } from "react-router-dom";
 
 const slides = [
   {
@@ -59,12 +60,14 @@ export default function AutoChangingSlide() {
           <div className="flex gap-6 flex-wrap">
             <a href="https://www.healthline.com/nutrition/50-super-healthy-foods">
               <button className="bg-orange-500 text-gray-800 px-8 py-3 rounded shadow hover:bg-orange-600 text-md">
-              MORE ABOUT
-            </button>
+                MORE ABOUT
+              </button>
             </a>
-            <button className="flex items-center border border-gray-300 px-6 py-2 rounded hover:bg-gray-200 text-md">
-              VIEW SECTION
-            </button>
+            <Link to="/nutrition/services">
+              <button className="flex items-center border border-gray-300 px-6 py-2 rounded hover:bg-gray-200 text-md">
+                VIEW SECTION
+              </button>
+            </Link>
           </div>
         </div>
       </div>

@@ -15,7 +15,7 @@ const services = [
 
 export default function NutritionsServices() {
   return (
-    <section className="py-16 text-center px-6">
+    <section className="py-16 text-center px-6 bg-gray-900">
       <div className="max-w-6xl mx-auto">
         <p className="uppercase text-xs text-gray-400 mb-2 tracking-wide">Our Services</p>
         <h2 className="text-3xl md:text-4xl font-extrabold mb-12 text-green-400 tracking-wide">
