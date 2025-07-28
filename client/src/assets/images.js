@@ -18,6 +18,7 @@ import modal21 from './images/modal21.avif'
 import modal14 from './images/modal14.jpg'
 import modal15 from './images/modal15.png'
 import modal20 from './images/modal20.png'
+import modal23 from './images/modal23.jpeg'
 import service1 from './images/service1.jpg'
 import service2 from './images/service2.jpg'
 import service3 from './images/service3.jpg'
@@ -63,6 +64,7 @@ export const images = {
   modal10,
   modal11,
   modal12,
+  modal23,
 modal13,
   modal14,
   modal15,

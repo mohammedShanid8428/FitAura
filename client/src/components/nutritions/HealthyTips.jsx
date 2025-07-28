@@ -1,5 +1,5 @@
 import React from "react";
-import { serviceImg } from "../../assets/images";
+import { serviceImg,images } from "../../assets/images";
 
 const healthyPoints = [
   "Improved physical health",
@@ -41,7 +41,7 @@ export default function HealthyTips() {
               className="rounded-md object-cover w-full h-40"
             />
             <img
-              src={serviceImg.service3}
+              src={images.modal23}
               alt="Weights and veggies"
               className="col-span-2 rounded-md object-cover w-full h-40"
             />
