@@ -102,3 +102,46 @@ export const deleteRoutineApi = async (id) => {
 };
 
 
+export const fetchAllMoods = async () => 
+  await commonApi(`${base_url}/moods/getallmoods`, "GET");
+
+export const fetchMoodByType = async (moodType) => 
+  await commonApi(`${base_url}/moods/getmood/${moodType}`, "GET");
+
+// Admin APIs
+export const createMood = async (moodData) => 
+  await commonApi(`${base_url}/moods/create`, "POST", moodData);
+
+export const updateMood = async (moodType, moodData) => 
+  await commonApi(`${base_url}/moods/update/${moodType}`, "PUT", moodData);
+
+export const updateMoodSection = async (moodType, section, sectionData) => 
+  await commonApi(`${base_url}/moods/update/${moodType}/${section}`, "PUT", sectionData);
+
+export const deleteMood = async (moodType) => 
+  await commonApi(`${base_url}/moods/delete/${moodType}`, "DELETE");
+
+export const bulkUpdateMoods = async (moodsData) => 
+  await commonApi(`${base_url}/moods/bulk-update`, "PUT", { moods: moodsData });
+
+// Specific section update APIs for easier use
+export const updateHeroSection = async (moodType, heroData) => 
+  await updateMoodSection(moodType, 'hero', heroData);
+
+export const updateEnhanceSection = async (moodType, enhanceData) => 
+  await updateMoodSection(moodType, 'enhance', enhanceData);
+
+export const updateNutritionSection = async (moodType, nutritionData) => 
+  await updateMoodSection(moodType, 'nutrition', nutritionData);
+
+export const updateRoutineSection = async (moodType, routineData) => 
+  await updateMoodSection(moodType, 'routine', routineData);
+
+export const updateOurTipsSection = async (moodType, ourTipsData) => 
+  await updateMoodSection(moodType, 'ourTips', ourTipsData);
+
+export const updateDailyChallengeSection = async (moodType, dailyChallengeData) => 
+  await updateMoodSection(moodType, 'dailyChallenge', dailyChallengeData);
+
+export const updateAffirmationSection = async (moodType, affirmationData) => 
+  await updateMoodSection(moodType, 'affirmation', affirmationData);

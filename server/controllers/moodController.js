@@ -1,55 +1,208 @@
+// controllers/moodController.js
 const Mood = require('../models/moodModel');
 
-// GET all moods
-exports.getAllMoods = async (req, res) => {
+// Get all moods
+const getAllMoods = async (req, res) => {
   try {
     const moods = await Mood.find();
-    res.json(moods);   // Always return array
+    res.status(200).json({
+      success: true,
+      data: moods
+    });
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching moods.' });
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching moods',
+      error: error.message
+    });
   }
 };
 
-// GET single mood by ID
-exports.getMoodById = async (req, res) => {
+// Get mood by type
+const getMoodByType = async (req, res) => {
   try {
-    const mood = await Mood.findById(req.params.id);
-    if (!mood) return res.status(404).json({ message: 'Mood not found.' });
-    res.json(mood);
+    const { moodType } = req.params;
+    const mood = await Mood.findOne({ moodType });
+    
+    if (!mood) {
+      return res.status(404).json({
+        success: false,
+        message: 'Mood not found'
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      data: mood
+    });
   } catch (error) {
-    res.status(500).json({ message: 'Error fetching mood.' });
+    res.status(500).json({
+      success: false,
+      message: 'Error fetching mood',
+      error: error.message
+    });
   }
 };
 
-// POST mood
-exports.addMood = async (req, res) => {
+// Create new mood
+const createMood = async (req, res) => {
   try {
-    const newMood = new Mood(req.body);
-    await newMood.save();
-    res.status(201).json(newMood);
+    const moodData = req.body;
+    const existingMood = await Mood.findOne({ moodType: moodData.moodType });
+    
+    if (existingMood) {
+      return res.status(400).json({
+        success: false,
+        message: 'Mood type already exists'
+      });
+    }
+
+    const newMood = new Mood(moodData);
+    const savedMood = await newMood.save();
+    
+    res.status(201).json({
+      success: true,
+      message: 'Mood created successfully',
+      data: savedMood
+    });
   } catch (error) {
-    res.status(500).json({ message: 'Error adding mood.' });
+    res.status(500).json({
+      success: false,
+      message: 'Error creating mood',
+      error: error.message
+    });
   }
 };
 
-// PUT mood
-exports.updateMood = async (req, res) => {
+// Update mood
+const updateMood = async (req, res) => {
   try {
-    const updatedMood = await Mood.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!updatedMood) return res.status(404).json({ message: 'Mood not found.' });
-    res.json(updatedMood);
+    const { moodType } = req.params;
+    const updates = req.body;
+    
+    const updatedMood = await Mood.findOneAndUpdate(
+      { moodType },
+      updates,
+      { new: true, runValidators: true }
+    );
+    
+    if (!updatedMood) {
+      return res.status(404).json({
+        success: false,
+        message: 'Mood not found'
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'Mood updated successfully',
+      data: updatedMood
+    });
   } catch (error) {
-    res.status(500).json({ message: 'Error updating mood.' });
+    res.status(500).json({
+      success: false,
+      message: 'Error updating mood',
+      error: error.message
+    });
   }
 };
 
-// DELETE mood
-exports.deleteMood = async (req, res) => {
+// Update specific section of mood
+const updateMoodSection = async (req, res) => {
   try {
-    const deletedMood = await Mood.findByIdAndDelete(req.params.id);
-    if (!deletedMood) return res.status(404).json({ message: 'Mood not found.' });
-    res.json({ message: 'Mood deleted successfully.' });
+    const { moodType, section } = req.params;
+    const updates = req.body;
+    
+    const updateQuery = {};
+    updateQuery[section] = updates;
+    
+    const updatedMood = await Mood.findOneAndUpdate(
+      { moodType },
+      { $set: updateQuery },
+      { new: true, runValidators: true }
+    );
+    
+    if (!updatedMood) {
+      return res.status(404).json({
+        success: false,
+        message: 'Mood not found'
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: `${section} section updated successfully`,
+      data: updatedMood
+    });
   } catch (error) {
-    res.status(500).json({ message: 'Error deleting mood.' });
+    res.status(500).json({
+      success: false,
+      message: `Error updating ${section} section`,
+      error: error.message
+    });
   }
+};
+
+// Delete mood
+const deleteMood = async (req, res) => {
+  try {
+    const { moodType } = req.params;
+    const deletedMood = await Mood.findOneAndDelete({ moodType });
+    
+    if (!deletedMood) {
+      return res.status(404).json({
+        success: false,
+        message: 'Mood not found'
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'Mood deleted successfully'
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Error deleting mood',
+      error: error.message
+    });
+  }
+};
+
+// Bulk update moods
+const bulkUpdateMoods = async (req, res) => {
+  try {
+    const { moods } = req.body;
+    const updatePromises = moods.map(moodData => 
+      Mood.findOneAndUpdate(
+        { moodType: moodData.moodType },
+        moodData,
+        { new: true, upsert: true, runValidators: true }
+      )
+    );
+    
+    const updatedMoods = await Promise.all(updatePromises);
+    
+    res.status(200).json({
+      success: true,
+      message: 'Moods updated successfully',
+      data: updatedMoods
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Error bulk updating moods',
+      error: error.message
+    });
+  }
+};
+
+module.exports = {
+  getAllMoods,
+  getMoodByType,
+  createMood,
+  updateMood,
+  updateMoodSection,
+  deleteMood,
+  bulkUpdateMoods
 };

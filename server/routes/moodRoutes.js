@@ -1,12 +1,25 @@
+// routes/moodRoutes.js
 const express = require('express');
 const router = express.Router();
-const moodController = require('../controllers/moodController');
+const {
+  getAllMoods,
+  getMoodByType,
+  createMood,
+  updateMood,
+  updateMoodSection,
+  deleteMood,
+  bulkUpdateMoods
+} = require('../controllers/moodController');
 
-// API Endpoints
-router.get('/', moodController.getAllMoods);                  // GET All Moods
-router.get('/:id', moodController.getMoodById);               // GET Single Mood
-router.post('/', moodController.addMood);                     // POST Add Mood
-router.put('/:id', moodController.updateMood);                // PUT Update Mood
-router.delete('/:id', moodController.deleteMood);             // DELETE Mood
+// Public routes (for user frontend)
+router.get('/getallmoods', getAllMoods);
+router.get('/getmood/:moodType', getMoodByType);
+
+// Admin routes (for admin panel)
+router.post('/create', createMood);
+router.put('/update/:moodType', updateMood);
+router.put('/update/:moodType/:section', updateMoodSection);
+router.delete('/delete/:moodType', deleteMood);
+router.put('/bulk-update', bulkUpdateMoods);
 
 module.exports = router;
