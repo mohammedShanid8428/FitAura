@@ -1,194 +1,120 @@
 import React, { useState, useEffect } from "react";
-import { fetchAllRoutines } from "../../services/allApis";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
+import { exerciseImg, yogaGif } from "../../assets/images";
+
+// --- Fitness Exercises ---
+const fitnessExercises = [
+  { id: 1, title: "Kneeling Back Rotation Stretch (female)", image: exerciseImg.exercise1 },
+  { id: 2, title: "1 2 Stick Drill (male)", image: exerciseImg.exercise2 },
+  { id: 3, title: "1 to 2 Jump Box (male)", image: exerciseImg.exercise3 },
+  { id: 4, title: "123 Back Drill (male)", image: exerciseImg.exercise4 },
+  { id: 5, title: "2 to 1 Jump Box (male)", image: exerciseImg.exercise5 },
+  { id: 6, title: "3 4 Sit up (female)", image: exerciseImg.exercise6 },
+  { id: 7, title: "3 Leg Chaturanga Pose", image: exerciseImg.exercise7 },
+  { id: 8, title: "3 Leg Dog Pose (female)", image: exerciseImg.exercise8 },
+  { id: 9, title: "Side Plank", image: exerciseImg.exercise9 },
+  { id: 10, title: "Wall Squat", image: exerciseImg.exercise10 },
+  { id: 11, title: "Mountain Climbers", image: exerciseImg.exercise11 },
+  { id: 12, title: "Bridge Pose", image: exerciseImg.exercise12 },
+];
+
+// --- Yoga Sessions ---
+const yogaExercises = [
+  { id: 1, title: "🌞 Sun Salutation (Surya Namaskar)", image: yogaGif.yoga1 },
+  { id: 2, title: "🧘‍♀️ Cat-Cow Stretch", image: yogaGif.yoga2 },
+  { id: 3, title: "🌬️ Pranayama Breathing", image: yogaGif.yoga3 },
+  { id: 4, title: "🪷 Child’s Pose", image: yogaGif.yoga4 },
+  { id: 5, title: "🦶 Downward Dog", image: yogaGif.yoga5 },
+  { id: 6, title: "🧍‍♂️ Warrior II", image: yogaGif.yoga6 },
+  { id: 7, title: "🦋 Butterfly Pose", image: yogaGif.yoga1 },
+  { id: 8, title: "🔄 Seated Twist", image: yogaGif.yoga2 },
+  { id: 9, title: "💤 Corpse Pose (Savasana)", image: yogaGif.yoga3 },
+];
 
 export default function RoutinePlayer() {
-  const [routines, setRoutines] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isRunning, setIsRunning] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const type = params.get("type") || "fitness"; // default to "fitness"
+
+  const [index, setIndex] = useState(0);
   const [timeLeft, setTimeLeft] = useState(30);
   const [isPaused, setIsPaused] = useState(false);
 
-  // ✅ New state to track completed routines + duration
-  const [progressState, setProgressState] = useState({
-    completedRoutines: [],
-    totalDuration: 0,
-  });
-
-  const navigate = useNavigate();
-  const userId = localStorage.getItem("userId");
-
-  useEffect(() => {
-    const loadRoutines = async () => {
-      try {
-        const data = await fetchAllRoutines();
-        if (Array.isArray(data)) {
-          setRoutines(data);
-        }
-      } catch (error) {
-        console.error("Error fetching routines:", error);
-      }
-    };
-    loadRoutines();
-  }, []);
+  const exercises = type === "yoga" ? yogaExercises : fitnessExercises;
+  const currentExercise = exercises[index];
 
   useEffect(() => {
     let timer;
-    if (isRunning && !isPaused && routines.length > 0 && timeLeft > 0) {
-      timer = setTimeout(() => setTimeLeft((prev) => prev - 1), 1000);
-    } else if (isRunning && timeLeft === 0) {
-      handleComplete(); // routine completed
+    if (!isPaused && timeLeft > 0) {
+      timer = setTimeout(() => setTimeLeft((t) => t - 1), 1000);
+    } else if (timeLeft === 0) {
+      handleNext();
     }
     return () => clearTimeout(timer);
-  }, [isRunning, isPaused, timeLeft, currentIndex]);
+  }, [timeLeft, isPaused]);
 
-  const startRoutine = () => {
-    if (routines.length === 0) return;
-    setCurrentIndex(0);
-    setTimeLeft(routines[0]?.duration || 30);
-    setIsRunning(true);
-    setIsPaused(false);
-    setProgressState({ completedRoutines: [], totalDuration: 0 });
-  };
-
-  const togglePause = () => setIsPaused(!isPaused);
-
-  const handleComplete = () => {
-    console.log(progressData)
-    
-    const routine = routines[currentIndex];
-    const duration = routine?.duration || 0;
-
-    setProgressState((prev) => ({
-      completedRoutines: [...prev.completedRoutines, routine.title],
-      totalDuration: prev.totalDuration + duration,
-    }));
-
-    if (currentIndex < routines.length - 1) {
-      setCurrentIndex((prev) => prev + 1);
-      setTimeLeft(routines[currentIndex + 1]?.duration || 30);
+  const handleNext = () => {
+    if (index < exercises.length - 1) {
+      setIndex(index + 1);
+      setTimeLeft(30);
     } else {
-      finishWorkout();
+      navigate(type === "yoga" ? "/yoga/complete" : "/routine/complete");
     }
   };
 
-  const handleSkip = () => {
-    console.log(progressData)
-
-    if (currentIndex < routines.length - 1) {
-      setCurrentIndex((prev) => prev + 1);
-      setTimeLeft(routines[currentIndex + 1]?.duration || 30);
-    } else {
-      finishWorkout();
-    }
+  const handlePause = () => {
+    setIsPaused((prev) => !prev);
   };
-
-  const finishWorkout = async () => {
-    setIsRunning(false);
-    console.log(progressData)
-
-    const { completedRoutines, totalDuration } = progressState;
-
-    const progressPercent = Math.round(
-      (completedRoutines.length / routines.length) * 100
-    );
-
-    const today = new Date().toISOString().split("T")[0];
-    const type = routines[0]?.type || "General";
-
-    const progressData = {
-      userId,
-      type,
-      date: today,
-      completedRoutines,
-      totalDuration,
-      progressPercent,
-    };
-    console.log(progressData)
-
-    try {
-      await axios.post("/api/routineprogresses/update", progressData);
-      navigate("/routine/complete");
-    } catch (err) {
-      console.error("Failed to update progress:", err);
-    }
-  };
-
-  const progressPercent =
-    ((routines[currentIndex]?.duration - timeLeft) /
-      (routines[currentIndex]?.duration || 30)) *
-    100;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-white px-4 py-8">
-      {/* Progress Indicator Bar */}
-      <div className="flex items-center justify-center gap-1 mb-4">
-        {routines.map((_, i) => (
+    <div className="min-h-screen bg-white flex flex-col justify-between p-4 relative">
+      {/* Progress header */}
+      <div className="flex space-x-1 w-full mb-4">
+        {exercises.map((_, i) => (
           <div
             key={i}
-            className={`h-1 rounded-full transition-all duration-300 ${
-              i < currentIndex
-                ? "bg-green-500 w-6"
-                : i === currentIndex
-                ? "bg-green-300 w-6"
-                : "bg-gray-300 w-4"
+            className={`flex-1 h-1 rounded-full ${
+              i < index ? "bg-green-500" : i === index ? "bg-green-300" : "bg-gray-300"
             }`}
           />
         ))}
       </div>
 
-      {isRunning ? (
-        routines[currentIndex] && (
-          <div className="text-center">
-            <img
-              src={routines[currentIndex]?.imageUrl}
-              alt={routines[currentIndex]?.title}
-              className="w-56 h-56 object-contain mx-auto mb-6"
-            />
-            <div className="text-2xl font-bold text-black mb-1">
-              {routines[currentIndex]?.title}
-            </div>
-            <div className="text-xl font-semibold text-gray-500">
-              {timeLeft}" / {routines[currentIndex]?.duration}"
-            </div>
-
-            <div className="w-72 mx-auto mt-2 mb-4 h-3 bg-gray-300 rounded-full overflow-hidden">
-              <div
-                className="h-full bg-green-500 transition-all duration-100"
-                style={{ width: `${progressPercent}%` }}
-              ></div>
-            </div>
-
-            <div className="flex justify-center gap-4 mt-4">
-              <button
-                onClick={togglePause}
-                className="bg-yellow-500 text-white px-6 py-2 rounded-full font-semibold"
-              >
-                {isPaused ? "Resume" : "Pause"}
-              </button>
-              <button
-                onClick={handleSkip}
-                className="bg-blue-500 text-white px-6 py-2 rounded-full font-semibold"
-              >
-                Skip
-              </button>
-            </div>
-          </div>
-        )
-      ) : (
-        <button
-          onClick={startRoutine}
-          disabled={routines.length === 0}
-          className={`mt-10 ${
-            routines.length === 0
-              ? "bg-gray-500 cursor-not-allowed"
-              : "bg-green-600 hover:bg-green-700"
-          } px-6 py-3 rounded-full text-white font-semibold`}
-        >
-          {routines.length === 0 ? "No Routines Found" : "Start Workout"}
+      {/* Top right controls */}
+      <div className="absolute top-4 right-4 space-y-2">
+        <button className="bg-blue-100 p-2 rounded-full text-sm">🔊</button>
+        <button onClick={handlePause} className="bg-blue-100 p-2 rounded-full text-sm">
+          {isPaused ? "▶️" : "⏸️"}
         </button>
-      )}
+        <button className="bg-blue-100 p-2 rounded-full text-sm">❓</button>
+      </div>
+
+      {/* Current Exercise Display */}
+      <div className="flex flex-col items-center justify-center flex-grow text-center">
+        <img src={currentExercise.image} alt={currentExercise.title} className="w-56 h-56 object-contain mb-4" />
+        <div className="text-blue-700 font-bold text-3xl mb-1">{30 - timeLeft}" / 30"</div>
+        <div className="text-lg font-bold text-black uppercase">{currentExercise.title}</div>
+      </div>
+
+      {/* Bottom Controls */}
+      <div className="w-full px-6 pb-6">
+        <div className="relative h-3 bg-gray-200 rounded-full overflow-hidden mb-3">
+          <div
+            className="absolute top-0 left-0 h-full bg-blue-500 transition-all"
+            style={{ width: `${((30 - timeLeft) / 30) * 100}%` }}
+          />
+        </div>
+        <div className="flex justify-between items-center">
+          <div className="w-1/3"></div>
+          <button onClick={handlePause} className="text-gray-700 text-xl">
+            {isPaused ? "▶️" : "⏸️"}
+          </button>
+          <button onClick={handleNext} className="text-gray-700 text-xl">
+            ➡️
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

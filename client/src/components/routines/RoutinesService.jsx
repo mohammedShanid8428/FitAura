@@ -15,7 +15,7 @@ const services = [
     title: "Stretching Plan",
     image: images.modal21,
     desc: "Gentle stretches to improve mobility and prevent injuries.",
-    link: "/routines/stretch", // Update to match your route
+    link: "/routines/strech", // Update to match your route
   },
 ];
 export default function RoutinesService() {

@@ -12,7 +12,7 @@ import MoodSection from "../components/mood/MoodSection";
 import Landing from "../pages/user/Landing";
 import NutritionsServices from "../components/nutritions/NutritionsServices";
 import MealPlans from "../components/nutritions/MealsPlan";
-import MealsCards from "../components/nutritions/MealsCards"; 
+import MealsCards from "../components/nutritions/MealsCards";
 import Planner from "../components/nutritions/NutritionPlanner";
 import RoutinesService from "../components/routines/RoutinesService";
 import RoutinesYoga from "../components/routines/RoutinesYoga";
@@ -22,6 +22,8 @@ import RoutineComplete from "../components/routines/RoutineComplete";
 import HydrationPlan from "../components/routines/HydrationPlan";
 import Saved from "../components/nutritions/Saved";
 import NutritionGuidePage from "../components/nutritions/NutritionGuide";
+import RoutineDays from "../components/routines/RoutineDays";
+import RoutineDayPreview from "../components/routines/RoutineDayPreview";
 
 const UserRoutes = () => {
   return (
@@ -40,14 +42,18 @@ const UserRoutes = () => {
       <Route path="/nutrition/mealsplan" element={<MealPlans />} />
       <Route path="/mealplans" element={<MealsCards />} />
       <Route path="/nutrition/mealplanner" element={<Planner />} />
-       <Route path="routines/service" element={<RoutinesService />} />
-        <Route path="routines/hydrationplan" element={<HydrationPlan/>} />
+      <Route path="routines/service" element={<RoutinesService />} />
+      <Route path="routines/hydrationplan" element={<HydrationPlan />} />
       <Route path="/routine/complete" element={<RoutineComplete />} />
-        <Route path="routines/stretch" element={<RoutinesStrech />} />
-        <Route path="routines/Planner" element={<RoutinePlayer />} />
-        <Route path="routines/yoga" element={<RoutinesYoga />} />
-        <Route path="routines/save" element={<Saved/>} />
-        <Route path="/nutrition-guide/:category" element={<NutritionGuidePage />} />
+      <Route path="routines/stretch" element={<RoutinesStrech />} />
+      <Route path="routines/Planner" element={<RoutinePlayer />} />
+     <Route path="/routines/yoga" element={<RoutineDays title="Yoga Plan" />} />
+<Route path="/routines/strech" element={<RoutineDays title="Stretch Plan" />} />
+<Route path="/routine/day-preview" element={<RoutineDayPreview />} />
+
+      <Route path="routines/yoga" element={<RoutinesYoga />} />
+      <Route path="routines/save" element={<Saved />} />
+      <Route path="/nutrition-guide/:category" element={<NutritionGuidePage />} />
     </Routes>
   );
 };
