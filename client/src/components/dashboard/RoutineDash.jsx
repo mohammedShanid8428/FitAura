@@ -1,6 +1,12 @@
 import React from "react";
+import { useSearchParams } from "react-router-dom";
+import { moodThemes } from "../../components/lib/moodTheme";
 
 export default function StretchYogaCards() {
+  const [searchParams] = useSearchParams();
+  const mood = searchParams.get("mood") || "default";
+  const theme = moodThemes[mood] || moodThemes.default;
+
   const routines = [
     {
       label: "Stretch with Coach",
@@ -18,17 +24,15 @@ export default function StretchYogaCards() {
 
   return (
     <section className="p-6 max-w-5xl mx-auto">
-      <div className="bg-gray-900 text-gray-100 rounded-2xl p-6 shadow-md">
-        <h2 className="text-2xl font-bold mb-6 text-lime-400">
-          Daily Routine Tracker
-        </h2>
+      <div className={`rounded-2xl p-6 shadow-md ${theme.card} ${theme.text}`}>
+        <h2 className="text-2xl font-bold mb-6">Daily Routine Tracker</h2>
 
         {/* Grid of 2 Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {routines.map((item, index) => (
             <div
               key={index}
-              className="bg-gray-800 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition"
+              className={`rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition ${theme.bg}`}
             >
               {/* Image */}
               <img
@@ -39,20 +43,16 @@ export default function StretchYogaCards() {
 
               {/* Content */}
               <div className="p-4">
-                <h3 className="text-lg font-semibold text-white mb-2">
-                  {item.label}
-                </h3>
-                <p className="text-sm text-gray-400 mb-3">
-                  🕒 Today’s Duration: {item.time}
-                </p>
+                <h3 className="text-lg font-semibold mb-2">{item.label}</h3>
+                <p className="text-sm mb-3">🕒 Today’s Duration: {item.time}</p>
 
                 {/* Progress */}
                 <div>
-                  <div className="flex justify-between text-sm text-gray-300 font-medium mb-1">
+                  <div className="flex justify-between text-sm font-medium mb-1">
                     <span>Progress</span>
                     <span>{item.progress}%</span>
                   </div>
-                  <div className="w-full bg-gray-700 rounded-full h-2">
+                  <div className="w-full bg-gray-300 rounded-full h-2">
                     <div
                       className="bg-lime-400 h-2 rounded-full"
                       style={{ width: `${item.progress}%` }}
@@ -65,12 +65,12 @@ export default function StretchYogaCards() {
         </div>
 
         {/* Overall Progress */}
-        <div className="mt-8 border-t border-gray-700 pt-4">
-          <div className="flex justify-between text-sm text-gray-300 font-medium mb-1">
+        <div className="mt-8 border-t border-gray-300 pt-4">
+          <div className="flex justify-between text-sm font-medium mb-1">
             <span>Overall Progress</span>
             <span>69%</span>
           </div>
-          <div className="w-full bg-gray-700 rounded-full h-2">
+          <div className="w-full bg-gray-300 rounded-full h-2">
             <div
               className="bg-lime-400 h-2 rounded-full"
               style={{ width: `69%` }}

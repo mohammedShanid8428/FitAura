@@ -6,14 +6,21 @@ import {Utensils,Sun,Sandwich,Moon,Popcorn,Smile,Frown,Angry,MoonStar,Meh,Scale,
   Plus,
   RefreshCw
 } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
+import { moodThemes } from "../../components/lib/moodTheme";
+ 
 
 export default function NutritionDash() {
+  const [searchParams] = useSearchParams();
+  const mood = searchParams.get("mood") || "default";
+  const theme = moodThemes[mood] || moodThemes.default;
   const [savedMeals, setSavedMeals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [activeTab, setActiveTab] = useState("all");
   const [selectedMeal, setSelectedMeal] = useState(null);
   const [showOverview, setShowOverview] = useState(false);
+
 
   useEffect(() => {
     getSavedMeals();
@@ -143,7 +150,7 @@ export default function NutritionDash() {
   if (loading) {
     return (
       <section className="p-4 flex justify-center">
-        <div className="bg-gradient-to-br from-gray-900 to-black border border-gray-700 rounded-2xl p-6 w-full max-w-6xl shadow-xl text-white">
+        <div className=" border border-gray-700 rounded-2xl p-6 w-full max-w-6xl shadow-xl text-white">
           <div className="text-center py-12">
             <div className="animate-spin w-8 h-8 border-4 border-lime-400 border-t-transparent rounded-full mx-auto mb-4"></div>
             <p className="text-gray-400">Loading your nutrition planner...</p>
@@ -177,10 +184,10 @@ export default function NutritionDash() {
   return (
     <>
       <section className="p-4 flex justify-center">
-        <div className="bg-gradient-to-br from-gray-900 to-black border border-gray-700 rounded-2xl p-6 w-full max-w-6xl shadow-xl text-white">
+        <div className=" border border-gray-700 rounded-2xl p-6 w-full max-w-6xl shadow-xl text-white">
           {/* Header with Overview Button */}
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-            <h2 className="text-2xl font-bold bg-gradient-to-r from-lime-400 to-green-400 bg-clip-text text-transparent">
+            <h2 className={`text-2xl font-bold  ${theme.text} `}>
               <span className="flex items-center gap-2">
                 <Utensils size={24} />
                 Your Nutrition Dashboard
@@ -188,7 +195,7 @@ export default function NutritionDash() {
             </h2>
             <button
               onClick={openOverview}
-              className="bg-gradient-to-r from-lime-500 to-green-500 hover:from-lime-600 hover:to-green-600 text-black px-4 py-2 rounded-lg font-medium transition flex items-center gap-2"
+              className={`hover:from-lime-600 ${theme.bg} ${theme.text} bg-lime-500 text-gray-900 hover:to-green-600  px-4 py-2 rounded-lg font-medium transition flex items-center gap-2`} 
             >
               <ScrollText size={16} />
               Quick Overview
@@ -237,7 +244,7 @@ export default function NutritionDash() {
                 <div
                   key={meal._id || index}
                   onClick={() => openMealDetail(meal)}
-                  className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-sm border border-gray-600 rounded-xl p-4 hover:border-lime-400/50 transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:shadow-lg hover:shadow-lime-500/10"
+                  className={`${theme.card} bg-gray-700 border border-gray-600 rounded-xl p-4 hover:border-lime-400/50 transition-all duration-300 cursor-pointer hover:scale-[1.02] hover:shadow-lg hover:shadow-lime-500/10`}
                 >
                   <div className="relative mb-3">
                     <img
@@ -254,7 +261,7 @@ export default function NutritionDash() {
                     </div>
                   </div>
 
-                  <h3 className="font-semibold text-white mb-2 text-sm truncate">
+                  <h3 className={`font-semibold ${theme.text} text-white mb-2 text-sm truncate`}>
                     {meal.title || meal.name || "Untitled Meal"}
                   </h3>
 
