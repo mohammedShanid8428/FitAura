@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
-import axios from 'axios';
 
-const base_url =  'http://localhost:3000/api';
+import React, { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+import axios from "axios";
+import { moodThemes } from "../../components/lib/moodTheme"; // adjust path as needed
+
+const base_url = "http://localhost:3000/api";
 
 export default function HydrationDash() {
   const [hydrationData, setHydrationData] = useState({
@@ -11,14 +14,17 @@ export default function HydrationDash() {
     waterGoal: 2000,
     completed: [],
     streak: 0,
-    weeklyAverage: 0
+    weeklyAverage: 0,
   });
   const [loading, setLoading] = useState(true);
-  const [userId] = useState(() => localStorage.getItem('userId') || 'user123');
+  const [userId] = useState(() => localStorage.getItem("userId") || "user123");
+
+  const [searchParams] = useSearchParams();
+  const mood = searchParams.get("mood") || "default";
+  const theme = moodThemes[mood] || moodThemes.default;
 
   useEffect(() => {
     fetchHydrationData();
-    // Refresh data every 30 seconds
     const interval = setInterval(fetchHydrationData, 30000);
     return () => clearInterval(interval);
   }, []);
@@ -31,14 +37,14 @@ export default function HydrationDash() {
           percentage: response.data.percentage || 0,
           totalGlasses: response.data.totalGlasses || 0,
           dailyGoal: response.data.dailyGoal || 8,
-          waterGoal: (response.data.dailyGoal || 8) * 250, // 250ml per glass
+          waterGoal: (response.data.dailyGoal || 8) * 250,
           completed: response.data.completed || [],
           streak: response.data.streak || 0,
-          weeklyAverage: response.data.weeklyAverage || 0
+          weeklyAverage: response.data.weeklyAverage || 0,
         });
       }
     } catch (error) {
-      console.error('Error fetching hydration data:', error);
+      console.error("Error fetching hydration data:", error);
     } finally {
       setLoading(false);
     }
@@ -50,28 +56,28 @@ export default function HydrationDash() {
         { percent: "100%", title: "Perfect Hydration", desc: "Optimal brain function and energy" },
         { percent: "95%", title: "Toxin Elimination", desc: "Body effectively removes waste" },
         { percent: "90%", title: "Skin Glow", desc: "Healthy, radiant skin appearance" },
-        { percent: "85%", title: "Digestion Boost", desc: "Improved nutrient absorption" }
+        { percent: "85%", title: "Digestion Boost", desc: "Improved nutrient absorption" },
       ];
     } else if (percentage >= 75) {
       return [
         { percent: "75%", title: "Good Progress", desc: "Better circulation and mood" },
         { percent: "70%", title: "Energy Boost", desc: "Reduced fatigue throughout day" },
         { percent: "65%", title: "Mental Clarity", desc: "Improved focus and concentration" },
-        { percent: "60%", title: "Joint Health", desc: "Better joint lubrication" }
+        { percent: "60%", title: "Joint Health", desc: "Better joint lubrication" },
       ];
     } else if (percentage >= 50) {
       return [
         { percent: "50%", title: "Halfway There", desc: "Body starts feeling refreshed" },
         { percent: "45%", title: "Kidney Function", desc: "Better waste filtration" },
         { percent: "40%", title: "Temperature Control", desc: "Improved body heat regulation" },
-        { percent: "35%", title: "Basic Hydration", desc: "Meeting minimum requirements" }
+        { percent: "35%", title: "Basic Hydration", desc: "Meeting minimum requirements" },
       ];
     } else {
       return [
         { percent: "25%", title: "Getting Started", desc: "Beginning hydration journey" },
         { percent: "20%", title: "Initial Benefits", desc: "Slight improvement in energy" },
         { percent: "15%", title: "Cellular Function", desc: "Basic cellular hydration" },
-        { percent: "10%", title: "Foundation", desc: "Building healthy habits" }
+        { percent: "10%", title: "Foundation", desc: "Building healthy habits" },
       ];
     }
   };
@@ -89,7 +95,7 @@ export default function HydrationDash() {
   if (loading) {
     return (
       <section className="p-6 flex justify-center">
-        <div className="bg-[#1f1f1f] rounded-xl shadow-md p-6 w-full max-w-4xl text-gray-300 border border-gray-700">
+        <div className={`rounded-xl shadow-md p-6 w-full max-w-4xl border ${theme.card} ${theme.text}`}>
           <div className="text-center text-lime-400">Loading hydration data...</div>
         </div>
       </section>
@@ -98,7 +104,7 @@ export default function HydrationDash() {
 
   return (
     <section className="p-6 flex justify-center">
-      <div className="bg-[#1f1f1f] rounded-xl shadow-md p-6 w-full max-w-4xl text-gray-300 border border-gray-700">
+      <div className={`rounded-xl shadow-md p-6 w-full max-w-4xl border ${theme.card} ${theme.text}`}>
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-lg font-semibold text-lime-400">
             Hydration Benefits Dashboard

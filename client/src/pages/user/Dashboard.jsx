@@ -29,6 +29,12 @@ export default function Dashboard({ userName = "User" }) {
           />
         </div>
 
+        {/* Mood Dash - Full Width Top */}
+        <div className={`mb-6 rounded-xl border shadow ${theme.card}`}>
+          <MoodDash userId={userId} mood={mood} />
+        </div>
+
+        {/* Routine & Hydration Dash - Two Column Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           <div className={`rounded-xl border shadow ${theme.card}`}>
             <RoutineDash userId={userId} mood={mood} />
@@ -38,13 +44,9 @@ export default function Dashboard({ userName = "User" }) {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className={`rounded-xl border shadow ${theme.card}`}>
-            <NutritionDash mood={mood} />
-          </div>
-          <div className={`rounded-xl border shadow ${theme.card}`}>
-            <MoodDash userId={userId} mood={mood} />
-          </div>
+        {/* Nutrition Dash - Full Width Bottom */}
+        <div className={`rounded-xl border shadow ${theme.card}`}>
+          <NutritionDash mood={mood} />
         </div>
       </div>
       <Footer />
