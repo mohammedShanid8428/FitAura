@@ -1,47 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { exerciseImg, yogaGif } from "../../assets/images";
-
-// --- Fitness Exercises ---
-const fitnessExercises = [
-  { id: 1, title: "Kneeling Back Rotation Stretch (female)", image: exerciseImg.exercise1 },
-  { id: 2, title: "1 2 Stick Drill (male)", image: exerciseImg.exercise2 },
-  { id: 3, title: "1 to 2 Jump Box (male)", image: exerciseImg.exercise3 },
-  { id: 4, title: "123 Back Drill (male)", image: exerciseImg.exercise4 },
-  { id: 5, title: "2 to 1 Jump Box (male)", image: exerciseImg.exercise5 },
-  { id: 6, title: "3 4 Sit up (female)", image: exerciseImg.exercise6 },
-  { id: 7, title: "3 Leg Chaturanga Pose", image: exerciseImg.exercise7 },
-  { id: 8, title: "3 Leg Dog Pose (female)", image: exerciseImg.exercise8 },
-  { id: 9, title: "Side Plank", image: exerciseImg.exercise9 },
-  { id: 10, title: "Wall Squat", image: exerciseImg.exercise10 },
-  { id: 11, title: "Mountain Climbers", image: exerciseImg.exercise11 },
-  { id: 12, title: "Bridge Pose", image: exerciseImg.exercise12 },
-];
-
-// --- Yoga Sessions ---
-const yogaExercises = [
-  { id: 1, title: "🌞 Sun Salutation (Surya Namaskar)", image: yogaGif.yoga1 },
-  { id: 2, title: "🧘‍♀️ Cat-Cow Stretch", image: yogaGif.yoga2 },
-  { id: 3, title: "🌬️ Pranayama Breathing", image: yogaGif.yoga3 },
-  { id: 4, title: "🪷 Child’s Pose", image: yogaGif.yoga4 },
-  { id: 5, title: "🦶 Downward Dog", image: yogaGif.yoga5 },
-  { id: 6, title: "🧍‍♂️ Warrior II", image: yogaGif.yoga6 },
-  { id: 7, title: "🦋 Butterfly Pose", image: yogaGif.yoga1 },
-  { id: 8, title: "🔄 Seated Twist", image: yogaGif.yoga2 },
-  { id: 9, title: "💤 Corpse Pose (Savasana)", image: yogaGif.yoga3 },
-];
+import { routineData } from "../../components/lib/routineData"; // 👈 import from your routineData.js
 
 export default function RoutinePlayer() {
   const navigate = useNavigate();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
-  const type = params.get("type") || "fitness"; // default to "fitness"
+  const type = params.get("type") || "fitness"; // "fitness" or "yoga"
 
   const [index, setIndex] = useState(0);
   const [timeLeft, setTimeLeft] = useState(30);
   const [isPaused, setIsPaused] = useState(false);
 
-  const exercises = type === "yoga" ? yogaExercises : fitnessExercises;
+  const selectedRoutine = routineData.find((r) => r.type === type);
+  const exercises = selectedRoutine ? selectedRoutine.exercises : [];
   const currentExercise = exercises[index];
 
   useEffect(() => {
@@ -66,6 +38,8 @@ export default function RoutinePlayer() {
   const handlePause = () => {
     setIsPaused((prev) => !prev);
   };
+
+  if (!currentExercise) return <div className="text-center mt-10 text-red-600">No exercises found.</div>;
 
   return (
     <div className="min-h-screen bg-white flex flex-col justify-between p-4 relative">

@@ -1,42 +1,15 @@
+// src/pages/RoutineDayPreview.js
+
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { exerciseImg, yogaGif } from "../../assets/images";
-
-// Stretch Exercises
-const baseExercises = [
-  { id: 1, title: "Kneeling Back Rotation Stretch (female)", image: exerciseImg.exercise1 },
-  { id: 2, title: "1 2 Stick Drill (male)", image: exerciseImg.exercise2 },
-  { id: 3, title: "1 to 2 Jump Box (male)", image: exerciseImg.exercise3 },
-  { id: 4, title: "123 Back Drill (male)", image: exerciseImg.exercise4 },
-  { id: 5, title: "2 to 1 Jump Box (male)", image: exerciseImg.exercise5 },
-  { id: 6, title: "3 4 Sit up (female)", image: exerciseImg.exercise6 },
-  { id: 7, title: "3 Leg Chaturanga Pose", image: exerciseImg.exercise7 },
-  { id: 8, title: "3 Leg Dog Pose (female)", image: exerciseImg.exercise8 },
-  { id: 9, title: "Side Plank", image: exerciseImg.exercise9 },
-  { id: 10, title: "Wall Squat", image: exerciseImg.exercise10 },
-  { id: 11, title: "Mountain Climbers", image: exerciseImg.exercise11 },
-  { id: 12, title: "Bridge Pose", image: exerciseImg.exercise12 },
-];
-
-// Yoga Sessions
-const yogaSessions = [
-  { id: 1, title: "🌞 Sun Salutation (Surya Namaskar)", image: yogaGif.yoga1, description: "A full-body flow to awaken muscles and energize your day." },
-  { id: 2, title: "🧘‍♀️ Cat-Cow Stretch", image: yogaGif.yoga2, description: "Gently warm up your spine and release tension in the back." },
-  { id: 3, title: "🌬️ Pranayama Breathing", image: yogaGif.yoga3, description: "A calming breath control exercise to reduce stress." },
-  { id: 4, title: "🪷 Child’s Pose", image: yogaGif.yoga4, description: "A resting pose to stretch hips and relax the body." },
-  { id: 5, title: "🦶 Downward Dog", image: yogaGif.yoga5, description: "Strengthens arms and legs while improving flexibility." },
-  { id: 6, title: "🧍‍♂️ Warrior II", image: yogaGif.yoga6, description: "Builds stamina and strengthens your legs and core." },
-  { id: 7, title: "🦋 Butterfly Pose", image: yogaGif.yoga1, description: "Opens up hips and improves circulation in the lower body." },
-  { id: 8, title: "🔄 Seated Twist", image: yogaGif.yoga2, description: "Relieves spinal tension and improves digestion." },
-  { id: 9, title: "💤 Corpse Pose (Savasana)", image: yogaGif.yoga3, description: "Final relaxation to restore energy and calm the mind." },
-];
+import { routineData } from "../../components/lib/routineData"; // use combined data
 
 // Stretch count per day
 const dayExerciseCounts = {
   1: 10, 2: 8, 3: 12, 4: 6, 5: 9, 6: 11, 7: 7,
 };
 
-// Seeded shuffle
+// Seeded shuffle to ensure consistent order per day
 function shuffleWithSeed(array, seed) {
   const arr = [...array];
   for (let i = arr.length - 1; i > 0; i--) {
@@ -50,9 +23,14 @@ export default function RoutineDayPreview() {
   const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
+
   const day = parseInt(queryParams.get("day")) || 1;
   const type = queryParams.get("type") || "stretch";
   const isYoga = type === "yoga";
+
+  // Extract appropriate exercise list
+  const baseExercises = routineData.find((r) => r.type === "stretch")?.exercises || [];
+  const yogaSessions = routineData.find((r) => r.type === "yoga")?.exercises || [];
 
   const routines = isYoga
     ? yogaSessions
@@ -88,11 +66,11 @@ export default function RoutineDayPreview() {
         </div>
       </div>
 
-      {/* List of Exercises */}
+      {/* Exercise List */}
       <div className="mt-4 px-4">
         {routines.map((routine) => (
           <div
-            key={routine.id}
+            key={routine.id + routine.title} // safer unique key if ids are reused
             className="flex items-center justify-between py-3 border-b border-gray-200"
           >
             <div className="max-w-[70%]">
@@ -112,7 +90,7 @@ export default function RoutineDayPreview() {
         ))}
       </div>
 
-      {/* Go to Player */}
+      {/* Go Button */}
       <div className="fixed bottom-4 w-full px-4">
         <button
           onClick={() =>
