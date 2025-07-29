@@ -1,92 +1,53 @@
-import React, { useState } from "react";
-import { Sparkles, Smile, Meh, Frown, Angry } from "lucide-react";
+import React from "react";
+import { emojisGif } from "../../assets/images";
 
-const moods = [
-  {
-    label: "Excited 😄",
-    icon: <Sparkles className="text-lime-500" size={24} />,
-    description: "You’re feeling energetic and pumped!",
-    bg: "bg-lime-100",
-  },
-  {
-    label: "Happy 😊",
-    icon: <Smile className="text-lime-500" size={24} />,
-    description: "Great to see you in a good mood!",
-    bg: "bg-lime-200",
-  },
-  {
-    label: "Neutral 😐",
-    icon: <Meh className="text-yellow-500" size={24} />,
-    description: "Balanced and calm — keep it steady.",
-    bg: "bg-gray-100",
-  },
-  {
-    label: "Sad 😢",
-    icon: <Frown className="text-orange-500" size={24} />,
-    description: "It’s okay to feel down. Take care of yourself.",
-    bg: "bg-orange-100",
-  },
-  {
-    label: "Angry 😡",
-    icon: <Angry className="text-red-500" size={24} />,
-    description: "Try breathing exercises or a walk to release stress.",
-    bg: "bg-red-100",
-  },
-];
-
-export default function MoodDash() {
-  const [currentMoodIndex, setCurrentMoodIndex] = useState(1); // default: Happy
-  const [moodRecovery, setMoodRecovery] = useState(60);
-
-  const handleImproveMood = () => {
-    const next = (currentMoodIndex + 1) % moods.length;
-    setCurrentMoodIndex(next);
-    setMoodRecovery((prev) => Math.min(100, prev + 10));
-  };
+export default function Emojis() {
+  const emojis = [
+    {
+      id: 1,
+      image: emojisGif.emojis1,
+      title: "Feeling Happy",
+      description: "You seem energetic and in a great mood!",
+    },
+    {
+      id: 2,
+      image: emojisGif.emojis2,
+      title: "Feeling Angry",
+      description: "Something might have upset you. Take a deep breath.",
+    },
+    {
+      id: 3,
+      image: emojisGif.emojis3,
+      title: "Feeling Sad",
+      description: "It’s okay to feel down. You’re not alone.",
+    },
+  ];
 
   return (
-    <section className="p-4">
-      <div className="bg-[#111] text-white rounded-2xl p-6 shadow-lg">
-        <h2 className="text-xl font-bold text-lime-400 mb-2">Mood Tracker</h2>
-        <p className="text-gray-400 mb-4">Tap on your current mood or improve your recovery!</p>
+  <>
+ <section className="w-full min-h-screen bg-gradient-to-br from-black via-gray-900 to-orange-900 text-white flex flex-col justify-center py-20">
+      <h2 className="text-4xl font-bold text-center mb-12">
+        What's Your Mood Today?
+      </h2>
 
-        {/* Mood Cards */}
-        <div className="grid grid-cols-2 gap-4 mb-6">
-          {moods.map((mood, index) => (
-            <div
-              key={index}
-              onClick={() => setCurrentMoodIndex(index)}
-              className={`rounded-xl p-4 cursor-pointer transition transform hover:scale-105 shadow-md border border-gray-700 ${
-                index === currentMoodIndex ? "ring-2 ring-lime-400" : ""
-              } ${mood.bg}`}
-            >
-              <div className="flex items-center space-x-2 mb-2">
-                {mood.icon}
-                <span className="font-medium text-black">{mood.label}</span>
-              </div>
-              <p className="text-xs text-gray-700">{mood.description}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Recovery Progress */}
-        <div className="text-sm text-gray-300 mb-1">Recovery Progress</div>
-        <div className="w-full h-3 bg-gray-700 rounded-full overflow-hidden mb-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 px-6 max-w-7xl mx-auto">
+        {emojis.map((mood) => (
           <div
-            className="h-3 bg-lime-400 rounded-full transition-all"
-            style={{ width: `${moodRecovery}%` }}
-          ></div>
-        </div>
-        <div className="text-sm text-gray-300 mb-4">{moodRecovery}%</div>
-
-        {/* Improve Button */}
-        <button
-          onClick={handleImproveMood}
-          className="bg-lime-500 hover:bg-lime-600 text-black font-semibold px-4 py-2 rounded-full transition"
-        >
-          Improve Mood
-        </button>
+            key={mood.id}
+            className="flex flex-col items-center text-center"
+          >
+            <img
+              src={mood.image}
+              alt={mood.title}
+              className="w-52 h-52 object-contain mb-6"
+            />
+            <h3 className="text-2xl font-semibold mb-3">{mood.title}</h3>
+            <p className="text-md text-gray-300 max-w-xs">{mood.description}</p>
+          </div>
+        ))}
       </div>
     </section>
+  );
+  </>
   );
 }

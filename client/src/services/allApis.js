@@ -101,47 +101,63 @@ export const deleteRoutineApi = async (id) => {
   return await axios.delete(`${base_url}/routines/admin/${id}`);
 };
 
+export const hydrationAPI = {
+  // Get user's hydration data
+  getHydrationData: async (userId) => {
+    try {
+      const response = await api.get(`/hydration/gethydration/${userId}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching hydration data:', error);
+      throw error;
+    }
+  },
 
-export const fetchAllMoods = async () => 
-  await commonApi(`${base_url}/moods/getallmoods`, "GET");
 
-export const fetchMoodByType = async (moodType) => 
-  await commonApi(`${base_url}/moods/getmood/${moodType}`, "GET");
 
-// Admin APIs
-export const createMood = async (moodData) => 
-  await commonApi(`${base_url}/moods/create`, "POST", moodData);
+  updateHydrationData: async (hydrationData) => {
+    try {
+      const response = await api.post('/hydration/updatehydration', hydrationData);
+      return response.data;
+    } catch (error) {
+      console.error('Error updating hydration data:', error);
+      throw error;
+    }
+  },
 
-export const updateMood = async (moodType, moodData) => 
-  await commonApi(`${base_url}/moods/update/${moodType}`, "PUT", moodData);
+  // Get hydration history
+  getHydrationHistory: async (userId, days = 7) => {
+    try {
+      const response = await api.get(`/hydration/history/${userId}?days=${days}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching hydration history:', error);
+      throw error;
+    }
+  },
 
-export const updateMoodSection = async (moodType, section, sectionData) => 
-  await commonApi(`${base_url}/moods/update/${moodType}/${section}`, "PUT", sectionData);
+  // Reset daily hydration
+  resetDailyHydration: async (userId) => {
+    try {
+      const response = await api.post('/hydration/reset', { userId });
+      return response.data;
+    } catch (error) {
+      console.error('Error resetting hydration:', error);
+      throw error;
+    }
+  },
 
-export const deleteMood = async (moodType) => 
-  await commonApi(`${base_url}/moods/delete/${moodType}`, "DELETE");
+  // Get hydration stats
+  getHydrationStats: async (userId) => {
+    try {
+      const response = await api.get(`/hydration/stats/${userId}`);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching hydration stats:', error);
+      throw error;
+    }
+  }
+}
 
-export const bulkUpdateMoods = async (moodsData) => 
-  await commonApi(`${base_url}/moods/bulk-update`, "PUT", { moods: moodsData });
 
-// Specific section update APIs for easier use
-export const updateHeroSection = async (moodType, heroData) => 
-  await updateMoodSection(moodType, 'hero', heroData);
 
-export const updateEnhanceSection = async (moodType, enhanceData) => 
-  await updateMoodSection(moodType, 'enhance', enhanceData);
-
-export const updateNutritionSection = async (moodType, nutritionData) => 
-  await updateMoodSection(moodType, 'nutrition', nutritionData);
-
-export const updateRoutineSection = async (moodType, routineData) => 
-  await updateMoodSection(moodType, 'routine', routineData);
-
-export const updateOurTipsSection = async (moodType, ourTipsData) => 
-  await updateMoodSection(moodType, 'ourTips', ourTipsData);
-
-export const updateDailyChallengeSection = async (moodType, dailyChallengeData) => 
-  await updateMoodSection(moodType, 'dailyChallenge', dailyChallengeData);
-
-export const updateAffirmationSection = async (moodType, affirmationData) => 
-  await updateMoodSection(moodType, 'affirmation', affirmationData);

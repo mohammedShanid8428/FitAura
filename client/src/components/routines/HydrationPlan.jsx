@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { CheckCircle, Bell, Droplet, Waves } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import axios from 'axios';
+
+const base_url =  'http://localhost:3000/api';
 
 const hydrationGoals = [
   "8:00 AM",
-  "10:00 AM",
+  "10:00 AM", 
   "12:00 PM",
   "2:00 PM",
   "4:00 PM",
@@ -53,6 +56,45 @@ export default function HydrationPlan() {
   const [reminder, setReminder] = useState(false);
   const [hydrationGoal, setHydrationGoal] = useState(8);
   const [activeTab, setActiveTab] = useState("tracker");
+  const [loading, setLoading] = useState(false);
+  const [userId] = useState(() => localStorage.getItem('userId') || 'user123'); // Get from auth
+
+  // Fetch hydration data on component mount
+  useEffect(() => {
+    fetchHydrationData();
+  }, []);
+
+  const fetchHydrationData = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get(`${base_url}/hydration/gethydration/${userId}`);
+      if (response.data && response.data.completed) {
+        setCompleted(response.data.completed);
+        setHydrationGoal(response.data.dailyGoal || 8);
+      }
+    } catch (error) {
+      console.error('Error fetching hydration data:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const updateHydrationData = async (newCompleted) => {
+    try {
+      const hydrationData = {
+        userId,
+        completed: newCompleted,
+        dailyGoal: hydrationGoal,
+        date: new Date().toDateString(),
+        totalGlasses: newCompleted.length,
+        percentage: (newCompleted.length / hydrationGoal) * 100
+      };
+
+      await axios.post(`${base_url}/hydration/updatehydration`, hydrationData);
+    } catch (error) {
+      console.error('Error updating hydration data:', error);
+    }
+  };
 
   useEffect(() => {
     if (reminder) {
@@ -81,15 +123,24 @@ export default function HydrationPlan() {
     }
   }, [reminder]);
 
-  const toggleComplete = (time) => {
-    setCompleted((prev) =>
-      prev.includes(time)
-        ? prev.filter((t) => t !== time)
-        : [...prev, time]
-    );
+  const toggleComplete = async (time) => {
+    const newCompleted = completed.includes(time)
+      ? completed.filter((t) => t !== time)
+      : [...completed, time];
+    
+    setCompleted(newCompleted);
+    await updateHydrationData(newCompleted);
   };
 
   const progress = (completed.length / hydrationGoal) * 100;
+
+  if (loading) {
+    return (
+      <section className="bg-gray-800 py-16 px-4 min-h-screen flex items-center justify-center">
+        <div className="text-blue-300 text-xl">Loading hydration data...</div>
+      </section>
+    );
+  }
 
   return (
    <section className="bg-gray-800 py-16 px-4 min-h-screen">
@@ -183,7 +234,6 @@ export default function HydrationPlan() {
             className="flex flex-col items-center"
           >
             <div className="relative w-64 h-64 mb-8">
-              {/* Water bottle visualization */}
               <div className="absolute inset-0 flex items-end justify-center">
                 <div className="w-32 h-56 border-4 border-blue-500 rounded-b-3xl rounded-t-lg bg-gray-800 overflow-hidden">
                   <motion.div
@@ -208,7 +258,6 @@ export default function HydrationPlan() {
                 </div>
               </div>
               
-              {/* Water drops animation */}
               {completed.length > 0 && (
                 <AnimatePresence>
                   {Array.from({ length: 5 }).map((_, i) => (
@@ -248,17 +297,17 @@ export default function HydrationPlan() {
               </p>
               
               <div className="flex justify-center gap-4">
-                {hydrationGoals.slice(0, 3).map((time) => (
+                {hydrationGoals.slice(0, 7).map((time) => (
                   <button
                     key={time}
                     onClick={() => toggleComplete(time)}
-                    className={`w-10 h-10 rounded-full flex items-center justify-center ${
+                    className={`w-12 h-12 rounded-full flex items-center justify-center text-xs ${
                       completed.includes(time)
                         ? "bg-blue-600 text-white"
                         : "bg-gray-700 text-gray-400"
                     }`}
                   >
-                    {time.split(" ")[0]}
+                    {time.split(":")[0]}
                   </button>
                 ))}
               </div>
@@ -283,22 +332,21 @@ export default function HydrationPlan() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white px-6 py-3 rounded-xl hover:shadow-lg transition-all shadow-blue-500/20"
-            onClick={() => {
-              localStorage.setItem('hydrationProgress', JSON.stringify(completed));
-            }}
+            onClick={() => fetchHydrationData()}
           >
             <Bell className="w-5 h-5" /> 
-            <span>Save Progress</span>
+            <span>Refresh Data</span>
           </motion.button>
           
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="flex items-center gap-2 bg-gray-800 border border-gray-600 text-blue-300 px-6 py-3 rounded-xl hover:bg-gray-700 transition-all"
-            onClick={() => {
+            onClick={async () => {
               const newGoal = hydrationGoal === 8 ? 10 : hydrationGoal === 10 ? 12 : 8;
               setHydrationGoal(newGoal);
               setCompleted([]);
+              await updateHydrationData([]);
             }}
           >
             <Waves className="w-5 h-5" />

@@ -13,6 +13,7 @@ import Affirmation from "./Affirmation";
 import Header from "../../components/common/Header";
 
 
+
 export default function MoodSection(){
   const {mood}=useParams();
 
@@ -28,6 +29,7 @@ export default function MoodSection(){
       <MindTips mood={mood}/>
       <DailyChallenge mood={mood}/>
       <Affirmation mood={mood}/>
+      
       
     </section>
     </>
