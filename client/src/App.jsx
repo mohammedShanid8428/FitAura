@@ -1,20 +1,17 @@
 import React from 'react';
 import { ToastProvider } from './components/ui/Use-Toast';
-import { AuthProvider } from '../context/AuthContext';
-import Header from './components/common/Header';
-
+import Context from './context/ Context'; // ✅ No space and correctly default-exported
 import AppRoutes from './routes/AppRoutes';
 import { Toaster } from 'react-hot-toast';
+
 const App = () => {
   return (
-    <AuthProvider>
+    <Context>
       <ToastProvider>
-         <Toaster position="top-right" />
-        
-        <AppRoutes /> {/* ✅ Single route manager */}
-       
+        <Toaster position="top-right" />
+        <AppRoutes />
       </ToastProvider>
-    </AuthProvider>
+    </Context>
   );
 };
 

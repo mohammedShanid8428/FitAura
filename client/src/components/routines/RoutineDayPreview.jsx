@@ -1,15 +1,13 @@
-// src/pages/RoutineDayPreview.js
-
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { routineData } from "../../components/lib/routineData"; // use combined data
+import { ChevronLeft, Clock, Target, Play } from "lucide-react";
+import { routineData } from "../../components/lib/routineData";
+import { useProgress } from "../../context/ Context";
 
-// Stretch count per day
 const dayExerciseCounts = {
   1: 10, 2: 8, 3: 12, 4: 6, 5: 9, 6: 11, 7: 7,
 };
 
-// Seeded shuffle to ensure consistent order per day
 function shuffleWithSeed(array, seed) {
   const arr = [...array];
   for (let i = arr.length - 1; i > 0; i--) {
@@ -23,83 +21,273 @@ export default function RoutineDayPreview() {
   const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
+  
+  // Get progress context
+  const { getDayProgress, isDayCompleted } = useProgress();
 
   const day = parseInt(queryParams.get("day")) || 1;
   const type = queryParams.get("type") || "stretch";
   const isYoga = type === "yoga";
 
-  // Extract appropriate exercise list
-  const baseExercises = routineData.find((r) => r.type === "stretch")?.exercises || [];
-  const yogaSessions = routineData.find((r) => r.type === "yoga")?.exercises || [];
+  // Get exercises based on type
+  const selectedRoutine = routineData.find((r) => r.type === type);
+  const baseExercises = selectedRoutine?.exercises || [];
 
-  const routines = isYoga
-    ? yogaSessions
+  const exercises = isYoga 
+    ? baseExercises
     : shuffleWithSeed(baseExercises, day).slice(0, dayExerciseCounts[day] || 8);
 
-  return (
-    <div className="min-h-screen bg-white pb-10">
-      {/* Header */}
-      <div className="relative bg-gradient-to-b from-blue-100 to-white pb-4 pt-10 px-4 rounded-b-3xl">
-        <div
-          className="absolute top-4 left-4 text-2xl text-gray-600 cursor-pointer"
-          onClick={() => navigate(-1)}
-        >
-          ←
-        </div>
+  // Get progress data for this day
+  const dayProgress = getDayProgress(type, day);
+  const isCompleted = isDayCompleted(type, day);
+  const completedCount = dayProgress.completed.length;
+  const totalCount = exercises.length;
+  const progressPercentage = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
+
+  // Calculate estimated time
+  const estimatedTime = isYoga ? "20-25 MINS" : "15-20 MINS";
+
+  const handleStartRoutine = () => {
+    navigate(`/routines/Planner?day=${day}&type=${type}`);
+  };
+
+  const handleGoBack = () => {
+    navigate(-1);
+  };
+
+  if (!exercises || exercises.length === 0) {
+    return (
+      <div className="min-h-screen bg-white flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-800 mb-2">
-            {isYoga ? "Yoga Session" : `Stretch - Day ${day}`}
-          </h1>
-          <div className="flex justify-center space-x-2 mb-4">
-            <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-              {isYoga ? "20 MINS" : "15 MINS"}
-            </span>
-            <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-semibold">
-              {routines.length} WORKOUTS
-            </span>
+          <div className="text-6xl mb-4">⚠️</div>
+          <h2 className="text-xl font-semibold text-gray-800 mb-2">No Exercises Found</h2>
+          <p className="text-gray-600 mb-4">Unable to load exercises for this routine.</p>
+          <button 
+            onClick={handleGoBack}
+            className="bg-blue-500 text-white px-6 py-2 rounded-full font-semibold"
+          >
+            Go Back
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Header Section */}
+      <div className="relative bg-gradient-to-br from-blue-500 via-blue-600 to-purple-600 text-white">
+        <div className="px-4 pt-12 pb-8">
+          {/* Back Button */}
+          <button 
+            onClick={handleGoBack}
+            className="absolute top-12 left-4 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </button>
+
+          {/* Title and Info */}
+          <div className="text-center pt-8">
+            <h1 className="text-2xl font-bold mb-2">
+              {isYoga ? "Yoga Session" : `Stretch Routine`}
+            </h1>
+            <h2 className="text-lg mb-4">Day {day}</h2>
+            
+            {/* Stats Row */}
+            <div className="flex justify-center space-x-4 mb-6">
+              <div className="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2">
+                <Clock className="w-4 h-4" />
+                <span className="text-sm font-semibold">{estimatedTime}</span>
+              </div>
+              <div className="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2">
+                <Target className="w-4 h-4" />
+                <span className="text-sm font-semibold">{exercises.length} EXERCISES</span>
+              </div>
+            </div>
+
+            {/* Progress Indicator */}
+            {progressPercentage > 0 && (
+              <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-4 mx-4">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="text-sm">Progress</span>
+                  <span className="text-sm font-bold">{progressPercentage}%</span>
+                </div>
+                <div className="w-full bg-white/20 rounded-full h-2 mb-2">
+                  <div
+                    className="bg-white h-2 rounded-full transition-all duration-500"
+                    style={{ width: `${progressPercentage}%` }}
+                  ></div>
+                </div>
+                <div className="text-xs text-white/80">
+                  {completedCount} of {totalCount} exercises completed
+                  {isCompleted && <span className="text-green-200 ml-2">✓ Day Completed!</span>}
+                </div>
+              </div>
+            )}
           </div>
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/456/456212.png"
-            alt="header person"
-            className="w-20 h-20 mx-auto"
-          />
+        </div>
+
+        {/* Wave Effect */}
+        <div className="absolute bottom-0 w-full">
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-12">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#f9fafb"></path>
+          </svg>
         </div>
       </div>
 
       {/* Exercise List */}
-      <div className="mt-4 px-4">
-        {routines.map((routine) => (
-          <div
-            key={routine.id + routine.title} // safer unique key if ids are reused
-            className="flex items-center justify-between py-3 border-b border-gray-200"
-          >
-            <div className="max-w-[70%]">
-              <h3 className="text-sm font-semibold text-gray-800">
-                {routine.title}
-              </h3>
-              <p className="text-blue-500 text-xs">
-                {isYoga ? routine.description : "30s"}
-              </p>
+      <div className="px-4 pt-6 pb-24">
+        <h3 className="text-lg font-semibold text-gray-800 mb-4">Today's Exercises</h3>
+        
+        <div className="space-y-3">
+          {exercises.map((exercise, index) => {
+            const isExerciseCompleted = dayProgress.completed.includes(index);
+            
+            return (
+              <div
+                key={`${exercise.id || index}-${exercise.title}`}
+                className={`bg-white rounded-xl p-4 shadow-sm border-2 transition-all ${
+                  isExerciseCompleted 
+                    ? "border-green-200 bg-green-50" 
+                    : "border-gray-100 hover:border-blue-200"
+                }`}
+              >
+                <div className="flex items-center space-x-4">
+                  {/* Exercise Number/Status */}
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold ${
+                    isExerciseCompleted 
+                      ? "bg-green-500 text-white" 
+                      : "bg-gray-200 text-gray-600"
+                  }`}>
+                    {isExerciseCompleted ? "✓" : index + 1}
+                  </div>
+
+                  {/* Exercise Image */}
+                  <div className="w-16 h-16 rounded-lg overflow-hidden bg-gray-100 flex-shrink-0">
+                    <img
+                      src={exercise.image}
+                      alt={exercise.title}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        e.target.src = "https://via.placeholder.com/64x64/f3f4f6/9ca3af?text=Exercise";
+                      }}
+                    />
+                  </div>
+
+                  {/* Exercise Info */}
+                  <div className="flex-1 min-w-0">
+                    <h4 className="font-semibold text-gray-800 truncate">
+                      {exercise.title}
+                    </h4>
+                    <p className="text-sm text-gray-600 mt-1">
+                      {isYoga 
+                        ? (exercise.description || "Hold and breathe deeply") 
+                        : "30 seconds"
+                      }
+                    </p>
+                    {isExerciseCompleted && (
+                      <p className="text-xs text-green-600 font-medium mt-1">
+                        ✓ Completed
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Difficulty Indicator (if available) */}
+                  {exercise.difficulty && (
+                    <div className={`px-2 py-1 rounded-full text-xs font-medium ${
+                      exercise.difficulty === 'easy' ? 'bg-green-100 text-green-700' :
+                      exercise.difficulty === 'medium' ? 'bg-yellow-100 text-yellow-700' :
+                      'bg-red-100 text-red-700'
+                    }`}>
+                      {exercise.difficulty}
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Summary Card */}
+        <div className="mt-6 bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+          <h4 className="font-semibold text-gray-800 mb-3">Session Summary</h4>
+          <div className="grid grid-cols-3 gap-4 text-center">
+            <div>
+              <div className="text-2xl font-bold text-blue-600">{exercises.length}</div>
+              <div className="text-xs text-gray-600">Exercises</div>
             </div>
-            <img
-              src={routine.image}
-              alt={routine.title}
-              className="w-16 h-16 object-contain"
-            />
+            <div>
+              <div className="text-2xl font-bold text-purple-600">{estimatedTime.split(' ')[0]}</div>
+              <div className="text-xs text-gray-600">Minutes</div>
+            </div>
+            <div>
+              <div className="text-2xl font-bold text-green-600">{progressPercentage}%</div>
+              <div className="text-xs text-gray-600">Complete</div>
+            </div>
           </div>
-        ))}
+        </div>
+
+        {/* Benefits Section */}
+        <div className="mt-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-4">
+          <h4 className="font-semibold text-gray-800 mb-3">Today's Benefits</h4>
+          <div className="space-y-2">
+            {isYoga ? (
+              <>
+                <div className="flex items-center space-x-2 text-sm text-gray-700">
+                  <span className="text-green-500">🧘‍♀️</span>
+                  <span>Improved flexibility and balance</span>
+                </div>
+                <div className="flex items-center space-x-2 text-sm text-gray-700">
+                  <span className="text-blue-500">🌸</span>
+                  <span>Reduced stress and mental clarity</span>
+                </div>
+                <div className="flex items-center space-x-2 text-sm text-gray-700">
+                  <span className="text-purple-500">💪</span>
+                  <span>Core strength and posture improvement</span>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex items-center space-x-2 text-sm text-gray-700">
+                  <span className="text-green-500">🤸‍♂️</span>
+                  <span>Enhanced muscle flexibility</span>
+                </div>
+                <div className="flex items-center space-x-2 text-sm text-gray-700">
+                  <span className="text-blue-500">🩺</span>
+                  <span>Better circulation and recovery</span>
+                </div>
+                <div className="flex items-center space-x-2 text-sm text-gray-700">
+                  <span className="text-orange-500">⚡</span>
+                  <span>Reduced muscle tension</span>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
       </div>
 
-      {/* Go Button */}
-      <div className="fixed bottom-4 w-full px-4">
+      {/* Fixed Bottom Button */}
+      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
         <button
-          onClick={() =>
-            navigate(`/routines/Planner?day=${day}&type=${type}`)
-          }
-          className="w-full bg-gradient-to-r from-blue-400 to-purple-500 text-white font-bold py-3 rounded-full text-lg shadow-md"
+          onClick={handleStartRoutine}
+          className="w-full bg-gradient-to-r from-blue-500 via-blue-600 to-purple-600 text-white font-bold py-4 rounded-2xl text-lg shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-[1.02] flex items-center justify-center space-x-2"
         >
-          GO!
+          <Play className="w-5 h-5" />
+          <span>
+            {isCompleted 
+              ? "Redo Routine" 
+              : progressPercentage > 0 
+                ? "Continue Routine" 
+                : "Start Routine"
+            }
+          </span>
         </button>
+        
+        {progressPercentage > 0 && !isCompleted && (
+          <p className="text-center text-sm text-gray-600 mt-2">
+            Resume from exercise {completedCount + 1}
+          </p>
+        )}
       </div>
     </div>
   );

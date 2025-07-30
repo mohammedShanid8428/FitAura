@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { ChevronLeft, CheckCircle } from "lucide-react";
+import { useProgress } from "../../context/ Context"; // Import from your context
 
 // Custom hook to get query params
 const useQuery = () => new URLSearchParams(useLocation().search);
@@ -9,11 +10,12 @@ export default function RoutineDays({ title = "Routine Plan" }) {
   const navigate = useNavigate();
   const location = useLocation();
   const query = useQuery();
+  
+  // Get progress context
+  const { progress, isDayCompleted } = useProgress();
 
-  // 1. Try to get from ?type=stretch or ?type=yoga
+  // Determine the routine type from URL
   let type = query.get("type");
-
-  // 2. If not in query, derive from the pathname
   if (!type) {
     if (location.pathname.includes("/strech")) {
       type = "stretch";
@@ -24,8 +26,11 @@ export default function RoutineDays({ title = "Routine Plan" }) {
     }
   }
 
+  // Get progress data from context
+  const typeProgress = progress[type] || { completedDays: [], days: {} };
+  const completedDays = typeProgress.completedDays.length || 0;
+
   const totalDays = 7;
-  const completedDays = 6;
   const percentage = Math.round((completedDays / totalDays) * 100);
 
   return (
@@ -49,7 +54,7 @@ export default function RoutineDays({ title = "Routine Plan" }) {
         <div className="mt-3">
           <div className="relative h-2 bg-gray-200 rounded-full">
             <div
-              className="absolute h-full bg-blue-500 rounded-full"
+              className="absolute h-full bg-blue-500 rounded-full transition-all duration-500"
               style={{ width: `${percentage}%` }}
             />
           </div>
@@ -71,23 +76,54 @@ export default function RoutineDays({ title = "Routine Plan" }) {
       <div className="space-y-3">
         {[...Array(totalDays)].map((_, index) => {
           const day = index + 1;
-          const isCompleted = day <= completedDays;
+          const isCompleted = isDayCompleted(type, day);
+          const dayProgress = progress[type]?.days[day];
+          const dayProgressPercent = dayProgress ? dayProgress.todayProgress : 0;
 
           return (
             <div
               key={day}
-              className="px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 hover:bg-gray-100 transition cursor-pointer"
+              className={`px-4 py-3 rounded-xl border transition cursor-pointer ${
+                isCompleted 
+                  ? "border-green-300 bg-green-50 hover:bg-green-100" 
+                  : dayProgress 
+                    ? "border-blue-300 bg-blue-50 hover:bg-blue-100"
+                    : "border-gray-200 bg-gray-50 hover:bg-gray-100"
+              }`}
               onClick={() =>
                 navigate(`/routine/day-preview?type=${type}&day=${day}`)
               }
             >
               <div className="flex justify-between items-center">
-                <span className="text-sm font-medium text-gray-700">
-                  Day {day}
-                </span>
+                <div className="flex-1">
+                  <span className="text-sm font-medium text-gray-700">
+                    Day {day}
+                  </span>
+                  {dayProgress && (
+                    <div className="text-xs text-gray-500 mt-1">
+                      {dayProgress.completed.length}/{dayProgress.totalExercises} exercises • {dayProgressPercent}%
+                    </div>
+                  )}
+                  {dayProgress && dayProgressPercent > 0 && (
+                    <div className="mt-2">
+                      <div className="w-full bg-gray-200 rounded-full h-1.5">
+                        <div
+                          className={`h-1.5 rounded-full transition-all duration-300 ${
+                            isCompleted ? 'bg-green-500' : 'bg-blue-500'
+                          }`}
+                          style={{ width: `${dayProgressPercent}%` }}
+                        ></div>
+                      </div>
+                    </div>
+                  )}
+                </div>
                 <CheckCircle
-                  className={`w-5 h-5 ${
-                    isCompleted ? "text-blue-500" : "text-gray-300"
+                  className={`w-5 h-5 ml-3 ${
+                    isCompleted 
+                      ? "text-green-500" 
+                      : dayProgress && dayProgressPercent > 0
+                        ? "text-blue-500"
+                        : "text-gray-300"
                   }`}
                 />
               </div>

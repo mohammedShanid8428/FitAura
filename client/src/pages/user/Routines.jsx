@@ -5,8 +5,7 @@ import { exerciseImg, images } from "../../assets/images"; // make sure this pat
 import Plan from "../../components/routines/Plan";
 import Templete from "../../components/routines/RoutinesChoose";
 import Service from "../../components/routines/RoutinesService";
-import Strech from "../../components/routines/RoutinesStrech";
-import Yoga from "../../components/routines/RoutinesYoga";
+
 import Hydration from "../../components/routines/Hydration";
 
 import Life from "../../components/routines/LifeRoutines"

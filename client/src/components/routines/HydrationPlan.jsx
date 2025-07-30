@@ -13,6 +13,7 @@ const hydrationGoals = [
   "4:00 PM",
   "6:00 PM",
   "8:00 PM",
+  "10:00 PM"
 ];
 
 const WaterWave = ({ progress }) => {

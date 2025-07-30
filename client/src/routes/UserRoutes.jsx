@@ -15,8 +15,8 @@ import MealPlans from "../components/nutritions/MealsPlan";
 import MealsCards from "../components/nutritions/MealsCards";
 import Planner from "../components/nutritions/NutritionPlanner";
 import RoutinesService from "../components/routines/RoutinesService";
-import RoutinesYoga from "../components/routines/RoutinesYoga";
-import RoutinesStrech from "../components/routines/RoutinesStrech";
+// import RoutinesYoga from "../components/routines/RoutinesYoga";
+// import RoutinesStrech from "../components/routines/RoutinesStrech";
 import RoutinePlayer from "../components/routines/RoutinePlanner";
 import RoutineComplete from "../components/routines/RoutineComplete";
 import HydrationPlan from "../components/routines/HydrationPlan";
@@ -45,13 +45,14 @@ const UserRoutes = () => {
       <Route path="routines/service" element={<RoutinesService />} />
       <Route path="routines/hydrationplan" element={<HydrationPlan />} />
       <Route path="/routine/complete" element={<RoutineComplete />} />
-      <Route path="routines/stretch" element={<RoutinesStrech />} />
+      {/* <Route path="routines/stretch" element={<RoutinesStrech />} /> */}
       <Route path="routines/Planner" element={<RoutinePlayer />} />
      <Route path="/routines/yoga" element={<RoutineDays title="Yoga Plan" />} />
 <Route path="/routines/strech" element={<RoutineDays title="Stretch Plan" />} />
+<Route path="/routines/:type" element={<RoutineDays />} />
 <Route path="/routine/day-preview" element={<RoutineDayPreview />} />
 
-      <Route path="routines/yoga" element={<RoutinesYoga />} />
+      {/* <Route path="routines/yoga" element={<RoutinesYoga />} /> */}
       <Route path="routines/save" element={<Saved />} />
       <Route path="/nutrition-guide/:category" element={<NutritionGuidePage />} />
     </Routes>
