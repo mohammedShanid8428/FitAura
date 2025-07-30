@@ -19,12 +19,16 @@ import modal14 from './images/modal14.jpg'
 import modal15 from './images/modal15.png'
 import modal20 from './images/modal20.png'
 import modal23 from './images/modal23.jpeg'
-import service1 from './images/service1.jpg'
-import service2 from './images/service2.jpg'
-import service3 from './images/service3.jpg'
-import service4 from './images/service4.jpg'
-import service5 from './images/service5.jpg'
-import service6 from './images/service6.jpg'
+import service1 from './images/service1.png'
+import service2 from './images/service2.png'
+import service3 from './images/service3.png'
+import service4 from './images/service4.png'
+import service5 from './images/service5.png'
+import service6 from './images/service6.png'
+import service7 from './images/service7.png'
+import service8 from './images/service8.png'
+import service9 from './images/service9.png'
+import service10 from './images/service10.png'
 import exercise1 from './images/exercise1.gif'
 import exercise2 from './images/exercise2.gif'
 import exercise3 from './images/exercise3.gif'
@@ -79,6 +83,10 @@ export const serviceImg={
   service4,
   service5,
   service6,
+  service7,
+  service8,
+  service9,
+  service10,
 }
 
 export const exerciseImg={

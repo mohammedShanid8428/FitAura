@@ -6,25 +6,25 @@ const healthyTips = [
     title: "Find a diet you love",
     description:
       "Find a nutritious diet that fits your lifestyle and food preferences. Take charge of your daily habits with options like Clean Eating and High Protein.",
-    image:serviceImg.service1,
+    image:serviceImg.service2,
   },
   {
     title: "Start a simplified meal plan",
     description:
       "Follow a 7-21 day meal plan with four pre-planned recipes daily. Choose from plans like Keto Burn and Vegan for a week, based on your goals.",
-    image:serviceImg.service2,
+    image:serviceImg.service3,
   },
   {
     title: "Track your way to success",
     description:
       "Track your meals, water intake, and activities using our built-in food, exercise, and hydration trackers to stay balanced every day.",
-    image:serviceImg.service4,
+    image:serviceImg.service7,
   },
   {
     title: "Start your own healthy journey",
     description:
       "Customize your health path by adding your favorite meals, recipes, and exercises to your personal favorites list.",
-    image:serviceImg.service5,
+    image:serviceImg.service8,
   },
 ];
 

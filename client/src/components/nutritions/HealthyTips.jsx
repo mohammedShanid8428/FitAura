@@ -36,14 +36,19 @@ export default function HealthyTips() {
               className="rounded-md object-cover w-full h-40"
             />
             <img
-              src={serviceImg.service2}
+              src={serviceImg.service5}
               alt="Meditation"
               className="rounded-md object-cover w-full h-40"
             />
             <img
-              src={images.modal23}
+              src={serviceImg.service10}
               alt="Weights and veggies"
-              className="col-span-2 rounded-md object-cover w-full h-40"
+              className=" rounded-md object-cover w-full h-40"
+            />
+            <img
+              src={serviceImg.service9}
+              alt="Weights and veggies"
+              className=" rounded-md object-cover w-full h-40"
             />
           </div>
 

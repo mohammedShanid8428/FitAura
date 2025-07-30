@@ -9,8 +9,8 @@ const services = [
   { title: "Anxiety", image: serviceImg.service4 },
   { title: "Tired", image: serviceImg.service5 },
   { title: "Weight Loss", image: serviceImg.service6 },
-  { title: "Weight Gain", image: serviceImg.service1 },
-  { title: "Fitness", image: serviceImg.service3 },
+  { title: "Weight Gain", image: serviceImg.service7 },
+  { title: "Fitness", image: serviceImg.service8 },
 ];
 
 export default function NutritionsServices() {

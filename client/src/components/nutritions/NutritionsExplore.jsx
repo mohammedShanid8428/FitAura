@@ -7,7 +7,7 @@ const nutritionPlans = [
     discount: "Flat 20% Discount",
     title: "Purely Fresh Vegetables",
     desc: "Enjoy farm-fresh vegetables delivered straight to your door for a healthier lifestyle.",
-    image: serviceImg.service1,
+    image: serviceImg.service7,
     bgColor: "bg-green-50",
     link: "https://www.swiggy.com/instamart/search?custom_back=true&query=Vegetables",   // Example Link
   },
@@ -16,7 +16,7 @@ const nutritionPlans = [
     discount: "Flat 25% Discount",
     title: "Fresh Fruits, Pure Quality",
     desc: "Get the freshest seasonal fruits, packed with nutrients and unbeatable taste.",
-    image: serviceImg.service2,
+    image: serviceImg.service9,
     bgColor: "bg-orange-200",
     link: "https://www.swiggy.com/instamart/search?custom_back=true&query=Fruits",   // Example Link
   },
