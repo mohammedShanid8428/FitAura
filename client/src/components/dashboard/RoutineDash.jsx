@@ -153,37 +153,37 @@ export default function RoutineDash() {
   const yogaToday = getTodayProgressForType("yoga");
 
   return (
-    <div className="space-y-6">
+    <div className={`space-y-6 ${theme.bg} px-2`}>
       {/* Header */}
       <div className={`${theme.card} ${theme.text} p-6 rounded-xl shadow-lg`}>
         <div className="flex items-center justify-between mb-3">
-          <h2 className="text-xl font-semibold">Today's Progress</h2>
+          <h2 className="text-xl font-semibold tracking-wide">Today's Progress</h2>
           <TrendingUp className="w-6 h-6" />
         </div>
         <p className="text-4xl font-bold mb-2">{stats.overallProgress}%</p>
-        <p className={`${theme.text} mb-4`}>
+        <p className={`${theme.text} font-semibold mb-4`}>
           {stats.completedToday} of {stats.totalExercises} exercises completed
         </p>
         <ProgressBar value={stats.overallProgress} />
-        <div className={`flex justify-between text-sm mt-3 ${theme.text}`}>
+        <div className={`flex justify-between text-sm mt-3 font-medium ${theme.text}`}>
           <span>Stretch: {stats.stretchProgress}%</span>
           <span>Yoga: {stats.yogaProgress}%</span>
         </div>
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className={` ${theme.bg} grid grid-cols-3 gap-4 `}>
         <div className={`${theme.card} rounded-lg p-4 text-center shadow`}>
-          <div className="text-2xl font-bold text-green-600">{stats.totalCompletedDays}</div>
-          <div className={`text-xs ${theme.text}`}>Days Completed</div>
+          <div className="text-3xl font-bold text-green-600">{stats.totalCompletedDays}</div>
+          <div className={`text-xs font-medium ${theme.text}`}>Days Completed</div>
         </div>
         <div className={`${theme.card} rounded-lg p-4 text-center shadow`}>
-          <div className="text-2xl font-bold text-blue-600">{stretchDetails.completedExercises + yogaDetails.completedExercises}</div>
-          <div className={`text-xs ${theme.text}`}>Total Exercises</div>
+          <div className="text-3xl font-bold text-blue-600">{stretchDetails.completedExercises + yogaDetails.completedExercises}</div>
+          <div className={`text-xs font-medium ${theme.text}`}>Total Exercises</div>
         </div>
         <div className={`${theme.card} rounded-lg p-4 text-center shadow`}>
-          <div className="text-2xl font-bold text-purple-600">{Math.round((stats.stretchProgress + stats.yogaProgress) / 2)}%</div>
-          <div className={`text-xs ${theme.text}`}>Avg Progress</div>
+          <div className="text-3xl font-bold text-purple-600">{Math.round((stats.stretchProgress + stats.yogaProgress) / 2)}%</div>
+          <div className={`text-xs font-medium ${theme.text}`}>Avg Progress</div>
         </div>
       </div>
 
@@ -208,8 +208,8 @@ export default function RoutineDash() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                 <div className="absolute bottom-4 left-4">
-                  <h3 className="text-white text-xl font-bold">{routine.label}</h3>
-                  <p className="text-white/90 text-sm">Day {todayData.day}</p>
+                  <h3 className="text-white tracking-wide text-xl font-bold">{routine.label}</h3>
+                  <p className="text-white/90 font-medium text-sm">Day {todayData.day}</p>
                 </div>
                 {value > 0 && (
                   <div className="absolute top-3 right-3 bg-white/95 text-gray-800 px-3 py-1 rounded-full text-sm font-bold">
@@ -222,11 +222,11 @@ export default function RoutineDash() {
                 {/* Today's Progress */}
                 <div>
                   <div className="flex justify-between items-center mb-2">
-                    <span className={`${theme.text} font-semibold `}>Today's Session</span>
+                    <span className={`${theme.text} tracking-wide font-semibold `}>Today's Session</span>
                     <span className="text-sm text-gray-900">{todayData.progress}%</span>
                   </div>
                   <ProgressBar value={todayData.progress} color={routine.color} />
-                  <div className="text-xs text-gray-500 mt-1">
+                  <div className="text-sm text-gray-500 mt-1">
                     {todayData.completed} of {todayData.total} exercises completed
                   </div>
                 </div>
@@ -234,11 +234,11 @@ export default function RoutineDash() {
                 {/* Overall Progress */}
                 <div>
                   <div className="flex justify-between items-center mb-2">
-                    <span className={`${theme.text} font-semibold `}>Overall Progress</span>
+                    <span className={`${theme.text} tracking-wide font-semibold `}>Overall Progress</span>
                     <span className="text-sm text-gray-500">{value}%</span>
                   </div>
                   <ProgressBar value={value} color={routine.color} />
-                  <div className="text-xs text-gray-500 mt-1">
+                  <div className="text-sm text-gray-500 mt-1">
                     {details.completedDays} of 7 days • {details.completedExercises} exercises total
                   </div>
                 </div>
@@ -255,7 +255,7 @@ export default function RoutineDash() {
                     </div>
                   ))}
                   {benefits.length === 0 && (
-                    <div className={`${theme.text} text-sm italic`}>
+                    <div className={`${theme.text} text-sm tracking-wide italic`}>
                       Start your routine to unlock benefits!
                     </div>
                   )}
@@ -290,7 +290,7 @@ export default function RoutineDash() {
       <div className={`${theme.card} rounded-xl shadow-lg p-6`}>
         <div className="flex items-center space-x-2 mb-4">
           <Calendar className="w-5 h-5 text-blue-500" />
-          <h3 className="font-bold text-lg">Weekly Progress Overview</h3>
+          <h3 className="font-bold text-lg tracking-wide">Weekly Progress Overview</h3>
         </div>
 
         <div className="space-y-6">
@@ -339,7 +339,7 @@ export default function RoutineDash() {
             <span className="text-3xl">🏆</span>
           )}
         </div>
-        <p className={`${theme.text} font-medium`}>
+        <p className={`${theme.text} tracking-wide font-medium`}>
           {stats.overallProgress === 0
             ? "Ready to start your wellness journey? Your first routine awaits!"
             : stats.overallProgress < 30
@@ -349,7 +349,7 @@ export default function RoutineDash() {
                 : "Outstanding progress! You're truly committed to your wellness."}
         </p>
         {stats.overallProgress > 0 && (
-          <div className="mt-3 text-sm text-gray-600">
+          <div className="mt-3 text-sm text-gray-500">
             Keep going – you've got this! 💚
           </div>
         )}
