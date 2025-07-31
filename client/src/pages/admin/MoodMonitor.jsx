@@ -4,18 +4,17 @@ import { toast } from 'react-hot-toast';
 
 export default function MoodMonitor() {
   const [moods, setMoods] = useState([]);
-  const [editingMood, setEditingMood] = useState(null);
+  const [editingMoodId, setEditingMoodId] = useState(null);
   const [formData, setFormData] = useState({});
 
-  const API_URL = 'http://localhost:3000/api/moods';  // Your backend URL
+  const API_URL = 'http://localhost:3000/api/moods';
 
   const fetchMoods = async () => {
     try {
       const res = await axios.get(API_URL);
-      console.log(res.data);
       setMoods(Array.isArray(res.data) ? res.data : []);
     } catch (err) {
-      console.error(err);
+      console.error('Fetch error:', err);
       toast.error('Failed to fetch moods.');
     }
   };
@@ -25,9 +24,9 @@ export default function MoodMonitor() {
   }, []);
 
   const handleEdit = (mood) => {
-    setEditingMood(mood._id);
-    setFormData(mood);
-    window.scrollTo(0, 0);
+    setEditingMoodId(mood._id);
+    setFormData({ ...mood }); // Clone to avoid reference issues
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleDelete = async (id) => {
@@ -35,7 +34,8 @@ export default function MoodMonitor() {
       await axios.delete(`${API_URL}/${id}`);
       toast.success('Mood deleted.');
       fetchMoods();
-    } catch {
+    } catch (err) {
+      console.error('Delete error:', err);
       toast.error('Failed to delete mood.');
     }
   };
@@ -49,18 +49,20 @@ export default function MoodMonitor() {
     try {
       const parsed = JSON.parse(e.target.value);
       setFormData((prev) => ({ ...prev, [field]: parsed }));
-    } catch {
-      // Optional error handling for invalid JSON
+    } catch (err) {
+      toast.error(`Invalid JSON for ${field}`);
     }
   };
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`${API_URL}/${editingMood}`, formData);
+      const payload = { ...formData };
+      await axios.put(`${API_URL}/${editingMoodId}`, payload);
       toast.success('Mood updated.');
-      setEditingMood(null);
+      setEditingMoodId(null);
       fetchMoods();
-    } catch {
+    } catch (err) {
+      console.error('Update error:', err.response?.data || err.message);
       toast.error('Failed to update mood.');
     }
   };
@@ -89,12 +91,12 @@ export default function MoodMonitor() {
             </div>
           </div>
 
-          {editingMood === mood._id && (
+          {editingMoodId === mood._id && (
             <div className="mt-4 bg-gray-700 p-4 rounded-lg">
               <input
                 type="text"
                 name="mood"
-                value={formData.mood}
+                value={formData.mood || ''}
                 onChange={handleChange}
                 className="w-full p-2 rounded bg-gray-800 border border-gray-600 mb-4"
                 placeholder="Mood Name"
@@ -103,7 +105,7 @@ export default function MoodMonitor() {
               <input
                 type="text"
                 name="themeColor"
-                value={formData.themeColor}
+                value={formData.themeColor || ''}
                 onChange={handleChange}
                 className="w-full p-2 rounded bg-gray-800 border border-gray-600 mb-4"
                 placeholder="Theme Color"
@@ -117,7 +119,7 @@ export default function MoodMonitor() {
                 'mindfulnessTips',
                 'dailyChallenges',
                 'affirmation',
-                'moodTips'
+                'moodTips',
               ].map((field) => (
                 <div key={field}>
                   <label className="block mb-2 text-sm capitalize">{field} (JSON)</label>

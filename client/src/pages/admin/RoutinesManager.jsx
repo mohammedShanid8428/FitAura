@@ -334,7 +334,7 @@ export default function RoutinesManager() {
             {routines.map((routine) => (
               <div
                 key={routine._id}
-                className={`bg-gray-500 rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105 ${
+                className={`bg-gray-500 rounded-lg  shadow-md overflow-hidden transition-transform hover:scale-105 ${
                   editMode && editId === routine._id ? 'ring-2 ring-blue-500' : ''
                 }`}
               >
@@ -343,10 +343,10 @@ export default function RoutinesManager() {
                     <img
                       src={routine.imageUrl}
                       alt={routine.title}
-                      className="w-full h-40 object-cover"
+                      className="w-full h-60 object-cover"
                     />
                     {isGif(routine.imageUrl) && (
-                      <div className="absolute top-2 right-2 bg-purple-500 text-white text-xs px-2 py-1 rounded-full">
+                      <div className="absolute  top-2 right-2 bg-purple-500 text-white text-xs px-2 py-1 rounded-full">
                         GIF
                       </div>
                     )}
