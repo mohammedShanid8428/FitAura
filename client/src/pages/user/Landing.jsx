@@ -89,7 +89,7 @@ export default function Landing() {
       <section className='bg-gray-50 py-10 px-6 md:px-12'>
         <div className='text-center mb-12 max-w-3xl mx-auto'>
           <p className='text-md tracking-wide uppercase text-gray-600 mb-3'>Explore & Learn</p>
-          <h1 className='text-3xl md:text-4xl font-bold text-gray-900 mb-4'>
+          <h1 className='text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-wide'>
             Resources for <br className="" /> Your Well-being
           </h1>
           <p className='text-gray-700 font-semibold text-xl'>
@@ -201,19 +201,21 @@ export default function Landing() {
 
           <div>
             <h3 className='text-2xl font-semibold text-gray-800 mb-8'>Send Us a Message</h3>
-            <div className="bg-orange-50 p-10 rounded-[40px] shadow-inner">
+            <div className="bg-orange-100 p-10 rounded-[40px] shadow-inner">
               <form action="" className='space--y'>
                 <div className='mb-3'>
                   <label htmlFor="" className='block text-md text-gray-800 mb-1'>Email</label>
-                  <input type="email" placeholder='Email' className='w-full border-b border-gray-400 text-sm bg-transparent text-sm focus:outline-none py-2' />
+                  <input type="email" placeholder='Email' className='w-full border-b border-gray-400 text-xs bg-transparent placeholder-gray-800 focus:outline-none py-2' />
                 </div>
                 <div className='mb-8'>
                   <label htmlFor="" className='block text-md text-gray-800 mb-1'>Message</label>
-                  <textarea name="" placeholder='Message' className='w-full border-b border-gray-400 bg-transparent focus:outline-none py-2 text-sm' id=""></textarea>
+                  <textarea name="" placeholder='Message' className='w-full border-b border-gray-400 placeholder-gray-800 text-xs bg-transparent focus:outline-none py-2 '></textarea>
                 </div>
+                <Link to={'/auth/login'}>
                 <button className='bg-gray-900 text-white w-full py-2 rounded-full hover:bg-gray-900 transition'>
                   Send Message
                 </button>
+                </Link>
               </form>
             </div>
           </div>
@@ -249,15 +251,17 @@ export default function Landing() {
           <div className='bg-gray-800 rounded-[40px] p-14 text-white flex flex-col justify-between relative overflow-hidden'>
             <img src={images.modal4} className="absolute top-[-90px] right-[-120px] w-[450px] " alt="" />
             <div className='relative z-10'>
-              <h3 className='text-3xl font-bold leading-snug mb-6'>
+              <h3 className='text-3xl font-bold leading-snug tracking-wide mb-6'>
                 Find <br />
                 Support, <br />
                 Guidance, <br />
                 and Balance.
               </h3>
+              <Link to={'/auth/login'}>
               <button className='bg-white text-gray-800 w-full mt-8 py-3 rounded-full text-md font-medium hover:bg-gray-200'>
                 Find Support Now
               </button>
+              </Link>
             </div>
           </div>
         </div>
