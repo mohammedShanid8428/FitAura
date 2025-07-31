@@ -188,15 +188,15 @@ export default function RoutinesManager() {
   };
 
   return (
-    <section className="bg-gray-100 min-h-screen py-10 px-4 sm:px-6">
-      <h1 className="text-2xl sm:text-3xl font-bold text-center text-green-600 mb-8">
+    <section className="bg-gray-900 min-h-screen py-10 px-4 sm:px-6">
+      <h1 className="text-2xl sm:text-3xl font-bold text-center text-lime-500 mb-8">
         Routines Manager (Admin)
       </h1>
 
       {/* Routine Form */}
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow rounded-lg p-5 max-w-xl mx-auto mb-10"
+        className="bg-gray-400 shadow rounded-lg p-5 max-w-xl mx-auto mb-10"
         encType="multipart/form-data"
       >
         <div className="flex justify-between items-center mb-4">
@@ -223,7 +223,7 @@ export default function RoutinesManager() {
           onChange={handleInputChange}
           required
           disabled={uploading}
-          className="w-full mb-3 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500 disabled:bg-gray-100"
+          className="w-full mb-3 px-4 py-2 border bg-gray-200 placeholder-gray-900  rounded focus:outline-none focus:ring-2 focus:ring-green-500 disabled:bg-gray-100"
         />
 
         <div className="mb-3">
@@ -234,7 +234,7 @@ export default function RoutinesManager() {
             onChange={handleFileChange}
             required={!editMode}
             disabled={uploading}
-            className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500 disabled:bg-gray-100"
+            className="w-full px-4 py-2 border rounded bg-gray-200 placeholder-gray-900 focus:outline-none focus:ring-2 focus:ring-green-500 disabled:bg-gray-100"
           />
           <p className="text-sm text-gray-500 mt-1">
             {editMode 
@@ -277,7 +277,7 @@ export default function RoutinesManager() {
           onChange={handleInputChange}
           rows="3"
           disabled={uploading}
-          className="w-full mb-3 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500 disabled:bg-gray-100"
+          className="w-full mb-3 px-4 py-2 border bg-gray-200 placeholder-gray-900  rounded focus:outline-none focus:ring-2 focus:ring-green-500 disabled:bg-gray-100"
         />
 
         <input
@@ -289,7 +289,7 @@ export default function RoutinesManager() {
           min="1"
           required
           disabled={uploading}
-          className="w-full mb-4 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500 disabled:bg-gray-100"
+          className="w-full mb-4 px-4 py-2 border bg-gray-200 placeholder-gray-900  rounded focus:outline-none focus:ring-2 focus:ring-green-500 disabled:bg-gray-100"
         />
 
         <button
@@ -316,7 +316,7 @@ export default function RoutinesManager() {
 
       {/* Routines Grid */}
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-xl font-bold mb-6 text-gray-700">
+        <h2 className="text-xl font-bold mb-6 text-lime-400">
           All Routines ({routines.length})
         </h2>
 
@@ -334,7 +334,7 @@ export default function RoutinesManager() {
             {routines.map((routine) => (
               <div
                 key={routine._id}
-                className={`bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105 ${
+                className={`bg-gray-500 rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105 ${
                   editMode && editId === routine._id ? 'ring-2 ring-blue-500' : ''
                 }`}
               >
@@ -354,16 +354,16 @@ export default function RoutinesManager() {
                 )}
 
                 <div className="p-4">
-                  <h3 className="font-bold text-lg text-green-700 mb-2">
+                  <h3 className="font-bold text-lg text-lime-500 mb-2">
                     {routine.title}
                   </h3>
 
-                  <p className="text-sm text-gray-600 mb-3 line-clamp-2">
+                  <p className="text-sm text-gray-200 mb-3 line-clamp-2">
                     {routine.description || "No description provided"}
                   </p>
 
                   <div className="flex justify-between items-center mb-4">
-                    <span className="bg-green-100 text-green-800 text-sm px-2 py-1 rounded-full">
+                    <span className="bg-green-100 text-lime-800 text-sm px-2 py-1 rounded-full">
                       {routine.duration}s
                     </span>
                     <span className="text-xs text-gray-500">
