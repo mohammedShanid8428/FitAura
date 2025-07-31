@@ -22,16 +22,11 @@ export default function Dashboard({ userName = "User" }) {
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-3xl font-bold tracking-wide">Welcome, {user?.username}! 👋</h1>
-            <p>Track your health & wellness today</p>
+            <p className="text-md font-medium tracking-wider">Track your health & wellness today</p>
           </div>
-          {/* <img
-            src=""
-            alt="Profile"
-            className="w-14 h-14 rounded-full border border-white"
-          /> */}
+         
         </div>
 
-        {/* Mood Dash - Full Width Top */}
         <div className={`mb-6 rounded-xl border shadow ${theme.card}`}>
           <MoodDash userId={userId} mood={mood} />
         </div>

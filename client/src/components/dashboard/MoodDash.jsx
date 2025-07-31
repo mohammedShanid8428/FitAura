@@ -34,8 +34,8 @@ export default function Emojis() {
   ];
 
   return (
-    <section className={`w-full min-h-screen ${theme.bg} ${theme.text}  flex flex-col justify-center py-20`}>
-      <h2 className="text-4xl font-bold text-center mb-12">What's Your Mood Today?</h2>
+    <section className={`w-full min-h-[110px] ${theme.bg} ${theme.text}  flex flex-col justify-center py-10`}>
+      <h2 className="text-4xl font-bold text-center mb-12 tracking-wide">What's Your Mood Today?</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 px-6 max-w-7xl mx-auto">
         {emojis.map((moodItem) => (
@@ -49,8 +49,8 @@ export default function Emojis() {
               alt={moodItem.title}
               className="w-52 h-52 object-contain mb-6"
             />
-            <h3 className="text-2xl font-semibold mb-3">{moodItem.title}</h3>
-            <p className="text-md text-gray-800 max-w-xs">{moodItem.description}</p>
+            <h3 className="text-2xl font-bold mb-3 tracking-wide">{moodItem.title}</h3>
+            <p className="text-md font-medium text-gray-800 max-w-xs">{moodItem.description}</p>
           </div>
         ))}
       </div>

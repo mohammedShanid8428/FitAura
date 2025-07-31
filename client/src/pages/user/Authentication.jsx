@@ -130,7 +130,7 @@ const Authentication = () => {
 
         <form className="space-y-4" onSubmit={handleSubmit}>
           {!isLogin && (
-            <div className="flex items-center bg-[#FFF5E8] border border-orange-200 rounded-xl px-4 py-3">
+            <div className="flex items-center bg-[#FFF5E8] border border-orange-300 rounded-xl px-4 py-3">
               <User className="w-4 h-4 mr-2 text-gray-800" />
               <input
                 type="text"
@@ -144,7 +144,7 @@ const Authentication = () => {
             </div>
           )}
 
-          <div className="flex items-center bg-[#FFF5E8] border border-orange-200 rounded-xl px-4 py-3">
+          <div className="flex items-center bg-[#FFF5E8] border border-orange-300 rounded-xl px-4 py-3">
             <Mail className="w-4 h-4 mr-2 text-gray-800" />
             <input
               type="email"
@@ -157,7 +157,7 @@ const Authentication = () => {
             />
           </div>
 
-          <div className="flex items-center bg-[#FFF5E8] border border-orange-200 rounded-xl px-4 py-3">
+          <div className="flex items-center bg-[#FFF5E8] border border-orange-300 rounded-xl px-4 py-3">
             <Lock className="w-4 h-4 mr-2 text-gray-800" />
             <input
               type="password"
