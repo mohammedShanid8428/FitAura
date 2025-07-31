@@ -94,7 +94,7 @@ export default function Emojis() {
                     ease: "easeInOut",
                   }}
                 />
-                <h3 className="text-2xl font-bold text-lime-400 mb-3 drop-shadow-lg">{mood.title}</h3>
+                <h3 className="text-2xl font-bold tracking-wider text-lime-400 mb-3 drop-shadow-lg">{mood.title}</h3>
                 <p className="text-md text-gray-200 max-w-xs">{mood.description}</p>
               </Link>
             </motion.div>

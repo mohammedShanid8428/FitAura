@@ -12,7 +12,7 @@ const moodBasedServices = {
       {
         title: "Mindfulness & Meditation",
         description: "Boost joy with breathing techniques and presence practices.",
-        image: images.modal7,
+        image: images.modal24,
       },
       {
         title: "Gratitude Coaching",
@@ -22,12 +22,12 @@ const moodBasedServices = {
       {
         title: "Creative Expression",
         description: "Engage in art, music, or journaling to amplify your positive energy.",
-        image: images.modal7,
+        image: images.modal25,
       },
       {
         title: "Positive Psychology",
         description: "Explore scientifically-backed strategies to maintain lasting happiness.",
-        image: images.modal21,
+        image: images.modal26,
       },
     ],
   },
@@ -40,7 +40,7 @@ const moodBasedServices = {
       {
         title: "Talk Therapy",
         description: "Share your thoughts in a safe space and feel heard.",
-        image: images.modal7,
+        image: images.modal25,
       },
       {
         title: "Mood Journaling",
@@ -55,7 +55,7 @@ const moodBasedServices = {
       {
         title: "Compassion Training",
         description: "Build self-kindness and emotional resilience in tough times.",
-        image: images.modal7,
+        image: images.modal24,
       },
     ],
   },
@@ -68,7 +68,7 @@ const moodBasedServices = {
       {
         title: "Anger Management",
         description: "Techniques to cool down and respond calmly.",
-        image: images.modal7,
+        image: images.modal26,
       },
       {
         title: "Deep Breathing Sessions",
@@ -83,7 +83,7 @@ const moodBasedServices = {
       {
         title: "Physical Release Techniques",
         description: "Try movement or stretching to let go of built-up tension.",
-        image: images.modal7,
+        image: images.modal25,
       },
     ],
   },
