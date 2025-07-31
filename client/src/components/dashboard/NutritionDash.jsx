@@ -187,7 +187,7 @@ export default function NutritionDash() {
         <div className=" border border-gray-700 rounded-2xl p-6 w-full max-w-6xl shadow-xl text-white">
           {/* Header with Overview Button */}
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
-            <h2 className={`text-2xl font-bold  ${theme.text} `}>
+            <h2 className={`text-3xl font-bold tracking-wide ${theme.text} `}>
               <span className="flex items-center gap-2">
                 <Utensils size={24} />
                 Your Nutrition Dashboard
@@ -261,7 +261,7 @@ export default function NutritionDash() {
                     </div>
                   </div>
 
-                  <h3 className={`font-semibold ${theme.text} text-white mb-2 text-sm truncate`}>
+                  <h3 className={`font-semibold ${theme.text}  tracking-wide mb-2 text-md truncate`}>
                     {meal.title || meal.name || "Untitled Meal"}
                   </h3>
 
