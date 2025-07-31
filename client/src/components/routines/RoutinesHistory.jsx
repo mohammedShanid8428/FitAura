@@ -28,7 +28,7 @@ export default function RoutinesHistory() {
         {/* Right: Visual Section */}
         <div className="w-80 h-60 relative group transition">
           <img
-            src={images.modal21}
+            src={images.modal24}
             alt="Routine History"
             className="w-full h-full rounded-xl shadow-lg object-cover transform group-hover:scale-105 transition duration-300"
           />

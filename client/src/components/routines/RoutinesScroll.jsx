@@ -1,16 +1,26 @@
 import React from "react";
 import { motion } from "framer-motion";
+import {
+  Dumbbell,
+  Flower,
+  HeartPulse,
+  Brain,
+  StretchHorizontal,
+  Apple,
+  Flame,
+  Smile,
+} from "lucide-react";
 
 export default function TagMarquee() {
   const tags = [
-    { icon: "/icons/gym.svg", label: "Gym Power" },
-    { icon: "/icons/yoga.svg", label: "Yoga Flow" },
-    { icon: "/icons/cardio.svg", label: "Cardio Blast" },
-    { icon: "/icons/meditation.svg", label: "Meditation Calm" },
-    { icon: "/icons/stretch.svg", label: "Stretch Routine" },
-    { icon: "/icons/nutrition.svg", label: "Balanced Nutrition" },
-    { icon: "/icons/workout.svg", label: "HIIT Training" },
-    { icon: "/icons/mindfulness.svg", label: "Mindfulness" },
+    { icon: <Dumbbell size={20} />, label: "Gym Power" },
+    { icon: <Flower size={20} />, label: "Yoga Flow" },
+    { icon: <HeartPulse size={20} />, label: "Cardio Blast" },
+    { icon: <Brain size={20} />, label: "Meditation Calm" },
+    { icon: <StretchHorizontal size={20} />, label: "Stretch Routine" },
+    { icon: <Apple size={20} />, label: "Balanced Nutrition" },
+    { icon: <Flame size={20} />, label: "HIIT Training" },
+    { icon: <Smile size={20} />, label: "Mindfulness" },
   ];
 
   return (
@@ -30,7 +40,7 @@ export default function TagMarquee() {
               key={index}
               className="flex items-center space-x-2 px-6 min-w-fit"
             >
-              <img src={item.icon} alt={item.label} className="h-6" />
+              <span className="text-black">{item.icon}</span>
               <span className="font-semibold text-black text-lg whitespace-nowrap">
                 {item.label}
               </span>

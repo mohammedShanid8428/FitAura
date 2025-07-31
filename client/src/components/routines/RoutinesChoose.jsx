@@ -31,10 +31,10 @@ export default function RoutinesChoose() {
           FitAura is your personalized health and wellness companion, offering structured workout routines, yoga sessions, guided meditations, and balanced nutrition plans
         </p>
       </div>
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-center items-center gap-8">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-center items-center gap-10">
 
         
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-8">
           <div className="w-56 bg-[#1c1c1c] border border-lime-500 rounded-lg p-4 text-center shadow-lg">
             <h4 className="font-semibold mb-2">{benefits[0].title}</h4>
             <p className="text-sm text-gray-300">{benefits[0].desc}</p>
@@ -48,13 +48,13 @@ export default function RoutinesChoose() {
     
         <div className="flex justify-center">
           <img
-            src={images.modal10}
+            src={images.modal27}
             alt="Trainer"
-            className="w-72 md:w-96 object-cover rounded-lg"
+            className="w-72 md:w-96 object-cover border border-lime-500 rounded-lg"
           />
         </div>
 
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-8">
           <div className="w-56 bg-[#1c1c1c] border border-lime-500 rounded-lg p-4 text-center shadow-lg">
             <h4 className="font-semibold mb-2">{benefits[1].title}</h4>
             <p className="text-sm text-gray-300">{benefits[1].desc}</p>

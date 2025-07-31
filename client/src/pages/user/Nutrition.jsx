@@ -10,6 +10,7 @@ import NutritionsExplore from "../../components/nutritions/NutritionsExplore";
 import NutritionHistory from "../../components/nutritions/NutritionHistory";
 import Header from "../../components/common/Header";
 import Footer from '../../components/common/Footer';
+import NutritionScroll from "../../components/nutritions/NutrtionScroll";
 
 export default function NutritionCarousel() {
   return (
@@ -17,8 +18,9 @@ export default function NutritionCarousel() {
       <Header/>
     
 
-      <section className="bg-gray-900 space-y-8">
+      <section className="bg-gray-900 space-y-">
         <NutritionHero />
+        <NutritionScroll/>
         <HealthyTips />
         <HealthyBite />
         <MealPlans />

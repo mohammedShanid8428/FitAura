@@ -6,7 +6,7 @@ const services = [
   {
     id: 1,
     title: "Yoga Routine",
-    image: images.modal7,
+    image: images.modal25,
     desc: "Improve flexibility and calm your mind with guided yoga sessions.",
     link: "/routines/yoga",   // Update to match your route
   },
