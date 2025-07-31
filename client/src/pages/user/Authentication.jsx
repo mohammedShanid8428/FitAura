@@ -131,13 +131,13 @@ const Authentication = () => {
         <form className="space-y-4" onSubmit={handleSubmit}>
           {!isLogin && (
             <div className="flex items-center bg-[#FFF5E8] border border-orange-200 rounded-xl px-4 py-3">
-              <User className="w-4 h-4 mr-2 text-orange-400" />
+              <User className="w-4 h-4 mr-2 text-gray-800" />
               <input
                 type="text"
                 placeholder="Username"
                 value={formData.username}
                 onChange={(e) => setFormData({ ...formData, username: e.target.value })}
-                className="bg-transparent w-full outline-none text-sm placeholder:text-orange-300"
+                className="bg-transparent w-full outline-none text-sm placeholder:text-gray-800"
                 disabled={isLoading}
                 required={!isLogin}
               />
@@ -145,26 +145,26 @@ const Authentication = () => {
           )}
 
           <div className="flex items-center bg-[#FFF5E8] border border-orange-200 rounded-xl px-4 py-3">
-            <Mail className="w-4 h-4 mr-2 text-orange-400" />
+            <Mail className="w-4 h-4 mr-2 text-gray-800" />
             <input
               type="email"
               placeholder="Email"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              className="bg-transparent w-full outline-none text-sm placeholder:text-orange-300"
+              className="bg-transparent w-full outline-none text-sm placeholder:text-gray-800"
               disabled={isLoading}
               required
             />
           </div>
 
           <div className="flex items-center bg-[#FFF5E8] border border-orange-200 rounded-xl px-4 py-3">
-            <Lock className="w-4 h-4 mr-2 text-orange-400" />
+            <Lock className="w-4 h-4 mr-2 text-gray-800" />
             <input
               type="password"
               placeholder="Password (min 6 characters)"
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-              className="bg-transparent w-full outline-none text-sm placeholder:text-orange-300"
+              className="bg-transparent w-full outline-none text-sm placeholder:text-gray-800"
               disabled={isLoading}
               required
               minLength={6}
