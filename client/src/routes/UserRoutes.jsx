@@ -24,6 +24,7 @@ import Saved from "../components/nutritions/Saved";
 import NutritionGuidePage from "../components/nutritions/NutritionGuide";
 import RoutineDays from "../components/routines/RoutineDays";
 import RoutineDayPreview from "../components/routines/RoutineDayPreview";
+import Profile from "../components/common/Profile";
 
 const UserRoutes = () => {
   return (
@@ -32,6 +33,7 @@ const UserRoutes = () => {
       <Route path="/" element={<Landing />} />
       <Route path="/mood" element={<Mood />} />
       <Route path="/routines" element={<Routines />} />
+      <Route path="/profile" element={<Profile />} />
       <Route path="/nutrition" element={<Nutrition />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/about" element={<About />} />

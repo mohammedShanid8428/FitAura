@@ -6,8 +6,10 @@ import HydrationDash from "../../components/dashboard/HydrationDash";
 import MoodDash from "../../components/dashboard/MoodDash";
 import Header from "../../components/common/Header";
 import Footer from '../../components/common/Footer';
+import { useAuth } from "../../context/AuthContext";
 
 export default function Dashboard({ userName = "User" }) {
+    const { user } = useAuth();
   const [searchParams] = useSearchParams();
   const mood = searchParams.get("mood") || "default";
   const theme = moodThemes[mood] || moodThemes.default;
@@ -19,14 +21,14 @@ export default function Dashboard({ userName = "User" }) {
       <div className={`p-6 font-sans min-h-screen ${theme.bg} ${theme.text}`}>
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold">Welcome, {userName} 👋</h1>
+            <h1 className="text-3xl font-bold tracking-wide">Welcome, {user?.username}! 👋</h1>
             <p>Track your health & wellness today</p>
           </div>
-          <img
-            src={`https://ui-avatars.com/api/?name=${userName}&background=000000&color=lime`}
+          {/* <img
+            src=""
             alt="Profile"
             className="w-14 h-14 rounded-full border border-white"
-          />
+          /> */}
         </div>
 
         {/* Mood Dash - Full Width Top */}

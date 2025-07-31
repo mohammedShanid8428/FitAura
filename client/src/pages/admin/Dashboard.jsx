@@ -322,7 +322,7 @@ export default function AdminDashboard() {
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar */}
-      <div className={`${sidebarOpen ? 'w-64' : 'w-16'} bg-gradient-to-b from-lime-600 to-lime-700 text-white transition-all duration-300 flex flex-col`}>
+      <div className={`${sidebarOpen ? 'w-64' : 'w-22'} bg-gradient-to-b from-lime-600 to-lime-700 text-white transition-all duration-300 flex flex-col`}>
         {/* Logo */}
         <div className="p-4 border-b border-lime-500">
           <div className="flex items-center space-x-3">
@@ -385,8 +385,8 @@ export default function AdminDashboard() {
             </div>
             {sidebarOpen && (
               <div className="flex-1 min-w-0">
-                <p className="text-sm font-medium text-white truncate">Admin User</p>
-                <p className="text-xs text-lime-200 truncate">admin@fitaura.com</p>
+                <p className="text-sm font-medium text-white truncate">shan</p>
+                <p className="text-xs text-lime-200 truncate">shan@gmail.com</p>
               </div>
             )}
           </div>
