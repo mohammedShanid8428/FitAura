@@ -24,8 +24,8 @@ export default function Landing() {
   const [activeAuth, setActiveAuth] = useState("login");
   return (
     <div className=" bg-gray-50">
-      <Header/>
-    
+      <Header />
+
 
       <section className="bg-orange-100 min-h-[430px] py-16 sm:py-20 px-4 sm:px-6 md:px-10 rounded-[40px] max-w-5xl mx-auto my-10 md:my-12 relative overflow-hidden">
         <img
@@ -46,9 +46,11 @@ export default function Landing() {
           <p className="text-gray-700 mb-6 max-w-md mx-auto text-sm sm:text-base md:text-lg">
             Discover personalized routines, expert guidance, and tools to help you stay physically active, mentally strong, and nutritionally balanced.
           </p>
-          <button className="bg-gray-800 text-white text-sm sm:text-base py-3 px-6 sm:px-8 rounded-full hover:bg-gray-900 transition-all duration-200">
-            Explore Now
-          </button>
+          <Link to={'/auth/login'}>
+            <button className="bg-gray-800 text-white text-sm sm:text-base py-3 px-6 sm:px-8 rounded-full hover:bg-gray-900 transition-all duration-200">
+              Explore Now
+            </button>
+          </Link>
         </div>
       </section>
 
@@ -58,14 +60,16 @@ export default function Landing() {
         <div>
           <p className="text-sm uppercase tracking-wide text-gray-500 mb-4">How It Works</p>
           <h3 className="text-3xl sm:text-4xl md:text-5xl leading-snug font-bold text-gray-800 mb-6">
-            Build Better Habits <br className="hidden sm:block" /> With Your <br /> Routine Trainer
+            Elevate Your Energy <br className="hidden sm:block" /> With Every <br /> Routine Move
           </h3>
           <p className="text-gray-700 mb-8 max-w-md text-base sm:text-lg">
-            Get matched with a trainer who helps you stay consistent. Track your workouts, plan healthy meals, and maintain your wellness — all in one place.
+            Discover routines that move you — physically and mentally. From mindful stretches to powerful workouts, shape your wellness journey your way.
           </p>
+          <Link to={'/auth/login'}>
           <button className="bg-gray-800 text-white py-2.5 px-6 sm:px-8 rounded-full hover:bg-gray-900 transition text-sm sm:text-base">
-            Find A Trainer
+            Find A Routine
           </button>
+          </Link>
         </div>
 
         {/* Right Image */}
@@ -80,7 +84,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <Services/>
+      <Services />
 
       <section className='bg-gray-50 py-10 px-6 md:px-12'>
         <div className='text-center mb-12 max-w-3xl mx-auto'>
@@ -124,7 +128,7 @@ export default function Landing() {
         </div>
       </section>
 
-      <Testimonials/>
+      <Testimonials />
 
       <section className='bg-white rounded-[50px] p-8  md:px-14 flex flex-col  md:flex-row item-center justify-between max-w-6xl mx-auto relative overflow-hidden shadow-md'>
 
@@ -146,9 +150,9 @@ export default function Landing() {
         </div>
       </section>
 
-      <FAQ/>
+      <FAQ />
 
-     
+
 
       <section className=' py-16 px-4'>
         <div className="text-white mb-14 text-center">
