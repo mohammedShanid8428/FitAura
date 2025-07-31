@@ -66,9 +66,9 @@ export default function Landing() {
             Discover routines that move you — physically and mentally. From mindful stretches to powerful workouts, shape your wellness journey your way.
           </p>
           <Link to={'/auth/login'}>
-          <button className="bg-gray-800 text-white py-2.5 px-6 sm:px-8 rounded-full hover:bg-gray-900 transition text-sm sm:text-base">
-            Find A Routine
-          </button>
+            <button className="bg-gray-800 text-white py-2.5 px-6 sm:px-8 rounded-full hover:bg-gray-900 transition text-sm sm:text-base">
+              Find A Routine
+            </button>
           </Link>
         </div>
 
@@ -99,32 +99,41 @@ export default function Landing() {
 
         <div className='grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto'>
           <div className='bg-white rounded-[50px] p-8 shadow-md text-center max-w-xs'>
-            <h2 className='text-2xl  font-semibold text-gray-900  mb-4'>Article & <br /> Guides</h2>
+            <h2 className='text-2xl font-semibold text-gray-900 mb-4'>Hydration <br /> Tracker</h2>
             <p className='text-gray-600 mb-8 font-semibold'>
-              Practical tips on stress management, mindfulness, and emotional resilience.
+              Stay refreshed boost your energy and energized and with daily water tracking and smart hydration tips.
             </p>
+            <Link to={'/auth/login'}>
             <button className='bg-yellow-400 hover:bg-yellow-500 text-white px-8 py-2 rounded-full font-medium'>
-              Explore
+              Track Now
             </button>
+            </Link>
           </div>
+
           <div className='bg-white rounded-[50px] p-8 shadow-md text-center max-w-xs'>
-            <h2 className='text-2xl  font-semibold text-gray-900  mb-4'>Routines & <br /> Guides</h2>
+            <h2 className='text-2xl font-semibold text-gray-900 mb-4'>Routines & <br /> Guides</h2>
             <p className='text-gray-600 mb-8 font-semibold'>
-              Practical tips on stress management, mindfulness, and emotional resilience.
+              Build consistency with expert-backed routines and mindful wellness practices tailored to your lifestyle.
             </p>
+            <Link to={'/auth/login'}>
             <button className='bg-teal-400 hover:bg-teal-500 text-white px-8 py-2 rounded-full font-medium'>
-              Explore
+              Track Now
             </button>
+            </Link>
           </div>
+
           <div className='bg-white rounded-[50px] p-8 shadow-md text-center max-w-xs'>
-            <h2 className='text-2xl  font-semibold text-gray-900  mb-4'>Nutrition & <br /> Guides</h2>
+            <h2 className='text-2xl font-semibold text-gray-900 mb-4'>Nutrition & <br /> Guides</h2>
             <p className='text-gray-600 mb-8 font-semibold'>
-              Practical tips on stress management, mindfulness, and emotional resilience.
+              Fuel your body with balanced meals, expert nutrition tips, and mindful eating habits for lasting wellness.
             </p>
+            <Link  to={'/auth/login'}>
             <button className='bg-pink-400 hover:bg-pink-500 text-white px-8 py-2 rounded-full font-medium'>
-              Explore
+              Track Now
             </button>
+            </Link>
           </div>
+
         </div>
       </section>
 
