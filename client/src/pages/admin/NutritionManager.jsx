@@ -132,7 +132,7 @@ export default function NutritionManager() {
           expectedRoutes: [
             'POST /api/meals/addmeal',
             'PUT /api/meals/updatemeal/:id',
-            'GET /api/meals/allmeal',
+            'GET /api/meals/getallmeal',
             'DELETE /api/meals/deletemeal/:id'
           ]
         });
@@ -181,14 +181,14 @@ export default function NutritionManager() {
   };
 
   return (
-    <section className="bg-gray-100 min-h-screen py-10 px-4 sm:px-6">
-      <h1 className="text-2xl sm:text-3xl font-bold text-center text-green-600 mb-8">
+    <section className="bg-gray-900 min-h-screen py-10 px-4 sm:px-6">
+      <h1 className="text-2xl sm:text-3xl font-bold text-center text-green-500 mb-8">
         Nutrition Manager (Admin)
       </h1>
 
       <form
         onSubmit={handleSubmit}
-        className="bg-white shadow rounded-lg p-5 max-w-xl mx-auto mb-10"
+        className="bg-gray-400 shadow rounded-lg p-5 max-w-xl mx-auto mb-10"
         encType="multipart/form-data"
       >
         <div className="flex justify-between items-center mb-4">
@@ -213,7 +213,7 @@ export default function NutritionManager() {
           value={formData.title}
           onChange={handleInputChange}
           required
-          className="w-full mb-3 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+          className="w-full mb-3 bg-gray-200 placeholder-gray-900 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500"
         />
 
         <div className="mb-3">
@@ -223,7 +223,7 @@ export default function NutritionManager() {
             accept="image/*"
             onChange={handleFileChange}
             required={!editMode}
-            className="w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full px-4 py-2  bg-gray-200 placeholder-gray-900  border rounded focus:outline-none focus:ring-2 focus:ring-green-500"
           />
           {editMode && (
             <p className="text-sm text-gray-500 mt-1">
@@ -241,7 +241,7 @@ export default function NutritionManager() {
             <img
               src={imagePreview}
               alt="Preview"
-              className="w-full h-32 object-cover rounded border"
+              className="w-full h-32 object-cover rounded border bg-gray-200 placeholder-gray-900 "
             />
           </div>
         )}
@@ -250,12 +250,17 @@ export default function NutritionManager() {
           name="mealType"
           value={formData.mealType}
           onChange={handleInputChange}
-          className="w-full mb-3 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+          className="w-full mb-3 px-4 py-2 border bg-gray-200 placeholder-gray-900  rounded focus:outline-none focus:ring-2 focus:ring-green-500"
         >
           <option value="Breakfast">Breakfast</option>
           <option value="Lunch">Lunch</option>
           <option value="Dinner">Dinner</option>
           <option value="Snack">Snack</option>
+          <option value="Snack">Wieghtloss</option>
+          <option value="Snack">Weightgain</option>
+          <option value="Snack">Happy</option>
+          <option value="Snack">Sad</option>
+          <option value="Snack">Angry</option>
         </select>
 
         <textarea
@@ -264,7 +269,7 @@ export default function NutritionManager() {
           value={formData.benefit}
           onChange={handleInputChange}
           rows="3"
-          className="w-full mb-3 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+          className="w-full mb-3 px-4 py-2 border bg-gray-200 placeholder-gray-900  rounded focus:outline-none focus:ring-2 focus:ring-green-500"
         />
 
         <input
@@ -273,7 +278,7 @@ export default function NutritionManager() {
           placeholder="Tags (comma-separated: healthy, protein, vegetarian)"
           value={formData.tags}
           onChange={handleInputChange}
-          className="w-full mb-4 px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-green-500"
+          className="w-full mb-4 px-4 py-2 border bg-gray-200 placeholder-gray-900  rounded focus:outline-none focus:ring-2 focus:ring-green-500"
         />
 
         <button
@@ -306,7 +311,7 @@ export default function NutritionManager() {
             {allMeals.map((meal) => (
               <div
                 key={meal._id}
-                className={`bg-white rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105 ${editMode && editId === meal._id ? 'ring-2 ring-blue-500' : ''
+                className={`bg-gray-400 rounded-lg shadow-md overflow-hidden transition-transform hover:scale-105 ${editMode && editId === meal._id ? 'ring-2 ring-blue-500' : ''
                   }`}
               >
                 {meal.imageUrl && (
@@ -319,7 +324,7 @@ export default function NutritionManager() {
 
                 <div className="p-4">
                   <div className="flex justify-between items-start mb-2">
-                    <h3 className="font-bold text-lg text-green-700">
+                    <h3 className="font-bold text-lg text-orange-600">
                       {meal.title}
                     </h3>
                     <span className="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full whitespace-nowrap ml-2">
@@ -327,7 +332,7 @@ export default function NutritionManager() {
                     </span>
                   </div>
 
-                  <p className="text-sm text-gray-600 mb-3">
+                  <p className="text-sm text-gray-900 mb-3">
                     {meal.benefit}
                   </p>
 
@@ -336,7 +341,7 @@ export default function NutritionManager() {
                       {meal.tags.slice(0, 3).map((tag, i) => (
                         <span
                           key={i}
-                          className="bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded"
+                          className="bg-green-100 text-gray-900 text-xs px-2 py-1 rounded"
                         >
                           #{tag}
                         </span>
