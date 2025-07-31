@@ -116,11 +116,11 @@ export default function HydrationDash() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className={`text-5xl font-bold  ${theme.text} mb-4`}>
+          <h1 className={`text-4xl tracking-wider font-bold  ${theme.text} mb-4`}>
             💧 Hydration Benefits Dashboard
           </h1>
-          <p className={`${theme.text} text-lg`}>Track your hydration journey and unlock amazing health benefits</p>
-          <div className="text-sm text-slate-400 mt-2">
+          <p className={`${theme.text} font-medium text-lg`}>Track your hydration journey and unlock amazing health benefits</p>
+          <div className={`text-sm ${theme.text} mt-2`}>
             Last updated: {new Date().toLocaleTimeString()}
           </div>
         </div>
@@ -133,9 +133,9 @@ export default function HydrationDash() {
               <div className="text-3xl">💧</div>
             </div>
             <div className={`${theme.text}text-sm font-medium`}>Glasses Today</div>
-            <div className="text-xs text-slate-400">Goal: {hydrationData.dailyGoal}</div>
+            <div className="text-xs font-medium tracking-wider text-slate-400">Goal: {hydrationData.dailyGoal}</div>
           </div>
-          
+
           <div className="bg-gradient-to-br from-blue-500/20 to-indigo-600/20 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-xl">
             <div className="flex items-center justify-between mb-2">
               <div className="text-blue-400 text-3xl font-bold">{Math.round(hydrationData.percentage)}%</div>
@@ -144,7 +144,7 @@ export default function HydrationDash() {
             <div className={`${theme.text}text-sm font-medium`}>Progress</div>
             <div className="text-xs text-slate-500">Daily Goal</div>
           </div>
-          
+
           <div className="bg-gradient-to-br from-emerald-500/20 to-teal-600/20 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-xl">
             <div className="flex items-center justify-between mb-2">
               <div className="text-emerald-400 text-3xl font-bold">{hydrationData.streak}</div>
@@ -153,7 +153,7 @@ export default function HydrationDash() {
             <div className={`${theme.text}text-sm font-medium`}>Day Streak</div>
             <div className="text-xs text-slate-500">Consecutive days</div>
           </div>
-          
+
           <div className="bg-gradient-to-br from-purple-500/20 to-pink-600/20 backdrop-blur-xl rounded-2xl p-6 border border-white/10 shadow-xl">
             <div className="flex items-center justify-between mb-2">
               <div className="text-purple-400 text-3xl font-bold">{Math.round(hydrationData.weeklyAverage)}%</div>
@@ -166,37 +166,37 @@ export default function HydrationDash() {
 
         {/* Main Dashboard */}
         <div className="bg-white/5 backdrop-blur-xl rounded-3xl shadow-2xl p-8 border border-white/10 mb-8">
-          <div className="flex flex-col lg:flex-row items-center justify-center gap-12">
-            
+          <div className="flex flex-col lg:flex-row items-center justify-center gap-12 px-5">
+
             {/* Left Benefits */}
-            <div className="space-y-6 w-full lg:w-1/3">
-              {benefits.slice(0, 2).map((benefit, index) => (
-                <div 
-                  key={index} 
-                  className={`group p-6 rounded-2xl border transition-all duration-500 transform hover:scale-105 ${
-                    hydrationData.percentage >= parseInt(benefit.percent) 
-                      ? 'bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border-cyan-400/50 shadow-lg shadow-cyan-500/20' 
-                      : 'bg-white/5 border-white/10 hover:bg-white/10'
-                  }`}
-                >
-                  <div className="flex items-center space-x-4">
-                    <div className="text-4xl">{benefit.icon}</div>
-                    <div className="flex-1">
-                      <div className={`font-bold text-lg ${
-                        hydrationData.percentage >= parseInt(benefit.percent) ? 'text-cyan-400' : 'text-slate-400'
-                      }`}>
-                        {benefit.percent}
+            <div className="space-y-8 w-full lg:w-1/3">
+              {benefits.slice(0, 2).map((benefit, index) => {
+                const isAchieved = hydrationData.percentage >= parseInt(benefit.percent);
+                const cardClasses = isAchieved
+                  ? 'bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border-cyan-400/50 shadow-lg shadow-cyan-500/20'
+                  : 'bg-white/5 border-white/10 hover:bg-white/10';
+
+                return (
+                  <div
+                    key={index}
+                    className={`group p-6 ${theme.card} px-2  rounded-2xl border transition-all duration-500 transform hover:scale-105`}
+                  >
+                    <div className="flex items-center space-x-4">
+                      <div className="text-4xl">{benefit.icon}</div>
+                      <div className="flex-1">
+                        <div className={`font-bold text-lg ${isAchieved ? 'text-cyan-400' : 'text-slate-400'
+                          }`}>
+                          {benefit.percent}
+                        </div>
+                        <div className={`font-semibold ${theme.text}`}>
+                          {benefit.title}
+                        </div>
+                        <div className="text-sm text-slate-500 mt-1">{benefit.desc}</div>
                       </div>
-                      <div className={`font-semibold ${
-                        hydrationData.percentage >= parseInt(benefit.percent) ? `${theme.text}` : `${theme.text}`
-                      }`}>
-                        {benefit.title}
-                      </div>
-                      <div className="text-sm text-slate-500 mt-1">{benefit.desc}</div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* Center Glass Visualization */}
@@ -210,7 +210,7 @@ export default function HydrationDash() {
                   {/* Water surface waves */}
                   <div className="absolute top-0 left-0 right-0 h-4 bg-white/20 animate-pulse rounded-full" />
                   <div className="absolute top-2 left-0 right-0 h-2 bg-white/10 animate-pulse rounded-full" />
-                  
+
                   {/* Bubbles */}
                   {hydrationData.percentage > 0 && (
                     <>
@@ -220,7 +220,7 @@ export default function HydrationDash() {
                     </>
                   )}
                 </div>
-                
+
                 {/* Percentage Display */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="bg-black/30 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20">
@@ -229,7 +229,7 @@ export default function HydrationDash() {
                     </span>
                   </div>
                 </div>
-                
+
                 {/* Measurement lines */}
                 <div className="absolute inset-y-0 right-2 flex flex-col justify-between py-4">
                   {[100, 75, 50, 25].map((mark) => (
@@ -240,48 +240,48 @@ export default function HydrationDash() {
                   ))}
                 </div>
               </div>
-              
+
               {/* Glow effect */}
               <div className={`absolute inset-0 rounded-b-full bg-gradient-to-t ${getWaterColor(hydrationData.percentage)} opacity-20 blur-xl -z-10`} />
             </div>
 
             {/* Right Benefits */}
-            <div className="space-y-6 w-full lg:w-1/3">
-              {benefits.slice(2, 4).map((benefit, index) => (
-                <div 
-                  key={index} 
-                  className={`group p-6 rounded-2xl border transition-all duration-500 transform hover:scale-105 ${
-                    hydrationData.percentage >= parseInt(benefit.percent) 
-                      ? 'bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border-cyan-400/50 shadow-lg shadow-cyan-500/20' 
-                      : 'bg-white/5 border-white/10 hover:bg-white/10'
-                  }`}
-                >
-                  <div className="flex items-center space-x-4">
-                    <div className="text-4xl">{benefit.icon}</div>
-                    <div className="flex-1">
-                      <div className={`font-bold text-lg ${
-                        hydrationData.percentage >= parseInt(benefit.percent) ? 'text-cyan-400' : 'text-slate-400'
-                      }`}>
-                        {benefit.percent}
+            <div className="space-y-8 w-full lg:w-1/3">
+              {benefits.slice(2, 4).map((benefit, index) => {
+                const isAchieved = hydrationData.percentage >= parseInt(benefit.percent);
+                const highlightStyle = isAchieved
+                  ? 'bg-gradient-to-br from-cyan-500/20 to-blue-600/20 border-cyan-400/50 shadow-lg shadow-cyan-500/20'
+                  : 'bg-white/5 border-white/10 hover:bg-white/10';
+
+                return (
+                  <div
+                    key={index}
+                    className={`group p-6 px-4 rounded-2xl ${theme.card} border transition-all duration-500 transform hover:scale-105 `}
+                  >
+                    <div className="flex items-center space-x-4">
+                      <div className="text-4xl">{benefit.icon}</div>
+                      <div className="flex-1">
+                        <div className={`font-bold text-lg ${isAchieved ? 'text-cyan-400' : 'text-slate-400'}`}>
+                          {benefit.percent}
+                        </div>
+                        <div className={`font-semibold ${theme.text}`}>
+                          {benefit.title}
+                        </div>
+                        <div className="text-sm text-slate-500 mt-1">{benefit.desc}</div>
                       </div>
-                      <div className={`font-semibold ${
-                        hydrationData.percentage >= parseInt(benefit.percent) ? `${theme.text}` : `${theme.text}`
-                      }`}>
-                        {benefit.title}
-                      </div>
-                      <div className="text-sm text-slate-500 mt-1">{benefit.desc}</div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
+
           </div>
         </div>
 
         {/* Motivational Section */}
         <div className="bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-indigo-500/10 backdrop-blur-xl rounded-2xl p-8 border border-white/10 shadow-xl mb-8">
           <div className="text-center">
-            <div className={`text-3xl font-bold ${theme.text} mb-4`}>
+            <div className={`text-3xl font-bold ${theme.text} tracking-wide mb-4`}>
               {getMotivationalMessage(hydrationData.percentage)}
             </div>
             <div className={`text-lg ${theme.text} mb-2`}>
@@ -290,17 +290,16 @@ export default function HydrationDash() {
             <div className="text-sm text-slate-500 mb-6">
               {hydrationData.totalGlasses} glasses completed • {hydrationData.dailyGoal - hydrationData.totalGlasses} remaining
             </div>
-            
+
             {/* Progress Timeline */}
             <div className="flex justify-center items-center space-x-3 mb-6">
               {Array.from({ length: hydrationData.dailyGoal }, (_, i) => (
                 <div
                   key={i}
-                  className={`relative w-12 h-12 rounded-full border-2 flex items-center justify-center text-sm font-bold transition-all duration-300 transform hover:scale-110 ${
-                    i < hydrationData.totalGlasses
-                      ? 'bg-gradient-to-br from-cyan-400 to-blue-500 border-cyan-300 text-white shadow-lg shadow-cyan-500/50'
-                      : 'bg-white/10 border-white/20 text-slate-400 hover:bg-white/20'
-                  }`}
+                  className={`relative w-12 h-12 rounded-full border-2 flex items-center justify-center text-sm font-bold transition-all duration-300 transform hover:scale-110 ${i < hydrationData.totalGlasses
+                    ? 'bg-gradient-to-br from-cyan-400 to-blue-500 border-cyan-300 text-white shadow-lg shadow-cyan-500/50'
+                    : 'bg-white/10 border-white/20 text-slate-400 hover:bg-white/20'
+                    }`}
                 >
                   {i < hydrationData.totalGlasses ? '💧' : i + 1}
                   {i < hydrationData.totalGlasses && (
@@ -333,7 +332,7 @@ export default function HydrationDash() {
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
-          <button 
+          <button
             onClick={fetchHydrationData}
             className="group bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg shadow-cyan-500/25 hover:shadow-xl hover:shadow-cyan-500/40"
           >
@@ -342,8 +341,8 @@ export default function HydrationDash() {
               <span>Refresh Dashboard</span>
             </div>
           </button>
-          
-          <button 
+
+          <button
             onClick={() => window.location.href = '/routines/hydrationplan'}
             className="group bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg shadow-indigo-500/25 hover:shadow-xl hover:shadow-indigo-500/40"
           >
@@ -352,8 +351,8 @@ export default function HydrationDash() {
               <span>Go to Tracker</span>
             </div>
           </button>
-          
-          <button 
+
+          <button
             onClick={() => {
               const message = `💧 Hydration Update!\n\n🎯 Progress: ${Math.round(hydrationData.percentage)}%\n💧 Glasses: ${hydrationData.totalGlasses}/${hydrationData.dailyGoal}\n🔥 Streak: ${hydrationData.streak} days\n\nKeep up the great work! 💪`;
               if (navigator.share) {
