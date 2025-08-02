@@ -18,25 +18,25 @@ const experts = [
     id: 3,
     name: 'Jessica Walker',
     role: 'Mood Therapist',
-    image: images.modal8,
+    image: images.modal26,
   },
   {
     id: 4,
     name: 'Sophia Lee',
     role: 'Sleep Wellness Expert',
-    image: images.modal7,
+    image: images.modal25,
   },
   {
     id: 5,
     name: 'Daniel Moore',
     role: 'Mindfulness Coach',
-    image: images.modal21,
+    image: images.modal7,
   },
   {
     id: 6,
     name: 'Olivia Green',
     role: 'Yoga Instructor',
-    image: images.modal13,
+    image: images.modal21,
   },
 ];
 
@@ -45,7 +45,7 @@ export default function Trainers() {
     <section className=" py-16 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto mb-8 text-center">
         <h2 className="text-3xl font-bold text-orange-600 mb-2 tracking-wider">Meet Our Experts</h2>
-        <p className="text-gray-200">
+        <p className="text-gray-200 text-lg">
           Discover the passionate team of trainers, therapists, and wellness coaches supporting your journey.
         </p>
       </div>
@@ -55,7 +55,7 @@ export default function Trainers() {
           {experts.map((expert) => (
             <div
               key={expert.id}
-              className="w-[250px] h-[360px] bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-gray-400 text-center flex-shrink-0"
+              className="w-[250px] h-[360px] bg-gray-800 rounded-xl shadow-lg overflow-hidden border border-orange-400 text-center flex-shrink-0"
             >
               <div className="h-[220px] bg-gray-800">
                 <img

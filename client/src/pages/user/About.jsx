@@ -18,7 +18,7 @@ export default function About(){
     <section className="relative h-[90vh] flex items-center justify-center text-center overflow-hidden">
   {/* Background Image */}
   <img
-    src={images.modal10} // Replace with your wellness-themed image
+    src={images.modal24} // Replace with your wellness-themed image
     alt="Health and Wellness Background"
     className="absolute inset-0 w-full h-full object-cover z-0"
   />
@@ -46,11 +46,11 @@ export default function About(){
         <h3 className="text-center text-gray-300 tracking-widest text-sm uppercase mb-4">
           Special Moments
         </h3>
-        <h2 className="text-center text-green- text-4xl font-bold mb-12">About Us</h2>
+        <h2 className="text-center text-orange-500 text-4xl tracking-wider font-bold mb-12">About Us</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
           {/* Left Image */}
-          <div className="rounded-2xl overflow-hidden">
+          <div className="rounded-2xl overflow-hidden border border-orange-400">
             <img
               src={images.modal5} // Replace with your image
               alt="Left Dish"
@@ -59,11 +59,11 @@ export default function About(){
           </div>
 
           {/* Center Content */}
-          <div className="bg-[#1a1a1a] text-center px-6 py-10 rounded-2xl h-[350px] flex flex-col justify-center items-center shadow-xl">
+          <div className="bg-[#1a1a1a] text-center px-6 py-10 rounded-2xl border border-orange-400 h-[350px] flex flex-col justify-center items-center shadow-xl">
   <p className="text-gray-200 uppercase tracking-wide text-sm mb-2">
     Wellness Reimagined
   </p>
-  <h3 className="text-orange-600 tracking-wider text-2xl md:text-3xl font-bold mb-4 leading-tight">
+  <h3 className="text-orange-500 tracking-wider text-2xl md:text-3xl font-bold mb-4 leading-tight">
     Traditional <br /> & Modern
   </h3>
   <p className="text-gray-200 text-sm max-w-xs">
@@ -74,7 +74,7 @@ export default function About(){
 </div>
 
           {/* Right Image */}
-           <div className="rounded-2xl overflow-hidden">
+           <div className="rounded-2xl overflow-hidden border border-orange-400">
             <img
               src={images.modal5} // Replace with your image
               alt="Left Dish"
@@ -102,7 +102,7 @@ export default function About(){
         {/* Right Cards Grid */}
         <div className="grid grid-cols-2 gap-6">
           {/* 1. Nutrition */}
-          <div className="bg-gray-800 shadow-md rounded-2xl p-6 hover:shadow-xl transition">
+          <div className="bg-gray-800 shadow-md rounded-2xl border border-orange-400 p-6 hover:shadow-xl transition">
             <div className="bg-purple-100 p-3 rounded-xl w-fit mb-4">
               <Salad className="text-orange-600" size={24} />
             </div>
@@ -113,7 +113,7 @@ export default function About(){
           </div>
 
           {/* 2. Routines */}
-          <div className="bg-gray-800 shadow-md rounded-2xl p-6 hover:shadow-xl transition">
+          <div className="bg-gray-800 shadow-md rounded-2xl border border-orange-400 p-6 hover:shadow-xl transition">
             <div className="bg-purple-100 p-3 rounded-xl w-fit mb-4">
               <Repeat className="text-orange-600" size={24} />
             </div>
@@ -124,7 +124,7 @@ export default function About(){
           </div>
 
           {/* 3. Moods */}
-          <div className="bg-gray-800 shadow-md rounded-2xl p-6 hover:shadow-xl transition">
+          <div className="bg-gray-800 shadow-md rounded-2xl border border-orange-400 p-6 hover:shadow-xl transition">
             <div className="bg-purple-100 p-3 rounded-xl w-fit mb-4">
               <Smile className="text-orange-600" size={24} />
             </div>
@@ -135,7 +135,7 @@ export default function About(){
           </div>
 
           {/* 4. Global Wellness */}
-          <div className="bg-gray-800 shadow-md rounded-2xl p-6 hover:shadow-xl transition">
+          <div className="bg-gray-800 shadow-md rounded-2xl p-6 border border-orange-400 hover:shadow-xl transition">
             <div className="bg-purple-100 p-3 rounded-xl w-fit mb-4">
               <Globe className="text-orange-600" size={24} />
             </div>
@@ -163,7 +163,7 @@ export default function About(){
       {/* 4 Cards Below Description */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
         {/* Card 1 */}
-        <div className="bg-gray-900 p-6 rounded-2xl border border-gray-700 hover:shadow-xl transition">
+        <div className="bg-gray-900 p-6 rounded-2xl border border-orange-400 hover:shadow-xl transition">
           <div className="bg-green-100 text-orange-600  w-fit mx-auto p-3 rounded-full mb-4">
             <Salad size={24} />
           </div>
@@ -174,7 +174,7 @@ export default function About(){
         </div>
 
         {/* Card 2 */}
-        <div className="bg-gray-900 p-6 rounded-2xl border border-gray-700 hover:shadow-xl transition">
+        <div className="bg-gray-900 p-6 rounded-2xl border border-orange-400 hover:shadow-xl transition">
           <div className="bg-green-100 text-orange-600  w-fit mx-auto p-3 rounded-full mb-4">
             <Repeat size={24} />
           </div>
@@ -185,7 +185,7 @@ export default function About(){
         </div>
 
         {/* Card 3 */}
-        <div className="bg-gray-900 p-6 rounded-2xl border border-gray-700 hover:shadow-xl transition">
+        <div className="bg-gray-900 p-6 rounded-2xl border border-orange-400 hover:shadow-xl transition">
           <div className="bg-green-100 text-orange-600 w-fit mx-auto p-3 rounded-full mb-4">
             <Smile size={24} />
           </div>
@@ -196,7 +196,7 @@ export default function About(){
         </div>
 
         {/* Card 4 */}
-        <div className="bg-gray-900 p-6 rounded-2xl border border-gray-700 hover:shadow-xl transition">
+        <div className="bg-gray-900 p-6 rounded-2xl border border-orange-400 hover:shadow-xl transition">
           <div className="bg-green-100 text-orange-600  w-fit mx-auto p-3 rounded-full mb-4">
             <Globe size={24} />
           </div>
@@ -210,10 +210,10 @@ export default function About(){
 
  <section
       className="relative bg-cover bg-center bg-no-repeat text-white mt-10"
-      style={{ backgroundImage: `url(${images.modal8})` }}
+      style={{ backgroundImage: `url(${images.modal13})` }}
     >
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
       {/* Content */}
       <div className="relative z-10 max-w-4xl mx-auto text-center px-6 py-20">
@@ -242,7 +242,7 @@ export default function About(){
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
         {/* Routines */}
-        <div className="bg-gray-800 rounded-3xl p-8 shadow-lg text-center hover:shadow-xl transition duration-300">
+        <div className="bg-gray-800 rounded-3xl p-8 shadow-lg border border-orange-400 text-center hover:shadow-xl transition duration-300">
           <h2 className="text-2xl tracking-wider font-semibold text-orange-600 mb-4">Daily Routines</h2>
           <p className="text-gray-200 mb-6">
             Easy-to-follow workouts and schedules to help you build a consistent, active lifestyle.
@@ -255,26 +255,26 @@ export default function About(){
         </div>
 
         {/* Nutrition */}
-        <div className="bg-gray-800 rounded-3xl p-8 shadow-lg text-center hover:shadow-xl transition duration-300">
+        <div className="bg-gray-800 rounded-3xl border border-orange-400 p-8 shadow-lg text-center hover:shadow-xl transition duration-300">
           <h2 className="text-2xl tracking-wider font-semibold text-orange-600 mb-4">Nutrition Tips</h2>
-          <p className="text-gray-600 mb-6">
+          <p className="text-gray-200 mb-6">
             Balanced diet suggestions and recipes to keep your body energized and mind focused.
           </p>
           <Link to="/nutrition">
-            <button className="bg-lime-500 hover:bg-lime-600 text-white px-6 py-2 rounded-full font-semibold">
+            <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full font-semibold">
               Learn More
             </button>
           </Link>
         </div>
 
         {/* Mood Tracker */}
-        <div className="bg-gray-800 rounded-3xl p-8 shadow-lg text-center hover:shadow-xl transition duration-300">
+        <div className="bg-gray-800 rounded-3xl p-8 shadow-lg border border-orange-400 text-center hover:shadow-xl transition duration-300">
           <h2 className="text-2xl tracking-wider font-semibold text-orange-600 mb-4">Mood Tracker</h2>
           <p className="text-gray-200 mb-6">
             Track how you feel each day and discover patterns that help improve your emotional health.
           </p>
           <Link to="/mood">
-            <button className="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-full font-semibold">
+            <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-full font-semibold">
               Check In
             </button>
           </Link>

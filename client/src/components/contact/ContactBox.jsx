@@ -52,7 +52,7 @@ export default function ContactBox() {
     <section className="max-w-6xl mx-auto px-6 py-16">
       <div className="grid md:grid-cols-2 gap-10 items-stretch">
         {/* Left: Contact Info */}
-        <div className="bg-black rounded-2xl text-white p-8 shadow-lg h-full flex flex-col justify-between">
+        <div className="bg-black rounded-2xl border border-teal-400 text-white p-8 shadow-lg h-full flex flex-col justify-between">
           <div>
             <span className="bg-teal-400 text-black font-semibold px-4 py-1 rounded-full text-sm mb-4 inline-block">
               Contact Us
@@ -85,7 +85,7 @@ export default function ContactBox() {
         </div>
 
         {/* Right: Contact Form */}
-        <div className="bg-white rounded-2xl p-8 shadow-lg h-full">
+        <div className="bg-white rounded-2xl border border-teal-400 p-8 shadow-lg h-full">
           <h3 className="text-xl font-bold text-gray-800 mb-4">Send Message</h3>
           <p className="text-gray-600 mb-6 text-sm">
             Fill out the form below to send us a message and we’ll get back to you.

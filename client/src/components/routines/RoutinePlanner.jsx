@@ -155,7 +155,7 @@ const togglePause = useCallback(() => {
   // Error handling
   if (!currentExercise || exercises.length === 0) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="text-6xl mb-4">⚠️</div>
           <h2 className="text-xl font-semibold text-gray-800 mb-2">No Exercises Found</h2>
@@ -174,7 +174,7 @@ const togglePause = useCallback(() => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex flex-col">
       {/* Header */}
-      <div className="bg-white shadow-sm px-4 py-4 flex items-center justify-between">
+      <div className="bg-lime-400 shadow-sm px-4 py-4 flex items-center justify-between">
         <button 
           onClick={handleExit}
           className="p-2 rounded-full hover:bg-gray-100 transition-colors"
@@ -183,7 +183,7 @@ const togglePause = useCallback(() => {
         </button>
         
         <div className="text-center">
-          <h1 className="text-lg font-semibold capitalize text-gray-800">
+          <h1 className="text-lg font-semibold capitalize tracking-wider text-gray-800">
             {type} Routine - Day {day}
           </h1>
           <p className="text-sm text-gray-600">

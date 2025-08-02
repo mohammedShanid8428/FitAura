@@ -34,7 +34,8 @@ export default function RoutineDays({ title = "Routine Plan" }) {
   const percentage = Math.round((completedDays / totalDays) * 100);
 
   return (
-    <div className="w-full max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden p-4">
+    <div className="bg-gray-800 min-h-screen py-10">
+      <div className="w-full max-w-md mx-auto bg-gray-500 rounded-xl shadow-md overflow-hidden p-4">
       {/* Header */}
       <div className="relative mb-4">
         <div className="flex items-center justify-between">
@@ -42,8 +43,8 @@ export default function RoutineDays({ title = "Routine Plan" }) {
             <ChevronLeft />
           </button>
           <div className="flex-1 text-center">
-            <h2 className="text-sm font-semibold text-gray-700">{title}</h2>
-            <p className="text-xs text-gray-400">
+            <h2 className="text-lg tracking-wider font-semibold text-lime-400">{title}</h2>
+            <p className="text-sm text-gray-800">
               {totalDays - completedDays} days left
             </p>
           </div>
@@ -65,9 +66,9 @@ export default function RoutineDays({ title = "Routine Plan" }) {
       </div>
 
       {/* Week Info */}
-      <div className="flex justify-between items-center text-sm text-gray-600 mb-2 px-1">
+      <div className="flex justify-between items-center text-sm text-gray-800 mb-2 px-1">
         <span className="font-medium">📍 WEEK 1</span>
-        <span className="text-xs text-gray-400">
+        <span className="text-xs text-gray-800">
           {completedDays}/{totalDays}
         </span>
       </div>
@@ -83,7 +84,7 @@ export default function RoutineDays({ title = "Routine Plan" }) {
           return (
             <div
               key={day}
-              className={`px-4 py-3 rounded-xl border transition cursor-pointer ${
+              className={`px-4 py-3 rounded-2xl border border-lime-400 transition cursor-pointer ${
                 isCompleted 
                   ? "border-green-300 bg-green-50 hover:bg-green-100" 
                   : dayProgress 
@@ -96,7 +97,7 @@ export default function RoutineDays({ title = "Routine Plan" }) {
             >
               <div className="flex justify-between items-center">
                 <div className="flex-1">
-                  <span className="text-sm font-medium text-gray-700">
+                  <span className="text-sm font-medium text-gray-800">
                     Day {day}
                   </span>
                   {dayProgress && (
@@ -106,7 +107,7 @@ export default function RoutineDays({ title = "Routine Plan" }) {
                   )}
                   {dayProgress && dayProgressPercent > 0 && (
                     <div className="mt-2">
-                      <div className="w-full bg-gray-200 rounded-full h-1.5">
+                      <div className="w-full bg-gray-200 rounded-full h-1.5 ">
                         <div
                           className={`h-1.5 rounded-full transition-all duration-300 ${
                             isCompleted ? 'bg-green-500' : 'bg-blue-500'
@@ -123,7 +124,7 @@ export default function RoutineDays({ title = "Routine Plan" }) {
                       ? "text-green-500" 
                       : dayProgress && dayProgressPercent > 0
                         ? "text-blue-500"
-                        : "text-gray-300"
+                        : "text-gray-600"
                   }`}
                 />
               </div>
@@ -131,6 +132,7 @@ export default function RoutineDays({ title = "Routine Plan" }) {
           );
         })}
       </div>
+    </div>
     </div>
   );
 }

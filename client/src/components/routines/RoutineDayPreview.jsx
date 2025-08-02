@@ -57,7 +57,7 @@ export default function RoutineDayPreview() {
 
   if (!exercises || exercises.length === 0) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen bg-gray-800 flex items-center justify-center">
         <div className="text-center">
           <div className="text-6xl mb-4">⚠️</div>
           <h2 className="text-xl font-semibold text-gray-800 mb-2">No Exercises Found</h2>
@@ -74,9 +74,9 @@ export default function RoutineDayPreview() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-100">
       {/* Header Section */}
-      <div className="relative bg-gradient-to-br from-blue-500 via-blue-600 to-purple-600 text-white">
+      <div className="relative bg-gradient-to-br from-lime-500 via-lime-600 to-black-600 text-white">
         <div className="px-4 pt-12 pb-8">
           {/* Back Button */}
           <button 
@@ -114,7 +114,7 @@ export default function RoutineDayPreview() {
                 </div>
                 <div className="w-full bg-white/20 rounded-full h-2 mb-2">
                   <div
-                    className="bg-white h-2 rounded-full transition-all duration-500"
+                    className="bg-gray-50 h-2 rounded-full transition-all duration-500"
                     style={{ width: `${progressPercentage}%` }}
                   ></div>
                 </div>
@@ -137,7 +137,7 @@ export default function RoutineDayPreview() {
 
       {/* Exercise List */}
       <div className="px-4 pt-6 pb-24">
-        <h3 className="text-lg font-semibold text-gray-800 mb-4">Today's Exercises</h3>
+        <h3 className="text-lg font-semibold tracking-wide text-gray-800 mb-4">Today's Exercises</h3>
         
         <div className="space-y-3">
           {exercises.map((exercise, index) => {
@@ -146,10 +146,10 @@ export default function RoutineDayPreview() {
             return (
               <div
                 key={`${exercise.id || index}-${exercise.title}`}
-                className={`bg-white rounded-xl p-4 shadow-sm border-2 transition-all ${
+                className={`bg-gray-50 rounded-xl p-4 shadow-sm border-2 transition-all ${
                   isExerciseCompleted 
-                    ? "border-green-200 bg-green-50" 
-                    : "border-gray-100 hover:border-blue-200"
+                    ? "border-green-400 bg-green-50" 
+                    : "border-lime-300 hover:border-lime-200"
                 }`}
               >
                 <div className="flex items-center space-x-4">
@@ -209,7 +209,7 @@ export default function RoutineDayPreview() {
         </div>
 
         {/* Summary Card */}
-        <div className="mt-6 bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+        <div className="mt-6 bg-gray-50 rounded-xl p-4 shadow-sm border border-gray-100">
           <h4 className="font-semibold text-gray-800 mb-3">Session Summary</h4>
           <div className="grid grid-cols-3 gap-4 text-center">
             <div>
@@ -228,7 +228,7 @@ export default function RoutineDayPreview() {
         </div>
 
         {/* Benefits Section */}
-        <div className="mt-6 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl p-4">
+        <div className="mt-6 bg-gradient-to-r from-blue-100 to-purple-50 rounded-xl p-4">
           <h4 className="font-semibold text-gray-800 mb-3">Today's Benefits</h4>
           <div className="space-y-2">
             {isYoga ? (
@@ -270,7 +270,7 @@ export default function RoutineDayPreview() {
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
         <button
           onClick={handleStartRoutine}
-          className="w-full bg-gradient-to-r from-blue-500 via-blue-600 to-purple-600 text-white font-bold py-4 rounded-2xl text-lg shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-[1.02] flex items-center justify-center space-x-2"
+          className="w-full bg-gradient-to-r from-lime-500 via-lime-600 to-black-600 text-white font-bold py-4 rounded-2xl text-lg shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-[1.02] flex items-center justify-center space-x-2"
         >
           <Play className="w-5 h-5" />
           <span>
