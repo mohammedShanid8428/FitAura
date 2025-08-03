@@ -172,38 +172,38 @@ const togglePause = useCallback(() => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex flex-col">
+    <div className="min-h-screen bg-gray-800 flex flex-col">
       {/* Header */}
       <div className="bg-lime-400 shadow-sm px-4 py-4 flex items-center justify-between">
         <button 
           onClick={handleExit}
           className="p-2 rounded-full hover:bg-gray-100 transition-colors"
         >
-          <ChevronLeft className="w-6 h-6 text-gray-600" />
+          <ChevronLeft className="w-6 h-6 text-gray-800" />
         </button>
         
         <div className="text-center">
           <h1 className="text-lg font-semibold capitalize tracking-wider text-gray-800">
             {type} Routine - Day {day}
           </h1>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-800">
             {completedCount} of {totalExercises} completed • {currentProgress}%
           </p>
         </div>
         
-        <div className="text-sm text-gray-600 font-medium">
+        <div className="text-sm text-gray-800 font-medium">
           {currentIndex + 1} / {totalExercises}
         </div>
       </div>
 
       {/* Progress Bar */}
-      <div className="px-4 py-3 bg-white">
+      <div className="px-4 py-3 bg-lime-400">
         <div className="bg-gray-200 rounded-full h-2 overflow-hidden">
           <div 
             className={`h-full bg-gradient-to-r transition-all duration-500 ${
               type === 'yoga' 
-                ? 'from-purple-400 to-purple-600' 
-                : 'from-green-400 to-green-600'
+                ? 'from-purple-500 to-purple-700' 
+                : 'from-blue-500 to-blue-700'
             }`}
             style={{ width: `${currentProgress}%` }}
           />
@@ -211,14 +211,14 @@ const togglePause = useCallback(() => {
       </div>
 
       {/* Exercise Progress Indicators */}
-      <div className="px-4 py-2 bg-white">
+      <div className="px-4 py-2 bg-lime-400">
         <div className="flex space-x-1">
           {exercises.map((_, index) => (
             <div
               key={index}
               className={`flex-1 h-1.5 rounded-full transition-all duration-300 ${
                 completedExercises.has(index) 
-                  ? "bg-green-500" 
+                  ? "bg-gray-800" 
                   : index === currentIndex 
                     ? "bg-blue-500" 
                     : "bg-gray-300"
@@ -229,19 +229,19 @@ const togglePause = useCallback(() => {
       </div>
 
       {/* Quick Stats */}
-      <div className="px-4 py-3 bg-white border-b">
+      <div className="px-4 py-3 bg-lime-400 border-b">
         <div className="flex justify-around text-center">
           <div>
             <div className="text-xl font-bold text-green-600">{completedCount}</div>
-            <div className="text-xs text-gray-600">Completed</div>
+            <div className="text-sm text-gray-800">Completed</div>
           </div>
           <div>
-            <div className="text-xl font-bold text-blue-600">{currentProgress}%</div>
-            <div className="text-xs text-gray-600">Progress</div>
+            <div className="text-xl font-bold text-blue-700">{currentProgress}%</div>
+            <div className="text-sm text-gray-800">Progress</div>
           </div>
           <div>
-            <div className="text-xl font-bold text-gray-600">{totalExercises - completedCount}</div>
-            <div className="text-xs text-gray-600">Remaining</div>
+            <div className="text-xl font-bold text-gray-800">{totalExercises - completedCount}</div>
+            <div className="text-sm text-gray-800">Remaining</div>
           </div>
         </div>
       </div>
@@ -268,7 +268,7 @@ const togglePause = useCallback(() => {
       <div className="flex-1 flex flex-col items-center justify-center px-4 py-8">
         {/* Exercise Image */}
         <div className="relative mb-6">
-          <div className="w-80 h-80 rounded-3xl overflow-hidden shadow-2xl bg-white">
+          <div className="w-80 h-80 rounded-3xl boader boader-lime-400 overflow-hidden shadow-2xl bg-white">
             <img 
               src={currentExercise.image} 
               alt={currentExercise.title} 
@@ -297,24 +297,24 @@ const togglePause = useCallback(() => {
         </div>
         
         {/* Timer Display */}
-        <div className={`text-6xl font-bold mb-4 ${isPaused ? 'text-orange-500' : 'text-blue-600'}`}>
+        <div className={`text-6xl font-bold mb-4 ${isPaused ? 'text-orange-500' : 'text-lime-500'}`}>
           {isPaused ? "PAUSED" : `${timeLeft}s`}
         </div>
         
         {/* Exercise Title */}
-        <h2 className="text-2xl font-bold text-gray-800 uppercase text-center mb-2">
+        <h2 className="text-2xl font-bold text-gray-300 uppercase text-center mb-2">
           {currentExercise.title}
         </h2>
 
         {/* Exercise Description (for yoga) */}
         {currentExercise.description && type === 'yoga' && (
-          <p className="text-gray-600 text-center max-w-md mb-4 leading-relaxed">
+          <p className="text-gray-300 text-center max-w-md mb-4 leading-relaxed">
             {currentExercise.description}
           </p>
         )}
 
         {/* Exercise Info */}
-        <div className="text-center text-gray-600">
+        <div className="text-center text-gray-300">
           <p className="text-sm">
             Exercise {currentIndex + 1} of {totalExercises}
             {completedExercises.has(currentIndex) && (
@@ -325,9 +325,9 @@ const togglePause = useCallback(() => {
       </div>
 
       {/* Bottom Controls */}
-      <div className="bg-white px-6 py-6 border-t">
+      <div className="bg-lime-400 px-6 py-6 border-t">
         {/* Timer Progress Bar */}
-        <div className="relative h-2 bg-gray-200 rounded-full overflow-hidden mb-6">
+        <div className="relative h-5 bg-gray-200 rounded-full overflow-hidden mb-6">
           <div
             className="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-500 to-green-500 transition-all duration-1000"
             style={{ width: `${((30 - timeLeft) / 30) * 100}%` }}
@@ -345,13 +345,13 @@ const togglePause = useCallback(() => {
                 : "text-gray-700 hover:bg-gray-100"
             }`}
           >
-            <ChevronLeft className="w-6 h-6" />
+            <ChevronLeft className="w-8 h-8 text-gray-800" />
           </button>
 
           <div className="flex space-x-3">
             <button 
               onClick={togglePause} 
-              className="bg-blue-500 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-blue-600 transition-colors flex items-center space-x-2"
+              className="bg-blue-600 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-blue-600 transition-colors flex items-center space-x-2"
             >
               {isPaused ? <Play className="w-5 h-5" /> : <Pause className="w-5 h-5" />}
               <span>{isPaused ? "Resume" : "Pause"}</span>
@@ -359,23 +359,25 @@ const togglePause = useCallback(() => {
 
             <button 
               onClick={handleSkip} 
-              className="bg-gray-500 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-gray-600 transition-colors flex items-center space-x-2"
+              className="bg-gray-600 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-gray-600 transition-colors flex items-center space-x-2"
             >
               <SkipForward className="w-5 h-5" />
               <span>Skip</span>
             </button>
           </div>
 
+
+
           <button 
             onClick={handleNext}
-            className="p-4 rounded-full text-gray-700 hover:bg-gray-100 transition-all"
+            className="p-4 rounded-full text-gray-800 hover:bg-gray-100 transition-all"
           >
-            <ChevronLeft className="w-6 h-6 rotate-180" />
+            <ChevronLeft className="w-8 h-8 rotate-180" />
           </button>
         </div>
 
         {/* Status Text */}
-        <div className="text-center text-sm text-gray-500">
+        <div className="text-center text-sm text-gray-800">
           {isPaused 
             ? "Routine paused - Resume when ready" 
             : completedExercises.has(currentIndex) 

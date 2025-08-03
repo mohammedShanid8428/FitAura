@@ -144,14 +144,14 @@ export default function RoutineComplete() {
             <div>
               <div className="flex justify-between items-center mb-2">
                 <span className="text-sm flex items-center">
-                  <span className="w-3 h-3 bg-green-400 rounded-full mr-2"></span>
+                  <span className="w-3 h-3 bg-green-600 rounded-full mr-2"></span>
                   Stretch Progress
                 </span>
                 <span className="text-sm font-bold">{stats.stretchProgress}%</span>
               </div>
               <div className="w-full bg-white/20 rounded-full h-2">
                 <div
-                  className="bg-green-400 h-2 rounded-full transition-all duration-1000"
+                  className="bg-green-600 h-2 rounded-full transition-all duration-1000"
                   style={{ width: `${stats.stretchProgress}%` }}
                 ></div>
               </div>
@@ -160,14 +160,14 @@ export default function RoutineComplete() {
             <div>
               <div className="flex justify-between items-center mb-2">
                 <span className="text-sm flex items-center">
-                  <span className="w-3 h-3 bg-purple-400 rounded-full mr-2"></span>
+                  <span className="w-3 h-3 bg-purple-500 rounded-full mr-2"></span>
                   Yoga Progress
                 </span>
                 <span className="text-sm font-bold">{stats.yogaProgress}%</span>
               </div>
               <div className="w-full bg-white/20 rounded-full h-2">
                 <div
-                  className="bg-purple-400 h-2 rounded-full transition-all duration-1000"
+                  className="bg-purple-500 h-2 rounded-full transition-all duration-1000"
                   style={{ width: `${stats.yogaProgress}%` }}
                 ></div>
               </div>

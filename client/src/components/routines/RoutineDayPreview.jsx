@@ -89,10 +89,10 @@ export default function RoutineDayPreview() {
 
           {/* Title and Info */}
           <div className="text-center pt-8">
-            <h1 className="text-2xl font-bold mb-2">
+            <h1 className="text-3xl tracking-wider font-bold mb-2">
               {isYoga ? "Yoga Session" : `Stretch Routine`}
             </h1>
-            <h2 className="text-lg mb-4">Day {day}</h2>
+            <h2 className="text-lg mb-4 text-gray-900 font-bold">Day {day}</h2>
             
             {/* Stats Row */}
             <div className="flex justify-center space-x-4 mb-6">
@@ -271,7 +271,7 @@ export default function RoutineDayPreview() {
       <div className="fixed bottom-0 left-0 right-0  p-4">
         <button
           onClick={handleStartRoutine}
-          className="w-full   bg-lime-400   text-black font-bold py-4 rounded-2xl text-lg shadow-lg hover:shadow-xl hover:animate-pulse transition-all duration-200 transform hover:scale-[1.02] flex items-center justify-center space-x-2"
+          className="w-full   bg-lime-500   text-black font-bold py-4 rounded-2xl text-lg shadow-lg hover:shadow-xl  transition-all duration-200 transform hover:scale-[1.02] flex items-center justify-center space-x-2"
         >
           <Play className="w-5 h-5" />
           <span>
