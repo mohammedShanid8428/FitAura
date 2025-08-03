@@ -74,14 +74,15 @@ export default function RoutineDayPreview() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-900 text-gray-300">
       {/* Header Section */}
-      <div className="relative bg-gradient-to-br from-lime-500 via-lime-600 to-black-600 text-white">
+      <div className="relative bg-gradient-to-r from-gray-900 via-lime-400 to-gray-900
+ text-white">
         <div className="px-4 pt-12 pb-8">
           {/* Back Button */}
           <button 
             onClick={handleGoBack}
-            className="absolute top-12 left-4 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+            className="absolute top-12 left-4 p-2 rounded-full  bg-gray-800/30 hover:bg-gray-700 transition-colors"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
@@ -95,11 +96,11 @@ export default function RoutineDayPreview() {
             
             {/* Stats Row */}
             <div className="flex justify-center space-x-4 mb-6">
-              <div className="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2">
+              <div className="bg-gray-800/40 rounded-full px-4 py-2 flex items-center space-x-2">
                 <Clock className="w-4 h-4" />
                 <span className="text-sm font-semibold">{estimatedTime}</span>
               </div>
-              <div className="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2">
+              <div className="bg-gray-800/40 rounded-full px-4 py-2 flex items-center space-x-2">
                 <Target className="w-4 h-4" />
                 <span className="text-sm font-semibold">{exercises.length} EXERCISES</span>
               </div>
@@ -107,20 +108,20 @@ export default function RoutineDayPreview() {
 
             {/* Progress Indicator */}
             {progressPercentage > 0 && (
-              <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-4 mx-4">
+              <div className="bg-gray-800/50 border-lime-400 rounded-2xl p-4 mx-4">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm">Progress</span>
-                  <span className="text-sm font-bold">{progressPercentage}%</span>
+                  <span className="text-sm text-white/80">Progress</span>
+                  <span className="text-sm font-bold text-white">{progressPercentage}%</span>
                 </div>
-                <div className="w-full bg-white/20 rounded-full h-2 mb-2">
+                <div className="w-full bg-gray-700 rounded-full h-2 mb-2">
                   <div
-                    className="bg-gray-50 h-2 rounded-full transition-all duration-500"
+                    className="bg-lime-300 h-2 rounded-full transition-all duration-500"
                     style={{ width: `${progressPercentage}%` }}
                   ></div>
                 </div>
-                <div className="text-xs text-white/80">
+                <div className="text-xs text-white/70">
                   {completedCount} of {totalCount} exercises completed
-                  {isCompleted && <span className="text-green-200 ml-2">✓ Day Completed!</span>}
+                  {isCompleted && <span className="text-lime-200 ml-2">✓ Day Completed!</span>}
                 </div>
               </div>
             )}
@@ -130,14 +131,14 @@ export default function RoutineDayPreview() {
         {/* Wave Effect */}
         <div className="absolute bottom-0 w-full">
           <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className="relative block w-full h-12">
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#f9fafb"></path>
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="#111827"></path>
           </svg>
         </div>
       </div>
 
       {/* Exercise List */}
       <div className="px-4 pt-6 pb-24">
-        <h3 className="text-lg font-semibold tracking-wide text-gray-800 mb-4">Today's Exercises</h3>
+        <h3 className="text-lg font-semibold tracking-wide text-gray-200 mb-4">Today's Exercises</h3>
         
         <div className="space-y-3">
           {exercises.map((exercise, index) => {
@@ -146,7 +147,7 @@ export default function RoutineDayPreview() {
             return (
               <div
                 key={`${exercise.id || index}-${exercise.title}`}
-                className={`bg-gray-50 rounded-xl p-4 shadow-sm border-2 transition-all ${
+                className={`bg-gray-200 rounded-xl p-4 shadow-sm border-2 transition-all ${
                   isExerciseCompleted 
                     ? "border-green-400 bg-green-50" 
                     : "border-lime-300 hover:border-lime-200"
@@ -209,20 +210,20 @@ export default function RoutineDayPreview() {
         </div>
 
         {/* Summary Card */}
-        <div className="mt-6 bg-gray-50 rounded-xl p-4 shadow-sm border border-gray-100">
-          <h4 className="font-semibold text-gray-800 mb-3">Session Summary</h4>
+        <div className="mt-6 bg-gray-800/50 backdrop-blur-sm rounded-xl p-4 shadow-sm border border-lime-400">
+          <h4 className="font-semibold text-gray-300 mb-3">Session Summary</h4>
           <div className="grid grid-cols-3 gap-4 text-center">
             <div>
-              <div className="text-2xl font-bold text-blue-600">{exercises.length}</div>
-              <div className="text-xs text-gray-600">Exercises</div>
+              <div className="text-2xl font-bold text-blue-500">{exercises.length}</div>
+              <div className="text-xs text-gray-300">Exercises</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-purple-600">{estimatedTime.split(' ')[0]}</div>
-              <div className="text-xs text-gray-600">Minutes</div>
+              <div className="text-2xl font-bold text-purple-500">{estimatedTime.split(' ')[0]}</div>
+              <div className="text-xs text-gray-300">Minutes</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-green-600">{progressPercentage}%</div>
-              <div className="text-xs text-gray-600">Complete</div>
+              <div className="text-2xl font-bold text-green-500">{progressPercentage}%</div>
+              <div className="text-xs text-gray-300">Complete</div>
             </div>
           </div>
         </div>
@@ -249,15 +250,15 @@ export default function RoutineDayPreview() {
             ) : (
               <>
                 <div className="flex items-center space-x-2 text-sm text-gray-700">
-                  <span className="text-green-500">🤸‍♂️</span>
+                  <span className="text-green-600">🤸‍♂️</span>
                   <span>Enhanced muscle flexibility</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm text-gray-700">
-                  <span className="text-blue-500">🩺</span>
+                  <span className="text-blue-600">🩺</span>
                   <span>Better circulation and recovery</span>
                 </div>
                 <div className="flex items-center space-x-2 text-sm text-gray-700">
-                  <span className="text-orange-500">⚡</span>
+                  <span className="text-orange-600">⚡</span>
                   <span>Reduced muscle tension</span>
                 </div>
               </>
@@ -267,10 +268,10 @@ export default function RoutineDayPreview() {
       </div>
 
       {/* Fixed Bottom Button */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4">
+      <div className="fixed bottom-0 left-0 right-0  p-4">
         <button
           onClick={handleStartRoutine}
-          className="w-full bg-gradient-to-r from-lime-500 via-lime-600 to-black-600 text-white font-bold py-4 rounded-2xl text-lg shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-[1.02] flex items-center justify-center space-x-2"
+          className="w-full   bg-lime-400   text-black font-bold py-4 rounded-2xl text-lg shadow-lg hover:shadow-xl hover:animate-pulse transition-all duration-200 transform hover:scale-[1.02] flex items-center justify-center space-x-2"
         >
           <Play className="w-5 h-5" />
           <span>

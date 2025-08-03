@@ -5,7 +5,7 @@ import { images } from "../../assets/images";
 
 export default function NutritionHistory() {
   return (
-    <section className="px-6 py-14 mb-12 rounded-2xl max-w-6xl mx-auto mb-20 shadow-xl">
+    <section className="px-6 py-14 rounded-2xl max-w-6xl mx-auto shadow-xl">
       <div className="flex flex-col md:flex-row items-center justify-between gap-10">
         
         {/* Left: Text Section */}
