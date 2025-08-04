@@ -4,13 +4,7 @@ const { cloudinary } = require('../config/cloudinary');
 const path = require('path');
 const fs = require('fs');
 
-// ============= PUBLIC CONTROLLERS =============
 
-/**
- * @desc    Get all meals
- * @route   GET /api/nutrition/getmeals
- * @access  Public
- */
 exports.getAllMeals = async (req, res) => {
   try {
     console.log('📋 Fetching all meals...');
@@ -27,13 +21,7 @@ exports.getAllMeals = async (req, res) => {
   }
 };
 
-// ============= ADMIN CONTROLLERS =============
 
-/**
- * @desc    Add a new meal with file upload
- * @route   POST /api/nutrition/admin/add
- * @access  Admin
- */
 exports.addMealWithUpload = async (req, res) => {
   try {
     const { title, mealType, benefit = '', tags = '[]' } = req.body;
@@ -119,11 +107,7 @@ exports.addMealWithUpload = async (req, res) => {
   }
 };
 
-/**
- * @desc    Update an existing meal with optional file upload
- * @route   PUT /api/nutrition/admin/:id
- * @access  Admin
- */
+
 exports.updateMealWithUpload = async (req, res) => {
   try {
     const { id } = req.params;
@@ -230,11 +214,7 @@ exports.updateMealWithUpload = async (req, res) => {
   }
 };
 
-/**
- * @desc    Delete a meal by ID
- * @route   DELETE /api/nutrition/admin/:id
- * @access  Admin
- */
+
 exports.deleteMeal = async (req, res) => {
   try {
     const { id } = req.params;
@@ -285,13 +265,7 @@ exports.deleteMeal = async (req, res) => {
   }
 };
 
-// ============= LEGACY CONTROLLERS (for backward compatibility) =============
 
-/**
- * @desc    Add a new meal (legacy - expects imageUrl in body)
- * @route   POST /api/meals/add
- * @access  Admin
- */
 exports.addMeal = async (req, res) => {
   try {
     const { title, mealType, benefit = '', tags = '[]', imageUrl } = req.body;
@@ -333,11 +307,8 @@ exports.addMeal = async (req, res) => {
   }
 };
 
-/**
- * @desc    Update an existing meal (legacy - expects imageUrl in body)
- * @route   PUT /api/meals/update/:id
- * @access  Admin
- */
+
+ 
 exports.updateMeal = async (req, res) => {
   try {
     const { id } = req.params;

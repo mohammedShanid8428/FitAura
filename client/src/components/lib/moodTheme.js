@@ -17,7 +17,7 @@ export const moodThemes = {
   },
   default: {
     bg: "bg-black",
-    text: "text-gray-400",
+    text: "text-gray-300",
     card: "bg-[#1f1f1f] border-gray-700",
   },
 };

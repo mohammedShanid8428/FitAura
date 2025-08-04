@@ -54,7 +54,7 @@ export default function RoutinesService() {
                   to={item.link}
                   className="bg-lime-500 text-white text-sm px-2 py-2 rounded hover:bg-lime-600 transition w-fit block text-center"
                 >
-                  Learn More
+                  Start Routine
                 </Link>
               </div>
             </div>

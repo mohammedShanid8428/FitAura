@@ -42,7 +42,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         
         {/* Left: Logo */}
-        <div className="flex items-center space-x-3">
+        <div className="flex items-center space-x-2">
           <img src={images.icon} alt="FitAura" className="h-12 w-12" />
           <span className="text-3xl font-extrabold text-gray-800 tracking-wider">
             FitAura

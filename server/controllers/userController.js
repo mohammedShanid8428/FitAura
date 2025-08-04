@@ -5,18 +5,18 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-// Configure multer for file uploads
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     const uploadPath = 'uploads/profiles/';
-    // Create directory if it doesn't exist
+
     if (!fs.existsSync(uploadPath)) {
       fs.mkdirSync(uploadPath, { recursive: true });
     }
     cb(null, uploadPath);
   },
   filename: function (req, file, cb) {
-    // Create unique filename: userId_timestamp.extension
+
     const uniqueName = `${req.user.userId}_${Date.now()}${path.extname(file.originalname)}`;
     cb(null, uniqueName);
   }
@@ -25,10 +25,10 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage,
   limits: {
-    fileSize: 5 * 1024 * 1024, // 5MB limit
+    fileSize: 5 * 1024 * 1024, 
   },
   fileFilter: (req, file, cb) => {
-    // Check file type
+ 
     const filetypes = /jpeg|jpg|png|gif/;
     const mimetype = filetypes.test(file.mimetype);
     const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
@@ -41,7 +41,7 @@ const upload = multer({
   }
 });
 
-// Register User
+
 exports.userRegister = async (req, res) => {
   try {
     const { username, email, password } = req.body;

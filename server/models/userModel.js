@@ -31,10 +31,10 @@ const userSchema = new mongoose.Schema({
     default: null
   }
 }, {
-  timestamps: true // Adds createdAt and updatedAt fields
+  timestamps: true 
 });
 
-// Index for faster email queries
+
 userSchema.index({ email: 1 });
 
 const User = mongoose.model('User', userSchema);
