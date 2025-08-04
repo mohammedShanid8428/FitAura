@@ -34,42 +34,45 @@ export default function RoutineDays({ title = "Routine Plan" }) {
   const percentage = Math.round((completedDays / totalDays) * 100);
 
   return (
-    <div className="bg-gray-800 min-h-screen py-10">
-      <div className="w-full max-w-md mx-auto bg-gray-500 rounded-xl shadow-md overflow-hidden p-4">
+    <div className="bg-gray-900 min-h-screen py-10">
+      <div className="w-full max-w-md mx-auto bg-gray-800 rounded-xl shadow-lg shadow-lime-400/10 overflow-hidden p-4 border border-gray-700">
       {/* Header */}
       <div className="relative mb-4">
         <div className="flex items-center justify-between">
-          <button onClick={() => navigate(-1)} className="text-gray-600">
-            <ChevronLeft />
+          <button 
+            onClick={() => navigate(-1)} 
+            className="text-gray-300 hover:text-lime-400 p-2 rounded-full hover:bg-gray-700 transition-colors"
+          >
+            <ChevronLeft className="w-5 h-5" />
           </button>
           <div className="flex-1 text-center">
             <h2 className="text-lg tracking-wider font-semibold text-lime-400">{title}</h2>
-            <p className="text-sm text-gray-800">
+            <p className="text-sm text-gray-400">
               {totalDays - completedDays} days left
             </p>
           </div>
-          <div className="w-5" />
+          <div className="w-9" />
         </div>
 
         {/* Progress Bar */}
-        <div className="mt-3">
-          <div className="relative h-2 bg-gray-200 rounded-full">
+        <div className="mt-4">
+          <div className="relative h-3 bg-gray-600 rounded-full">
             <div
-              className="absolute h-full bg-blue-500 rounded-full transition-all duration-500"
+              className="absolute h-full bg-lime-400 rounded-full transition-all duration-500 shadow-lg shadow-lime-400/30"
               style={{ width: `${percentage}%` }}
             />
           </div>
-          <p className="text-right text-xs text-gray-500 mt-1">
-            {percentage}%
+          <p className="text-right text-xs text-gray-400 mt-2">
+            {percentage}% Complete
           </p>
         </div>
       </div>
 
       {/* Week Info */}
-      <div className="flex justify-between items-center text-sm text-gray-800 mb-2 px-1">
-        <span className="font-medium">📍 WEEK 1</span>
-        <span className="text-xs text-gray-800">
-          {completedDays}/{totalDays}
+      <div className="flex justify-between items-center text-sm text-gray-300 mb-4 px-1">
+        <span className="font-medium text-lime-400">📍 WEEK 1</span>
+        <span className="text-xs text-gray-400 bg-gray-700 px-2 py-1 rounded-full">
+          {completedDays}/{totalDays} completed
         </span>
       </div>
 
@@ -84,12 +87,12 @@ export default function RoutineDays({ title = "Routine Plan" }) {
           return (
             <div
               key={day}
-              className={`px-4 py-3 rounded-2xl border border-lime-400 transition cursor-pointer ${
+              className={`px-4 py-4 rounded-2xl border-2 transition-all cursor-pointer transform hover:scale-[1.02] ${
                 isCompleted 
-                  ? "border-green-300 bg-green-50 hover:bg-green-100" 
+                  ? "border-lime-400 bg-gray-700 shadow-lg shadow-lime-400/20 hover:bg-gray-600" 
                   : dayProgress 
-                    ? "border-blue-300 bg-blue-50 hover:bg-blue-100"
-                    : "border-gray-200 bg-gray-50 hover:bg-gray-100"
+                    ? "border-gray-500 bg-gray-700 hover:border-gray-400 hover:bg-gray-600"
+                    : "border-gray-600 bg-gray-800 hover:border-gray-500 hover:bg-gray-700"
               }`}
               onClick={() =>
                 navigate(`/routine/day-preview?type=${type}&day=${day}`)
@@ -97,20 +100,29 @@ export default function RoutineDays({ title = "Routine Plan" }) {
             >
               <div className="flex justify-between items-center">
                 <div className="flex-1">
-                  <span className="text-sm font-medium text-gray-800">
-                    Day {day}
-                  </span>
+                  <div className="flex items-center space-x-2">
+                    <span className={`text-sm font-semibold ${
+                      isCompleted ? "text-lime-400" : "text-gray-200"
+                    }`}>
+                      Day {day}
+                    </span>
+                    {isCompleted && (
+                      <span className="text-xs bg-lime-400 text-gray-900 px-2 py-0.5 rounded-full font-medium">
+                        Complete
+                      </span>
+                    )}
+                  </div>
                   {dayProgress && (
-                    <div className="text-xs text-gray-500 mt-1">
+                    <div className="text-xs text-gray-400 mt-1">
                       {dayProgress.completed.length}/{dayProgress.totalExercises} exercises • {dayProgressPercent}%
                     </div>
                   )}
                   {dayProgress && dayProgressPercent > 0 && (
-                    <div className="mt-2">
-                      <div className="w-full bg-gray-200 rounded-full h-1.5 ">
+                    <div className="mt-3">
+                      <div className="w-full bg-gray-600 rounded-full h-2">
                         <div
-                          className={`h-1.5 rounded-full transition-all duration-300 ${
-                            isCompleted ? 'bg-green-500' : 'bg-blue-500'
+                          className={`h-2 rounded-full transition-all duration-500 ${
+                            isCompleted ? 'bg-lime-400 shadow-lg shadow-lime-400/30' : 'bg-gray-400'
                           }`}
                           style={{ width: `${dayProgressPercent}%` }}
                         ></div>
@@ -119,11 +131,11 @@ export default function RoutineDays({ title = "Routine Plan" }) {
                   )}
                 </div>
                 <CheckCircle
-                  className={`w-5 h-5 ml-3 ${
+                  className={`w-6 h-6 ml-4 transition-colors ${
                     isCompleted 
-                      ? "text-green-500" 
+                      ? "text-lime-400" 
                       : dayProgress && dayProgressPercent > 0
-                        ? "text-blue-500"
+                        ? "text-gray-400"
                         : "text-gray-600"
                   }`}
                 />
@@ -131,6 +143,27 @@ export default function RoutineDays({ title = "Routine Plan" }) {
             </div>
           );
         })}
+      </div>
+
+      {/* Bottom Summary */}
+      <div className="mt-6 bg-gray-700 rounded-xl p-4 border border-gray-600">
+        <div className="text-center">
+          <h3 className="text-lime-400 font-semibold mb-2">Progress Summary</h3>
+          <div className="grid grid-cols-3 gap-4 text-center">
+            <div>
+              <div className="text-xl font-bold text-lime-400">{completedDays}</div>
+              <div className="text-xs text-gray-400">Completed</div>
+            </div>
+            <div>
+              <div className="text-xl font-bold text-gray-300">{totalDays - completedDays}</div>
+              <div className="text-xs text-gray-400">Remaining</div>
+            </div>
+            <div>
+              <div className="text-xl font-bold text-lime-400">{percentage}%</div>
+              <div className="text-xs text-gray-400">Progress</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     </div>

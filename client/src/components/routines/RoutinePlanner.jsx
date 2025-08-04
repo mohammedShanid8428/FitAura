@@ -155,14 +155,14 @@ const togglePause = useCallback(() => {
   // Error handling
   if (!currentExercise || exercises.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
         <div className="text-center">
           <div className="text-6xl mb-4">⚠️</div>
-          <h2 className="text-xl font-semibold text-gray-800 mb-2">No Exercises Found</h2>
-          <p className="text-gray-600 mb-4">Unable to load exercises for this routine.</p>
+          <h2 className="text-xl font-semibold text-gray-200 mb-2">No Exercises Found</h2>
+          <p className="text-gray-400 mb-4">Unable to load exercises for this routine.</p>
           <button 
             onClick={() => navigate("/dashboard")}
-            className="bg-blue-500 text-white px-6 py-2 rounded-full font-semibold"
+            className="bg-lime-400 text-gray-900 px-6 py-2 rounded-full font-semibold hover:bg-lime-300 transition-colors"
           >
             Go to Dashboard
           </button>
@@ -172,18 +172,18 @@ const togglePause = useCallback(() => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-800 flex flex-col">
+    <div className="min-h-screen bg-gray-900 flex flex-col">
       {/* Header */}
-      <div className="bg-lime-400 shadow-sm px-4 py-4 flex items-center justify-between">
+      <div className="bg-lime-400 shadow-lg px-4 py-4 flex items-center justify-between">
         <button 
           onClick={handleExit}
-          className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+          className="p-2 rounded-full hover:bg-gray-900/10 transition-colors"
         >
-          <ChevronLeft className="w-6 h-6 text-gray-800" />
+          <ChevronLeft className="w-6 h-6 text-gray-900" />
         </button>
         
         <div className="text-center">
-          <h1 className="text-lg font-semibold capitalize tracking-wider text-gray-800">
+          <h1 className="text-lg font-semibold capitalize tracking-wider text-gray-900">
             {type} Routine - Day {day}
           </h1>
           <p className="text-sm text-gray-800">
@@ -191,20 +191,16 @@ const togglePause = useCallback(() => {
           </p>
         </div>
         
-        <div className="text-sm text-gray-800 font-medium">
+        <div className="text-sm text-gray-900 font-medium bg-gray-900/10 px-3 py-1 rounded-full">
           {currentIndex + 1} / {totalExercises}
         </div>
       </div>
 
       {/* Progress Bar */}
       <div className="px-4 py-3 bg-lime-400">
-        <div className="bg-gray-200 rounded-full h-2 overflow-hidden">
+        <div className="bg-gray-700 rounded-full h-3 overflow-hidden">
           <div 
-            className={`h-full bg-gradient-to-r transition-all duration-500 ${
-              type === 'yoga' 
-                ? 'from-purple-500 to-purple-700' 
-                : 'from-blue-500 to-blue-700'
-            }`}
+            className="h-full bg-gradient-to-r from-blue-500 to-green-500 transition-all duration-1000 shadow-lg"
             style={{ width: `${currentProgress}%` }}
           />
         </div>
@@ -216,12 +212,12 @@ const togglePause = useCallback(() => {
           {exercises.map((_, index) => (
             <div
               key={index}
-              className={`flex-1 h-1.5 rounded-full transition-all duration-300 ${
+              className={`flex-1 h-2 rounded-full transition-all duration-300 ${
                 completedExercises.has(index) 
-                  ? "bg-gray-800" 
+                  ? "bg-gray-900 shadow-md" 
                   : index === currentIndex 
-                    ? "bg-blue-500" 
-                    : "bg-gray-300"
+                    ? "bg-gray-700 animate-pulse" 
+                    : "bg-gray-600"
               }`}
             />
           ))}
@@ -229,18 +225,18 @@ const togglePause = useCallback(() => {
       </div>
 
       {/* Quick Stats */}
-      <div className="px-4 py-3 bg-lime-400 border-b">
+      <div className="px-4 py-3 bg-lime-400 border-b border-lime-300">
         <div className="flex justify-around text-center">
           <div>
-            <div className="text-xl font-bold text-green-600">{completedCount}</div>
+            <div className="text-xl font-bold text-gray-900">{completedCount}</div>
             <div className="text-sm text-gray-800">Completed</div>
           </div>
           <div>
-            <div className="text-xl font-bold text-blue-700">{currentProgress}%</div>
+            <div className="text-xl font-bold text-gray-900">{currentProgress}%</div>
             <div className="text-sm text-gray-800">Progress</div>
           </div>
           <div>
-            <div className="text-xl font-bold text-gray-800">{totalExercises - completedCount}</div>
+            <div className="text-xl font-bold text-gray-900">{totalExercises - completedCount}</div>
             <div className="text-sm text-gray-800">Remaining</div>
           </div>
         </div>
@@ -248,19 +244,19 @@ const togglePause = useCallback(() => {
 
       {/* Control Icons */}
       <div className="absolute top-32 right-4 flex flex-col space-y-2 z-10">
-        <button className="bg-white/80 backdrop-blur-sm p-3 rounded-full shadow-md hover:bg-white transition-colors">
-          <Volume2 className="w-5 h-5 text-gray-600" />
+        <button className="bg-gray-800/80 backdrop-blur-sm p-3 rounded-full shadow-lg hover:bg-gray-700 transition-colors">
+          <Volume2 className="w-5 h-5 text-lime-400" />
         </button>
         
         <button 
           onClick={togglePause}
-          className="bg-white/80 backdrop-blur-sm p-3 rounded-full shadow-md hover:bg-white transition-colors"
+          className="bg-gray-800/80 backdrop-blur-sm p-3 rounded-full shadow-lg hover:bg-gray-700 transition-colors"
         >
-          {isPaused ? <Play className="w-5 h-5 text-gray-600" /> : <Pause className="w-5 h-5 text-gray-600" />}
+          {isPaused ? <Play className="w-5 h-5 text-lime-400" /> : <Pause className="w-5 h-5 text-lime-400" />}
         </button>
         
-        <button className="bg-white/80 backdrop-blur-sm p-3 rounded-full shadow-md hover:bg-white transition-colors">
-          <HelpCircle className="w-5 h-5 text-gray-600" />
+        <button className="bg-gray-800/80 backdrop-blur-sm p-3 rounded-full shadow-lg hover:bg-gray-700 transition-colors">
+          <HelpCircle className="w-5 h-5 text-lime-400" />
         </button>
       </div>
 
@@ -268,13 +264,13 @@ const togglePause = useCallback(() => {
       <div className="flex-1 flex flex-col items-center justify-center px-4 py-8">
         {/* Exercise Image */}
         <div className="relative mb-6">
-          <div className="w-80 h-80 rounded-3xl boader boader-lime-400 overflow-hidden shadow-2xl bg-white">
+          <div className="w-80 h-80 rounded-3xl border-2 border-lime-400 overflow-hidden shadow-2xl bg-gray-800">
             <img 
               src={currentExercise.image} 
               alt={currentExercise.title} 
               className="w-full h-full object-cover" 
               onError={(e) => {
-                e.target.src = "https://via.placeholder.com/320x320/f3f4f6/9ca3af?text=Exercise";
+                e.target.src = "https://via.placeholder.com/320x320/374151/84cc16?text=Exercise";
               }}
             />
           </div>
@@ -282,54 +278,54 @@ const togglePause = useCallback(() => {
           {/* Pause Overlay */}
           {isPaused && (
             <div className="absolute inset-0 bg-black/50 rounded-3xl flex items-center justify-center">
-              <div className="bg-white rounded-full p-4">
-                <Pause className="w-8 h-8 text-gray-800" />
+              <div className="bg-lime-400 rounded-full p-4">
+                <Pause className="w-8 h-8 text-gray-900" />
               </div>
             </div>
           )}
           
           {/* Completed Indicator */}
           {completedExercises.has(currentIndex) && (
-            <div className="absolute top-4 right-4 bg-green-500 text-white rounded-full p-3 shadow-lg">
+            <div className="absolute top-4 right-4 bg-lime-400 text-gray-900 rounded-full p-3 shadow-lg">
               <span className="text-lg font-bold">✓</span>
             </div>
           )}
         </div>
         
         {/* Timer Display */}
-        <div className={`text-6xl font-bold mb-4 ${isPaused ? 'text-orange-500' : 'text-lime-500'}`}>
+        <div className={`text-6xl font-bold mb-4 ${isPaused ? 'text-gray-500' : 'text-lime-400'}`}>
           {isPaused ? "PAUSED" : `${timeLeft}s`}
         </div>
         
         {/* Exercise Title */}
-        <h2 className="text-2xl font-bold text-gray-300 uppercase text-center mb-2">
+        <h2 className="text-2xl font-bold text-gray-200 uppercase text-center mb-2">
           {currentExercise.title}
         </h2>
 
         {/* Exercise Description (for yoga) */}
         {currentExercise.description && type === 'yoga' && (
-          <p className="text-gray-300 text-center max-w-md mb-4 leading-relaxed">
+          <p className="text-gray-400 text-center max-w-md mb-4 leading-relaxed">
             {currentExercise.description}
           </p>
         )}
 
         {/* Exercise Info */}
-        <div className="text-center text-gray-300">
+        <div className="text-center text-gray-400">
           <p className="text-sm">
             Exercise {currentIndex + 1} of {totalExercises}
             {completedExercises.has(currentIndex) && (
-              <span className="text-green-600 font-semibold ml-2">✓ Completed</span>
+              <span className="text-lime-400 font-semibold ml-2">✓ Completed</span>
             )}
           </p>
         </div>
       </div>
 
       {/* Bottom Controls */}
-      <div className="bg-lime-400 px-6 py-6 border-t">
+      <div className="bg-gray-800 px-6 py-6 border-t border-gray-700">
         {/* Timer Progress Bar */}
-        <div className="relative h-5 bg-gray-200 rounded-full overflow-hidden mb-6">
+        <div className="relative h-4 bg-gray-700 rounded-full overflow-hidden mb-6">
           <div
-            className="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-500 to-green-500 transition-all duration-1000"
+            className="absolute top-0 left-0 h-full bg-lime-400 transition-all duration-1000 shadow-lg"
             style={{ width: `${((30 - timeLeft) / 30) * 100}%` }}
           />
         </div>
@@ -341,17 +337,17 @@ const togglePause = useCallback(() => {
             disabled={currentIndex === 0}
             className={`p-4 rounded-full transition-all ${
               currentIndex === 0 
-                ? "text-gray-300 cursor-not-allowed" 
-                : "text-gray-700 hover:bg-gray-100"
+                ? "text-gray-600 cursor-not-allowed" 
+                : "text-gray-300 hover:bg-gray-700 hover:text-lime-400"
             }`}
           >
-            <ChevronLeft className="w-8 h-8 text-gray-800" />
+            <ChevronLeft className="w-8 h-8" />
           </button>
 
           <div className="flex space-x-3">
             <button 
               onClick={togglePause} 
-              className="bg-blue-600 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-blue-600 transition-colors flex items-center space-x-2"
+              className="bg-lime-400 text-gray-900 px-8 py-4 rounded-2xl font-semibold hover:bg-lime-300 transition-colors flex items-center space-x-2 shadow-lg"
             >
               {isPaused ? <Play className="w-5 h-5" /> : <Pause className="w-5 h-5" />}
               <span>{isPaused ? "Resume" : "Pause"}</span>
@@ -359,25 +355,23 @@ const togglePause = useCallback(() => {
 
             <button 
               onClick={handleSkip} 
-              className="bg-gray-600 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-gray-600 transition-colors flex items-center space-x-2"
+              className="bg-gray-600 text-gray-200 px-8 py-4 rounded-2xl font-semibold hover:bg-gray-500 transition-colors flex items-center space-x-2"
             >
               <SkipForward className="w-5 h-5" />
               <span>Skip</span>
             </button>
           </div>
 
-
-
           <button 
             onClick={handleNext}
-            className="p-4 rounded-full text-gray-800 hover:bg-gray-100 transition-all"
+            className="p-4 rounded-full text-gray-300 hover:bg-gray-700 hover:text-lime-400 transition-all"
           >
             <ChevronLeft className="w-8 h-8 rotate-180" />
           </button>
         </div>
 
         {/* Status Text */}
-        <div className="text-center text-sm text-gray-800">
+        <div className="text-center text-sm text-gray-400">
           {isPaused 
             ? "Routine paused - Resume when ready" 
             : completedExercises.has(currentIndex) 
@@ -390,19 +384,19 @@ const togglePause = useCallback(() => {
       {/* Exit Confirmation Modal */}
       {showExitModal && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl p-6 max-w-sm w-full">
+          <div className="bg-gray-800 rounded-2xl p-6 max-w-sm w-full border border-gray-700">
             <div className="text-center">
               <div className="text-4xl mb-4">⚠️</div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">
+              <h3 className="text-lg font-semibold text-gray-200 mb-2">
                 Exit Routine?
               </h3>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-400 mb-6">
                 Your progress will be saved, but you'll need to restart this session.
               </p>
               <div className="flex space-x-3">
                 <button
                   onClick={() => setShowExitModal(false)}
-                  className="flex-1 bg-gray-200 text-gray-800 py-3 rounded-xl font-semibold hover:bg-gray-300 transition-colors"
+                  className="flex-1 bg-gray-600 text-gray-200 py-3 rounded-xl font-semibold hover:bg-gray-500 transition-colors"
                 >
                   Cancel
                 </button>
