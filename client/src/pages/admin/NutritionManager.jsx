@@ -256,11 +256,11 @@ export default function NutritionManager() {
           <option value="Lunch">Lunch</option>
           <option value="Dinner">Dinner</option>
           <option value="Snack">Snack</option>
-          <option value="Snack">Wieghtloss</option>
-          <option value="Snack">Weightgain</option>
-          <option value="Snack">Happy</option>
-          <option value="Snack">Sad</option>
-          <option value="Snack">Angry</option>
+          <option value="Weightloss">Weightloss</option>
+          <option value="Weightgain">Weightgain</option>
+          <option value="Happy">Happy</option>
+          <option value="Sad">Sad</option>
+          <option value="Angry">Angry</option>
         </select>
 
         <textarea
@@ -284,8 +284,8 @@ export default function NutritionManager() {
         <button
           type="submit"
           className={`w-full text-white font-semibold px-4 py-2 rounded transition-colors ${editMode
-              ? 'bg-blue-600 hover:bg-blue-700'
-              : 'bg-green-600 hover:bg-green-700'
+            ? 'bg-blue-600 hover:bg-blue-700'
+            : 'bg-green-600 hover:bg-green-700'
             }`}
         >
           {editMode ? "Update Meal" : "Add Meal"}
@@ -358,8 +358,8 @@ export default function NutritionManager() {
                     <button
                       onClick={() => handleEdit(meal)}
                       className={`flex-1 text-white text-sm px-3 py-2 rounded transition-colors ${editMode && editId === meal._id
-                          ? 'bg-blue-600'
-                          : 'bg-blue-500 hover:bg-blue-600'
+                        ? 'bg-blue-600'
+                        : 'bg-blue-500 hover:bg-blue-600'
                         }`}
                     >
                       {editMode && editId === meal._id ? 'Editing...' : 'Edit'}

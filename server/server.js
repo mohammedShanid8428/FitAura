@@ -19,20 +19,21 @@ app.use(express.json());
 const userRoutes = require('./routes/userRoutes');
 const mealsRoutes = require('./routes/mealsRoutes');
 const contactRoutes = require('./routes/contactRoutes');
-
+const hydrationRoutes = require('./routes/hydrationRoutes');
 const moodRoutes = require('./routes/moodRoutes');
 const routineRoutes = require('./routes/routineRoutes');
-const routineDashRoutes = require("./routes/routineProgressRoutes");
+
 const mealPlannerRoutes = require('./routes/plannerRoutes');
 
 // Use Routes
 app.use('/api/mealplanner', mealPlannerRoutes);
-app.use("/api/routineprogresses", routineDashRoutes);
+
 app.use('/api/routines', routineRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/meals', mealsRoutes);          // This now includes all nutrition manager routes
 app.use('/api/contact', contactRoutes);
 app.use('/api/moods', moodRoutes);
+app.use('/api/hydration', hydrationRoutes);
 
 // Base Route
 app.get('/', (req, res) => {
