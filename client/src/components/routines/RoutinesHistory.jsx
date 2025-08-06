@@ -17,7 +17,7 @@ export default function RoutinesHistory() {
           </p>
 
           <div className="flex flex-wrap gap-4">
-            <Link to="/routines/service">
+            <Link to="/routine/complete">
               <button className="bg-lime-500 hover:bg-lime-600 text-white font-semibold px-6 py-2 rounded-full shadow-lg hover:shadow-lime-500/50 transition transform hover:scale-105">
                 🏋️ View My Routines
               </button>

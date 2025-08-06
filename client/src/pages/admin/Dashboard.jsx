@@ -33,10 +33,10 @@ const API_URL = `${base_url}/api/contact/messages`;
 
 // Mock data for demonstration (only used where real data not available)
 const mockStats = {
-  totalUsers: 1247,
-  totalMessages: 89,
-  totalMeals: 156,
-  totalRoutines: 73,
+  totalUsers: 7,
+  totalMessages: 16,
+  totalMeals: 48,
+  totalRoutines: 24,
   totalMoods: 234,
   newUsersToday: 12,
   messagesUnread: 15,
