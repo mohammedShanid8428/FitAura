@@ -5,8 +5,10 @@ import { images } from "../../assets/images";
 import { useToast } from "../../components/ui/Use-Toast";
 import axios from "axios";
 import { useAuth } from '../../context/AuthContext';
+import { base_url } from "../../services/base_url"; 
 
-const API_URL = "http://localhost:3000/api/users";
+  const API_URL = `${base_url}/users`;
+
 
 const Authentication = () => {
   const location = useLocation();
