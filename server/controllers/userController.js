@@ -95,6 +95,7 @@ exports.userRegister = async (req, res) => {
 exports.userLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log(req.body)
 
     // Validate input
     if (!email || !password) {
